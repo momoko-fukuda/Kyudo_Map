@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ImgController extends Controller
+class PhotosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -43,7 +43,7 @@ class ImgController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function show($id)
+    // public function show(Photo $photo)
     // {
     //     //
     // }
@@ -54,7 +54,7 @@ class ImgController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function edit($id)
+    // public function edit(Photo $photo)
     // {
     //     //
     // }
@@ -66,7 +66,7 @@ class ImgController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function update(Request $request, $id)
+    // public function update(Request $request, Photo $photo)
     // {
     //     //
     // }
@@ -75,9 +75,9 @@ class ImgController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\HttCp\Response
      */
-    public function destroy($id)
+    public function destroy(Photo $photo)
     {
         //
     }

@@ -2,6 +2,13 @@
 
 namespace App\Http\Controllers;
 
+// 使用するモデル
+use App\Model\Dojos;
+use App\Model\Reviews;
+use App\Model\Area;
+use App\Model\User;
+
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller

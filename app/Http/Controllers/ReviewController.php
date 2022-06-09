@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 // 使用するモデル
-use App\Model\Dojos;
-use App\Model\Reviews;
+use App\Model\Dojo;
+use App\Model\Review;
 use App\Model\User;
-use App\Model\Img;
+use App\Model\Photo;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -37,7 +37,7 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Dojo $dojo, Request $request)
     {
         //
     }
@@ -48,7 +48,7 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Review $review)
     {
         //
     }
@@ -59,7 +59,7 @@ class ReviewController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function edit($id)
+    // public function edit(Review $review)
     // {
     //     //
     // }
@@ -71,7 +71,7 @@ class ReviewController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function update(Request $request, $id)
+    // public function update(Request $request, Review $review)
     // {
     //     //
     // }
@@ -82,7 +82,7 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Review $review)
     {
         //
     }

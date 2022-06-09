@@ -29,4 +29,5 @@ Route::get('dojos/{dojo}/reviews/{review}', 'ReviewController@show');
 Route::delete('dojos/{dojo}/reviews/{review}', 'ReviewController@destroy');
 
 // 画像関連？
-// Route::get('dojo/{dojo}/imgs', 'ImgController@index');
+
+

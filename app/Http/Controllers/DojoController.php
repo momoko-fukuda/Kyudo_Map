@@ -8,11 +8,11 @@ use App\Model\Reviews;
 use App\Model\BusinessHour;
 use App\Model\Area;
 use App\Model\User;
-use App\Model\Img;
+use App\Model\Photos;
 
 use Illuminate\Http\Request;
 
-class dojoController extends Controller
+class DojoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -51,7 +51,7 @@ class dojoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Dojo $dojo)
     {
         //
     }
@@ -62,7 +62,7 @@ class dojoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Dojo $dojo)
     {
         //
     }
@@ -74,7 +74,7 @@ class dojoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Dojo $dojo)
     {
         //
     }
@@ -85,7 +85,7 @@ class dojoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Dojo $dojo)
     {
         //
     }
