@@ -11,23 +11,35 @@
 |
 */
 
-// トップ画面
-Route::get('/', 'HomeController@index');
-// トップ画面からのそれぞれの遷移
-Route::get('/about', 'HomeController@about');
-Route::get('/role', 'HomeController@role');
-Route::get('/policy', 'HomeController@policy');
-Route::get('/mypage', 'HomeController@mypage');
+// トップ画面と遷移（HomeController）
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/about', 'HomeController@about')->name('home.about');
+Route::get('/role', 'HomeController@role')->name('home.role');
+Route::get('/policy', 'HomeController@policy')->name('home.policy');
+
 
 // 道場データ表示関連
 Route::resource('dojos', 'DojoController');
 
-// 口コミデータ関連
-Route::get('dojos/{dojo}/reviews/create', 'ReviewController@create');
-Route::post('dojos/{dojo}/reviews', 'ReviewController@store');
-Route::get('dojos/{dojo}/reviews/{review}', 'ReviewController@show');
-Route::delete('dojos/{dojo}/reviews/{review}', 'ReviewController@destroy');
 
-// 画像関連？
+// 口コミデータ関連
+Route::get('dojos/{dojo}/reviews/create', 'ReviewController@create')->name('reviews.create');
+Route::post('dojos/{dojo}/reviews', 'ReviewController@store')->name('reviews.store');
+Route::get('dojos/{dojo}/reviews/{review}', 'ReviewController@show')->name('reviews.show');
+Route::delete('dojos/{dojo}/reviews/{review}', 'ReviewController@destroy')->name('reviews.destroy');
+
+// 画像関連(review_photosのデータも合わせて表示させる際はこの内容で問題ないのか？)
+Route::get('dojos/{dojo}/photos', 'PhotoController@index');
+Route::delete('dojos/{dojo}/photos/{photo}', 'PhotoController@destroy');
+
+
+// マイページ関連
+Route::get('users/{user}', 'UserController@index');
+Route::get('users/{user}/edit', 'UserController@edit');
+Route::put('users/{user}', 'UserController@update');
+Route::delete('users/{user}', 'UserController@destroy');
+
+// 認証関連
+Auth::routes();
 
 

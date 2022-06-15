@@ -21,7 +21,7 @@ class DojoController extends Controller
      */
     public function index()
     {
-        //
+        return view('dojos.index');
     }
 
     /**
@@ -31,7 +31,7 @@ class DojoController extends Controller
      */
     public function create()
     {
-        //
+        return view('dojos.create');
     }
 
     /**
@@ -42,7 +42,7 @@ class DojoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //データ登録設定
     }
 
     /**
@@ -53,7 +53,8 @@ class DojoController extends Controller
      */
     public function show(Dojo $dojo)
     {
-        //
+        // データ処理内容
+        return view('dojos.show', compact('dojo'));
     }
 
     /**
@@ -64,7 +65,8 @@ class DojoController extends Controller
      */
     public function edit(Dojo $dojo)
     {
-        //
+        // データ処理
+        return view('dojos.edit',compact('dojo'));
     }
 
     /**
@@ -76,7 +78,7 @@ class DojoController extends Controller
      */
     public function update(Request $request, Dojo $dojo)
     {
-        //
+        //データ登録
     }
 
     /**
@@ -87,6 +89,6 @@ class DojoController extends Controller
      */
     public function destroy(Dojo $dojo)
     {
-        //
+        //データ削除
     }
 }

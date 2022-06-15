@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Photos\Photo;
+use App\Photos\DojoPhoto;
+use App\Photos\ReviewPhoto;
 use Illuminate\Http\Request;
 
 class PhotosController extends Controller
@@ -13,7 +16,7 @@ class PhotosController extends Controller
      */
     public function index()
     {
-        //
+        return view('photos.index');
     }
 
     // /**

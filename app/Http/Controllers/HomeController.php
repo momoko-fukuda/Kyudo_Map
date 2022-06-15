@@ -20,29 +20,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //トップ画面
+        return view('homes.home');
     }
     
     
     public function about()
     {
-        // 弓道Mapとは？のページ遷移
+        return view('homes.about');
     }
     
     public function role()
     {
-        // 利用規約の画面遷移
+        return view('homes.role');
     }
     
     public function policy()
     {
-        // プライバシーポリシーの画面遷移
+        return view('homes.policy');
     }
-    
-    public function mypage()
-    {
-        // マイページへの遷移
-    }
+
+
 
     // /**
     //  * Show the form for creating a new resource.
