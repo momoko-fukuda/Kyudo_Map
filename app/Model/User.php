@@ -6,6 +6,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * usersテーブルのモデルクラス
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -36,20 +39,37 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+
+    /**
+     * areasテーブルとのリレーション
+     */
     public function area()
     {
         return $this->belongsTo('App\Model\Area');
     }
-    public function dojo()
+    
+    /**
+     * dojosテーブルとのリレーション
+     */
+    public function dojos()
     {
         return $this->hasMany('App\Model\Dojo');
     }
-    public function review()
+    
+
+    
+    /**
+     * reviewsテーブルとのリレーション
+     */
+    public function reviews()
     {
         return $this->hasMany('App\Model\Review');
     }
-    public function userphoto()
+    
+    /**
+     * user_photosテーブルとのリレーション
+     */
+    public function userphotos()
     {
         return $this->hasMany('App\Model\Photos\UserPhoto');
     }

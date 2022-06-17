@@ -4,17 +4,32 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+
+/**
+ * reviewsテーブルのモデルクラス
+ */
 class Review extends Model
 {
+   /**
+    * usersテーブルとのリレーション
+    */
     public function user()
     {
         return $this->belongsTo('App\Model\User');
     }
+    
+    /**
+     * dojosテーブルとのリレーション
+     */
     public function dojo()
     {
         return $this->belongsTo('App\Model\Dojo');
     }
-    public function reviewphoto()
+    
+    /**
+     * reviews_photosテーブルとのリレーション
+     */
+    public function reviewphotos()
     {
         return $this->hasMany('App\Model\Photos\ReviewPhoto');
     }

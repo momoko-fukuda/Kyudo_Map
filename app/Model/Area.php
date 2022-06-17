@@ -4,14 +4,24 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+
+/**
+ * areasテーブルのモデルクラス
+ */
 class Area extends Model
 {
-    public function user()
+    /**
+     * usersテーブルとのリレーション
+     */
+    public function users()
     {
         return $this->hasMany('App\Model\User');
     }
     
-    public function dojo()
+    /**
+     * dojosテーブルとのリレーション
+     */
+    public function dojos()
     {
         return $this->hasMany('App\Model\Dojo');
     }

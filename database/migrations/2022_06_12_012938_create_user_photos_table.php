@@ -18,6 +18,9 @@ class CreateUserPhotosTable extends Migration
             $table->integer('user_id');
             $table->binary('img');
             $table->timestamps();
+        
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
+            
         });
     }
 

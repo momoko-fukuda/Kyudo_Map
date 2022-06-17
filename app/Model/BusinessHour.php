@@ -4,8 +4,15 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class BisinessHour extends Model
+
+/**
+ * businesshoursテーブルとのリレーション
+ */
+class BusinessHour extends Model
 {
+    /**
+     * dojoテーブルとのリレーション
+     */
     public function dojo()
     {
         return $this->belongsTo('App\Model\Dojo');
