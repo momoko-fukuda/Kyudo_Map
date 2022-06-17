@@ -15,6 +15,10 @@ class CreateBisinessHoursTable extends Migration
     {
         Schema::create('bisiness_hours', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('dojo_id');
+            $table->string('holiday');
+            $table->time('from');
+            $table->time('to');
             $table->timestamps();
         });
     }

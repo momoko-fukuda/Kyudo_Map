@@ -15,6 +15,8 @@ class CreateDojoPhotosTable extends Migration
     {
         Schema::create('dojo_photos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('dojo_id');
+            $table->binary('img');
             $table->timestamps();
         });
     }

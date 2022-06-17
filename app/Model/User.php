@@ -36,4 +36,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function area()
+    {
+        return $this->belongsTo('App\Model\Area');
+    }
+    public function dojo()
+    {
+        return $this->hasMany('App\Model\Dojo');
+    }
+    public function review()
+    {
+        return $this->hasMany('App\Model\Review');
+    }
+    public function userphoto()
+    {
+        return $this->hasMany('App\Model\Photos\UserPhoto');
+    }
 }
