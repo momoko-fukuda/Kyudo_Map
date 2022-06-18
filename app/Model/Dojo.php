@@ -31,7 +31,7 @@ class Dojo extends Model
      */
     public function businesshours()
     {
-        return $this->hasMany('App\Model\BisinessHour');
+        return $this->hasMany('App\Model\BusinessHour');
     }
     
     /**
