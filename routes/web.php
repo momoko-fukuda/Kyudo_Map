@@ -11,6 +11,7 @@
 |
 */
 
+
 // トップ画面と遷移（HomeController）
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('home.about');
@@ -28,18 +29,17 @@ Route::post('dojos/{dojo}/reviews', 'ReviewController@store')->name('reviews.sto
 Route::get('dojos/{dojo}/reviews/{review}', 'ReviewController@show')->name('reviews.show');
 Route::delete('dojos/{dojo}/reviews/{review}', 'ReviewController@destroy')->name('reviews.destroy');
 
-// 画像関連(review_photosのデータも合わせて表示させる際はこの内容で問題ないのか？)
+// 画像関連(review_photosのデータも合わせて表示させる際はこの内容で問題ないのか？ここがおかしい)
 Route::get('dojos/{dojo}/photos', 'PhotoController@index');
 Route::delete('dojos/{dojo}/photos/{photo}', 'PhotoController@destroy');
 
 
 // マイページ関連
-Route::get('users/{user}', 'UserController@index');
-Route::get('users/{user}/edit', 'UserController@edit');
-Route::put('users/{user}', 'UserController@update');
-Route::delete('users/{user}', 'UserController@destroy');
+Route::get('users/{user}', 'UserController@index')->name('user.index');
+Route::get('users/{user}/edit', 'UserController@edit')->name('user.edit');
+Route::put('users/{user}', 'UserController@update')->name('user.update');
+Route::delete('users/{user}', 'UserController@destroy')->name('user.delete');
 
 // 認証関連
 Auth::routes();
-
 

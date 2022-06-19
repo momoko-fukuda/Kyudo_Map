@@ -1,7 +1,10 @@
-★トップ画面
+<!--★トップ画面-->
+@extends('layouts.app')
 
-<a href="{{route('home.about')}}">弓道MAPとは</a>
-<a href="{{route('home.role')}}">利用規約</a>
-<a href="{{route('home.policy')}}">プライバシーポリシー</a>
+
+@section('content')
+<a href="{{route('home.about')}}">弓道MAPとは</a><br>
+
 <br>
 <a href="{{route('dojos.index')}}">道場検索</a>
+@endsection

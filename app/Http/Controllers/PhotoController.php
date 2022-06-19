@@ -7,7 +7,7 @@ use App\Photos\DojoPhoto;
 use App\Photos\ReviewPhoto;
 use Illuminate\Http\Request;
 
-class PhotosController extends Controller
+class PhotoController extends Controller
 {
     /**
      * Display a listing of the resource.
