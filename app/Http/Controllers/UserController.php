@@ -7,6 +7,8 @@ use App\Model\Review;
 use App\Model\User;
 use App\Model\Photo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -17,7 +19,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        $user = Auth::user();
+        
+        return view('users.index', compact('user'));
     }
 
     // /**
@@ -60,8 +64,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        // データ処理
-        return view('users.edit');
+        $user = Auth::user();
+        
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -73,7 +78,14 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //データ登録し、indexに返す
+        $userr = Auth::user();
+        
+        $user->name = $request->input('name') ? $request->input('name') : $user->name;
+        $user->email =$request->input('email') ? $request->input('email'): $user->email;
+        $user->area_id = $request->input('area_id') ? $request->input('area_id') : $user->area_id;
+        $user->update();
+        
+        return redirect()->route('users.index');
     }
 
     /**

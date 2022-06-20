@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Model\User;
+use App\Model\area;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -51,6 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'area_id' => ['required', 'integer'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -63,9 +65,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+       // 都道府県テーブルの全データを取得する
+       $prefectures = Area::all();
+       
+       return view('auth.register')->with(['prefectures' => $prefectures,]);
+       
+       
+       
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'area_id' => $data['area_id'],
             'password' => Hash::make($data['password']),
         ]);
     }

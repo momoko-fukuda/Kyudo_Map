@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-5">
+        <div class="col-md-6">
             <h3 class="mt-3 mb-3">ログイン</h3>
 
             <hr>
@@ -12,7 +12,7 @@
                 
                 <!--email画面-->
                 <div class="form-group">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror samazon-login-input" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="メールアドレス">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="メールアドレス">
 
                     @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -23,7 +23,7 @@
                 
                 <!--パスワード画面-->
                 <div class="form-group">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror samazon-login-input" name="password" required autocomplete="current-password" placeholder="パスワード">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="パスワード">
 
                     @error('password')
                     <span class="invalid-feedback" role="alert">
