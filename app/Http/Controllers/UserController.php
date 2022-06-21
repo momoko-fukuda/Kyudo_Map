@@ -17,11 +17,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function mypage()
     {
+        /**
+         * 何を出したいか？
+         * →userデータ
+         * →dojoデータ(userで登録したarea_idとの紐づけ、かつ直近で更新されたもの+気になる・利用したボタンに該当した道場)
+         * →reviewデータ（自分で投稿したもののみ）
+         */
+        
         $user = Auth::user();
         
-        return view('users.index', compact('user'));
+        return view('users.mypage', compact('user'));
     }
 
     // /**
@@ -85,7 +92,7 @@ class UserController extends Controller
         $user->area_id = $request->input('area_id') ? $request->input('area_id') : $user->area_id;
         $user->update();
         
-        return redirect()->route('users.index');
+        return redirect()->route('users.mypage');
     }
 
     /**

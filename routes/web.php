@@ -35,10 +35,10 @@ Route::delete('dojos/{dojo}/photos/{photo}', 'PhotoController@destroy');
 
 
 // マイページ関連
-Route::get('users/{user}', 'UserController@index')->name('user.index');
-Route::get('users/{user}/edit', 'UserController@edit')->name('user.edit');
-Route::put('users/{user}', 'UserController@update')->name('user.update');
-Route::delete('users/{user}', 'UserController@destroy')->name('user.delete');
+Route::get('users/mypage', 'UserController@mypage')->name('mypage');
+Route::get('users/mypage/edit', 'UserController@edit')->name('mypage.edit');
+Route::put('users/mypage', 'UserController@update')->name('mypage.update');
+Route::delete('users/mypage', 'UserController@destroy')->name('mypage.delete');
 
 // 認証関連
 Auth::routes();
