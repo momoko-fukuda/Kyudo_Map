@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+// 使用するモデル
+use App\Model\Dojos;
+use App\Model\Reviews;
+use App\Model\Area;
+use App\Model\User;
+use App\Model\Photos;
 
 class HomeController extends Controller
 {

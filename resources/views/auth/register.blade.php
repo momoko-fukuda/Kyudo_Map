@@ -41,18 +41,19 @@
                     </div>
                 </div>
                 
-                <!--活動エリア入力フォーム★-->
+                <!--活動エリア入力フォーム-->
                 <div class="form-group row">
                     <label for="password" class="col-md-5 col-form-label text-md-left">活動エリア<span class="ml-1">必須</span></label>
 
                     <div class="col-md-7">
+                        <!--areasテーブルのデータ$areasから都道府県id,nameを取ってきている-->
                         <select id="area_id" class="form-control @error('area_id') is-invalid @enderror" name="area_id" require autocomplete="address-level1">
-                            <option value>都道府県を選択してください</option>
-                            
-                            
-                             <!--foreach文でereaDBからとってくるか？-->
-                             <!--areaDBのarea_idを引っ張て来て、area_nameを表示させてareaDBと紐づけを行う-->
+                            <option value="" disabled selected style="display:none;">都道府県を選択してください</option>
+                            @foreach($areas as $area)
+                                <option value="{{$area->id}}">{{$area->name}}</option>
+                            @endforeach
                         </select>
+                        
                         
                         @error('area_id')
                         <span class="invalid-feedback" role="alert">
@@ -86,7 +87,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn samazon-submit-button w-100">
+                    <button type="submit" class="btn w-100">
                         アカウント作成
                     </button>
                 </div>

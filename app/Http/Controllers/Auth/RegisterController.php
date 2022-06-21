@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Model\User;
-use App\Model\area;
+use App\Model\Area;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -39,6 +39,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->area = new Area();
     }
 
     /**
@@ -65,18 +66,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-       // 都道府県テーブルの全データを取得する
-       $prefectures = Area::all();
-       
-       return view('auth.register')->with(['prefectures' => $prefectures,]);
-       
-       
-       
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'area_id' => $data['area_id'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+    
+    /**
+     * registerの登録画面上で、areasテーブルデータ（都道府県データ）を
+     * 取ってきて、viewに$areasの変数を渡す。
+     */
+    public function showRegistrationForm()
+    {
+        // 都道府県テーブルの全データを取得する
+       $areas = $this->area->get();
+       
+       return view('auth.register', compact('areas'));
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace Database\Seeds;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Model\Area;
 
 
 /**
- * areasテーブルに値を投入
+ * areasテーブルに値を投入（初期値）
  */
 class AreaSeeder extends Seeder
 {
@@ -67,6 +67,7 @@ class AreaSeeder extends Seeder
             ['id' => 46, 'name' => '鹿児島県'],
             ['id' => 47, 'name' => '沖縄県'],
             ];
+            
             DB::table('areas')->insert($params);
     }
 }
