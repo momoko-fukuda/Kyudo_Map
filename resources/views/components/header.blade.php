@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary shadow-sm fixed-top">
-    <a href="/" class="navbar-brand">弓道場MAP</a>
+    <a href="/" class="navbar-brand">弓道場のTEBIKI</a>
     <button 
         class="navbar-toggler"
         type="button"
