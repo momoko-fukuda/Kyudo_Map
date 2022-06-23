@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 // 使用するモデル
-use App\Model\Dojos;
-use App\Model\Reviews;
+use App\Model\Dojo;
+use App\Model\Review;
 use App\Model\BusinessHour;
 use App\Model\Area;
 use App\Model\User;
-use App\Model\Photos;
+use App\Model\Photo;
 
 use Illuminate\Http\Request;
 
+/**
+ * 道場検索、詳細画面、道場新規登録のクラスコントローラ
+ */
 class DojoController extends Controller
 {
     /**
@@ -19,9 +22,22 @@ class DojoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('dojos.index');
+        
+        // dojosデータを取得
+        $this->dojo = new Dojo();
+        $dojos = $this->dojo->with('areas')->get();
+        // dojoデータのarea_idごとにパラメータ値を変更する(例：dojos?area_id=1)
+        $area_id = $request->area_id;
+        // dojosデータのaddress1ごとにパラメータ値を変更する(例：dojos?address1=帯広)
+        $address1 = $request->address1;
+        // その他詳細条件のパラメータ変数をつくっておく（年齢制限/段制限/個人利用制限など…）
+        $freetext = $request->freetext;
+        $conditions = $request->conditions;
+        
+        
+        return view('dojos.index', compact('dojos', 'area_id', 'address1', 'freetext', 'conditions'));
     }
 
     /**
@@ -48,7 +64,7 @@ class DojoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $dojo
      * @return \Illuminate\Http\Response
      */
     public function show(Dojo $dojo)
@@ -60,20 +76,20 @@ class DojoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $dojo
      * @return \Illuminate\Http\Response
      */
     public function edit(Dojo $dojo)
     {
         // データ処理
-        return view('dojos.edit',compact('dojo'));
+        return view('dojos.edit', compact('dojo'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $dojo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Dojo $dojo)
@@ -84,7 +100,7 @@ class DojoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $dojo
      * @return \Illuminate\Http\Response
      */
     public function destroy(Dojo $dojo)

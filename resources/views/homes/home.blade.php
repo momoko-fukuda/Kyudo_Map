@@ -4,13 +4,17 @@
 
 @section('content')
 
-    <!--メインビジュアル-->
+<!--メインビジュアル-->
 <div id="main"　class="d-flex flex-row">
     <div>
         <h1>ようこそ、弓道場のTEBIKIへ</h1>
         <h2>みんなで弓道場をもっと身近に</h2>
-        <a href="{{route('home.about')}}" class="btn btn-secondary" role="button" >弓道場のTEBIKIとは？</a>
+        <a href="{{route('home.about')}}" class="btn btn-secondary" role="button" >弓道場のTEBIKIとは？</a><br>
+        @auth
+        <a href="{{route('dojos.index')}}">弓道場を探そう！＞</a>
+        @else
         <a href="{{route('register')}}">新規会員登録はこちら＞</a>
+        @endauth
     </div>
     <div>
         <p>練習のできる弓道場を探そう！</p>
@@ -211,9 +215,22 @@
 <div>
     <h3>弓道場に関する口コミ</h3>
     <div>
-    <!--↓foreach文で最新の口コミ５件くらいを表示させたい-->
+    <!--最新5件の口コミ取得-->
+    @foreach($reviews as $review)
         <div class="card" style="width:50rem;">
             <div class="card-body">
+                <h5 class="card-title">{{$review->title}}</h5>
+                <h6 class="card-subtitle">{{$review->user_name}}</h6>
+                <p class="card-text">{{$review->body}}</p>
+                <a href="#(動的ページ)" class="card-link">{{$review->dojo_name}}</a>
+            </div>
+        </div>
+    @endforeach
+    
+    
+        <!--↓口コミ取得時のイメージ（reviewデータを実際に入れた後に削除！）-->
+        <div class="card" style="width:50rem;">
+            <div class="card-body">★投稿イメージ例
                 <h5 class="card-title">口コミタイトル($review->title)</h5>
                 <h6 class="card-subtitle">投稿者アカウント名($review->user_name)</h6>
                 <p class="card-text">口コミ本文口コミ本文口コミ本文口コミ本文口コミ本文口コミ本文($review->body)</p>
@@ -221,7 +238,7 @@
             </div>
         </div>
         <div class="card" style="width:50rem;">
-            <div class="card-body">
+            <div class="card-body">★投稿イメージ例
                 <h5 class="card-title">口コミタイトル($review->title)</h5>
                 <h6 class="card-subtitle">投稿者アカウント名($review->user_name)</h6>
                 <p class="card-text">口コミ本文口コミ本文口コミ本文口コミ本文口コミ本文口コミ本文($review->body)</p>
@@ -229,7 +246,7 @@
             </div>
         </div>
         <div class="card" style="width:50rem;">
-            <div class="card-body">
+            <div class="card-body">★投稿イメージ例
                 <h5 class="card-title">口コミタイトル($review->title)</h5>
                 <h6 class="card-subtitle">投稿者アカウント名($review->user_name)</h6>
                 <p class="card-text">口コミ本文口コミ本文口コミ本文口コミ本文口コミ本文口コミ本文($review->body)</p>

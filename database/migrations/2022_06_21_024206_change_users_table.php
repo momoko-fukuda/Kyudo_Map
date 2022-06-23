@@ -4,9 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-
 /**
- * usersテーブルのpasswordカラムの文字数を255まで引き上げ
+ * usersテーブルのpasswordカラムの文字数を255まで引き上げに変更
  */
 class ChangeUsersTable extends Migration
 {
@@ -18,7 +17,7 @@ class ChangeUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-             $table->string('password', 255)->comment('アカウントのパスワード')->change();
+            $table->string('password', 255)->comment('アカウントのパスワード')->change();
         });
     }
 
@@ -30,7 +29,7 @@ class ChangeUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-             $table->string('password', 20)->comment('アカウントのパスワード')->change();
+            $table->string('password', 20)->comment('アカウントのパスワード')->change();
         });
     }
 }

@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+/**
+ * 新規登録画面のクラスコントローラ
+ */
 class RegisterController extends Controller
 {
     /*
@@ -46,6 +49,7 @@ class RegisterController extends Controller
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
+     * area_id 追加（活動エリア）
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -62,6 +66,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
+     * area_id 追加（活動エリア）
      * @return \App\User
      */
     protected function create(array $data)
@@ -76,13 +81,13 @@ class RegisterController extends Controller
     
     /**
      * registerの登録画面上で、areasテーブルデータ（都道府県データ）を
-     * 取ってきて、viewに$areasの変数を渡す。
+     * 取ってきて、viewに$areasの変数(データ)を渡す。
      */
     public function showRegistrationForm()
     {
         // 都道府県テーブルの全データを取得する
-       $areas = $this->area->get();
+        $areas = $this->area->get();
        
-       return view('auth.register', compact('areas'));
+        return view('auth.register', compact('areas'));
     }
 }

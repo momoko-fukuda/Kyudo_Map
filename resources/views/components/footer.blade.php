@@ -1,5 +1,5 @@
 <div class="navbar navbar-expand-lg navbar-dark bg-secondary shadow-sm fixed-bottom mt-5">
-    <a class="navbar-brand" href="{{url('/')}}">弓道場MAP</a>
+    <a class="navbar-brand" href="{{url('/')}}">弓道場のTEBIKI</a>
     <div>
         <a href="{{route('home.about')}}">弓道場MAPとは？</a>
         <a href="{{route('home.role')}}">利用規約</a>

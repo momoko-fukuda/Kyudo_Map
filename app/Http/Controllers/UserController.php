@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+// 使用するモデル
 use App\Model\Dojo;
 use App\Model\Review;
 use App\Model\User;
 use App\Model\Photo;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 
 class UserController extends Controller
 {

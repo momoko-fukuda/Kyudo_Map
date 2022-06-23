@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+/**
+ * ログイン画面のクラスコントローラ
+ */
 class LoginController extends Controller
 {
     /*
