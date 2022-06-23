@@ -220,39 +220,13 @@
         <div class="card" style="width:50rem;">
             <div class="card-body">
                 <h5 class="card-title">{{$review->title}}</h5>
-                <h6 class="card-subtitle">{{$review->user_name}}</h6>
+                <h6 class="card-subtitle">{{$review->user->name}}</h6>
                 <p class="card-text">{{$review->body}}</p>
-                <a href="#(動的ページ)" class="card-link">{{$review->dojo_name}}</a>
+                <a href="#(動的ページ)" class="card-link">{{ $review->dojo->name }}</a>
             </div>
         </div>
     @endforeach
     
-    
-        <!--↓口コミ取得時のイメージ（reviewデータを実際に入れた後に削除！）-->
-        <div class="card" style="width:50rem;">
-            <div class="card-body">★投稿イメージ例
-                <h5 class="card-title">口コミタイトル($review->title)</h5>
-                <h6 class="card-subtitle">投稿者アカウント名($review->user_name)</h6>
-                <p class="card-text">口コミ本文口コミ本文口コミ本文口コミ本文口コミ本文口コミ本文($review->body)</p>
-                <a href="#(動的ページ)" class="card-link">弓道場名($review->dojo_name)</a>
-            </div>
-        </div>
-        <div class="card" style="width:50rem;">
-            <div class="card-body">★投稿イメージ例
-                <h5 class="card-title">口コミタイトル($review->title)</h5>
-                <h6 class="card-subtitle">投稿者アカウント名($review->user_name)</h6>
-                <p class="card-text">口コミ本文口コミ本文口コミ本文口コミ本文口コミ本文口コミ本文($review->body)</p>
-                <a href="#(動的ページ)" class="card-link">弓道場名($review->dojo_name)</a>
-            </div>
-        </div>
-        <div class="card" style="width:50rem;">
-            <div class="card-body">★投稿イメージ例
-                <h5 class="card-title">口コミタイトル($review->title)</h5>
-                <h6 class="card-subtitle">投稿者アカウント名($review->user_name)</h6>
-                <p class="card-text">口コミ本文口コミ本文口コミ本文口コミ本文口コミ本文口コミ本文($review->body)</p>
-                <a href="#(動的ページ)" class="card-link">弓道場名($review->dojo_name)</a>
-            </div>
-        </div>
      </div>
      <a href="{{route('dojos.index')}}">利用した弓道場を探して、みんなに情報共有しよう！＞</a>
 </div>

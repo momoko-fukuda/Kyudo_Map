@@ -17,15 +17,6 @@ use App\Model\Photos;
  */
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     * reviewクラス取得
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->review = new Review();
-    }
 
     /**
      * Show the application dashboard.
@@ -34,10 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //reviewテーブルの最新5件のみ取得してくる
-        $reviews = $this->review->with('dojos', 'users')->orderBy('created_at', 'desc')->limit(5)->get();
+        $reviews = Review::getReviewLast5();
+
         return view('homes.home', compact('reviews'));
     }
+    
+
+    
     
     /**
      * 弓道のTEBIKIとは？の画面

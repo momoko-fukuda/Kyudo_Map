@@ -26,8 +26,7 @@ class DojoController extends Controller
     {
         
         // dojosデータを取得
-        $this->dojo = new Dojo();
-        $dojos = $this->dojo->with('areas')->get();
+        $dojos = Dojo::getDojoSearch();
         // dojoデータのarea_idごとにパラメータ値を変更する(例：dojos?area_id=1)
         $area_id = $request->area_id;
         // dojosデータのaddress1ごとにパラメータ値を変更する(例：dojos?address1=帯広)

@@ -13,7 +13,7 @@
                 <select id="area_id" class="form-control @error('area_id') is-invalid @enderror" name="area_id" require autocomplete="address-level1">
                     <option value="" disabled selected style="display:none;">都道府県を選択してください</option>
                     @foreach($dojos as $dojo)
-                        <option value="{{$area_id = $dojo->area_id}}">{{$dojo->area_name}}</option>
+                        <option value="{{$area_id = $dojo->area->id}}">{{$dojo->area->name}}</option>
                     @endforeach
                 </select>
             </div>

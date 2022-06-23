@@ -4,7 +4,6 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 /**
  * dojosテーブルのモデルクラス
  */
@@ -48,5 +47,17 @@ class Dojo extends Model
     public function dojophotos()
     {
         return $this->hasMany('App\Model\Photos\DojoPhoto');
+    }
+    
+    
+    /**
+     * DojoControllerで使用
+     * 道場検索時のデータ取得(dojos/index.blade.php)
+     */
+    public static function getDojoSearch()
+    {
+        return self::query()
+            ->with('area')
+            ->get();
     }
 }
