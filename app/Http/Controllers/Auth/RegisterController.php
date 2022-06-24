@@ -42,7 +42,6 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->area = new Area();
     }
 
     /**
@@ -86,7 +85,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         // 都道府県テーブルの全データを取得する
-        $areas = $this->area->get();
+        $areas = Area::getAllArea();
        
         return view('auth.register', compact('areas'));
     }

@@ -43,7 +43,7 @@
                 
                 <!--活動エリア入力フォーム-->
                 <div class="form-group row">
-                    <label for="password" class="col-md-5 col-form-label text-md-left">活動エリア<span class="ml-1">必須</span></label>
+                    <label for="area_id" class="col-md-5 col-form-label text-md-left">活動エリア<span class="ml-1">必須</span></label>
 
                     <div class="col-md-7">
                         <!--areasテーブルのデータ$areasから都道府県id,nameを取ってきている-->

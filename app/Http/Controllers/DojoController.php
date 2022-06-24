@@ -46,7 +46,9 @@ class DojoController extends Controller
      */
     public function create()
     {
-        return view('dojos.create');
+        $areas = Area::getAllArea();
+        
+        return view('dojos.create', compact('areas'));
     }
 
     /**
