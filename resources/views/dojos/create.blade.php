@@ -15,10 +15,12 @@
 </div>
 
 
+
+
+
 <h4 class="mt-5">新規弓道場登録フォーム</h4>
-<form method="POST" action="{{ route('dojos.store') }}">
-    
-    <!--フォームタブの部分-->
+
+<!--フォームタブの部分-->
     <ul class="nav nav-tabs nav-justified nav-pills" role="tablist">
         <li class="nav-item">
            <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">登録step１＞<br>基本情報(必須)</a>
@@ -32,8 +34,19 @@
     </ul>
 
 
-    <!--タブの内容１-->
+
+
+
+<form method="POST" action="{{ route('dojos.store') }}" enctype="multipart/form-data">
+    @csrf
+    
+    
+
+
+    
     <div class="tab-content">
+        
+        <!--タブの内容１-->
         <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
             <!--道場名-->
             <div class="form-group row">
@@ -93,7 +106,7 @@
                 <div class="col-md-5">
                    <input id="address2" type="text" class="form-control @error('address2') is-invalid @enderror" name="address2" value="{{ old('address2') }}" required autocomplete="address-level3" autofocus placeholder="建物名・ビル名を記入してください">
 
-                   @error('address1')
+                   @error('address2')
                     <span class="invalid-feedback" role="alert">
                         <strong>建物名・ビル名などを入力してください</strong>
                     </span>
@@ -121,7 +134,7 @@
                 <label for="use_money" class="col-md-5 col-form-label text-md-left">利用料金<span class="ml-1">必須</span></label>
 
                 <div class="col-md-5">
-                   <input id="use_money" type="text" class="form-control @error('use_money') is-invalid @enderror" name="use_money" value="{{ old('use_money') }}" required autocomplete="off" autofocus placeholder="利用料金を入力してください（例：2時間500円）">
+                   <input id="use_money" type="text" class="form-control @error('use_money') is-invalid @enderror" name="use_money" value="{{ old('use_money') }}"  autocomplete="off" autofocus placeholder="利用料金を入力してください（例：2時間500円）">
 
                    @error('use_money')
                     <span class="invalid-feedback" role="alert">
@@ -145,6 +158,17 @@
                 </div>
             </div>
             
+            <!--画像アップロード-->
+            <div class="form-group row">
+                <label for="img" class="col-md-5 col-form-label text-md-left @error('img') is-invalid @enderror">弓道場画像<span class="ml-1">任意</span></label>
+                <input type="file" multiple id="img" class="form-controle-file" name="img[]" value="{{ old('img') }}">
+                
+                @error('img')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>選択した画像データは容量を超えています</strong>
+                    </span>
+                @enderror
+            </div>
 
         </div>
         
@@ -355,31 +379,31 @@
             <div>
                 <label for="holiday" class="col-md-4 col-form-label text-md-left">定休日<span class="ml-1">任意</span></label>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="holiday" id="holiday" value="月曜日">
+                    <input class="form-check-input" type="checkbox" name="holiday[0][holiday]" id="holiday" value="月曜日">
                     <label class="form-check-label" for="holiday">月曜日</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="holiday" id="holiday" value="火曜日">
+                    <input class="form-check-input" type="checkbox" name="holiday[1][holiday]" id="holiday" value="火曜日">
                     <label class="form-check-label" for="holiday">火曜日</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="holiday" id="holiday" value="水曜日">
+                    <input class="form-check-input" type="checkbox" name="holiday[2][holiday]" id="holiday" value="水曜日">
                     <label class="form-check-label" for="holiday">水曜日</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="holiday" id="holiday" value="木曜日">
+                    <input class="form-check-input" type="checkbox" name="holiday[3][holiday]" id="holiday" value="木曜日">
                     <label class="form-check-label" for="holiday">木曜日</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="holiday" id="holiday" value="金曜日">
+                    <input class="form-check-input" type="checkbox" name="holiday[4][holiday]" id="holiday" value="金曜日">
                     <label class="form-check-label" for="holiday">金曜日</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="holiday" id="holiday" value="土曜日">
+                    <input class="form-check-input" type="checkbox" name="holiday[5][holiday]" id="holiday" value="土曜日">
                     <label class="form-check-label" for="holiday">土曜日</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="holiday" id="holiday" value="日曜日">
+                    <input class="form-check-input" type="checkbox" name="holiday[6][holiday]" id="holiday" value="日曜日">
                     <label class="form-check-label" for="holiday">日曜日</label>
                 </div>
             </div>
@@ -388,36 +412,36 @@
             <div class="form-group row">
                 <label for="from" class="col-md-4 col-form-label text-md-left">営業時間(区分1)<span class="ml-1">任意</span></label>
                 <div>
-                開始時間<input type="time" name="from" id="from">
-                終了時間<input type="time" name="to" id="to">
+                開始時間<input type="time" name="from[0][from]" id="from">
+                終了時間<input type="time" name="to[0][to]" id="to">
                 </div>
             </div>
             <div class="form-group row">
                 <label  class="col-md-4 col-form-label text-md-left">営業時間(区分２)<span class="ml-1">任意</span></label>
                 <div>
-                開始時間<input type="time" name="from" id="from">
-                終了時間<input type="time" name="to" id="to">
+                開始時間<input type="time" name="from[1][from]" id="from">
+                終了時間<input type="time" name="to[1][to]" id="to">
                 </div>
             </div>
             <div class="form-group row">
                 <label  class="col-md-4 col-form-label text-md-left">営業時間(区分３)<span class="ml-1">任意</span></label>
                 <div>
-                開始時間<input type="time" name="from" id="from">
-                終了時間<input type="time" name="to" id="to">
+                開始時間<input type="time" name="from[2][from]" id="from">
+                終了時間<input type="time" name="to[2][to]" id="to">
                 </div>
             </div>
             <div class="form-group row">
                 <label  class="col-md-4 col-form-label text-md-left">営業時間(区分４)<span class="ml-1">任意</span></label>
                 <div>
-                開始時間<input type="time" name="from" id="from">
-                終了時間<input type="time" name="to" id="to">
+                開始時間<input type="time" name="from[3][from]" id="from">
+                終了時間<input type="time" name="to[3][to]" id="to">
                 </div>
             </div>
             <div class="form-group row">
                 <label  class="col-md-4 col-form-label text-md-left">営業時間(区分５)<span class="ml-1">任意</span></label>
                 <div>
-                開始時間<input type="time" name="from" id="from">
-                終了時間<input type="time" name="to" id="to">
+                開始時間<input type="time" name="from[4][from]" id="from">
+                終了時間<input type="time" name="to[4][to]" id="to">
                 </div>
             </div>
 
