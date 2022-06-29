@@ -222,7 +222,7 @@
                 <h5 class="card-title">{{$review->title}}</h5>
                 <h6 class="card-subtitle">{{$review->user->name}}</h6>
                 <p class="card-text">{{$review->body}}</p>
-                <a href="#(動的ページ)" class="card-link">{{ $review->dojo->name }}</a>
+                <a href="{{route('dojos.show', $review->dojo->id)}}" class="card-link">{{ $review->dojo->name }}</a>
             </div>
         </div>
     @endforeach

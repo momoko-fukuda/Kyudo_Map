@@ -35,7 +35,7 @@ class Review extends Model
     
     
     /**
-     * HomeControllerでレビューデータを取得するモデルクラス
+     * HomeControllerでレビューデータを最新5件取得するモデルクラス
      * (home.blade.phpでreviewデータ表示)
      */
     public static function getReviewLast5()
@@ -45,5 +45,27 @@ class Review extends Model
          ->orderBy('created_at', 'desc')
          ->limit(5)
          ->get();
+    }
+    
+    
+    /**
+     * DojoControllerでレビューデータを全取得するモデルクラス
+     */
+    public static function getReview()
+    {
+        return self::query()
+            ->with(['dojo', 'user'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+    
+    /**
+     * DojoControllerでレビューデータ件数を取得するモデルクラス
+     */
+    public static function getReviewLast1()
+    {
+        return self::query()
+            ->orderBy('created_at', 'desc')
+            ->find(1);
     }
 }

@@ -30,7 +30,7 @@ Route::get('dojos/{dojo}/reviews/{review}', 'ReviewController@show')->name('revi
 Route::delete('dojos/{dojo}/reviews/{review}', 'ReviewController@destroy')->name('reviews.destroy');
 
 // 画像関連(review_photosのデータも合わせて表示させる際はこの内容で問題ないのか？ここがおかしい)
-Route::get('dojos/{dojo}/photos', 'PhotoController@index');
+Route::get('dojos/{dojo}/photos', 'PhotoController@index')->name('photos.index');
 Route::delete('dojos/{dojo}/photos/{photo}', 'PhotoController@destroy');
 
 
@@ -42,4 +42,3 @@ Route::delete('users/mypage', 'UserController@destroy')->name('mypage.delete');
 
 // 認証関連
 Auth::routes();
-

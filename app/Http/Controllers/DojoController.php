@@ -90,8 +90,6 @@ class DojoController extends Controller
         
         
         
-        // $area = Area::getAllArea();
-        
         $dojo = new Dojo;
         $dojo->user_id = Auth::id();
         $dojo->name = $request->name;
@@ -130,11 +128,8 @@ class DojoController extends Controller
      */
     public function show(Dojo $dojo)
     {
-        $dojo = Dojo::find($id);
-        $businesshours = $dojo->businesshour;
-        $dojophotos = $dojo->dojophoto;
-        
-        return view('dojos.show', compact('dojo', 'businesshours', 'dojophotos'));
+        $reviews = Review::getReview();
+        return view('dojos.show', compact('dojo', 'businesshour', 'dojophoto', 'reviews'));
     }
 
     /**
@@ -159,6 +154,7 @@ class DojoController extends Controller
     public function update(Request $request, Dojo $dojo)
     {
         //データ登録
+        return redirect()->route('dojos.show', ['id'=>$dojo->id]);
     }
 
     /**
