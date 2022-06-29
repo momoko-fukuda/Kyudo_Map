@@ -1,7 +1,4 @@
-★道場詳細ページ
-route('dojos.edit', dojo()->id)"編集
-route('reviews.create', dojo()->id)口コミ投稿
-
+<!--★道場詳細ページ-->
 
 @extends('layouts.app')
 
@@ -21,10 +18,9 @@ route('reviews.create', dojo()->id)口コミ投稿
     <div>
         <div>
             <h1>{{$dojo->name}}</h1>
-            <!--口コミ件数表示と利用者数の表示（別途確認）-->
-            <span>口コミ{{$reviews->count()}}件</span>
-            <span>気になるユーザー〇件</span>
-            <span>利用数〇件</span>
+            <span>口コミ{{$dojo->reviews->count()}}件</span>
+            <span>お気に入り{{ $dojo->favorites->count() }}件</span>
+            <span>利用数{{ $dojo->usebuttons->count() }}件</span>
         </div>
     </div>
     <div>
@@ -34,8 +30,28 @@ route('reviews.create', dojo()->id)口コミ投稿
     </div>
     <!--ボタン関連別途修正-->
     <div>
-        <button type=button class="btn btn-primary">気になるボタン</button>
-        <button type="button" class="btn btn-primary">利用したボタン</button>
+        <div>
+            @if($dojo->isFavoritedBy(Auth::user()))
+            <a href="/dojos/{{ $dojo->id }}/favorite" class="btn btn-secondary w-10">
+                お気に入り解除
+            </a>
+            @else
+            <a href="/dojos/{{ $dojo->id }}/favorite" class="btn btn-primary w-10">
+                お気に入り
+            </a>
+            @endif
+        </div>
+        <div>
+            @if($usebutton)
+            <a href="/dojos/{{ $dojo->id }}/unusebutton" class="btn btn-secondary w-10">
+                利用した解除
+            </a>
+            @else
+            <a href="/dojos/{{ $dojo->id }}/usebutton" class="btn btn-primary w-10">
+                利用した
+            </a>
+            @endif
+        </div>
     </div>
 </div>
 
@@ -151,6 +167,7 @@ route('reviews.create', dojo()->id)口コミ投稿
             <h4>口コミ</h4>
             <a type=button class="btn btn-primary" href="{{route('reviews.create', $dojo->id)}}">口コミ投稿する</a>
             <div>
+                <!--全部取ってきているので、この道場データに合致するもののみとってくるように-->
                 @foreach($reviews as $review)
                     <div class="card" style="width:50rem;">
                         <div class="card-body">
@@ -158,6 +175,7 @@ route('reviews.create', dojo()->id)口コミ投稿
                             <h5 class="card-title">{{$review->title}}</h5>
                             <p class="card-text">{{$review->body}}</p>
                             <p>{{$review->created_at}}</p>
+                            
                         </div>
                     </div>
                 @endforeach

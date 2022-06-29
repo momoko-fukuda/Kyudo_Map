@@ -5,13 +5,15 @@ namespace App\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Overtrue\LaravelFavorite\Traits\Favoriter;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * usersテーブルのモデルクラス
  */
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Favoriter;
 
     /**
      * The attributes that are mass assignable.
@@ -72,5 +74,33 @@ class User extends Authenticatable
     public function userphotos()
     {
         return $this->hasMany('App\Model\Photos\UserPhoto');
+    }
+    
+    /**
+     * use_buttonsテーブルとのリレーション
+     */
+    public function usebuttons()
+    {
+        return $this->hasMany('App\Model\Buttons\UseButton');
+    }
+    /**
+     * review_buttonsテーブルとのリレーション
+     */
+    public function reviewbuttons()
+    {
+        return $this->hasMany('App\Model\Buttons\ReviewButton');
+    }
+    
+    
+    
+    
+    
+    /**
+     * ユーザーがお気に入りしたdojoを全てとってきている
+     */
+    public static function getFavorite()
+    {
+        $user = Auth::user();
+        return $user->favorites(Dojo::class)->get();
     }
 }

@@ -9,6 +9,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Review extends Model
 {
+
+    
+    
     /**
      * usersテーブルとのリレーション
      */
@@ -31,6 +34,13 @@ class Review extends Model
     public function reviewphotos()
     {
         return $this->hasMany('App\Model\Photos\ReviewPhoto');
+    }
+    /**
+     * review_buttonsテーブルとのリレーション
+     */
+    public function reviewbuttons()
+    {
+        return $this->hasMany('App\Model\Buttons\ReviewButton');
     }
     
     

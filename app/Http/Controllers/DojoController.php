@@ -9,6 +9,8 @@ use App\Model\BusinessHour;
 use App\Model\Area;
 use App\Model\User;
 use App\Model\Photo;
+use App\Model\Buttons\UseButton;
+use App\Model\Buttons\ReviewButton;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +21,17 @@ use Illuminate\Support\Facades\Auth;
  */
 class DojoController extends Controller
 {
+    /**
+     * dojoデータの新規作成、編集に関してはmiddleware設定
+     * (ログインしてない場合、編集不可の設定)
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')
+            ->only(['create', 'store', 'edit', 'update', 'favorite', 'usebutton', 'unusebutton']);
+    }
+    
+
     /**
      * Display a listing of the resource.
      *
@@ -122,15 +135,66 @@ class DojoController extends Controller
 
     /**
      * Display the specified resource.
-     *
+     * 口コミデータ取得
+     * お気に入りデータの取得
      * @param  int  $dojo
      * @return \Illuminate\Http\Response
      */
-    public function show(Dojo $dojo)
+    public function show(Dojo $dojo, Review $review)
     {
         $reviews = Review::getReview();
-        return view('dojos.show', compact('dojo', 'businesshour', 'dojophoto', 'reviews'));
+        
+        $usebutton = UseButton::where('dojo_id', $dojo->id)
+                                ->where('user_id', auth()->user()->id)
+                                ->first();
+                                
+        return view('dojos.show', compact('dojo', 'reviews', 'favorites', 'usebutton', 'reviewbutton'));
     }
+    
+    /**
+     * dojoshowページのお気に入り機能実装
+     */
+    public function favorite(Dojo $dojo)
+    {
+        $user = Auth::user();
+         
+        if ($user->hasFavorited($dojo)) {
+            $user->unfavorite($dojo);
+        } else {
+            $user->favorite($dojo);
+        }
+        return redirect()->route('dojos.show', ['id' => $dojo->id]);
+    }
+     
+    /**
+     * dojoshowページの利用したボタン機能の実装
+     * 利用したを押した時
+     */
+    public function usebutton(Dojo $dojo, Request $request)
+    {
+        $usebutton =new UseButton();
+        $usebutton->dojo_id = $dojo->id;
+        $usebutton->user_id = Auth::id();
+        $usebutton->save();
+        return redirect()->route('dojos.show', ['id' => $dojo->id]);
+    }
+    
+    /**
+     * dojoshowページの利用したボタン機能の実装
+     * 利用したボタン解除
+     */
+    public function unusebutton(Dojo $dojo, Request $request)
+    {
+        $user = Auth::id();
+        $usebutton = UseButton::where('dojo_id', $dojo->id)
+                                ->where('user_id', $user)
+                                ->first();
+        $usebutton->delete();
+        return redirect()->route('dojos.show', ['id' => $dojo->id]);
+    }
+    
+
+
 
     /**
      * Show the form for editing the specified resource.

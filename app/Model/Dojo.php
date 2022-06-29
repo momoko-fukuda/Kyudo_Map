@@ -3,12 +3,15 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Overtrue\LaravelFavorite\Traits\Favoriteable;
 
 /**
  * dojosテーブルのモデルクラス
  */
 class Dojo extends Model
 {
+    use Favoriteable;
+    
     protected $fillable = [
         'user_id',
         'name',
@@ -76,6 +79,23 @@ class Dojo extends Model
     {
         return $this->hasMany('App\Model\Photos\DojoPhoto');
     }
+    
+    /**
+     * use_buttonsテーブルとのリレーション
+     */
+    public function usebuttons()
+    {
+        return $this->hasMany('App\Model\Buttons\UseButton');
+    }
+    /**
+     * review_buttonsテーブルとのリレーション
+     */
+    public function reviewbuttons()
+    {
+        return $this->hasMany('App\Model\Buttons\ReviewButton');
+    }
+    
+    
     
     
     /**

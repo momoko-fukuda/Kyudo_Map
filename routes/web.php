@@ -22,6 +22,14 @@ Route::get('/policy', 'HomeController@policy')->name('home.policy');
 // 道場データ表示関連
 Route::resource('dojos', 'DojoController');
 
+// いいねボタン関連
+Route::get('dojos/{dojo}/favorite', 'DojoController@favorite');
+
+Route::get('dojos/{dojo}/usebutton', 'DojoController@usebutton');
+Route::get('dojos/{dojo}/unusebutton', 'DojoController@unusebutton');
+
+
+
 
 // 口コミデータ関連
 Route::get('dojos/{dojo}/reviews/create', 'ReviewController@create')->name('reviews.create');
