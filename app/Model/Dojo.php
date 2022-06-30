@@ -94,7 +94,13 @@ class Dojo extends Model
     {
         return $this->hasMany('App\Model\Buttons\ReviewButton');
     }
-    
+    /**
+     * favorite_buttonsテーブルとのリレーション
+     */
+    public function favoritebuttons()
+    {
+        return $this->hasMany('App\Model\Buttons\FavoriteButton');
+    }
     
     
     

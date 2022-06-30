@@ -19,7 +19,7 @@
         <div>
             <h1>{{$dojo->name}}</h1>
             <span>口コミ{{$dojo->reviews->count()}}件</span>
-            <span>お気に入り{{ $dojo->favorites->count() }}件</span>
+            <span>お気に入り{{ $dojo->favoritebuttons->count() }}件</span>
             <span>利用数{{ $dojo->usebuttons->count() }}件</span>
         </div>
     </div>
@@ -28,15 +28,14 @@
         <p><span>電話番号：</span>{{$dojo->tel}}</p>
         <span>ホームページ：</span><a href="{{$dojo->url}}"> {{$dojo->url}}</a>
     </div>
-    <!--ボタン関連別途修正-->
     <div>
         <div>
-            @if($dojo->isFavoritedBy(Auth::user()))
-            <a href="/dojos/{{ $dojo->id }}/favorite" class="btn btn-secondary w-10">
+            @if($favoritebutton)
+            <a href="/dojos/{{ $dojo->id }}/unfavoritebutton" class="btn btn-secondary w-10">
                 お気に入り解除
             </a>
             @else
-            <a href="/dojos/{{ $dojo->id }}/favorite" class="btn btn-primary w-10">
+            <a href="/dojos/{{ $dojo->id }}/favoritebutton" class="btn btn-primary w-10">
                 お気に入り
             </a>
             @endif
@@ -146,11 +145,14 @@
                         <tr>
                             <th>営業時間</th>
                             <!--foreachでビジネスアワーテーブルより持ってくる-->
+                            <!--$dojo->businesshours->from-->
+                            <!--$dojo->businesshours->to-->
                             <td>＃</td>
                         </tr>
                         <tr>
                             <th>定休日</th>
                             <!--foreachでビジネスアワーテーブルより持ってくる-->
+                            <!--$dojo->businesshours->holiday-->
                             <td>＃</td>
                         </tr>
                         <tr>
@@ -167,7 +169,6 @@
             <h4>口コミ</h4>
             <a type=button class="btn btn-primary" href="{{route('reviews.create', $dojo->id)}}">口コミ投稿する</a>
             <div>
-                <!--全部取ってきているので、この道場データに合致するもののみとってくるように-->
                 @foreach($reviews as $review)
                     <div class="card" style="width:50rem;">
                         <div class="card-body">
@@ -175,8 +176,8 @@
                             <h5 class="card-title">{{$review->title}}</h5>
                             <p class="card-text">{{$review->body}}</p>
                             <p>{{$review->created_at}}</p>
-                            
                         </div>
+                        <!--いいねボタンの表示の仕方（削除ができない）-->
                     </div>
                 @endforeach
     

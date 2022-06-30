@@ -59,14 +59,13 @@ class Review extends Model
     
     
     /**
-     * DojoControllerでレビューデータを全取得するモデルクラス
+     * DojoControllerで該当道場のレビューデータを全取得するモデルクラス
      */
-    public static function getReview()
+    public function scopegetReview($query, $dojoId)
     {
-        return self::query()
-            ->with(['dojo', 'user'])
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $query->with(['dojo', 'user'])
+              ->where('dojo_id', $dojoId)
+              ->orderBy('created_at', 'desc');
     }
     
     /**

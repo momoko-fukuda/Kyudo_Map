@@ -23,10 +23,12 @@ Route::get('/policy', 'HomeController@policy')->name('home.policy');
 Route::resource('dojos', 'DojoController');
 
 // いいねボタン関連
-Route::get('dojos/{dojo}/favorite', 'DojoController@favorite');
+Route::get('dojos/{dojo}/favoritebutton', 'ButtonController@favoritebutton');
+Route::get('dojos/{dojo}/unfavoritebutton', 'ButtonController@unfavoritebutton');
 
-Route::get('dojos/{dojo}/usebutton', 'DojoController@usebutton');
-Route::get('dojos/{dojo}/unusebutton', 'DojoController@unusebutton');
+Route::get('dojos/{dojo}/usebutton', 'ButtonController@usebutton');
+Route::get('dojos/{dojo}/unusebutton', 'ButtonController@unusebutton');
+
 
 
 

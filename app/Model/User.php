@@ -90,6 +90,13 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Model\Buttons\ReviewButton');
     }
+    /**
+     * favorite_buttonsテーブルとのリレーション
+     */
+    public function favoritebuttons()
+    {
+        return $this->hasMany('App\Model\Buttons\FavoriteButton');
+    }
     
     
     

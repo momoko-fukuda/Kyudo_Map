@@ -1,4 +1,4 @@
-★共通レイアウト-
+<!--★共通レイアウト--->
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale())}}">
@@ -27,15 +27,19 @@
     <body>
         <div id="app">
             
-            @component('components.header')
-            @endcomponent
+            <header>
+                @component('components.header')
+                @endcomponent
+            </header>
             
             <main class="py-4 my-5">
                 @yield('content')
             </main>
             
-            @component('components.footer')
-            @endcomponent
+            <footer>
+                @component('components.footer')
+                @endcomponent
+            </footer>
         </div>
         
         <!-- Scripts（jsやfontawesome使用する際） -->
