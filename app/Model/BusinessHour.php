@@ -13,7 +13,7 @@ class BusinessHour extends Model
         'dojo_id',
         'holiday',
         'from',
-        'to'
+        'to',
         ];
     
     

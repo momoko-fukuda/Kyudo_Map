@@ -8,7 +8,7 @@ use App\Model\Review;
 use App\Model\BusinessHour;
 use App\Model\Area;
 use App\Model\User;
-use App\Model\Photo;
+use App\Model\Photos\DojoPhoto;
 use App\Model\Buttons\UseButton;
 use App\Model\Buttons\ReviewButton;
 use App\Model\Buttons\FavoriteButton;
@@ -74,63 +74,75 @@ class DojoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Dojo $dojo)
+    public function store(Request $request, Dojo $dojo, Area $area)
     {
-        // $request->validate([
-        //     'user_id'=>['nullable', 'integer'],
-        //     'name'=>['required', 'string', 'max:50'],
-        //     'area_id'=>['required','integer'],
-        //     'address1'=>['required', 'string', 'max:250'],
-        //     'address2'=>['required', 'string', 'max:250'],
-        //     'lat'=>['nullable', 'float'],
-        //     'lng'=>['nullable', 'float'],
-        //     'tel'=>['required', 'string', 'max:20'],
-        //     'url'=>['nullable', 'string', 'max:250'],
-        //     'use_money'=> ['nullable', 'string', 'max:250'],
-        //     'use_age' => ['nullable', 'integer'],
-        //     'use_step' => ['nullable', 'string', 'max:5'],
-        //     'use_personal'=> ['nullable', 'string', 'max:5'],
-        //     'use_group'=> ['nullable', 'string', 'max:5'],
-        //     'use_affiliation'=> ['nullable', 'string', 'max:5'],
-        //     'use_reserve'=> ['nullable', 'string', 'max:5'],
-        //     'facility_inout'=> ['nullable', 'string', 'max:5'],
-        //     'facility_makiwara'=> ['nullable', 'string', 'max:5'],
-        //     'facility_aircondition'=> ['nullable', 'string', 'max:5'],
-        //     'facility_matonumber'=> ['nullable', 'integer'],
-        //     'facility_lockerroom'=>['nullable', 'string', 'max:5'],
-        //     'facility_numberlimit'=>['nullable', 'string', 'max:20'],
-        //     'facility_parking'=> ['nullable', 'string', 'max:20'],
-        //     'other'=> ['nullable', 'string', 'max:255'],
-        //     ]);
+        $request->validate([
+            'user_id'=>['nullable', 'integer'],
+            'name'=>['required', 'string', 'max:50'],
+            'area_id'=>['required','integer'],
+            'address1'=>['required', 'string', 'max:250'],
+            'address2'=>['required', 'string', 'max:250'],
+            // 'lat'=>['nullable', 'float'],
+            // 'lng'=>['nullable', 'float'],
+            'tel'=>['required', 'string', 'max:20'],
+            'url'=>['nullable', 'string', 'max:250'],
+            'use_money'=> ['nullable', 'string', 'max:250'],
+            'use_age' => ['nullable', 'integer'],
+            'use_step' => ['nullable', 'string', 'max:5'],
+            'use_personal'=> ['nullable', 'string', 'max:5'],
+            'use_group'=> ['nullable', 'string', 'max:5'],
+            'use_affiliation'=> ['nullable', 'string', 'max:5'],
+            'use_reserve'=> ['nullable', 'string', 'max:5'],
+            'facility_inout'=> ['nullable', 'string', 'max:5'],
+            'facility_makiwara'=> ['nullable', 'string', 'max:5'],
+            'facility_aircondition'=> ['nullable', 'string', 'max:5'],
+            'facility_matonumber'=> ['nullable', 'integer'],
+            'facility_lockerroom'=>['nullable', 'string', 'max:5'],
+            'facility_numberlimit'=>['nullable', 'string', 'max:20'],
+            'facility_parking'=> ['nullable', 'string', 'max:20'],
+            'other'=> ['nullable', 'string', 'max:255'],
+            // 'holiday' => ['nullable','string', 'max:3'],
+            // 'from' => ['nullable', 'date_format:H:i'],
+            // 'to' => ['nullable', 'date_format:H:i'],
+            // 'img' => ['binary'],
+            ]);
+        
+        // $dojo = new Dojo();
+        // $dojo->fill($request->all())->save();
         
         
+        $dojo = Dojo::create([
+            'user_id' => Auth::id(),
+            'name' => $request->name,
+            'area_id' => $request->area_id,
+            'address1' => $request->address1,
+            'address2' => $request->address2,
+            // 'lat' => $request->lat,
+            // 'lng' => $request->lng,
+            'tel' => $request->tel,
+            'url' => $request->url,
+            'use_money' => $request->use_money,
+            'use_age' => $request->use_age,
+            'use_step' => $request->use_step,
+            'use_personal' => $request->use_personal,
+            'use_group' => $request->use_group,
+            'use_affiliation' => $request->use_affiliation,
+            'use_reserve' => $request->use_reserve,
+            'facility_inout' => $request->facility_inout,
+            'facility_makiwara' => $request->facility_makiwara,
+            'facility_aircondition' => $request->facility_airconditio,
+            'facility_matonumber' => $request->facility_matonumber,
+            'facility_lockerroom' => $request->facility_lockerroom,
+            'facility_numberlimit' => $request->facility_numberlimit,
+            'facility_parking' => $request->facility_parking,
+            'other' => $request->other,
+            ]);
+            
+        // $businesshour =
         
-        // $dojo = new Dojo;
-        // $dojo->user_id = Auth::id();
-        // $dojo->name = $request->name;
-        // $dojo->area_id = $area->id;
-        // $dojo->address1 = $request->address1;
-        // $dojo->address2 = $request->address2;
-        // $dojo->lat = $request->lat;
-        // $dojo->lng = $request->lng;
-        // $dojo->tel = $request->tel;
-        // $dojo->url = $request->url;
-        // $dojo->use_money = $request->use_money;
-        // $dojo->use_age = $request->use_age;
-        // $dojo->use_step = $request->use_step;
-        // $dojo->use_personal = $request->use_personal;
-        // $dojo->use_group = $request->use_group;
-        // $dojo->use_affiliation = $request->use_affiliation;
-        // $dojo->use_reserve = $request->use_reserve;
-        // $dojo->facility_inout = $request->facility_inout;
-        // $dojo->facility_makiwara = $request->facility_makiwara;
-        // $dojo->facility_aircondition = $request->facility_airconditio;
-        // $dojo->facility_matonumber = $request->facility_matonumber;
-        // $dojo->facility_lockerroom = $request->facility_lockerroom;
-        // $dojo->facility_numberlimit = $request->facility_numberlimit;
-        // $dojo->facility_parking = $request->facility_parking;
-        // $dojo->other = $request->other;
-        // $dojo->save();
+        // $dojophoto =
+        
+        
         
         return redirect()->route('dojos.show', ['id' => $dojo->id]);
     }

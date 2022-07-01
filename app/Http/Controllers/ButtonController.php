@@ -14,6 +14,16 @@ use App\Model\Buttons\FavoriteButton;
 class ButtonController extends Controller
 {
     /**
+     * middleware設定
+     * (ログインしてない場合、お気に入り・利用したボタンの使用不可)
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
+    /**
      * dojoshowページのお気に入り機能実装
      * お気に入りした時
      */
@@ -51,7 +61,7 @@ class ButtonController extends Controller
      */
     public function usebutton(Dojo $dojo, Request $request)
     {
-        $favoritebutton = UseButton::create([
+        $usebutton = UseButton::create([
             'dojo_id' => $dojo->id,
             'user_id' => Auth::id(),
             ]);

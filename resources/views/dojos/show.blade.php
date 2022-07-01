@@ -115,7 +115,7 @@
                     <h4>弓道場設備情報</h4>
                     <table>
                         <tr>
-                            <th>室内・屋外</th>
+                            <th>屋内・屋外</th>
                             <td>{{$dojo->facility_inout}}</td>
                         </tr>
                         <tr>

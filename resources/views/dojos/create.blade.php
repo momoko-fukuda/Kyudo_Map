@@ -17,7 +17,7 @@
 <div>
     <h4 class="mt-5">新規弓道場登録フォーム</h4>
     
-    <form action="{{ route('dojos.store') }}" method="POST">
+    <form action="/dojos" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
         
         
@@ -33,7 +33,8 @@
                 <div class="col-md-5">
                    <input id="name" 
                           type="text" 
-                          class="form-control @error('name') is-invalid @enderror" 
+                          class="form-control 
+                                 @error('name') is-invalid @enderror" 
                           name="name" 
                           value="{{ old('name') }}" 
                           required 
@@ -56,7 +57,8 @@
 
                 <div class="col-md-5">
                     <select id="area_id" 
-                            class="form-control @error('area_id') is-invalid @enderror" 
+                            class="form-control 
+                                   @error('area_id') is-invalid @enderror" 
                             name="area_id" 
                             required 
                             autofocus>
@@ -66,7 +68,7 @@
                             都道府県を選択してください
                         </option>
                         @foreach($areas as $area)
-                            <option value="{{$area->id}}">{{$area->name}}</option>
+                            <option value="{{ $area->id }}" @if( $area->id == old('area_id')) selected @endif>{{$area->name}}</option>
                         @endforeach
                     </select>
                         
@@ -88,7 +90,8 @@
                 <div class="col-md-5">
                    <input id="address1" 
                           type="text" 
-                          class="form-control @error('address1') is-invalid @enderror" 
+                          class="form-control 
+                                 @error('address1') is-invalid @enderror" 
                           name="address1" 
                           value="{{ old('address1') }}" 
                           required 
@@ -114,7 +117,8 @@
                 <div class="col-md-5">
                    <input id="address2" 
                           type="text" 
-                          class="form-control @error('address2') is-invalid @enderror" 
+                          class="form-control 
+                                 @error('address2') is-invalid @enderror" 
                           name="address2" 
                           value="{{ old('address2') }}" 
                           required 
@@ -139,7 +143,9 @@
 
                 <div class="col-md-5">
                    <input id="tel" 
-                          type="text" class="form-control @error('tel') is-invalid @enderror" 
+                          type="text" 
+                          class="form-control 
+                                 @error('tel') is-invalid @enderror" 
                           name="tel" 
                           value="{{ old('tel') }}" 
                           required 
@@ -165,7 +171,8 @@
                 <div class="col-md-5">
                    <input id="use_money" 
                           type="text" 
-                          class="form-control @error('use_money') is-invalid @enderror" 
+                          class="form-control 
+                                 @error('use_money') is-invalid @enderror" 
                           name="use_money" 
                           value="{{ old('use_money') }}"  
                           autocomplete="off" 
@@ -182,7 +189,10 @@
             <!--弓道場ホームページ-->
             <div class="form-group row">
                 <label for="url" 
-                       class="col-md-5 col-form-label text-md-left @error('url') is-invalid @enderror">
+                       class="col-md-5 
+                              col-form-label 
+                              text-md-left 
+                              @error('url') is-invalid @enderror">
                     弓道場のホームページ
                     <span class="ml-1">任意</span>
                 </label>
@@ -205,35 +215,61 @@
                 </div>
             </div>
             <!--画像アップロード（要確認）-->
-            <!--<div class="form-group row">-->
-            <!--    <label for="img" -->
-            <!--           class="col-md-5 col-form-label text-md-left @error('img') is-invalid @enderror">-->
-            <!--        弓道場画像-->
-            <!--        <span class="ml-1">任意</span>-->
-            <!--    </label>-->
-            <!--    <input type="file" -->
-            <!--           multiple -->
-            <!--           id="img" -->
-            <!--           class="form-controle-file" -->
-            <!--           name="img[]" -->
-            <!--           value="{{ old('img') }}">-->
-                
-            <!--    @error('img')-->
-            <!--        <span class="invalid-feedback" role="alert">-->
-            <!--            <strong>選択した画像データは容量を超えています</strong>-->
-            <!--        </span>-->
-            <!--    @enderror-->
-            <!--</div>-->
+            <div class="form-group row">
+                <label class="col-md-5 
+                              col-form-label 
+                              text-md-left 
+                              @error('img') is-invalid @enderror">
+                    弓道場画像
+                    <span class="ml-1">任意</span>
+                </label>
+                <div>
+                    <input type="file" 
+                           multiple
+                           class="form-controle-file" 
+                           name="img[]" 
+                           value="{{ old('img') }}">
+                    <input type="file" 
+                           multiple
+                           class="form-controle-file" 
+                           name="img[]" 
+                           value="{{ old('img') }}">
+                    <input type="file" 
+                           multiple
+                           class="form-controle-file" 
+                           name="img[]" 
+                           value="{{ old('img') }}">
+                    <input type="file" 
+                           multiple
+                           class="form-controle-file" 
+                           name="img[]" 
+                           value="{{ old('img') }}">
+                    <input type="file" 
+                           multiple
+                           class="form-controle-file" 
+                           name="img[]" 
+                           value="{{ old('img') }}">
+                </div>
+                @error('img')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>選択した画像データは容量を超えています</strong>
+                    </span>
+                @enderror
+            </div>
 
         </div>
         
         <!--グループ２-->
-        <div>
-            
-            
-            
-        </div>
-        <div></div>
+        @component('components.formtab2')
+        @endcomponent
+        
+        
+        <!--グループ３-->
+        @component('components.formtab3')
+        @endcomponent
+        
+        
+        <!--ボタン-->
         <div class="form-group">
             <button type="submit" class="btn btn-primary w-50">
                 新規登録

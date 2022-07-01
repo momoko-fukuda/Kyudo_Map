@@ -10,8 +10,6 @@ use Overtrue\LaravelFavorite\Traits\Favoriteable;
  */
 class Dojo extends Model
 {
-    use Favoriteable;
-    
     protected $fillable = [
         'user_id',
         'name',
