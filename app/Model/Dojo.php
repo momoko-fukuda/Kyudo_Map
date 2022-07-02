@@ -34,7 +34,14 @@ class Dojo extends Model
         'facility_lockerroom',
         'facility_numberlimit',
         'facility_parking',
-        'other'
+        'other',
+        'holiday_mon',
+        'holiday_tues',
+        'holiday_wednes',
+        'holiday_thurs',
+        'holiday_fri',
+        'holiday_satur',
+        'holiday_sun',
         ];
     
     

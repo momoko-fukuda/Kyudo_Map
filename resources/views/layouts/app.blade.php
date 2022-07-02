@@ -43,6 +43,6 @@
         </div>
         
         <!-- Scripts（jsやfontawesome使用する際） -->
-        <script src="{{ secure_asset('js/app.js') }}" defer></script>
+        <script src="{{ secure_asset('js/dojocreate.js') }}"></script>
     </body>
 </html>

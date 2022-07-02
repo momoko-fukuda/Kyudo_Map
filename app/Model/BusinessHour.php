@@ -11,7 +11,6 @@ class BusinessHour extends Model
 {
     protected $fillable = [
         'dojo_id',
-        'holiday',
         'from',
         'to',
         ];

@@ -153,7 +153,40 @@
                             <th>定休日</th>
                             <!--foreachでビジネスアワーテーブルより持ってくる-->
                             <!--$dojo->businesshours->holiday-->
-                            <td>＃</td>
+                            <td>
+                                
+                                @if($dojo->holiday_mon == 'true')
+                                  月曜日
+                                @endif
+                                @if($dojo->holiday_tues == 'true')
+                                  火曜日
+                                @endif
+                                @if($dojo->holiday_wednes == 'true')
+                                  水曜日
+                                @endif
+                                @if($dojo->holiday_thurs == 'true')
+                                  木曜日
+                                @endif
+                                @if($dojo->holiday_fri == 'true')
+                                  金曜日
+                                @endif
+                                @if($dojo->holiday_satur == 'true')
+                                  土曜日
+                                @endif
+                                @if($dojo->holiday_sun == 'true')
+                                  日曜日
+                                @endif
+                                @if($dojo->holiday_mon == 'false' 
+                                    and $dojo->holiday_tues == 'false' 
+                                    and $dojo->holiday_wednes == 'false' 
+                                    and $dojo->holiday_thurs == 'false' 
+                                    and $dojo->holiday_fri == 'false' 
+                                    and $dojo->holiday_satur == 'false' 
+                                    and $dojo->holiday_sun == 'false' )
+                                　不明
+                                @endif
+                                
+                            </td>
                         </tr>
                         <tr>
                             <th>その他</th>

@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Support\Facades\Log;
+
 /**
  * 道場検索、詳細画面、道場新規登録のクラスコントローラ
  */
@@ -101,46 +103,105 @@ class DojoController extends Controller
             'facility_numberlimit'=>['nullable', 'string', 'max:20'],
             'facility_parking'=> ['nullable', 'string', 'max:20'],
             'other'=> ['nullable', 'string', 'max:255'],
-            // 'holiday' => ['nullable','string', 'max:3'],
             // 'from' => ['nullable', 'date_format:H:i'],
             // 'to' => ['nullable', 'date_format:H:i'],
             // 'img' => ['binary'],
             ]);
-        
+            
+
         // $dojo = new Dojo();
         // $dojo->fill($request->all())->save();
         
+        // 新しい道場データのレコード作成
+        $dojo = new Dojo();
+        // 道場modelで設定したfillableのデータ全てをとってきます
+        $params = $dojo->fill($request->all());
+        // ユーザー情報をとってきます
+        $user = Auth::user();
+        // ユーザーレコードから、子レコードの道場データに$paramsのデータを格納します。
+        $user->dojos()->save($params);
+
+
+
+        // Log::debug($request->all());
         
-        $dojo = Dojo::create([
-            'user_id' => Auth::id(),
-            'name' => $request->name,
-            'area_id' => $request->area_id,
-            'address1' => $request->address1,
-            'address2' => $request->address2,
-            // 'lat' => $request->lat,
-            // 'lng' => $request->lng,
-            'tel' => $request->tel,
-            'url' => $request->url,
-            'use_money' => $request->use_money,
-            'use_age' => $request->use_age,
-            'use_step' => $request->use_step,
-            'use_personal' => $request->use_personal,
-            'use_group' => $request->use_group,
-            'use_affiliation' => $request->use_affiliation,
-            'use_reserve' => $request->use_reserve,
-            'facility_inout' => $request->facility_inout,
-            'facility_makiwara' => $request->facility_makiwara,
-            'facility_aircondition' => $request->facility_airconditio,
-            'facility_matonumber' => $request->facility_matonumber,
-            'facility_lockerroom' => $request->facility_lockerroom,
-            'facility_numberlimit' => $request->facility_numberlimit,
-            'facility_parking' => $request->facility_parking,
-            'other' => $request->other,
-            ]);
-            
-        // $businesshour =
+        // $params = $request->all();
         
-        // $dojophoto =
+        // $newDojo = Dojo::crate($params);
+
+        // $loginUser = Auth::user();
+        
+        // $loginUser->dojos()->save($newDojo);
+        
+        // $businessHours;
+        
+        // foreach($hour in $hours){
+        //     $businessHours[] = new BusinessHour($hour);
+        // }
+        
+        
+        // $newDojo->businessHours()->saveMany($businessHours);
+        
+        
+        
+        
+        // $businessHours = $request->get("business_hours");
+        // $params = json_decode($businessHours, true);
+        
+        // [
+        //     ["from" => "", "to" => ""],
+        //     ["from" => "", "to" => ""],
+        //     ["from" => "", "to" => ""],
+
+        // ]
+        
+        // $newDojo->businessHours->create(["from" => "", "to" => ""]);
+        
+
+        // $newDojo->businessHours->createMany(        [
+        //     ["from" => "", "to" => ""],
+        //     ["from" => "", "to" => ""],
+        //     ["from" => "", "to" => ""],
+        // ]
+        
+    
+        // 見本
+        // $params = $request->all();
+        // $params['business_hours'] = [];
+         
+        // Auth::user()->createNewDojo($params);
+         
+        
+        
+        
+        
+
+        // $dojo = Dojo::create([
+        //     'user_id' => Auth::id(),
+        //     'name' => $request->name,
+        //     'area_id' => $request->area_id,
+        //     'address1' => $request->address1,
+        //     'address2' => $request->address2,
+        //     // 'lat' => $request->lat,
+        //     // 'lng' => $request->lng,
+        //     'tel' => $request->tel,
+        //     'url' => $request->url,
+        //     'use_money' => $request->use_money,
+        //     'use_age' => $request->use_age,
+        //     'use_step' => $request->use_step,
+        //     'use_personal' => $request->use_personal,
+        //     'use_group' => $request->use_group,
+        //     'use_affiliation' => $request->use_affiliation,
+        //     'use_reserve' => $request->use_reserve,
+        //     'facility_inout' => $request->facility_inout,
+        //     'facility_makiwara' => $request->facility_makiwara,
+        //     'facility_aircondition' => $request->facility_airconditio,
+        //     'facility_matonumber' => $request->facility_matonumber,
+        //     'facility_lockerroom' => $request->facility_lockerroom,
+        //     'facility_numberlimit' => $request->facility_numberlimit,
+        //     'facility_parking' => $request->facility_parking,
+        //     'other' => $request->other,
+        //     ]);
         
         
         
