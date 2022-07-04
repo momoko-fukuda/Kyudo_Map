@@ -7,6 +7,9 @@ $( function()
 
 $(function(){
     
+    /**
+     * dojos/create.blade.phpにて、営業時間の項目を増やすコード
+     */
     $('#append_businesshours').click(function(){
         let clonecode = $('.hourbox:last').clone(true);
         
@@ -19,7 +22,7 @@ $(function(){
         
         let namecode = clonecode.find('input.from').attr('name');
         namecode = namecode.replace(/from¥[[0-9]{1,2}/g, 'from[' + cloneno2);
-        clonecode.find('input.form').attr('name', namecode);
+        clonecode.find('input.from').attr('name', namecode);
         
         let namecode2 = clonecode.find('input.to').attr('name');
         namecode2 = namecode2.replace(/to¥[[0-9]{1,2}/g, 'to[' + cloneno2);
@@ -53,6 +56,22 @@ $(function(){
         });
 
 
+    });
+    
+    
+
+    /**
+     * dojos/create.blade.phpにて、新規登録ボタン押した後
+     * 営業時間のデータを配列化して取得
+     * submit送信
+     */
+    $('#btn_submit').click(function(){
+            
+        let fromtovalues =$('input[name ="from"], input[name = "to"]').serializeArray();
+            
+        let jsonvalues = JSON.stringify(fromtovalues);
+
+        $("#form_dojocreate").submit();
     });
     
 });

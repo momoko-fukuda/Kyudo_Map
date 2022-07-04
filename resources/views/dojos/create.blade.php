@@ -17,7 +17,7 @@
 <div>
     <h4 class="mt-5">新規弓道場登録フォーム</h4>
     
-    <form id="form_submit" action="/dojos" method="POST" enctype="multipart/form-data">
+    <form id="form_dojocreate" action="/dojos" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
         
         
@@ -275,7 +275,7 @@
         
         <!--ボタン-->
         <div class="form-group">
-            <button type="submit" class="btn btn-primary w-50">
+            <button type="button" class="btn btn-primary w-50" id="btn_submit">
                 新規登録
             </button>
             <p>※step1~step3入力後、登録ボタンを押してください</p>
@@ -288,11 +288,6 @@
         <!--    </button>-->
         <!--    <p>※step1~step3入力後、登録ボタンを押してください</p>-->
         <!--</div>-->
-
-
-
-
-
 
         
     </form>
@@ -322,7 +317,7 @@
              // }).get();
 
   //          $("#input_business_hours").val(JSON.stringify(values));
-    //        $("#form_submit").submit();
+    //        $("#form_dojocreate").submit();
       //  });
         
     //})

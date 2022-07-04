@@ -109,17 +109,46 @@ class DojoController extends Controller
             ]);
             
 
-        // $dojo = new Dojo();
-        // $dojo->fill($request->all())->save();
+        
         
         // 新しい道場データのレコード作成
         $dojo = new Dojo();
         // 道場modelで設定したfillableのデータ全てをとってきます
-        $params = $dojo->fill($request->all());
+        $params_dojo = $dojo->fill($request->all());
         // ユーザー情報をとってきます
         $user = Auth::user();
         // ユーザーレコードから、子レコードの道場データに$paramsのデータを格納します。
-        $user->dojos()->save($params);
+        $user->dojos()->save($params_dojo);
+        
+        
+        
+        // 営業時間データの格納
+        $businesshour = new BusinessHour();
+        $params2 = $businesshour->fill($request->all());
+        $params3 = json_decode($params2, true);
+        $dojo->businesshours()->saveMany($params3);
+
+        return redirect()->route('dojos.show', ['id' => $dojo->id]);
+        
+        
+        // $dojo = new Dojo();
+        // $dojo->fill($request->all())->save();
+        
+        // $params3 = $params2->format('H-i');
+        // $params3 = json_decode($params2, true);
+        // if (array_key_exists('params3', $params2)) {
+        //     $newDojo->businesshours()->createMany($params2['params3']);
+        // }
+        
+       
+        
+        // $params = $request->all();
+        // $user = Auth::user();
+        // // $dojo = new Dojo();
+        
+        // $newDojo = $user->dojos()->create();
+        
+        
 
 
 
@@ -202,10 +231,6 @@ class DojoController extends Controller
         //     'facility_parking' => $request->facility_parking,
         //     'other' => $request->other,
         //     ]);
-        
-        
-        
-        return redirect()->route('dojos.show', ['id' => $dojo->id]);
     }
 
     /**
@@ -228,10 +253,21 @@ class DojoController extends Controller
                                           
         $reviews = Review::getReview($dojoId)
                            ->get();
+        
+        
+        $businesshours = BusinessHour::getBusinessHour($dojoId)
+                                      ->get();
+        
                            
         return view(
             'dojos.show',
-            compact('dojo', 'reviews', 'usebutton', 'favoritebutton')
+            compact(
+                'dojo',
+                'reviews',
+                'usebutton',
+                'favoritebutton',
+                'businesshours'
+            )
         );
     }
     

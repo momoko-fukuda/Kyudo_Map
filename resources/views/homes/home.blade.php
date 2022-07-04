@@ -33,24 +33,24 @@
                     <dt>東北</dt>
     
                     <dd>
-                        <a href="#">青森</a>
+                        <a href="＃">青森</a>
                     </dd>
                     <dd>
-                        <a href="#">岩手</a>
+                        <a href="＃">岩手</a>
                     </dd>
                     <dd>
-                        <a href="#">秋田</a>
+                        <a href="＃">秋田</a>
                     </dd>
                     <dd>
-                        <a href="#">山形</a>
+                        <a href="＃">山形</a>
                     </dd>
                     <dd>
-                        <a href="#">宮城</a>
+                        <a href="＃">宮城</a>
                     </dd>
                     　<dd>
-                    　　   <a href="#">福島</a>
+                    　  <a href="＃">福島</a>
                     　</dd>
-                    </dl>
+                </dl>
             </li>
             <li id="area3">
                 <dl>

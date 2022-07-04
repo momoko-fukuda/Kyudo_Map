@@ -24,4 +24,13 @@ class BusinessHour extends Model
     {
         return $this->belongsTo('App\Model\Dojo');
     }
+    
+    /**
+     * 該当道場の営業時間抽出
+     */
+    public function scopegetBusinessHour($query, $dojoId)
+    {
+        $query->with('dojo')
+              ->where('dojo_id', $dojoId);
+    }
 }

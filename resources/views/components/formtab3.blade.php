@@ -88,9 +88,9 @@
                 <div class="w-50" id="businesshours">
                     <div class="hourbox" data-formno="0">
                         <label>開始時間</label>
-                        <input type="time" class="from" name="from[]">
+                        <input type="time" class="from" name="from">
                         <label>終了時間</label>
-                        <input type="time" class="to" name="to[]">
+                        <input type="time" class="to" name="to">
                         <button type="button" id="append_businesshours">＋</button>
                         <button type="button" id="remove_businesshours">－</button>
                     </div>

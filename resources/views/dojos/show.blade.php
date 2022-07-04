@@ -142,13 +142,18 @@
                             <th>駐車場</th>
                             <td>{{$dojo->facility_parking}}</td>
                         </tr>
+                        
                         <tr>
                             <th>営業時間</th>
                             <!--foreachでビジネスアワーテーブルより持ってくる-->
                             <!--$dojo->businesshours->from-->
                             <!--$dojo->businesshours->to-->
-                            <td>＃</td>
+                            @foreach($businesshours as $businesshour)
+                            <td>開始時間：{{ $businesshour ->from }}</td>
+                            <td>終了時間：{{ $businesshour ->to }}</td>
+                            @endforeach
                         </tr>
+                        
                         <tr>
                             <th>定休日</th>
                             <!--foreachでビジネスアワーテーブルより持ってくる-->

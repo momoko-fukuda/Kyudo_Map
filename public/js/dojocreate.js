@@ -10990,6 +10990,9 @@ return jQuery;
   console.log('jQuery');
 });
 $(function () {
+  /**
+   * dojos/create.blade.phpにて、営業時間の項目を増やすコード
+   */
   $('#append_businesshours').click(function () {
     var clonecode = $('.hourbox:last').clone(true);
     var cloneno = clonecode.attr('data-formno');
@@ -10997,7 +11000,7 @@ $(function () {
     clonecode.attr('data-formno', cloneno2);
     var namecode = clonecode.find('input.from').attr('name');
     namecode = namecode.replace(/from¥[[0-9]{1,2}/g, 'from[' + cloneno2);
-    clonecode.find('input.form').attr('name', namecode);
+    clonecode.find('input.from').attr('name', namecode);
     var namecode2 = clonecode.find('input.to').attr('name');
     namecode2 = namecode2.replace(/to¥[[0-9]{1,2}/g, 'to[' + cloneno2);
     clonecode.find('input.to').attr('name', namecode2);
@@ -11016,6 +11019,17 @@ $(function () {
       $('input.to', this).attr('name', name2);
       scount += 1;
     });
+  });
+  /**
+   * dojos/create.blade.phpにて、新規登録ボタン押した後
+   * 営業時間のデータを配列化して取得
+   * submit送信
+   */
+
+  $('#btn_submit').click(function () {
+    var fromtovalues = $('input[name ="from"], input[name = "to"]').serializeArray();
+    var jsonvalues = JSON.stringify(fromtovalues);
+    $("#form_dojocreate").submit();
   });
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
