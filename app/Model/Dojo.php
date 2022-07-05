@@ -119,4 +119,18 @@ class Dojo extends Model
             ->with('area')
             ->get();
     }
+    /**
+     * DojoControllerで
+     * storeで使用
+     * dojoデータ、businesshourデータの格納
+     * レビュー確認★
+     */
+    // public static function createDojo($params, $user, $businesshour)
+    // {
+    //     $newDojo = $user->dojos()->create($params);
+        
+    //     if (array_key_exists('business_hours', $params)) {
+    //         $newDojo->businesshours()->createMany($businesshour);
+    //     }
+    // }
 }

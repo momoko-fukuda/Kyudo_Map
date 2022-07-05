@@ -103,134 +103,39 @@ class DojoController extends Controller
             'facility_numberlimit'=>['nullable', 'string', 'max:20'],
             'facility_parking'=> ['nullable', 'string', 'max:20'],
             'other'=> ['nullable', 'string', 'max:255'],
-            // 'from' => ['nullable', 'date_format:H:i'],
-            // 'to' => ['nullable', 'date_format:H:i'],
             // 'img' => ['binary'],
             ]);
             
-
+            
+        //レビュー確認★↓（画面遷移が上手くいかない）
+        // $dojo = new Dojo();
+        // $params = $request->all();
+        // $businesshour = json_decode($params['business_hours'], true);
+        // $user = Auth::user();
+        
+        // Dojo::createDojo($params, $user, $businesshour);
         
         
-        // 新しい道場データのレコード作成
+        
+        
+        // 新しい道場データの格納
         $dojo = new Dojo();
-        // 道場modelで設定したfillableのデータ全てをとってきます
         $params_dojo = $dojo->fill($request->all());
-        // ユーザー情報をとってきます
         $user = Auth::user();
-        // ユーザーレコードから、子レコードの道場データに$paramsのデータを格納します。
-        $user->dojos()->save($params_dojo);
+        $newDojo = $user->dojos()->save($params_dojo);
         
         
         
         // 営業時間データの格納
-        $businesshour = new BusinessHour();
-        $params2 = $businesshour->fill($request->all());
-        $params3 = json_decode($params2, true);
-        $dojo->businesshours()->saveMany($params3);
+        $json_businesshour = $request->get('business_hours');
+        $businesshours = json_decode($json_businesshour, true);
+        
+        if (array_key_exists('from', $businesshours)) {
+            $newDojo->businesshours()->createMany($businesshours);
+        }
+
 
         return redirect()->route('dojos.show', ['id' => $dojo->id]);
-        
-        
-        // $dojo = new Dojo();
-        // $dojo->fill($request->all())->save();
-        
-        // $params3 = $params2->format('H-i');
-        // $params3 = json_decode($params2, true);
-        // if (array_key_exists('params3', $params2)) {
-        //     $newDojo->businesshours()->createMany($params2['params3']);
-        // }
-        
-       
-        
-        // $params = $request->all();
-        // $user = Auth::user();
-        // // $dojo = new Dojo();
-        
-        // $newDojo = $user->dojos()->create();
-        
-        
-
-
-
-        // Log::debug($request->all());
-        
-        // $params = $request->all();
-        
-        // $newDojo = Dojo::crate($params);
-
-        // $loginUser = Auth::user();
-        
-        // $loginUser->dojos()->save($newDojo);
-        
-        // $businessHours;
-        
-        // foreach($hour in $hours){
-        //     $businessHours[] = new BusinessHour($hour);
-        // }
-        
-        
-        // $newDojo->businessHours()->saveMany($businessHours);
-        
-        
-        
-        
-        // $businessHours = $request->get("business_hours");
-        // $params = json_decode($businessHours, true);
-        
-        // [
-        //     ["from" => "", "to" => ""],
-        //     ["from" => "", "to" => ""],
-        //     ["from" => "", "to" => ""],
-
-        // ]
-        
-        // $newDojo->businessHours->create(["from" => "", "to" => ""]);
-        
-
-        // $newDojo->businessHours->createMany(        [
-        //     ["from" => "", "to" => ""],
-        //     ["from" => "", "to" => ""],
-        //     ["from" => "", "to" => ""],
-        // ]
-        
-    
-        // 見本
-        // $params = $request->all();
-        // $params['business_hours'] = [];
-         
-        // Auth::user()->createNewDojo($params);
-         
-        
-        
-        
-        
-
-        // $dojo = Dojo::create([
-        //     'user_id' => Auth::id(),
-        //     'name' => $request->name,
-        //     'area_id' => $request->area_id,
-        //     'address1' => $request->address1,
-        //     'address2' => $request->address2,
-        //     // 'lat' => $request->lat,
-        //     // 'lng' => $request->lng,
-        //     'tel' => $request->tel,
-        //     'url' => $request->url,
-        //     'use_money' => $request->use_money,
-        //     'use_age' => $request->use_age,
-        //     'use_step' => $request->use_step,
-        //     'use_personal' => $request->use_personal,
-        //     'use_group' => $request->use_group,
-        //     'use_affiliation' => $request->use_affiliation,
-        //     'use_reserve' => $request->use_reserve,
-        //     'facility_inout' => $request->facility_inout,
-        //     'facility_makiwara' => $request->facility_makiwara,
-        //     'facility_aircondition' => $request->facility_airconditio,
-        //     'facility_matonumber' => $request->facility_matonumber,
-        //     'facility_lockerroom' => $request->facility_lockerroom,
-        //     'facility_numberlimit' => $request->facility_numberlimit,
-        //     'facility_parking' => $request->facility_parking,
-        //     'other' => $request->other,
-        //     ]);
     }
 
     /**

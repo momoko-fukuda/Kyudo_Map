@@ -66,12 +66,25 @@ $(function(){
      * submit送信
      */
     $('#btn_submit').click(function(){
-            
-        let fromtovalues =$('input[name ="from"], input[name = "to"]').serializeArray();
-            
-        let jsonvalues = JSON.stringify(fromtovalues);
-
+        
+        // 配列を入れる箱
+        let hourarry = [];
+        
+        
+        // divの.hourboxデータを繰り返し配列に入れている
+        $('.hourbox').each(function(){
+            let fromvalue = $(this).find('.from').val();
+            let tovalue = $(this).find('.to').val();
+            let fromtovalues = {from:fromvalue, to:tovalue};
+            hourarry.push(fromtovalues);
+        });
+        
+        // hourarry内の配列をJSON形式に変更し、隠しフォーム「json_businesshour」に投入
+        $('#json_businesshour').val(JSON.stringify(hourarry));
+        
+        // フォーム送信
         $("#form_dojocreate").submit();
+        
     });
     
 });

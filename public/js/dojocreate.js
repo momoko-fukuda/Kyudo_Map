@@ -11027,8 +11027,21 @@ $(function () {
    */
 
   $('#btn_submit').click(function () {
-    var fromtovalues = $('input[name ="from"], input[name = "to"]').serializeArray();
-    var jsonvalues = JSON.stringify(fromtovalues);
+    // 配列を入れる箱
+    var hourarry = []; // divの.hourboxデータを繰り返し配列に入れている
+
+    $('.hourbox').each(function () {
+      var fromvalue = $(this).find('.from').val();
+      var tovalue = $(this).find('.to').val();
+      var fromtovalues = {
+        from: fromvalue,
+        to: tovalue
+      };
+      hourarry.push(fromtovalues);
+    }); // hourarry内の配列をJSON形式に変更し、隠しフォーム「json_businesshour」に投入
+
+    $('#json_businesshour').val(JSON.stringify(hourarry)); // フォーム送信
+
     $("#form_dojocreate").submit();
   });
 });
