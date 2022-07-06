@@ -10991,7 +10991,7 @@ return jQuery;
 });
 $(function () {
   /**
-   * dojos/create.blade.phpにて、営業時間の項目を増やすコード
+   * dojos/create.blade.phpにて、営業時間の項目を増やす減らすコード
    */
   $('#append_businesshours').click(function () {
     var clonecode = $('.hourbox:last').clone(true);

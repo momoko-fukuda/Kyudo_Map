@@ -3,14 +3,17 @@ $( function()
 {
     console.log('jQuery');
     
+    
 });
 
 $(function(){
     
+
     /**
-     * dojos/create.blade.phpにて、営業時間の項目を増やすコード
+     * dojos/create.blade.phpにて、営業時間の項目を増やす減らすコード
      */
     $('#append_businesshours').click(function(){
+        
         let clonecode = $('.hourbox:last').clone(true);
         
         let cloneno = clonecode.attr('data-formno');
@@ -28,14 +31,14 @@ $(function(){
         namecode2 = namecode2.replace(/to¥[[0-9]{1,2}/g, 'to[' + cloneno2);
         clonecode.find('input.to').attr('name', namecode2);
         
-       clonecode.insertAfter($('.hourbox:last'));
 
+       clonecode.insertAfter($('.hourbox:last'));
 
     });
     
     $('#remove_businesshours').click( function(){
-        $(this).parents('.hourbox').remove();
         
+        $(this).parents('.hourbox').remove();
         let scount = 0;
         
         $('.hourbox').each(function(){
@@ -54,8 +57,7 @@ $(function(){
             scount += 1;
             
         });
-
-
+        
     });
     
     
@@ -78,6 +80,7 @@ $(function(){
             let fromtovalues = {from:fromvalue, to:tovalue};
             hourarry.push(fromtovalues);
         });
+    
         
         // hourarry内の配列をJSON形式に変更し、隠しフォーム「json_businesshour」に投入
         $('#json_businesshour').val(JSON.stringify(hourarry));

@@ -55,7 +55,13 @@ class DojoController extends Controller
         $conditions = $request->conditions;
         
         
-        return view('dojos.index', compact('dojos', 'area_id', 'address1', 'freetext', 'conditions'));
+        return view('dojos.index', compact(
+            'dojos',
+            'area_id',
+            'address1',
+            'freetext',
+            'conditions'
+        ));
     }
 
     /**
@@ -66,8 +72,9 @@ class DojoController extends Controller
     public function create()
     {
         $areas = Area::getAllArea();
+        $user = Auth::user();
         
-        return view('dojos.create', compact('areas'));
+        return view('dojos.create', compact('areas', 'user'));
     }
 
     /**
@@ -108,31 +115,43 @@ class DojoController extends Controller
             
             
         //レビュー確認★↓（画面遷移が上手くいかない）
-        // $dojo = new Dojo();
-        // $params = $request->all();
-        // $businesshour = json_decode($params['business_hours'], true);
-        // $user = Auth::user();
-        
-        // Dojo::createDojo($params, $user, $businesshour);
-        
-        
-        
-        
-        // 新しい道場データの格納
+
+        $params = $request->all();
         $dojo = new Dojo();
-        $params_dojo = $dojo->fill($request->all());
-        $user = Auth::user();
-        $newDojo = $user->dojos()->save($params_dojo);
+        $newDojo = $dojo->fill($params)->save();
+        //ここまではデータ送信完了↑
+        
+        //↓配列はできている
+        $businesshour = json_decode($params['business_hours'], true);
+        //↓ここでエラー？
+        if (array_key_exists('business_hours', $params)) {
+            $newDojo->businesshours()->createMany($businesshour);
+        }
+        
+        
+        
+        
+        
+        // $newDojo->businesshours()->createMany($businesshours);
+        
+        
+        // Dojo::createDojo($params, $request);
+
+
+
+        // 新しい道場データの格納
+        // $dojo = new Dojo();
+        // $params_dojo = $dojo->fill($request->all());
+        // $user = Auth::user();
+        // $newDojo = $user->dojos()->save($params_dojo);
         
         
         
         // 営業時間データの格納
-        $json_businesshour = $request->get('business_hours');
-        $businesshours = json_decode($json_businesshour, true);
-        
-        if (array_key_exists('from', $businesshours)) {
-            $newDojo->businesshours()->createMany($businesshours);
-        }
+        // $json_businesshour = $request->get('business_hours');
+        // dd
+        // $businesshours = json_decode($json_businesshour, true);
+        // $newDojo->businesshours()->createMany($businesshours);
 
 
         return redirect()->route('dojos.show', ['id' => $dojo->id]);
@@ -185,8 +204,14 @@ class DojoController extends Controller
      */
     public function edit(Dojo $dojo)
     {
+        $dojoId = $dojo->id;
+        $user = Auth::user();
+        $businesshours = BusinessHour::getBusinessHour($dojoId)
+                                      ->get();
+
+        
         // データ処理
-        return view('dojos.edit', compact('dojo'));
+        return view('dojos.edit', compact('dojo', 'businesshours', 'user'));
     }
 
     /**
@@ -198,6 +223,33 @@ class DojoController extends Controller
      */
     public function update(Request $request, Dojo $dojo)
     {
+        $request->validate([
+            'user_id'=>['nullable', 'integer'],
+            'url'=>['nullable', 'string', 'max:250'],
+            'use_money'=> ['nullable', 'string', 'max:250'],
+            'use_age' => ['nullable', 'integer'],
+            'use_step' => ['nullable', 'string', 'max:5'],
+            'use_personal'=> ['nullable', 'string', 'max:5'],
+            'use_group'=> ['nullable', 'string', 'max:5'],
+            'use_affiliation'=> ['nullable', 'string', 'max:5'],
+            'use_reserve'=> ['nullable', 'string', 'max:5'],
+            'facility_inout'=> ['nullable', 'string', 'max:5'],
+            'facility_makiwara'=> ['nullable', 'string', 'max:5'],
+            'facility_aircondition'=> ['nullable', 'string', 'max:5'],
+            'facility_matonumber'=> ['nullable', 'integer'],
+            'facility_lockerroom'=>['nullable', 'string', 'max:5'],
+            'facility_numberlimit'=>['nullable', 'string', 'max:20'],
+            'facility_parking'=> ['nullable', 'string', 'max:20'],
+            'other'=> ['nullable', 'string', 'max:255'],
+            // 'img' => ['binary'],
+            ]);
+        
+        $params = $request->all();
+        $dojo = new Dojo();
+        $updateDojo = $dojo->fill($params)->save();
+        
+        
+        
         //データ登録
         return redirect()->route('dojos.show', ['id'=>$dojo->id]);
     }

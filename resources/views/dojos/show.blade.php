@@ -18,6 +18,7 @@
     <div>
         <div>
             <h1>{{$dojo->name}}</h1>
+            <p><small>最近更新された日時：{{$dojo->updated_at}}</small></p>
             <span>口コミ{{$dojo->reviews->count()}}件</span>
             <span>お気に入り{{ $dojo->favoritebuttons->count() }}件</span>
             <span>利用数{{ $dojo->usebuttons->count() }}件</span>
@@ -68,7 +69,6 @@
     
     <div class="tab-content">
         <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
-            <button type="button" class="btn btn-primary" onclick="location.href='{{route('dojos.edit', $dojo->id)}}'">この道場を編集する</button>
             <div>
                 <h4>写真</h4>
                 <a href="{{route('photos.index', $dojo->id)}}">写真一覧</a>
@@ -79,6 +79,7 @@
             <div>
                 <div>
                     <h4>弓道場利用制限</h4>
+                    <button type="button" class="btn btn-primary" onclick="location.href='{{route('dojos.edit', $dojo->id)}}'">道場情報を更新する</button>
                     <table>
                         <tr>
                             <th>利用料金</th>
@@ -90,7 +91,7 @@
                         </tr>
                         <tr>
                             <th>段制限</th>
-                            <td>{{$dojo->use_step}}段以上</td>
+                            <td>{{$dojo->use_step}}以上</td>
                         </tr>
                         <tr>
                             <th>個人利用</th>

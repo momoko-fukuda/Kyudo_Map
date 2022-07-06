@@ -125,12 +125,13 @@ class Dojo extends Model
      * dojoデータ、businesshourデータの格納
      * レビュー確認★
      */
-    // public static function createDojo($params, $user, $businesshour)
+    // public static function createDojo($params, $request)
     // {
-    //     $newDojo = $user->dojos()->create($params);
+    //     $dojo = new Dojo();
+    //     $newDojo = $dojo->fill($request->all())->create();
         
     //     if (array_key_exists('business_hours', $params)) {
-    //         $newDojo->businesshours()->createMany($businesshour);
+    //         $newDojo->businesshours()->createMany($params["business_hours"]);
     //     }
     // }
 }

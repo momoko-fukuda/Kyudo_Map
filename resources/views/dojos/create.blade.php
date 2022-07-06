@@ -5,6 +5,14 @@
 
 @section('content')
 
+<!--パンくずリスト-->
+<div>
+    <div>
+        <a href="{{route('home')}}">Home</a>>
+        <strong class="now">新規弓道場作成</strong>
+    </div>
+</div>
+
 
 <div>
     <h1>新規弓道場登録</h1>
@@ -14,6 +22,8 @@
     内容を確認し、実在しない、または虚偽内容がある場合、削除する可能性がございます。</p>
 </div>
 
+
+<hr>
 <div>
     <h4 class="mt-5">新規弓道場登録フォーム</h4>
     
@@ -24,6 +34,8 @@
         <!--グループ１-->
         <div>
 
+            <!--作成ユーザー-->
+            <input type="hidden" name="user_id" value="{{$user->id}}">
             
             <!--道場名-->
             <div class="form-group row">
@@ -269,9 +281,7 @@
         <!--グループ３-->
         @component('components.formtab3')
         @endcomponent
-        
-        
-        <!--<input type="text" name="business_hours" id="input_business_hours">-->
+    
         
         <!--ボタン-->
         <div class="form-group">
@@ -280,52 +290,9 @@
             </button>
             <p>※step1~step3入力後、登録ボタンを押してください</p>
         </div>
-        
-        <!--Javascript使用時のボタン-->
-        <!--<div class="form-group">-->
-        <!--    <button type="button" id="button_submit" class="btn btn-primary w-50">-->
-        <!--        新規登録-->
-        <!--    </button>-->
-        <!--    <p>※step1~step3入力後、登録ボタンを押してください</p>-->
-        <!--</div>-->
 
         
     </form>
 </div>
-
-
-
-<!--<script-->
-<!--  src="https://code.jquery.com/jquery-3.6.0.min.js"-->
-<!--  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="-->
-<!--  crossorigin="anonymous"></script>-->
-
-
-<!--<script>-->
-
-
-    //$(function(){
-      //  $("#button_submit").on("click", function(){
-        //    どうやって、営業時間を配列データとしてとってくるか？
-          //  let values = [
-            //  {from: '01:02', to: '03:04'},
-              //{from: '05:06', to: '07:08'},
-             // {from: '09:10', to: '11:22'},
-//            ];
-           //   let values = $('input[name="from[]"]').map(function(){
-                       //     return $(this).val();
-             // }).get();
-
-  //          $("#input_business_hours").val(JSON.stringify(values));
-    //        $("#form_dojocreate").submit();
-      //  });
-        
-    //})
-
-
-<!--</script>-->
-    
-    
-
 
 @endsection
