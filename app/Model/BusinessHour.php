@@ -30,7 +30,6 @@ class BusinessHour extends Model
      */
     public function scopegetBusinessHour($query, $dojoId)
     {
-        $query->with('dojo')
-              ->where('dojo_id', $dojoId);
+        $query->where('dojo_id', $dojoId);
     }
 }

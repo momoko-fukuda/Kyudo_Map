@@ -309,19 +309,22 @@
                 
             </div>
             <!--定休日★oldeヘルパー上手くいかない-->
-            <div class="fform-group row">
+            <div class="form-group row">
                 <label class="col-md-4 col-form-label text-md-left">
                     定休日（複数選択可）
                     <span class="ml-1">任意</span>
                 </label>
-                
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" 
                            type="checkbox" 
                            name="holiday_mon" 
                            id="holiday_mon" 
-                           value="true"
-                                  {{ old('holiday_mon', $dojo->holiday_mon) == 'true' ? 'checked' : '' }}>
+                           value= @if()
+                           @if($errors->any())
+                                  {{ old('holiday_mon') == 'true' ? 'checked' : 'false' }}
+                           @else
+                                  {{ $dojo->holiday_mon == 'true' ? 'checked' : 'false' }}
+                           @endif>
                     <label class="form-check-label" for="holiday_mon">月曜日</label>
                 </div>
                 
@@ -331,7 +334,11 @@
                            name="holiday_tues" 
                            id="holiday_tues" 
                            value="true"
-                                  {{ old('holiday_tues', $dojo->holiday_tues) == 'true' ? 'checked' : '' }}>
+                                  @if($errors->any())
+                                    {{ old('holiday_tues') == 'true' ? 'checked' : '' }}
+                                  @else
+                                    {{ $dojo->holiday_tues == 'true' ? 'checked' : '' }}
+                                  @endif>
                     <label class="form-check-label" for="holiday_tues">火曜日</label>
                 </div>
                 
@@ -340,8 +347,12 @@
                            type="checkbox" 
                            name="holiday_wednes" 
                            id="holiday_wednes" 
-                           value="true"
-                                  {{ old('holiday_wednes', $dojo->holiday_wednes) == 'true' ? 'checked' : '' }}>
+                           value="ture"
+                                  @if($errors->any())
+                                    {{ old('holiday_wednes') == 'true' ? 'checked' : 'false' }}
+                                  @else
+                                    {{ $dojo->holiday_wednes == 'true' ? 'checked' : 'false' }}
+                                  @endif>
                     <label class="form-check-label" for="holiday_wednes">水曜日</label>
                 </div>
                 
@@ -351,7 +362,11 @@
                            name="holiday_thurs" 
                            id="holiday_thurs" 
                            value="true"
-                                  {{ old('holiday_thurs', $dojo->holiday_thurs) == 'true' ? 'checked' : '' }}>
+                                  @if($errors->any())
+                                    {{ old('holiday_thurs') == 'true' ? 'checked' : '' }}
+                                  @else
+                                    {{ $dojo->holiday_thurs == 'true' ? 'checked' : '' }}
+                                  @endif>
                     <label class="form-check-label" for="holiday_thurs">木曜日</label>
                 </div>
                 
@@ -361,7 +376,11 @@
                            name="holiday_fri" 
                            id="holiday_fri" 
                            value="true"
-                                  {{ old('holiday_fri', $dojo->holiday_fri) == 'true' ? 'checked' : '' }}>
+                                  @if($errors->any())
+                                    {{ old('holiday_fri') == 'true' ? 'checked' : '' }}
+                                  @else
+                                    {{ $dojo->holiday_fri == 'true' ? 'checked' : '' }}
+                                  @endif>
                     <label class="form-check-label" for="holiday_fri">金曜日</label>
                 </div>
                 
@@ -371,7 +390,11 @@
                            name="holiday_satur" 
                            id="holiday_satur" 
                            value="true"
-                                  {{ old('holiday_satur', $dojo->holiday_satur) == 'true' ? 'checked' : '' }}>
+                                  @if($errors->any())
+                                    {{ old('holiday_satur') == 'true' ? 'checked' : '' }}
+                                  @else
+                                    {{ $dojo->holiday_satur == 'true' ? 'checked' : '' }}
+                                  @endif>
                     <label class="form-check-label" for="holiday_satur">土曜日</label>
                 </div>
                 
@@ -381,7 +404,11 @@
                            name="holiday_sun" 
                            id="holiday_sun" 
                            value="true"
-                                  {{ old('holiday_sun', $dojo->holiday_sun) == 'true' ? 'checked' : '' }}>
+                                  @if($errors->any())
+                                    {{ old('holiday_sun') == 'true' ? 'checked' : '' }}
+                                  @else
+                                    {{ $dojo->holiday_sun == 'true' ? 'checked' : '' }}
+                                  @endif>
                     <label class="form-check-label" for="holiday_sun">日曜日</label>
                 </div>
             </div>
@@ -393,35 +420,43 @@
                     営業時間
                     <span class="ml-1">任意</span>
                 </label>
-                <div class="w-50" id="businesshours">
-                    @foreach($businesshours as $businesshour)
-                    <div class="hourbox">
-                        <label>開始時間</label>
-                        <input type="time" 
-                               class="from" 
-                               name="from[]" 
-                               value="{{old('from') == '' ? old('from', $businesshour->from) : ''}}">
-                        <label>終了時間</label>
-                        <input type="time" 
-                               class="to" 
-                               name="to[]"
-                               value="{{old('to') == '' ? old('to', $businesshour->to) : ''}}">
-                        <button type="button" id="append_businesshours">＋</button>
-                        <button type="button" id="remove_businesshours">－</button>
-                    </div>
-                    @endforeach
-                    <div class="hourbox">
-                        <label>開始時間</label>
-                        <input type="time" 
-                               class="from" 
-                               name="from[]" >
-                        <label>終了時間</label>
-                        <input type="time" 
-                               class="to" 
-                               name="to[]">
-                        <button type="button" id="append_businesshours">＋</button>
-                        <button type="button" id="remove_businesshours">－</button>
-                    </div>
+                <div class="w-50" id="businesshours" >
+                    
+                    @if($errors->any())
+                        @foreach(old('from') as $key => $value)
+                            <div class="hourbox">
+                                <label>開始時間</label>
+                                <input type="time" class="from" name="from[]" value="{{old('from.'.$key)}}">
+                                <label>終了時間</label>
+                                <input type="time" class="to" name="to[]" value="{{old('to.'.$key)}}">
+                                <button type="button" class="append_businesshours">＋</button>
+                                <button type="button" class="remove_businesshours">－</button>
+                            </div>
+                        @endforeach
+                    
+                    @elseif($businesshours->isEmpty())
+                        <div class="hourbox">
+                            <label>開始時間</label>
+                            <input type="time" class="from" name="from[]">
+                            <label>終了時間</label>
+                            <input type="time" class="to" name="to[]">
+                            <button type="button" class="append_businesshours">＋</button>
+                            <button type="button" class="remove_businesshours">－</button>
+                        </div>
+                    
+                    @elseif($businesshours->isNotEmpty())
+                        @foreach($businesshours as $businesshour)
+                                <div class="hourbox">
+                                    <label>開始時間</label>
+                                    <input type="time" class="from" name="from[]" value="{{$businesshour->from}}">
+                                    <label>終了時間</label>
+                                    <input type="time" class="to" name="to[]" value="{{$businesshour->to}}">
+                                    <button type="button" class="append_businesshours">＋</button>
+                                    <button type="button" class="remove_businesshours">－</button>
+                                </div>
+                        @endforeach
+                    @endif
+
                 </div>
             </div>
             

@@ -116,22 +116,21 @@ class Dojo extends Model
     public static function getDojoSearch()
     {
         return self::query()
-            ->with('area')
+            ->orderBy('area_id', 'asc')
             ->get();
     }
     /**
-     * DojoControllerで
-     * storeで使用
-     * dojoデータ、businesshourデータの格納
-     * レビュー確認★
+     * DojoControllerでstoreで使用
+     * dojoデータ、businesshourデータを格納する
      */
-    // public static function createDojo($params, $request)
-    // {
-    //     $dojo = new Dojo();
-    //     $newDojo = $dojo->fill($request->all())->create();
+    public static function createDojo($dojo, $params, $request)
+    {
+        $dojo->fill($request->all())->save();
         
-    //     if (array_key_exists('business_hours', $params)) {
-    //         $newDojo->businesshours()->createMany($params["business_hours"]);
-    //     }
-    // }
+        $businesshour = json_decode($params['business_hours'], true);
+        
+        if (array_key_exists('business_hours', $params)) {
+            $dojo->businesshours()->createMany($businesshour);
+        }
+    }
 }

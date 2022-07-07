@@ -81,19 +81,34 @@
             <!--営業時間-->
             <div class="form-group row" >
                 <label for="from" 
-                       class="col-md-4 col-form-label text-md-left">
+                       class="col-md-4 
+                              col-form-label 
+                              text-md-left">
                     営業時間
                     <span class="ml-1">任意</span>
                 </label>
                 <div class="w-50" id="businesshours" >
-                    <div class="hourbox" data-formno="0">
+                    @if(empty(old('from')) && empty(old('to')))
+                    <div class="hourbox">
                         <label>開始時間</label>
-                        <input type="time" class="from" name="from[0]">
+                        <input type="time" class="from" name="from[]">
                         <label>終了時間</label>
-                        <input type="time" class="to" name="to[0]">
-                        <button type="button" id="append_businesshours">＋</button>
-                        <button type="button" id="remove_businesshours">－</button>
+                        <input type="time" class="to" name="to[]">
+                        <button type="button" class="append_businesshours">＋</button>
+                        <button type="button" class="remove_businesshours">－</button>
                     </div>
+                    @else
+                        @foreach(old('from') as $key => $value)
+                        <div class="hourbox">
+                            <label>開始時間</label>
+                            <input type="time" class="from" name="from[]" value="{{old('from.'.$key)}}">
+                            <label>終了時間</label>
+                            <input type="time" class="to" name="to[]" value="{{old('to.'.$key)}}">
+                            <button type="button" class="append_businesshours">＋</button>
+                            <button type="button" class="remove_businesshours">－</button>
+                        </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
             
@@ -127,3 +142,4 @@
             </div>
             
         </div>
+        

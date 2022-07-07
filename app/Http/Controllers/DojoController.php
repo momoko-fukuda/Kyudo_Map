@@ -43,9 +43,14 @@ class DojoController extends Controller
      */
     public function index(Request $request)
     {
+        $areas = Area::getAllArea();
         
         // dojosデータを取得
         $dojos = Dojo::getDojoSearch();
+        
+        
+        
+        
         // dojoデータのarea_idごとにパラメータ値を変更する(例：dojos?area_id=1)
         $area_id = $request->area_id;
         // dojosデータのaddress1ごとにパラメータ値を変更する(例：dojos?address1=帯広)
@@ -57,7 +62,7 @@ class DojoController extends Controller
         
         return view('dojos.index', compact(
             'dojos',
-            'area_id',
+            'areas',
             'address1',
             'freetext',
             'conditions'
@@ -112,48 +117,13 @@ class DojoController extends Controller
             'other'=> ['nullable', 'string', 'max:255'],
             // 'img' => ['binary'],
             ]);
-            
-            
-        //レビュー確認★↓（画面遷移が上手くいかない）
+        
 
-        $params = $request->all();
         $dojo = new Dojo();
-        $newDojo = $dojo->fill($params)->save();
-        //ここまではデータ送信完了↑
-        
-        //↓配列はできている
-        $businesshour = json_decode($params['business_hours'], true);
-        //↓ここでエラー？
-        if (array_key_exists('business_hours', $params)) {
-            $newDojo->businesshours()->createMany($businesshour);
-        }
-        
-        
-        
-        
-        
-        // $newDojo->businesshours()->createMany($businesshours);
-        
-        
-        // Dojo::createDojo($params, $request);
+        $params = $request->all();
+        Dojo::createDojo($dojo, $params, $request);
 
-
-
-        // 新しい道場データの格納
-        // $dojo = new Dojo();
-        // $params_dojo = $dojo->fill($request->all());
-        // $user = Auth::user();
-        // $newDojo = $user->dojos()->save($params_dojo);
         
-        
-        
-        // 営業時間データの格納
-        // $json_businesshour = $request->get('business_hours');
-        // dd
-        // $businesshours = json_decode($json_businesshour, true);
-        // $newDojo->businesshours()->createMany($businesshours);
-
-
         return redirect()->route('dojos.show', ['id' => $dojo->id]);
     }
 
@@ -245,8 +215,7 @@ class DojoController extends Controller
             ]);
         
         $params = $request->all();
-        $dojo = new Dojo();
-        $updateDojo = $dojo->fill($params)->save();
+        Dojo::createDojo($dojo, $params, $request);
         
         
         
