@@ -146,13 +146,28 @@
                         
                         <tr>
                             <th>営業時間</th>
-                            <!--foreachでビジネスアワーテーブルより持ってくる-->
-                            <!--$dojo->businesshours->from-->
-                            <!--$dojo->businesshours->to-->
-                            @foreach($businesshours as $businesshour)
-                            <td>開始時間：{{ $businesshour ->from }}</td>
-                            <td>終了時間：{{ $businesshour ->to }}</td>
-                            @endforeach
+                            
+                            @if(!empty($businesshour->from1))
+                            <td>1 開始時間：{{ substr($businesshour ->from1, 0, 5) }}</td>
+                            <td>終了時間：{{ substr($businesshour ->to1, 0, 5) }}</td>
+                            @endif
+                            @if(!empty($businesshour->from2))
+                            <td>2 開始時間：{{ substr($businesshour ->from2, 0, 5) }}</td>
+                            <td>終了時間：{{ substr($businesshour ->to2, 0, 5) }}</td>
+                            @endif
+                            @if(!empty($businesshour->from3))
+                            <td>3 開始時間：{{ substr($businesshour ->from3, 0, 5) }}</td>
+                            <td>終了時間：{{ substr($businesshour ->to3, 0, 5) }}</td>
+                            @endif
+                            @if(!empty($businesshour->from4))
+                            <td>4 開始時間：{{ substr($businesshour ->from4, 0, 5) }}</td>
+                            <td>終了時間：{{ substr($businesshour ->to4, 0, 5) }}</td>
+                            @endif
+                            @if(!empty($businesshour->from5))
+                            <td>5 開始時間：{{ substr($businesshour ->from5, 0, 5) }}</td>
+                            <td>終了時間：{{ substr($businesshour ->to5, 0, 5) }}</td>
+                            @endif
+
                         </tr>
                         
                         <tr>

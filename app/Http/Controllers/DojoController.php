@@ -45,27 +45,30 @@ class DojoController extends Controller
     {
         $areas = Area::getAllArea();
         
-        // dojosデータを取得
-        $dojos = Dojo::getDojoSearch();
+        //検索フォームで入力された値を取得
+        $area_id = $request->input('area_id');
+        $addresskeyword = $request->input('addresskeyword');
+        $dojo_name = $request->input('dojo_name');
+        $use_personal = $request->input('use_personal');
+        $use_group = $request->input('use_group');
         
         
-        
-        
-        // dojoデータのarea_idごとにパラメータ値を変更する(例：dojos?area_id=1)
-        $area_id = $request->area_id;
-        // dojosデータのaddress1ごとにパラメータ値を変更する(例：dojos?address1=帯広)
-        $address1 = $request->address1;
-        // その他詳細条件のパラメータ変数をつくっておく（年齢制限/段制限/個人利用制限など…）
-        $freetext = $request->freetext;
-        $conditions = $request->conditions;
-        
+        $dojos = Dojo::getDojoSearch(
+            $area_id,
+            $addresskeyword,
+            $dojo_name,
+            $use_personal,
+            $use_group
+        )->paginate(10);
         
         return view('dojos.index', compact(
             'dojos',
             'areas',
-            'address1',
-            'freetext',
-            'conditions'
+            'area_id',
+            'dojo_name',
+            'addresskeyword',
+            'use_personal',
+            'use_group'
         ));
     }
 
@@ -96,8 +99,6 @@ class DojoController extends Controller
             'area_id'=>['required','integer'],
             'address1'=>['required', 'string', 'max:250'],
             'address2'=>['required', 'string', 'max:250'],
-            // 'lat'=>['nullable', 'float'],
-            // 'lng'=>['nullable', 'float'],
             'tel'=>['required', 'string', 'max:20'],
             'url'=>['nullable', 'string', 'max:250'],
             'use_money'=> ['nullable', 'string', 'max:250'],
@@ -120,8 +121,17 @@ class DojoController extends Controller
         
 
         $dojo = new Dojo();
-        $params = $request->all();
-        Dojo::createDojo($dojo, $params, $request);
+        $businesshour = new BusinessHour();
+        
+        Dojo::createDojo(
+            $dojo,
+            $request
+        );
+        BusinessHour::createBusinessHour(
+            $businesshour,
+            $dojo,
+            $request
+        );
 
         
         return redirect()->route('dojos.show', ['id' => $dojo->id]);
@@ -149,8 +159,8 @@ class DojoController extends Controller
                            ->get();
         
         
-        $businesshours = BusinessHour::getBusinessHour($dojoId)
-                                      ->get();
+        $businesshour = BusinessHour::getBusinessHour($dojoId)
+                                      ->first();
         
                            
         return view(
@@ -160,7 +170,7 @@ class DojoController extends Controller
                 'reviews',
                 'usebutton',
                 'favoritebutton',
-                'businesshours'
+                'businesshour'
             )
         );
     }
@@ -176,12 +186,12 @@ class DojoController extends Controller
     {
         $dojoId = $dojo->id;
         $user = Auth::user();
-        $businesshours = BusinessHour::getBusinessHour($dojoId)
-                                      ->get();
+        $businesshour = BusinessHour::getBusinessHour($dojoId)
+                                      ->first();
 
         
         // データ処理
-        return view('dojos.edit', compact('dojo', 'businesshours', 'user'));
+        return view('dojos.edit', compact('dojo', 'businesshour', 'user'));
     }
 
     /**
@@ -191,7 +201,7 @@ class DojoController extends Controller
      * @param  int  $dojo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Dojo $dojo)
+    public function update(Request $request, Dojo $dojo, BusinessHour $businesshour)
     {
         $request->validate([
             'user_id'=>['nullable', 'integer'],
@@ -214,8 +224,18 @@ class DojoController extends Controller
             // 'img' => ['binary'],
             ]);
         
-        $params = $request->all();
-        Dojo::createDojo($dojo, $params, $request);
+
+
+
+        Dojo::updateDojo(
+            $dojo,
+            $request
+        );
+        BusinessHour::updateBusinessHour(
+            $businesshour,
+            $dojo,
+            $request
+        );
         
         
         

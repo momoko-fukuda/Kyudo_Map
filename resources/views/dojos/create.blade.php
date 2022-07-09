@@ -285,7 +285,7 @@
         
         <!--ボタン-->
         <div class="form-group">
-            <button type="button" class="btn btn-primary w-50" id="btn_submit">
+            <button type="submit" class="btn btn-primary w-50" id="btn_submit">
                 新規登録
             </button>
             <p>※step1~step3入力後、登録ボタンを押してください</p>

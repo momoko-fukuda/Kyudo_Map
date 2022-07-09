@@ -64,9 +64,9 @@ class Dojo extends Model
     /**
      * businesshoursテーブルとのリレーション
      */
-    public function businesshours()
+    public function businesshour()
     {
-        return $this->hasMany('App\Model\BusinessHour');
+        return $this->hasOne('App\Model\BusinessHour');
     }
     
     /**
@@ -113,24 +113,48 @@ class Dojo extends Model
      * DojoControllerで使用
      * 道場検索時のデータ取得(dojos/index.blade.php)
      */
-    public static function getDojoSearch()
-    {
-        return self::query()
-            ->orderBy('area_id', 'asc')
-            ->get();
+    public static function scopegetDojoSearch(
+        $query,
+        $area_id,
+        $addresskeyword,
+        $dojo_name,
+        $use_personal,
+        $use_group
+    ) {
+        if (!empty($area_id)) {
+            $query->where('area_id', 'LIKE', $area_id);
+        }
+        if (!empty($addresskeyword)) {
+            $query->where('address1', 'LIKE', "%{$addresskeyword}%")
+                      ->orwhere('address2', 'LIKE', "%{$addresskeyword}%");
+        }
+        if (!empty($dojo_name)) {
+            $query->where('name', 'LIKE', "%{$dojo_name}%");
+        }
+        if (!empty($use_personal)) {
+            $query->where('use_personal', 'LIKE', $use_personal);
+        }
+        if (!empty($use_group)) {
+            $query->where('use_group', 'LIKE', $use_group);
+        }
+        
+        return $query->orderBy('area_id', 'asc');
     }
+    
+    
     /**
      * DojoControllerでstoreで使用
-     * dojoデータ、businesshourデータを格納する
+     * dojoデータを格納する
      */
-    public static function createDojo($dojo, $params, $request)
+    public static function createDojo($dojo, $request)
     {
         $dojo->fill($request->all())->save();
-        
-        $businesshour = json_decode($params['business_hours'], true);
-        
-        if (array_key_exists('business_hours', $params)) {
-            $dojo->businesshours()->createMany($businesshour);
-        }
+    }
+    /**
+     * dojoデータを更新する
+     */
+    public static function updateDojo($dojo, $request)
+    {
+        $dojo->fill($request->all())->update();
     }
 }

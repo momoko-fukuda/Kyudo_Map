@@ -11,8 +11,16 @@ class BusinessHour extends Model
 {
     protected $fillable = [
         'dojo_id',
-        'from',
-        'to',
+        'from1',
+        'to1',
+        'from2',
+        'to2',
+        'from3',
+        'to3',
+        'from4',
+        'to4',
+        'from5',
+        'to5',
         ];
     
     
@@ -22,8 +30,33 @@ class BusinessHour extends Model
      */
     public function dojo()
     {
-        return $this->belongsTo('App\Model\Dojo');
+        return $this->hasOne('App\Model\Dojo');
     }
+    
+    
+    /**
+     * businesshoursテーブルのデータ格納
+     */
+    public static function createBusinessHour(
+        $businesshour,
+        $dojo,
+        $request
+    ) {
+        $newBusinesshour = $businesshour->fill($request->all());
+        
+        $dojo->businesshour()->save($newBusinesshour);
+    }
+    /**
+     * businesshoursテーブルのデータ更新
+     */
+    public static function updateBusinessHour(
+        $businesshour,
+        $dojo,
+        $request
+    ) {
+        $dojo->businesshour->fill($request->all())->update();
+    }
+    
     
     /**
      * 該当道場の営業時間抽出

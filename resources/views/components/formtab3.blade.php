@@ -88,31 +88,49 @@
                     <span class="ml-1">任意</span>
                 </label>
                 <div class="w-50" id="businesshours" >
-                    @if(empty(old('from')) && empty(old('to')))
-                    <div class="hourbox">
-                        <label>開始時間</label>
-                        <input type="time" class="from" name="from[]">
+                    <div>
+                        <label>１開始時間</label>
+                        <input type="time" class="from1" name="from1" value="{{old('from1')}}">
                         <label>終了時間</label>
-                        <input type="time" class="to" name="to[]">
-                        <button type="button" class="append_businesshours">＋</button>
-                        <button type="button" class="remove_businesshours">－</button>
+                        <input type="time" class="to1" name="to1" value="{{old('to1')}}">
                     </div>
-                    @else
-                        @foreach(old('from') as $key => $value)
-                        <div class="hourbox">
-                            <label>開始時間</label>
-                            <input type="time" class="from" name="from[]" value="{{old('from.'.$key)}}">
-                            <label>終了時間</label>
-                            <input type="time" class="to" name="to[]" value="{{old('to.'.$key)}}">
-                            <button type="button" class="append_businesshours">＋</button>
-                            <button type="button" class="remove_businesshours">－</button>
-                        </div>
-                        @endforeach
-                    @endif
+                    
+                    
+                    
+                    <div class="hidehours">
+                        <label>２開始時間</label>
+                        <input type="time" class="from2" name="from2" value="{{old('from2')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to2" name="to2" value="{{old('to2')}}">
+                    </div>
+                    <div class="hidehours">
+                        <label>３開始時間</label>
+                        <input type="time" class="from3" name="from3" value="{{old('from3')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to3" name="to3" value="{{old('to3')}}">
+                    </div>
+                    <div class="hidehours">
+                        <label>４開始時間</label>
+                        <input type="time" class="from4" name="from4" value="{{old('from4')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to4" name="to4" value="{{old('to4')}}">
+                    </div>
+                    <div class="hidehours">
+                        <label>５開始時間</label>
+                        <input type="time" class="from5" name="from5" value="{{old('from5')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to5" name="to5" value="{{old('to5')}}">
+                    </div>
+                    
+                    <button type="button" 
+                            class="btn btn-primary fadehourbtn">
+                        時間区分を分ける
+                    </button>
+                    
                 </div>
             </div>
             
-            <input type="hidden" name="business_hours" id="json_businesshour">
+            
             
             <!--備考-->
             <div class="form-group row">

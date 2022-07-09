@@ -315,11 +315,12 @@
                     <span class="ml-1">任意</span>
                 </label>
                 <div class="form-check form-check-inline">
+                    <input type="hidden" name="holiday_mon" value="false">
                     <input class="form-check-input" 
                            type="checkbox" 
                            name="holiday_mon" 
                            id="holiday_mon" 
-                           value= @if()
+                           value= "true"
                            @if($errors->any())
                                   {{ old('holiday_mon') == 'true' ? 'checked' : 'false' }}
                            @else
@@ -329,6 +330,7 @@
                 </div>
                 
                 <div class="form-check form-check-inline">
+                    <input type="hidden" name="holiday_tues" value="false">
                     <input class="form-check-input" 
                            type="checkbox" 
                            name="holiday_tues" 
@@ -343,11 +345,12 @@
                 </div>
                 
                 <div class="form-check form-check-inline">
+                    <input type="hidden" name="holiday_wednes" value="false">
                     <input class="form-check-input" 
                            type="checkbox" 
                            name="holiday_wednes" 
                            id="holiday_wednes" 
-                           value="ture"
+                           value="true"
                                   @if($errors->any())
                                     {{ old('holiday_wednes') == 'true' ? 'checked' : 'false' }}
                                   @else
@@ -357,6 +360,7 @@
                 </div>
                 
                 <div class="form-check form-check-inline">
+                    <input type="hidden" name="holiday_thurs" value="false">
                     <input class="form-check-input" 
                            type="checkbox" 
                            name="holiday_thurs" 
@@ -371,6 +375,7 @@
                 </div>
                 
                 <div class="form-check form-check-inline">
+                    <input type="hidden" name="holiday_fri" value="false">
                     <input class="form-check-input" 
                            type="checkbox" 
                            name="holiday_fri" 
@@ -385,6 +390,7 @@
                 </div>
                 
                 <div class="form-check form-check-inline">
+                    <input type="hidden" name="holiday_satur" value="false">
                     <input class="form-check-input" 
                            type="checkbox" 
                            name="holiday_satur" 
@@ -399,6 +405,7 @@
                 </div>
                 
                 <div class="form-check form-check-inline">
+                    <input type="hidden" name="holiday_sun" value="false">
                     <input class="form-check-input" 
                            type="checkbox" 
                            name="holiday_sun" 
@@ -421,46 +428,87 @@
                     <span class="ml-1">任意</span>
                 </label>
                 <div class="w-50" id="businesshours" >
+                    @if(empty($businesshour))
+                    <div>
+                        <label>１開始時間</label>
+                        <input type="time" class="from1" name="from1" value="{{old('from1')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to1" name="to1" value="{{old('to1')}}">
+                    </div>
                     
-                    @if($errors->any())
-                        @foreach(old('from') as $key => $value)
-                            <div class="hourbox">
-                                <label>開始時間</label>
-                                <input type="time" class="from" name="from[]" value="{{old('from.'.$key)}}">
-                                <label>終了時間</label>
-                                <input type="time" class="to" name="to[]" value="{{old('to.'.$key)}}">
-                                <button type="button" class="append_businesshours">＋</button>
-                                <button type="button" class="remove_businesshours">－</button>
-                            </div>
-                        @endforeach
                     
-                    @elseif($businesshours->isEmpty())
-                        <div class="hourbox">
-                            <label>開始時間</label>
-                            <input type="time" class="from" name="from[]">
-                            <label>終了時間</label>
-                            <input type="time" class="to" name="to[]">
-                            <button type="button" class="append_businesshours">＋</button>
-                            <button type="button" class="remove_businesshours">－</button>
-                        </div>
                     
-                    @elseif($businesshours->isNotEmpty())
-                        @foreach($businesshours as $businesshour)
-                                <div class="hourbox">
-                                    <label>開始時間</label>
-                                    <input type="time" class="from" name="from[]" value="{{$businesshour->from}}">
-                                    <label>終了時間</label>
-                                    <input type="time" class="to" name="to[]" value="{{$businesshour->to}}">
-                                    <button type="button" class="append_businesshours">＋</button>
-                                    <button type="button" class="remove_businesshours">－</button>
-                                </div>
-                        @endforeach
+                    <div class="hidehours">
+                        <label>２開始時間</label>
+                        <input type="time" class="from2" name="from2" value="{{old('from2')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to2" name="to2" value="{{old('to2')}}">
+                    </div>
+                    <div class="hidehours">
+                        <label>３開始時間</label>
+                        <input type="time" class="from3" name="from3" value="{{old('from3')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to3" name="to3" value="{{old('to3')}}">
+                    </div>
+                    <div class="hidehours">
+                        <label>４開始時間</label>
+                        <input type="time" class="from4" name="from4" value="{{old('from4')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to4" name="to4" value="{{old('to4')}}">
+                    </div>
+                    <div class="hidehours">
+                        <label>５開始時間</label>
+                        <input type="time" class="from5" name="from5" value="{{old('from5')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to5" name="to5" value="{{old('to5')}}">
+                    </div>
+                    
+                    
+                    @else
+                    <div>
+                        <label>１開始時間</label>
+                        <input type="time" class="from1" name="from1" value="{{old('from1') == '' ? $businesshour->from1 : old('from1')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to1" name="to1" value="{{old('to1') == '' ? $businesshour->to1 : old('to1')}}">
+                    </div>
+                    
+                    
+                    
+                    <div class="hidehours">
+                        <label>２開始時間</label>
+                        <input type="time" class="from2" name="from2" value="{{old('from2') == '' ? $businesshour->from2 : old('from2')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to2" name="to2" value="{{old('to2') == '' ? $businesshour->to2 : old('to2')}}">
+                    </div>
+                    <div class="hidehours">
+                        <label>３開始時間</label>
+                        <input type="time" class="from3" name="from3" value="{{old('from3') == '' ? $businesshour->from3 : old('from3')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to3" name="to3" value="{{old('to3') == '' ? $businesshour->to3 : old('to3')}}">
+                    </div>
+                    <div class="hidehours">
+                        <label>４開始時間</label>
+                        <input type="time" class="from4" name="from4" value="{{old('from4') == '' ? $businesshour->from4 : old('from4')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to4" name="to4" value="{{old('to4') == '' ? $businesshour->to4 : old('to4')}}">
+                    </div>
+                    <div class="hidehours">
+                        <label>５開始時間</label>
+                        <input type="time" class="from5" name="from5" value="{{old('from5') == '' ? $businesshour->from5 : old('from5')}}">
+                        <label>終了時間</label>
+                        <input type="time" class="to5" name="to5" value="{{old('to5') == '' ? $businesshour->to5 : old('to5')}}">
+                    </div>
                     @endif
+                    
+                    <button type="button" 
+                            class="btn btn-primary fadehourbtn">
+                        もっとみる
+                    </button>
+                   
 
                 </div>
             </div>
-            
-            <input type="hidden" name="business_hours" id="json_businesshour">
+
             
             <!--備考-->
             <div class="form-group row">
