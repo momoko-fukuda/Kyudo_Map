@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\Log;
 
@@ -93,9 +94,10 @@ class DojoController extends Controller
      */
     public function store(Request $request, Dojo $dojo, Area $area)
     {
-        $request->validate([
+        $request->validate(
+            [
             'user_id'=>['nullable', 'integer'],
-            'name'=>['required', 'string', 'max:50'],
+            'name'=>['required', 'string', 'max:50','unique:dojos'],
             'area_id'=>['required','integer'],
             'address1'=>['required', 'string', 'max:250'],
             'address2'=>['required', 'string', 'max:250'],
@@ -116,12 +118,13 @@ class DojoController extends Controller
             'facility_numberlimit'=>['nullable', 'string', 'max:20'],
             'facility_parking'=> ['nullable', 'string', 'max:20'],
             'other'=> ['nullable', 'string', 'max:255'],
-            // 'img' => ['binary'],
-            ]);
-        
+            // 'img' => ['binary','max:3000'],
+            ]
+        );
 
         $dojo = new Dojo();
         $businesshour = new BusinessHour();
+        
         
         Dojo::createDojo(
             $dojo,
@@ -132,7 +135,9 @@ class DojoController extends Controller
             $dojo,
             $request
         );
-
+        
+        
+        DojoPhoto::createDojoPhotos($request, $dojo);
         
         return redirect()->route('dojos.show', ['id' => $dojo->id]);
     }

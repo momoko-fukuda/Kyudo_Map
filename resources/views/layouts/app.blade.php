@@ -40,6 +40,8 @@
                 @component('components.footer')
                 @endcomponent
             </footer>
+            
+            
         </div>
         
         <!-- Scripts（jsやfontawesome使用する際） -->

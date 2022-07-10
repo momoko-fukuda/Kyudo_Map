@@ -110,7 +110,7 @@ class Dojo extends Model
     
     
     /**
-     * DojoControllerで使用
+     * DojoController（index）で使用
      * 道場検索時のデータ取得(dojos/index.blade.php)
      */
     public static function scopegetDojoSearch(
@@ -143,13 +143,14 @@ class Dojo extends Model
     
     
     /**
-     * DojoControllerでstoreで使用
+     * DojoControllerのstoreで使用
      * dojoデータを格納する
      */
     public static function createDojo($dojo, $request)
     {
         $dojo->fill($request->all())->save();
     }
+    
     /**
      * dojoデータを更新する
      */

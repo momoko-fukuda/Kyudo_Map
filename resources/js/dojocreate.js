@@ -15,23 +15,23 @@ $(function(){
     
     
     
-    // /**
-    //  * dojos/create.blade.phpにて、営業時間の項目を増やす減らすコード
-    //  */
-    // $('.append_businesshours').click(function(){
+    /**
+     * dojos/create.blade.phpにて、画像データの項目を増やす減らすコード
+     */
+    $('.append_imgs').click(function(){
         
-    //     let clonecode = $('.hourbox:last').clone(true);
+        let clonecode = $('.imgbox:last').clone(true);
 
-    //   clonecode.insertAfter($('.hourbox:last'));
+      clonecode.insertAfter($('.imgbox:last'));
 
-    // });
+    });
     
-    // $('.remove_businesshours').click( function(){
+    $('.remove_imgs').click( function(){
         
-    //     $(this).parents('.hourbox').remove();
+        $(this).parents('.imgbox').remove();
 
         
-    // });
+    });
     
     
 
@@ -43,23 +43,21 @@ $(function(){
     // $('#btn_submit').click(function(){
         
     //     // 配列を入れる箱
-    //     let hourarry = [];
+    //     let imgarry = [];
         
         
     //     // divの.hourboxデータを繰り返し配列に入れている
-    //     $('.hourbox').each(function(){
-    //         let fromvalue = $(this).find('.from').val();
-    //         let tovalue = $(this).find('.to').val();
-    //         let fromtovalues = {from:fromvalue, to:tovalue};
-    //         hourarry.push(fromtovalues);
+    //     $('.imgbox').each(function(){
+    //         let imgvalue = $(this).find('.img').val();
+    //         imgarry.push(imgvalue);
     //     });
     
         
     //     // hourarry内の配列をJSON形式に変更し、隠しフォーム「json_businesshour」に投入
-    //     $('#json_businesshour').val(JSON.stringify(hourarry));
+    //     $('#json_imgs').val(JSON.stringify(imgarry));
         
     //     // フォーム送信
-    //     $("#form_dojocreate").submit();
+    //     // $("#form_dojocreate").submit();
         
     // });
     

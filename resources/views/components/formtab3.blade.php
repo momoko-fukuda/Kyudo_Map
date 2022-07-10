@@ -1,7 +1,7 @@
 <!--タブ内容3-->
         <div>
             <!--定休日-->
-            <div class="fform-group row">
+            <div class="form-group row">
                 <label class="col-md-4 col-form-label text-md-left">
                     定休日（複数選択可）
                     <span class="ml-1">任意</span>

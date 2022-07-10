@@ -23,7 +23,7 @@
                 <dl>
                     <dt>北海道</dt>
                     <dd>
-                        <a href="#">北海道</a>
+                        <a href="/dojos?area_id=1">北海道</a>
                             
                     </dd>
                 </dl>
@@ -33,22 +33,22 @@
                     <dt>東北</dt>
     
                     <dd>
-                        <a href="＃">青森</a>
+                        <a href="/dojos?area_id=2">青森</a>
                     </dd>
                     <dd>
-                        <a href="＃">岩手</a>
+                        <a href="/dojos?area_id=3">岩手</a>
                     </dd>
                     <dd>
-                        <a href="＃">秋田</a>
+                        <a href="/dojos?area_id=5">秋田</a>
                     </dd>
                     <dd>
-                        <a href="＃">山形</a>
+                        <a href="/dojos?area_id=6">山形</a>
                     </dd>
                     <dd>
-                        <a href="＃">宮城</a>
+                        <a href="/dojos?area_id=4">宮城</a>
                     </dd>
                     　<dd>
-                    　  <a href="＃">福島</a>
+                    　  <a href="/dojos?area_id=7">福島</a>
                     　</dd>
                 </dl>
             </li>
@@ -57,143 +57,143 @@
                     <dt>関東</dt>
     
                     <dd>
-                        <a href="#">群馬</a>
+                        <a href="/dojos?area_id=10">群馬</a>
                     </dd>
                       <dd>
-                        <a href="#">栃木</a>
+                        <a href="/dojos?area_id=9">栃木</a>
                     </dd>
                     <dd>
-                        <a href="#">茨城</a>
+                        <a href="/dojos?area_id=8">茨城</a>
                     </dd>
                     <dd>
-                        <a href="#">埼玉</a>
+                        <a href="/dojos?area_id=11">埼玉</a>
                     </dd>
                     <dd>
-                        <a href="#">神奈川</a>
+                        <a href="/dojos?area_id=14">神奈川</a>
                     </dd>
                     <dd>
-                        <a href="#">東京</a>
+                        <a href="/dojos?area_id=13">東京</a>
                     </dd>
                     <dd>
-                        <a href="#">千葉</a>
+                        <a href="/dojos?area_id=12">千葉</a>
                     </dd>
                 </dl>
             </li>
             <li id="area4">
                 <dt>甲信越・北陸</dt>
                 <dd>
-                    <a href="#">富山</a>
+                    <a href="/dojos?area_id=16">富山</a>
                 </dd>
                 <dd>
-                    <a href="#">石川</a>
+                    <a href="/dojos?area_id=17">石川</a>
                 </dd>
                 <dd>
-                    <a href="#">新潟</a>
+                    <a href="/dojos?area_id=15">新潟</a>
                 </dd>
                 <dd>
-                    <a href="#">福井</a>
+                    <a href="/dojos?area_id=18">福井</a>
                 </dd>
                 <dd>
-                    <a href="#">長野</a>
+                    <a href="/dojos?area_id=20">長野</a>
                 </dd>
                 <dd>
-                    <a href="#">山梨</a>
+                    <a href="/dojos?area_id=19">山梨</a>
                 </dd>
             </li>
             <li id="area5">
                 <dt>東海</dt>
                 <dd>
-                    <a href="#">岐阜</a>
+                    <a href="/dojos?area_id=21">岐阜</a>
                 </dd>
                 <dd>
-                <a href="#">静岡</a>
+                <a href="/dojos?area_id=22">静岡</a>
                 </dd>
                 <dd>
-                    <a href="#">三重</a>
+                    <a href="/dojos?area_id=24">三重</a>
                 </dd>
                 <dd>
-                    <a href="#">愛知</a>
+                    <a href="/dojos?area_id=23">愛知</a>
                 </dd>
             </li>
             <li id="area6">
                 <dt>近畿</dt>
                 <dd>
-                    <a href="#">京都</a>
+                    <a href="/dojos?area_id=26">京都</a>
                 </dd>
                 <dd>
-                    <a href="#">滋賀</a>
+                    <a href="/dojos?area_id=25">滋賀</a>
                 </dd>
                 <dd>
-                    <a href="#">大阪</a>
+                    <a href="/dojos?area_id=27">大阪</a>
                 </dd>
                 <dd>
-                    <a href="#">奈良</a>
+                    <a href="/dojos?area_id=29">奈良</a>
                 </dd>
                 <dd>
-                    <a href="#">兵庫</a>
+                    <a href="/dojos?area_id=28">兵庫</a>
                 </dd>
                 <dd>
-                    <a href="#">和歌山</a>
+                    <a href="/dojos?area_id=30">和歌山</a>
                 </dd>
             </li>
             <li id="area7">
                 <dt>中国</dt>
                 <dd>
-                    <a href="#">島根</a>
+                    <a href="/dojos?area_id=32">島根</a>
                 </dd>
                 <dd>
-                    <a href="#">広島</a>
+                    <a href="/dojos?area_id=34">広島</a>
                 </dd>
                 <dd>
-                    <a href="#">山口</a>
+                    <a href="/dojos?area_id=35">山口</a>
                 </dd>
                 <dd>
-                    <a href="#">鳥取</a>
+                    <a href="/dojos?area_id=31">鳥取</a>
                 </dd>
                 <dd>
-                    <a href="#">岡山</a>
+                    <a href="/dojos?area_id=33">岡山</a>
                 </dd>
             </li>
             <li id="area8">
                 <dt>四国</dt>
                 <dd>
-                    <a href="#">愛媛</a>
+                    <a href="/dojos?area_id=38">愛媛</a>
                 </dd>
                 <dd>
-                    <a href="#">香川</a>
+                    <a href="/dojos?area_id=37">香川</a>
                 </dd>
                 <dd>
-                    <a href="#">高知</a>
+                    <a href="/dojos?area_id=39">高知</a>
                 </dd>
                 <dd>
-                    <a href="#">徳島</a>
+                    <a href="/dojos?area_id=36">徳島</a>
                 </dd>
             </li>
             <li id="area9">
                 <dt>九州・沖縄</dt>
                 <dd>
-                    <a href="#">福島</a>
+                    <a href="/dojos?area_id=40">福岡</a>
                 </dd>
                 <dd>
-                    <a href="#">佐賀</a>
+                    <a href="/dojos?area_id=41">佐賀</a>
                 </dd>
                 <dd>
-                    <a href="#">長崎</a>
+                    <a href="/dojos?area_id=42">長崎</a>
                 </dd>
                 <dd>
-                    <a href="#">熊本</a>
+                    <a href="/dojos?area_id=43">熊本</a>
                 </dd>
                 <dd>
-                    <a href="#">大分</a>
+                    <a href="/dojos?area_id=44">大分</a>
                 </dd>
                 <dd>
-                    <a href="#">宮崎</a>
+                    <a href="/dojos?area_id=45">宮崎</a>
                 </dd>
                 <dd>
-                    <a href="#">鹿児島</a>
+                    <a href="/dojos?area_id=46">鹿児島</a>
                 </dd>
                 <dd>
-                    <a href="#">沖縄</a>
+                    <a href="/dojos?area_id=47">沖縄</a>
                 </dd>
             </li>
         </ul>

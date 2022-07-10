@@ -57,7 +57,7 @@
 
                    @error('name')
                     <span class="invalid-feedback" role="alert">
-                        <strong>道場名を入力してください</strong>
+                        <strong>入力必須項目であり、既に登録済の道場名の可能性があります</strong>
                     </span>
                     @enderror
                 </div>
@@ -238,38 +238,39 @@
                     <span class="ml-1">任意</span>
                 </label>
                 <div>
-                    <input type="file" 
-                           multiple
-                           class="form-controle-file" 
-                           name="img[]" 
-                           value="{{ old('img') }}">
-                    <input type="file" 
-                           multiple
-                           class="form-controle-file" 
-                           name="img[]" 
-                           value="{{ old('img') }}">
-                    <input type="file" 
-                           multiple
-                           class="form-controle-file" 
-                           name="img[]" 
-                           value="{{ old('img') }}">
-                    <input type="file" 
-                           multiple
-                           class="form-controle-file" 
-                           name="img[]" 
-                           value="{{ old('img') }}">
-                    <input type="file" 
-                           multiple
-                           class="form-controle-file" 
-                           name="img[]" 
-                           value="{{ old('img') }}">
+                    @if(empty(old('img')))
+                    <div class="imgbox">
+                        <input type="file" 
+                               multiple
+                               class="form-controle-file" 
+                               name="img[]"
+                               class="img">
+                        <button type="button" class="append_imgs">+</button>
+                        <button type="button" class="remove_imgs">-</button>
+                    </div>
+                    @else
+                        @foreach(old('img') as $value)
+                        <div class="imgbox">
+                        <input type="file" 
+                               multiple
+                               class="form-controle-file img" 
+                               name="img[]"
+                               value="{{$value}}">
+                        <button type="button" class="append_imgs">+</button>
+                        <button type="button" class="remove_imgs">-</button>
+                        @endforeach
+                    @endif
                 </div>
+                
+
                 @error('img')
                     <span class="invalid-feedback" role="alert">
                         <strong>選択した画像データは容量を超えています</strong>
                     </span>
                 @enderror
             </div>
+            {{old('img.0')}} 
+            {{old('img.1')}}
 
         </div>
         
