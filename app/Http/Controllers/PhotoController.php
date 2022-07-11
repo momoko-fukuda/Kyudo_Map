@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Model\Dojo;
-use App\Photos\Photo;
-use App\Photos\DojoPhoto;
-use App\Photos\ReviewPhoto;
+use App\Model\Photos\Photo;
+use App\Model\Photos\DojoPhoto;
+use App\Model\Photos\ReviewPhoto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\DojoController;
 
@@ -18,7 +18,9 @@ class PhotoController extends Controller
      */
     public function index(Request $request, Dojo $dojo)
     {
-        return view('photos.index', compact('dojo'));
+        $dojophotos = DojoPhoto::getDojoPhotos($dojo)->get();
+        
+        return view('photos.index', compact('dojo', 'dojophotos'));
     }
 
     // /**

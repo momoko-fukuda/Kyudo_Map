@@ -58,6 +58,7 @@ class Review extends Model
     }
     
     
+    
     /**
      * DojoControllerで該当道場のレビューデータを全取得するモデルクラス
      */
@@ -69,12 +70,14 @@ class Review extends Model
     }
     
     /**
-     * DojoControllerでレビューデータ件数を取得するモデルクラス
+     * DojoControllerで該当道場のレビューデータを最新5件取得するモデルクラス
+     * (dojos/show.blade.phpでreviewデータ表示)
      */
-    public static function getReviewLast1()
+    public static function scopegetDojoReviewLast5($query, $dojoId)
     {
-        return self::query()
-            ->orderBy('created_at', 'desc')
-            ->find(1);
+        $query->with(['dojo', 'user'])
+              ->where('dojo_id', $dojoId)
+              ->orderBy('created_at', 'desc')
+              ->limit(3);
     }
 }

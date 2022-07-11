@@ -91,9 +91,6 @@
 
     @forelse($dojos as $dojo)
     <div class="card" style="width:50rem;">
-        <div class="col -md-4 my-auto">
-            <img class="card-img" src="#">
-        </div>
         <div class="card-body">
             <h5 class="card-title"><a href="{{route('dojos.show', $dojo)}}">{{$dojo->name}}</a></h5>
             <p class="card-subtitle">{{$dojo->area->name}}{{$dojo->address1}}{{$dojo->address2}}</p>

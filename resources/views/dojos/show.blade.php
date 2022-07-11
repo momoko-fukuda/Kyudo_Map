@@ -55,27 +55,38 @@
     </div>
 </div>
 
-
+<hr>
 <div>
-    <ul class="nav nav-tabs nav-justified" role="tablist">
-        <li class="nav-item">
-           <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">トップページ</a>
-        </li>
-        <li class="nav-item">
-           <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">口コミ</a>
-        </li>
-    </ul>
+    <!--<ul class="nav nav-tabs nav-justified" role="tablist">-->
+    <!--    <li class="nav-item">-->
+    <!--       <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">トップページ</a>-->
+    <!--    </li>-->
+    <!--    <li class="nav-item">-->
+    <!--       <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">口コミ</a>-->
+    <!--    </li>-->
+    <!--</ul>-->
     
     
     <div class="tab-content">
-        <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+        <div class="" id="item1" role="tabpanel" aria-labelledby="item1-tab">
             <div>
                 <h4>写真</h4>
-                <a href="{{route('photos.index', $dojo->id)}}">写真一覧</a>
+                <a type="button" class="btn btn-primary" href="{{route('photos.index', $dojo->id)}}">写真一覧</a>
+                <a type=button class="btn btn-primary" href="{{route('reviews.create', $dojo->id)}}">写真を投稿する</a>
                 <p>{{$dojo->name}}のユーザーがアップロードした写真一覧になります</p>
-                <!--foreachで記載が必要（modelでとってくる写真の数を制限）-->
-                <img src="#" alt="弓道場の写真">
+                
+
+                <div>
+                    @if($dojophotos->isEmpty())
+                        <img src="NO Photo画像" class="w-25 h-50">
+                    @else()
+                        @foreach($dojophotos as $dojophoto)
+                        <img src="{{ $dojophoto['img'] }}" class="w-25 h-50">
+                        @endforeach
+                    @endif
+                </div>
             </div>
+            <hr>
             <div>
                 <div>
                     <h4>弓道場利用制限</h4>
@@ -219,7 +230,8 @@
             
             
         </div>
-        <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
+        <hr>
+        <div class="" id="item2" role="tabpanel" aria-labelledby="item2-tab">
             <h4>口コミ</h4>
             <a type=button class="btn btn-primary" href="{{route('reviews.create', $dojo->id)}}">口コミ投稿する</a>
             <div>
@@ -234,8 +246,9 @@
                         <!--いいねボタンの表示の仕方（削除ができない）-->
                     </div>
                 @endforeach
-    
             </div>
+            <a type="button" class="btn btn-primary" href="{{route('reviews.index', $dojo->id )}}">もっと{{$dojo->name}}の口コミをみる</a>
+
             <p>※問題のある口コミを発見された場合は、こちらに通報ください。</p>
         </div>
     </div>

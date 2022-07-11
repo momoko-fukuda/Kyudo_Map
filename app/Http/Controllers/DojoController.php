@@ -42,9 +42,10 @@ class DojoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, Dojo $dojo)
     {
         $areas = Area::getAllArea();
+
         
         //検索フォームで入力された値を取得
         $area_id = $request->input('area_id');
@@ -69,7 +70,8 @@ class DojoController extends Controller
             'dojo_name',
             'addresskeyword',
             'use_personal',
-            'use_group'
+            'use_group',
+            'latestphoto'
         ));
     }
 
@@ -160,9 +162,12 @@ class DojoController extends Controller
         $favoritebutton = FavoriteButton::getFavoriteButton($dojoId, $userId)
                                           ->first();
                                           
-        $reviews = Review::getReview($dojoId)
+        $reviews = Review::getDojoReviewLast5($dojoId)
                            ->get();
-        
+                           
+        //画像のアップ
+        $dojophotos = DojoPhoto::limitGetDojoPhotos5($dojoId)
+                                 ->get();
         
         $businesshour = BusinessHour::getBusinessHour($dojoId)
                                       ->first();
@@ -175,7 +180,8 @@ class DojoController extends Controller
                 'reviews',
                 'usebutton',
                 'favoritebutton',
-                'businesshour'
+                'businesshour',
+                'dojophotos'
             )
         );
     }

@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
 // 使用するモデル
 use App\Model\Dojo;
 use App\Model\Review;
 use App\Model\Area;
 use App\Model\User;
 use App\Model\Photos;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * ホーム画面、アプリ説明画面、プライバシーポリシー画面、利用規約画面のクラスコントローラ
@@ -26,8 +27,9 @@ class HomeController extends Controller
     public function index()
     {
         $reviews = Review::getReviewLast5();
+        $user = Auth::user();
 
-        return view('homes.home', compact('reviews'));
+        return view('homes.home', compact('reviews', 'user'));
     }
     
 

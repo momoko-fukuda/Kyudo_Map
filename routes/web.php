@@ -34,9 +34,9 @@ Route::get('dojos/{dojo}/unusebutton', 'ButtonController@unusebutton');
 
 
 // 口コミデータ関連
+Route::get('dojos/{dojo}/reviews', 'ReviewController@index')->name('reviews.index');
 Route::get('dojos/{dojo}/reviews/create', 'ReviewController@create')->name('reviews.create');
 Route::post('dojos/{dojo}/reviews', 'ReviewController@store')->name('reviews.store');
-Route::get('dojos/{dojo}/reviews/{review}', 'ReviewController@show')->name('reviews.show');
 Route::delete('dojos/{dojo}/reviews/{review}', 'ReviewController@destroy')->name('reviews.destroy');
 
 // 画像関連(review_photosのデータも合わせて表示させる際はこの内容で問題ないのか？ここがおかしい)

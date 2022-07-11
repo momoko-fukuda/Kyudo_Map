@@ -11,15 +11,15 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-    // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function index()
-    // {
-    //     //
-    // }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Dojo $dojo)
+    {
+        return view('reviews.index', compact('dojo'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -42,16 +42,16 @@ class ReviewController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Review $review)
-    {
-        //
-    }
+    // /**
+    //  * Display the specified resource.
+    //  *
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function show(Review $review)
+    // {
+    //     //
+    // }
     
     
 

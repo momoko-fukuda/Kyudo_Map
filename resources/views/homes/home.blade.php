@@ -7,7 +7,11 @@
 <!--メインビジュアル-->
 <div id="main"　class="d-flex flex-row">
     <div>
+        @auth
+        <h1>ようこそ！{{$user->name}}さん<br>弓道場のTEBIKIへ</h1>
+        @else
         <h1>ようこそ、弓道場のTEBIKIへ</h1>
+        @endauth
         <h2>みんなで弓道場をもっと身近に</h2>
         <a href="{{route('home.about')}}" class="btn btn-secondary" role="button" >弓道場のTEBIKIとは？</a><br>
         @auth
@@ -215,18 +219,16 @@
 <div>
     <h3>弓道場に関する口コミ</h3>
     <div>
-    <!--最新5件の口コミ取得-->
-    @foreach($reviews as $review)
-        <div class="card" style="width:50rem;">
-            <div class="card-body">
-                <h5 class="card-title">{{$review->title}}</h5>
-                <h6 class="card-subtitle">{{$review->user->name}}</h6>
-                <p class="card-text">{{$review->body}}</p>
-                <a href="{{route('dojos.show', $review->dojo->id)}}" class="card-link">{{ $review->dojo->name }}</a>
+        @foreach($reviews as $review)
+            <div class="card" style="width:50rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{$review->title}}</h5>
+                    <h6 class="card-subtitle">{{$review->user->name}}</h6>
+                    <p class="card-text">{{$review->body}}</p>
+                    <a href="{{route('dojos.show', $review->dojo->id)}}" class="card-link">{{ $review->dojo->name }}</a>
+                </div>
             </div>
-        </div>
-    @endforeach
-    
+        @endforeach
      </div>
      <a href="{{route('dojos.index')}}">利用した弓道場を探して、みんなに情報共有しよう！＞</a>
 </div>
