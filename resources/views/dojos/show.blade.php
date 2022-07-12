@@ -71,18 +71,21 @@
         <div class="" id="item1" role="tabpanel" aria-labelledby="item1-tab">
             <div>
                 <h4>写真</h4>
-                <a type="button" class="btn btn-primary" href="{{route('photos.index', $dojo->id)}}">写真一覧</a>
+                
                 <a type=button class="btn btn-primary" href="{{route('reviews.create', $dojo->id)}}">写真を投稿する</a>
-                <p>{{$dojo->name}}のユーザーがアップロードした写真一覧になります</p>
+                
                 
 
                 <div>
                     @if($dojophotos->isEmpty())
-                        <img src="NO Photo画像" class="w-25 h-50">
-                    @else()
+                        <p>ごめんなさい、まだ投稿されてません。</p>
+                    @else
+                        <p>{{$dojo->name}}のユーザーがアップロードした写真になります</p>
+                        
                         @foreach($dojophotos as $dojophoto)
                         <img src="{{ $dojophoto['img'] }}" class="w-25 h-50">
                         @endforeach
+                        <a type="button" class="btn btn-primary" href="{{route('photos.index', $dojo->id)}}">その他の写真もみる</a>
                     @endif
                 </div>
             </div>
@@ -235,19 +238,29 @@
             <h4>口コミ</h4>
             <a type=button class="btn btn-primary" href="{{route('reviews.create', $dojo->id)}}">口コミ投稿する</a>
             <div>
-                @foreach($reviews as $review)
-                    <div class="card" style="width:50rem;">
-                        <div class="card-body">
-                            <p class="card-subtitle"><strong>{{$review->user->name}}</strong>さんの口コミ</p>
-                            <h5 class="card-title">{{$review->title}}</h5>
-                            <p class="card-text">{{$review->body}}</p>
-                            <p>{{$review->created_at}}</p>
+                @if(count($reviews) > 0)
+                    @foreach($reviews as $review)
+                        <div class="card" style="width:50rem;">
+                            <div class="card-body">
+                                <p class="card-subtitle"><strong>{{$review->user->name}}</strong>さんの口コミ</p>
+                                <h5 class="card-title">{{$review->title}}</h5>
+                                <p class="card-text">{{$review->body}}</p>
+                                <p>{{$review->created_at}}</p>
+                            </div>
+                            <span>参考になった数：{{$review->favorites->count()}}</span>
+                            
                         </div>
-                        <!--いいねボタンの表示の仕方（削除ができない）-->
-                    </div>
-                @endforeach
+                    @endforeach
+                <a type="button" class="btn btn-primary" href="{{route('reviews.index', $dojo->id )}}">もっと{{$dojo->name}}の口コミをみる</a>
+                
+                @else
+                
+                <p>ごめんなさい、まだ口コミは投稿されてません。</p>
+                
+                @endif
+                
             </div>
-            <a type="button" class="btn btn-primary" href="{{route('reviews.index', $dojo->id )}}">もっと{{$dojo->name}}の口コミをみる</a>
+            
 
             <p>※問題のある口コミを発見された場合は、こちらに通報ください。</p>
         </div>

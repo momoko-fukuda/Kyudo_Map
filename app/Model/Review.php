@@ -3,14 +3,21 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Overtrue\LaravelFavorite\Traits\Favoriteable;
 
 /**
  * reviewsテーブルのモデルクラス
  */
 class Review extends Model
 {
-
-    
+    use Favoriteable;
+   
+    protected $fillable = [
+        'user_id',
+        'dojo_id',
+        'title',
+        'body',
+        ];
     
     /**
      * usersテーブルとのリレーション
@@ -29,11 +36,11 @@ class Review extends Model
     }
     
     /**
-     * reviews_photosテーブルとのリレーション
+     * dojo_photosテーブルとのリレーション
      */
-    public function reviewphotos()
+    public function dojophotos()
     {
-        return $this->hasMany('App\Model\Photos\ReviewPhoto');
+        return $this->hasMany('App\Model\Photos\DojoPhoto');
     }
     /**
      * review_buttonsテーブルとのリレーション
@@ -79,5 +86,15 @@ class Review extends Model
               ->where('dojo_id', $dojoId)
               ->orderBy('created_at', 'desc')
               ->limit(3);
+    }
+    
+    
+    /**
+     * ReviewControllerのstoreで使用
+     * reviewデータを格納する
+     */
+    public static function createReview($review, $request)
+    {
+        $review->fill($request->all())->save();
     }
 }

@@ -29,4 +29,9 @@ class ReviewButton extends Model
     {
         return $this->belongsTo('App\Model\User');
     }
+    
+    /**
+     * reviewbuttonにデータ挿入
+     */
+    protected $fillable = [ 'review_id', 'user_id'];
 }

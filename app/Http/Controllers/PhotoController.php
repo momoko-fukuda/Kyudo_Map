@@ -18,7 +18,8 @@ class PhotoController extends Controller
      */
     public function index(Request $request, Dojo $dojo)
     {
-        $dojophotos = DojoPhoto::getDojoPhotos($dojo)->get();
+        $dojophotos = DojoPhoto::getDojoPhotos($dojo)
+                                 ->paginate(20);
         
         return view('photos.index', compact('dojo', 'dojophotos'));
     }

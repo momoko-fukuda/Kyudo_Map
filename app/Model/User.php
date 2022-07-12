@@ -97,7 +97,13 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Model\Buttons\FavoriteButton');
     }
-    
+    /**
+     * dojophotosテーブルとのリレーション
+     */
+    public function dojophotos()
+    {
+        return $this->hasMany('App\Model\photos\DojoPhoto');
+    }
     
     
     

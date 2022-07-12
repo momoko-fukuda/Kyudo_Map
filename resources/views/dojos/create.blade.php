@@ -213,7 +213,7 @@
 
                 <div class="col-md-5">
                    <input id="url" 
-                          type="text" 
+                          type="url" 
                           class="form-control " 
                           name="url" 
                           value="{{ old('url') }}"  
@@ -269,8 +269,6 @@
                     </span>
                 @enderror
             </div>
-            {{old('img.0')}} 
-            {{old('img.1')}}
 
         </div>
         

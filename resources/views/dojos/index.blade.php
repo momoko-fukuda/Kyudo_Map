@@ -83,7 +83,7 @@
     @if(count($dojos) > 0)
         <p>全{{$dojos->total()}}件中
             {{($dojos->currentPage() -1)* $dojos->perPage() + 1}}-
-            {{(($dojos->currentPage() -1)* $dojos->perPage() + 1)+(count($dojos)-1)}}件のデータが表示されています。<p>
+            {{(($dojos->currentPage() -1)* $dojos->perPage() + 1)+(count($dojos)-1)}}件の弓道場が表示されています。<p>
     @else
         <p>0件</p>
     @endif

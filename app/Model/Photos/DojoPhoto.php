@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
  */
 class DojoPhoto extends Model
 {
-    protected $fillable =['dojo_id', 'user_id', 'img',];
+    protected $fillable =['dojo_id', 'user_id', 'review_id', 'img',];
     
     
     /**
@@ -22,9 +22,24 @@ class DojoPhoto extends Model
         return $this->belongsTo('App\Model\Dojo');
     }
     
+    /**
+     * userテーブルとのリレーション
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Model\User');
+    }
+    /**
+     * reviewsテーブルとのリレーション
+     */
+    public function review()
+    {
+        return $this->belongsTo('App\Model\Review');
+    }
     
     /**
      * 道場写真データの格納
+     * dojos/createで使用
      */
     public static function createDojoPhotos($request, $dojo)
     {
@@ -44,6 +59,30 @@ class DojoPhoto extends Model
             }
         }
     }
+    /**
+     * 道場写真データの格納
+     * reviews/createで使用
+     */
+    public static function createReviewDojoPhotos($request, $review)
+    {
+        $files = $request->file('img');
+         
+        if ($files) {
+            foreach ($files as $file) {
+                $dojophoto = new DojoPhoto();
+                $dojophoto->dojo_id = $review->dojo_id;
+                $dojophoto->user_id = $review->user_id;
+                $dojophoto->review_id = $review->id;
+
+                $path = Storage::disk('s3')->putFile('/test', $file, 'public');
+            
+                $dojophoto->img =Storage::disk('s3')->url($path);
+
+                $dojophoto->save();
+            }
+        }
+    }
+    
     
     /**
      * DojoControllerで該当道場の写真データを全取得するモデルクラス

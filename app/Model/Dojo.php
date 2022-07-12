@@ -3,7 +3,6 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use Overtrue\LaravelFavorite\Traits\Favoriteable;
 
 /**
  * dojosテーブルのモデルクラス

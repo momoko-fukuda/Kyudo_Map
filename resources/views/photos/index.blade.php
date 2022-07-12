@@ -35,8 +35,12 @@
             <p>ごめんなさい、まだ写真はアップされてません</p>
         @else
             @foreach($dojophotos as $dojophoto)
-                <img src="{{ $dojophoto['img'] }}" class="w-25 h-50">
+                <div>
+                    <img src="{{ $dojophoto['img'] }}" class="w-25 h-50">
+                    <small>投稿者：{{$dojophoto->user->name}}さん</small>
+                </div>
             @endforeach
+            {{$dojophotos->links()}}
         @endif
         
     </div>

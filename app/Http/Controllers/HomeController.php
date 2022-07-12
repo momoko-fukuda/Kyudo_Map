@@ -24,12 +24,12 @@ class HomeController extends Controller
      *　ホーム画面
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Dojo $dojo)
     {
         $reviews = Review::getReviewLast5();
         $user = Auth::user();
 
-        return view('homes.home', compact('reviews', 'user'));
+        return view('homes.home', compact('reviews', 'user', 'dojo'));
     }
     
 
