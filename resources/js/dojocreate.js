@@ -33,6 +33,25 @@ $(function(){
         
     });
     
+    /**
+     * 各口コミの画像を表示させるコード
+     * (reviews/index.blade.php)
+     */
+    $('.photomore').click(function() {
+        $reviewPanel = $(this).parent();
+        $reviewPanelChild = $reviewPanel.children('.hidephotos');
+             
+        if(!$reviewPanelChild.hasClass('open')){
+            $reviewPanelChild.slideDown().addClass('open');
+            $reviewPanel.children('.photomore').text('閉じる');
+        }else{
+            $reviewPanelChild.slideUp().removeClass('open');
+            $reviewPanel.children('.photomore').text('写真を表示する');
+        }
+    });
+
+     
+
     
 
     // /**

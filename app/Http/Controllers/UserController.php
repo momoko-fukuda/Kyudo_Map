@@ -7,6 +7,8 @@ use App\Model\Dojo;
 use App\Model\Review;
 use App\Model\User;
 use App\Model\Photo;
+use App\Model\Buttons\FavoriteButton;
+use App\Model\Buttons\UseButton;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,22 +16,56 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     /**
+     * middleware設定
+     * (ログインしてない場合、マイページ使用不可)
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function mypage()
+    public function mypage(Dojo $dojo)
     {
-        /**
-         * 何を出したいか？
-         * →userデータ
-         * →dojoデータ(userで登録したarea_idとの紐づけ、かつ直近で更新されたもの+気になる・利用したボタンに該当した道場)
-         * →reviewデータ（自分で投稿したもののみ）
-         */
-        
         $user = Auth::user();
+        $area =$user->area;
+
         
-        return view('users.mypage', compact('user'));
+        //投稿した口コミ一覧をとってくる
+        $reviews = Review::getuserReview($user)
+                         ->get();
+        
+        //参考になったボタンを押した口コミ投稿をとってくる
+        $favoriteReviews = $user->favorites(Review::class)
+                                ->get();
+        
+        //お気に入りボタンを押した道場をとってくる
+        $favoriteDojos = FavoriteButton::getFavoriteButtonUser($user)
+                                       ->get();
+        
+        //利用したボタンを押した道場をとってくる
+        $useDojos = UseButton::getUseButtonUser($user)
+                             ->get();
+        
+        //更新日が1か月以内の道場をとってくる
+        $latestDojos = Dojo::getLatestDojo($area)
+                           ->get();
+    
+        
+        
+        return view('users.mypage', compact(
+            'user',
+            'reviews',
+            'favoriteReviews',
+            'favoriteDojos',
+            'useDojos',
+            'latestDojos'
+        ));
     }
 
     // /**

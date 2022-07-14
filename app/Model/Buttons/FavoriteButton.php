@@ -27,9 +27,19 @@ class FavoriteButton extends Model
      */
     public function scopegetFavoriteButton($query, $dojoId, $userId)
     {
-        $query->where('dojo_id', $dojoId)
-                ->where('user_id', $userId);
+        $query->with(['dojo', 'user'])
+              ->where('dojo_id', $dojoId)
+              ->where('user_id', $userId);
     }
+    /**
+     * 該当userが押したfavoritebuttonのデータをもってくる
+     */
+    public function scopegetFavoriteButtonUser($query, $user)
+    {
+        $query->with(['user'])
+               ->where('user_id', $user->id);
+    }
+     
     /**
      * favoritebuttonにデータ挿入
      */

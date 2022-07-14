@@ -157,4 +157,14 @@ class Dojo extends Model
     {
         $dojo->fill($request->all())->update();
     }
+    /**
+     * 該当ユーザーが登録した地域の道場データをとってくる
+     * （更新日が浅いもの）
+     */
+    public static function scopegetLatestDojo($query, $area)
+    {
+        $query->with(['user','area'])
+               ->where('area_id', $area->id)
+               ->orderBy('updated_at', 'desc');
+    }
 }

@@ -38,8 +38,11 @@
                 <p class="card-text">{{$review->body}}</p>
                 <div>
                     @foreach($review->dojophotos as $value)
-                        <img src="{{ $value['img'] }}" class="w-25 h-50">
+                        <img src="{{ $value['img'] }}" class="w-25 h-50 hidephotos" style="display:none;">
                     @endforeach
+                    @if($review->dojophotos->isNotEmpty())
+                        <a type="button" class="photomore" style="display:block;">写真を表示する</a>
+                    @endif
                 </div>
                 <p>{{$review->created_at}}</p>
                 <p>違反報告</p>

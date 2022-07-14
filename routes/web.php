@@ -49,10 +49,10 @@ Route::delete('dojos/{dojo}/photos/{photo}', 'PhotoController@destroy');
 
 
 // マイページ関連
-Route::get('users/mypage', 'UserController@mypage')->name('mypage');
-Route::get('users/mypage/edit', 'UserController@edit')->name('mypage.edit');
-Route::put('users/mypage', 'UserController@update')->name('mypage.update');
-Route::delete('users/mypage', 'UserController@destroy')->name('mypage.delete');
+Route::get('mypage', 'UserController@mypage')->name('mypage');
+Route::get('mypage/{user}/edit', 'UserController@edit')->name('mypage.edit');
+Route::put('mypage/{user}', 'UserController@update')->name('mypage.update');
+Route::delete('mypage/{user}', 'UserController@destroy')->name('mypage.delete');
 
 // 認証関連
 Auth::routes();

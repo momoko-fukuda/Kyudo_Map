@@ -29,9 +29,21 @@ class UseButton extends Model
      */
     public function scopegetUseButton($query, $dojoId, $userId)
     {
-        $query->where('dojo_id', $dojoId)
+        $query->with(['dojo', 'user'])
+              ->where('dojo_id', $dojoId)
               ->where('user_id', $userId);
     }
+    
+    /**
+     * 該当userのデータを取ってくる
+     */
+    public function scopegetUseButtonUser($query, $user)
+    {
+        $query->with('user')
+              ->where('user_id', $user->id);
+    }
+    
+    
     /**
      * favoritebuttonにデータ挿入
      */

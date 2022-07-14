@@ -42,14 +42,13 @@ class Review extends Model
     {
         return $this->hasMany('App\Model\Photos\DojoPhoto');
     }
-    /**
-     * review_buttonsテーブルとのリレーション
-     */
-    public function reviewbuttons()
-    {
-        return $this->hasMany('App\Model\Buttons\ReviewButton');
-    }
-    
+    // /**
+    //  * review_buttonsテーブルとのリレーション
+    //  */
+    // public function favorites()
+    // {
+    //     return $this->hasMany('App\Model\Buttons\Favorite');
+    // }
     
     /**
      * HomeControllerでレビューデータを最新5件取得するモデルクラス
@@ -96,5 +95,15 @@ class Review extends Model
     public static function createReview($review, $request)
     {
         $review->fill($request->all())->save();
+    }
+    
+    /**
+     * 該当userの投稿した口コミを取得する
+     */
+    public static function scopegetuserReview($query, $user)
+    {
+        $query->with('user')
+               ->where('user_id', $user->id)
+               ->orderBy('created_at', 'desc');
     }
 }
