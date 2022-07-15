@@ -39,10 +39,6 @@ Route::get('dojos/{dojo}/reviews/create', 'ReviewController@create')->name('revi
 Route::post('dojos/{dojo}/reviews', 'ReviewController@store')->name('reviews.store');
 Route::delete('dojos/{dojo}/reviews/{review}', 'ReviewController@destroy')->name('reviews.destroy');
 
-
-
-
-
 // 画像関連(review_photosのデータも合わせて表示させる際はこの内容で問題ないのか？ここがおかしい)
 Route::get('dojos/{dojo}/photos', 'PhotoController@index')->name('photos.index');
 Route::delete('dojos/{dojo}/photos/{photo}', 'PhotoController@destroy');
@@ -54,5 +50,9 @@ Route::get('mypage/{user}/edit', 'UserController@edit')->name('mypage.edit');
 Route::put('mypage/{user}', 'UserController@update')->name('mypage.update');
 Route::delete('mypage/{user}', 'UserController@destroy')->name('mypage.delete');
 
+//パスワードの更新
+Route::get('mypage/{user}/password/edit', 'UserController@edit_password')->name('mypage.edit_password');
+Route::put('mypage/{user}/password', 'UserController@update_password')->name('mypage.update_password');
+
 // 認証関連
-Auth::routes();
+Auth::routes(['verify' => true]);

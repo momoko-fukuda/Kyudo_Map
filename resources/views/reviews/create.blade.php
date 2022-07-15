@@ -66,7 +66,7 @@
                     </span>
                     @enderror
                 </div>
-            </div>
+        </div>
             
         <!--コメント-->
         <div class="form-group">
@@ -93,7 +93,7 @@
                     </span>
                     @enderror
                 </div>
-            </div>
+        </div>
         
         
         <!--写真アップ-->
@@ -119,13 +119,14 @@
                     @else
                         @foreach(old('img') as $value)
                         <div class="imgbox">
-                        <input type="file" 
-                               multiple
-                               class="form-controle-file img" 
-                               name="img[]"
-                               value="{{$value}}">
-                        <button type="button" class="append_imgs">+</button>
-                        <button type="button" class="remove_imgs">-</button>
+                            <input type="file" 
+                                   multiple
+                                   class="form-controle-file img" 
+                                   name="img[]"
+                                   value="{{$value}}">
+                            <button type="button" class="append_imgs">+</button>
+                            <button type="button" class="remove_imgs">-</button>
+                        </div>
                         @endforeach
                     @endif
                 </div>
@@ -136,7 +137,7 @@
                         <strong>選択した画像データは容量を超えています</strong>
                     </span>
                 @enderror
-            </div>
+        </div>
             
             
             <div class="form-group">

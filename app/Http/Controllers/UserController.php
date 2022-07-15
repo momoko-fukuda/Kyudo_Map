@@ -6,12 +6,14 @@ namespace App\Http\Controllers;
 use App\Model\Dojo;
 use App\Model\Review;
 use App\Model\User;
+use App\Model\Area;
 use App\Model\Photo;
 use App\Model\Buttons\FavoriteButton;
 use App\Model\Buttons\UseButton;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -30,7 +32,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function mypage(Dojo $dojo)
+    public function mypage()
     {
         $user = Auth::user();
         $area =$user->area;
@@ -109,8 +111,9 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $user = Auth::user();
+        $areas = Area::getAllArea();
         
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user', 'areas'));
     }
 
     /**
@@ -122,15 +125,45 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $userr = Auth::user();
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.Auth::user()->email.',email'],
+            'area_id' => ['required', 'integer'],
+            'img' => ['nullable']
+            ]);
+       
+        $user = Auth::user();
+
+        User::updateUser($user, $request);
         
-        $user->name = $request->input('name') ? $request->input('name') : $user->name;
-        $user->email =$request->input('email') ? $request->input('email'): $user->email;
-        $user->area_id = $request->input('area_id') ? $request->input('area_id') : $user->area_id;
-        $user->update();
-        
-        return redirect()->route('users.mypage');
+        return redirect()->route('mypage');
     }
+    
+    /**
+     * パスワードの更新画面処理
+     */
+    public function edit_password()
+    {
+        $user = Auth::user();
+        return view('users.edit_password', compact('user'));
+    }
+    
+    
+    /**
+     * パスワードの更新処理
+     */
+    public function update_password(Request $request)
+    {
+        $user = Auth::user();
+        $request->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed']
+            ]);
+
+        User::updatePassword($request, $user);
+
+        return redirect()->route('mypage')->with('status', 'パスワードの変更が終了しました');
+    }
+    
 
     /**
      * Remove the specified resource from storage.

@@ -4,13 +4,37 @@
 
 
 @section('content')
+
+<div>
+    <div>
+        <a href="{{route('home')}}">Home</a>>
+        <strong class="now">マイページ編集</strong>
+    </div>
+</div>
+
+<!--メッセージ-->
+@if(session('status'))
+    <div class="alert alert-primary alert-dismissible fade show">
+        {{ session('status') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+@endif
+
+
+
 <!--ユーザー情報-->
 <h1><strong>{{$user->name}}</strong>さんのマイページ</h1>
 <div>
     
-    <di>
-        <img scr="プロフィール画像">
-    </di>
+    <div>
+        @if($user->img)
+        <img src="https://s3-ap-northeast-1.amazonaws.com/kyudo-map-img/{{$user->img}} " alt="{{$user->name}}のユーザー画像" class="w-25 h-50">
+        @else
+        <p>ユーザー画像は登録されてません</p>
+        @endif
+    </div>
     
     <div>
         <p>ユーザー情報</p>
@@ -20,6 +44,8 @@
     </div>
     <div>
         <a href="{{route('mypage.edit', $user->id)}}" type="button" class="btn btn-primary">ユーザー情報を編集する</a>
+        <a href="{{route('mypage.edit_password', $user->id)}}" type="button" class="btn btn-primary">パスワードを更新する</a>
+        <a href="{{route('mypage.edit', $user->id)}}" type="button" class="btn btn-secondary">退会する</a>
     </div>
     
 </div>

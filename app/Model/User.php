@@ -7,13 +7,33 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\Notifications\CustomVerifyEmail;
+use App\Notifications\CustomResetPassword;
 
 /**
  * usersテーブルのモデルクラス
  */
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable, Favoriter;
+    
+    /**
+     * メールの日本語化(新規登録時)
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new CustomVerifyEmail());
+    }
+    
+    /**
+     * メールの日本語化(パスワードリセット時)
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CustomResetPassword($token));
+    }
+    
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +41,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'area_id', 'password',
+        'name',
+        'email',
+        'area_id',
+        'password',
+        'img'
     ];
 
     /**
@@ -104,10 +128,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Model\photos\DojoPhoto');
     }
-    
-    
-    
-    
+
+
     /**
      * ユーザーがお気に入りしたdojoを全てとってきている
      */
@@ -115,5 +137,37 @@ class User extends Authenticatable
     {
         $user = Auth::user();
         return $user->favorites(Dojo::class)->get();
+    }
+    
+    /**
+     * ユーザー情報の編集時にデータ格納するコード
+     */
+    public static function updateUser($user, $request)
+    {
+        $user->fill($request->only(['name', 'email', 'area_id']));
+        
+        $file = $request->file('img');
+        
+        if ($file) {
+            $oldfile = $user->img;
+            Storage::disk('s3')->delete($oldfile);
+            
+            $path = Storage::disk('s3')->putFile('/user-test', $file, 'public');
+            $user->img = $path;
+        }
+
+        $user->update();
+    }
+    /**
+     * パスワード更新処理のコード
+     */
+    public static function updatePassword($request, $user)
+    {
+        if ($request->input('password') == $request->input('password_confirmation')) {
+            $user->password = bcrypt($request->input('password'));
+            $user->update();
+        } else {
+            return redirect()->route('mypage.edit_password', $user->id);
+        }
     }
 }
