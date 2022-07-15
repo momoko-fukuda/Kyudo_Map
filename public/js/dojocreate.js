@@ -11009,7 +11009,6 @@ $(function () {
    * 各口コミの画像を表示させるコード
    * (reviews/index.blade.php)
    */
-  //  $(document).ready(function(){
 
   $('.photomore').click(function () {
     $reviewPanel = $(this).parent();
@@ -11021,10 +11020,8 @@ $(function () {
     } else {
       $reviewPanelChild.slideUp().removeClass('open');
       $reviewPanel.children('.photomore').text('写真を表示する');
-    } //  return false;
-
-  }); //  });
-  // /**
+    }
+  }); // /**
   //  * dojos/create.blade.phpにて、新規登録ボタン押した後
   //  * 営業時間のデータを配列化して取得
   //  * submit送信

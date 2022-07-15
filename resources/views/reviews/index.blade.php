@@ -33,7 +33,11 @@
 
         <div class="card" style="width:50rem;">
             <div class="card-body">
-                <p class="card-subtitle"><strong>{{$review->user->name}}</strong>さんの口コミ</p>
+                @if($review->user)
+                    <p class="card-subtitle"><strong>{{$review->user->name}}</strong>さんの口コミ</p>
+                @else
+                    <h6 class="card-subtitle">退会済ユーザー</h6>
+                @endif
                 <h5 class="card-title">{{$review->title}}</h5>
                 <p class="card-text">{{$review->body}}</p>
                 <div>

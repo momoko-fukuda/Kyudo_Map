@@ -48,11 +48,20 @@ Route::delete('dojos/{dojo}/photos/{photo}', 'PhotoController@destroy');
 Route::get('mypage', 'UserController@mypage')->name('mypage');
 Route::get('mypage/{user}/edit', 'UserController@edit')->name('mypage.edit');
 Route::put('mypage/{user}', 'UserController@update')->name('mypage.update');
+Route::get('mypage/{user}/delete', 'UserController@deleteview')->name('mypage.deleteview');
 Route::delete('mypage/{user}', 'UserController@destroy')->name('mypage.delete');
+
 
 //パスワードの更新
 Route::get('mypage/{user}/password/edit', 'UserController@edit_password')->name('mypage.edit_password');
 Route::put('mypage/{user}/password', 'UserController@update_password')->name('mypage.update_password');
+
+
+
+// API関連
+Route::get('api/area', 'ApiController@getArea');
+
+
 
 // 認証関連
 Auth::routes(['verify' => true]);

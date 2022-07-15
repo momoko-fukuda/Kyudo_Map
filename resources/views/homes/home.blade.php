@@ -223,7 +223,11 @@
             <div class="card" style="width:50rem;">
                 <div class="card-body">
                     <h5 class="card-title">{{$review->title}}</h5>
-                    <h6 class="card-subtitle">{{$review->user->name}}</h6>
+                    @if($review->user)
+                        <h6 class="card-subtitle">{{$review->user->name}}</h6>
+                    @else
+                        <h6 class="card-subtitle">退会済ユーザー</h6>
+                    @endif
                     <p class="card-text">{{$review->body}}</p>
                     <a href="{{route('reviews.index', $review->dojo->id)}}" class="card-link">{{ $review->dojo->name }}の口コミ一覧をみる</a>
                 </div>

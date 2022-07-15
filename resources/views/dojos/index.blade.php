@@ -106,9 +106,6 @@
     
     @endforelse
     {{$dojos->links()}}
-    
 
-    
 </div>
-
 @endsection

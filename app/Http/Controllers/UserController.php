@@ -165,14 +165,24 @@ class UserController extends Controller
     }
     
 
+    public function deleteview()
+    {
+        $user = Auth::user();
+        return view('users.delete', compact('user'));
+    }
+    
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy()
     {
-        //データ削除
+        $id = Auth::id();
+        User::find($id)->forceDelete();
+        
+        Auth::logout();
+        return redirect('/');
     }
 }

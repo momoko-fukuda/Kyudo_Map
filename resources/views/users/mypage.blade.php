@@ -45,7 +45,7 @@
     <div>
         <a href="{{route('mypage.edit', $user->id)}}" type="button" class="btn btn-primary">ユーザー情報を編集する</a>
         <a href="{{route('mypage.edit_password', $user->id)}}" type="button" class="btn btn-primary">パスワードを更新する</a>
-        <a href="{{route('mypage.edit', $user->id)}}" type="button" class="btn btn-secondary">退会する</a>
+        <a href="{{route('mypage.deleteview', $user->id)}}" type="button" class="btn btn-secondary">退会申請</a>
     </div>
     
 </div>

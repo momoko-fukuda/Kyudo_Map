@@ -37,7 +37,11 @@
             @foreach($dojophotos as $dojophoto)
                 <div>
                     <img src="{{ $dojophoto['img'] }}" class="w-25 h-50">
-                    <small>投稿者：{{$dojophoto->user->name}}さん</small>
+                    @if($dojophoto->user)
+                        <small>投稿者：{{$dojophoto->user->name}}さん</small>
+                    @else
+                        <small>投稿者：退会済ユーザー</small>
+                    @endif
                 </div>
             @endforeach
             {{$dojophotos->links()}}
