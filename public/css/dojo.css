@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi&display=swap');
+
+
+html{
+    background: url("../img/home/background_arrowPattern.jpg") repeat-y center;
+    z-index: 1;
+    background-size: contain;
+    max-width: 1100px;
+    margin: auto;
+    font-family: 'Kaisei HarunoUmi', serif;
+    
+}
+
+body{
+    max-width: 960px;
+    margin: 100px auto 0;
+    font-family: 'Kaisei HarunoUmi', serif;
+    color: #2F4F4F;
+    border-radius:10px;
+}
+
+
+
+/*header・footer部分*/
+nav{
+    max-width: 960px;
+    min-height: 70px;
+    margin: 10px auto;
+    background-color: #EEE8AA;
+    border-radius:10px;
+}
+
+nav a{
+    color: #2F4F4F;
+}
+
+.navbar-toggler .navbar-toggler-icon{
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(77,103,93)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+#footer{
+    max-width: 960px;
+    height: 70px;
+    margin: 0;
+    background-color: #EEE8AA;
+    border-radius:10px;
+    display: flex;
+    justify-content:space-between;
+}
+
+#footer a{
+    color: #2F4F4F;
+    margin-right: 10px;
+}
+
+
+
+
+
+/*home画面*/
+
+main{
+    max-width: 960px;
+    margin: 100px auto 0;
+    background-color: #FFFFEE;
+    border-radius:10px;
+}
+
+#mainvisual{
+    width: 100%;
+    height: 500px;
+    background: url("../img/home/fastview.png") no-repeat top center;
+    background-size: auto;
+    border-radius:10px;
+}
+
+
+/*home画面のmainmassege部分*/
+#mainmessage{
+    position: relative;
+}
+#mainmessage h1{
+    width: 500px;
+    font-size: 50px;
+    position: absolute;
+    top: 90px;
+    left: 20px;
+}
+
+#mainmessage h4{
+    width: 500px;
+    position: absolute;
+    top: 220px;
+    left: 20px;
+}
+
+
+/*home画面のmap部分*/
+#mainmap{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    list-style: none;
+}
+
+#mainmap li{
+    padding: 0.5em;
+    margin: 10px 0;
+    background-color: #FFFFEE;
+    border: solid 2px #B8860B;
+    border-radius: 10px;
+}
+
+#mainmap dd{
+    font-size: 12px;
+    float: left;
+}
+
+#mainmap p{
+    width: 500px;
+    font-size: 18px;
+    position: absolute;
+    top: 80px;
+    right: 40px;
+}
+
+#area1{
+    width: 90px;
+    position: absolute;
+    top: 10px;
+    right: 180px;
+}
+#area2{
+    width: 110px;
+    position: absolute;
+    top: 120px;
+    right: 30px;
+}
+#area3{
+    width: 130px;
+    position: absolute;
+    top: 230px;
+    right: 30px;
+}
+#area4{
+    width: 120px;
+    position: absolute;
+    top: 140px;
+    right: 200px;
+}
+#area5{
+    width: 90px;
+    position: absolute;
+    top:340px;
+    right: 70px;
+}
+#area6{
+    width: 110px;
+    position: absolute;
+    bottom: 15px;
+    right: 165px;
+}
+#area7{
+    width: 110px;
+    position: absolute;
+    top: 240px;
+    right: 310px;
+}
+#area8{
+    width: 130px;
+    position: absolute;
+    bottom: 0px;
+    right: 280px;
+}
+#area9{
+    width: 130px;
+    position: absolute;
+    bottom: 100px;
+    right: 430px;
+}
+
+
+#kyudo_about{
+    width: 60%;
+    margin:50px auto;
+    
+}
+
+#kyudo_about h3{
+    display:inline;
+}
+
+#kyudo_about img{
+    width:60px; 
+    height:auto;
+}
+
+#kyudo_about div{
+    width: 500px;
+    margin: auto;
+}
+
+#news{
+    width: 80%;
+    margin:50px auto;
+    padding: 20px 50px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+#news h3{
+    margin-left: 50px;
+}
+#news li{
+    margin-left: 80px;
+}
+
+
+#reviews{
+    width: 80%;
+    margin:50px auto 0;
+    padding: 30px 0px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+#reviews img{
+    margin-left: 100px;
+}
+
+.review_card{
+    background: url("../img/home/review_flame.png")no-repeat center center;
+    z-index: 10;
+}

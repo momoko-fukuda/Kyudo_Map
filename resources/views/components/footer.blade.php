@@ -1,9 +1,10 @@
-<div class="navbar navbar-expand-lg navbar-dark bg-secondary shadow-sm fixed-bottom mt-5">
-    <a class="navbar-brand" href="{{url('/')}}">弓道場のTEBIKI</a>
+<div id="footer" class="navbar navbar-expand-lg shadow-sm mt-5">
     <div>
-        <a href="{{route('home.about')}}">弓道場MAPとは？</a>
-        <a href="{{route('home.role')}}">利用規約</a>
-        <a href="{{route('home.policy')}}">プライバシーポリシー</a>
-        <a href="#">Twitter</a>
+    <a class="navbar-brand" href="{{url('/')}}"><img src="../img/home/logo.gif" alt="弓道場のTEBIKIのロゴ" style="height:55px;"></a>
+    </div>
+    <div>
+        <a href="{{route('home.role')}}"><i class="fa-solid fa-book"></i>利用規約</a>
+        <a href="{{route('home.policy')}}"><i class="fa-solid fa-user-shield"></i>プライバシーポリシー</a>
+        <a href="#"><i class="fa-brands fa-twitter"></i>Twitter</a>
     </div>
 </div>

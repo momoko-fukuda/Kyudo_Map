@@ -15,13 +15,13 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
         <meta description="弓道場MAPは、全国の弓道場を探せるアプリです。">
         
-        
-        <!-- Fonts -->
-        <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-        
         <!-- Styles(CSSのファイル) -->
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/dojo.css') }}" rel="stylesheet">
+        
+        <!--fontawesome-->
+        <script src="https://kit.fontawesome.com/34ca28993e.js" crossorigin="anonymous"></script>
+        
     </head>
     
     <body>
@@ -32,7 +32,7 @@
                 @endcomponent
             </header>
             
-            <main class="py-4 my-5">
+            <main>
                 @yield('content')
             </main>
             
