@@ -120,7 +120,7 @@ class DojoController extends Controller
             'facility_numberlimit'=>['nullable', 'string', 'max:20'],
             'facility_parking'=> ['nullable', 'string', 'max:20'],
             'other'=> ['nullable', 'string', 'max:255'],
-            // 'img' => ['binary','max:3000'],
+            'img' => ['max:30000'],
             ]
         );
 

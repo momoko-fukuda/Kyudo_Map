@@ -1,4 +1,4 @@
-<div id="footer" class="navbar navbar-expand-lg shadow-sm mt-5">
+<div id="footer" class="navbar navbar-expand-lg shadow-sm">
     <div>
     <a class="navbar-brand" href="{{url('/')}}"><img src="../img/home/logo.gif" alt="弓道場のTEBIKIのロゴ" style="height:55px;"></a>
     </div>

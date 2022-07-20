@@ -19,6 +19,8 @@
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ secure_asset('css/dojo.css') }}" rel="stylesheet">
         
+        <link href="{{ secure_asset('css/dojoceate.css') }}" rel="stylesheet">
+        
         <!--fontawesome-->
         <script src="https://kit.fontawesome.com/34ca28993e.js" crossorigin="anonymous"></script>
         

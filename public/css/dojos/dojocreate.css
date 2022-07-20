@@ -1,0 +1,97 @@
+/*create画面*/
+
+/*トップ画面*/
+.route{
+    padding: 20px;
+}
+
+
+#createtop{
+    width: 100%;
+    height: 500px;
+    border-radius:10px;
+    position: relative;
+
+}
+
+#createtop h1{
+    margin: 0;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#createtop p{
+    width: 60%;
+    font-size: 18px;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/*フォーム部分*/
+.formname{
+    margin: 30px auto;
+    text-align: center;
+}
+
+#createform{
+    width: 95%;
+    margin: auto;
+    display: flex;
+    
+}
+
+.nav-tabs, .nav-item{
+    flex-direction: column;
+}
+
+.nav-pills .nav-link.active{
+    background-color: #FFF;
+    color: #2F4F4F;
+    border:solid 2px;
+}
+
+.nav-pills .nav-link{
+    color: #2F4F4F;
+}
+
+
+#createform form{
+    flex-grow: 1;
+    
+}
+
+#createform .required{
+    font-size: 13px;
+    background-color: red;
+    color: #fff;
+    border-radius: 5px;
+}
+
+#createform .tab-pane{
+    padding: 20px;
+    background-color: #FFF;
+    border-radius: 15px;
+}
+
+
+#btn_submit{
+    width:25%;
+    margin: 5px auto 10px;
+}
+
+.btn_check{
+    background-color: #2F4F4F;
+    color: #fff;
+}
+.btn:hover{
+    color: 	#F0E68C;
+}
+
+.append_imgs, .remove_imgs{
+    color: #2F4F4F;
+}

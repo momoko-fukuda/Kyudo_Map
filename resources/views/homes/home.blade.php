@@ -198,7 +198,7 @@
 <div id="kyudo_about">
     <h3>弓道場のTEBIKIって何ができるの？</h3>
     <img src="../img/home/kyudo_about.png">
-    <div class="btn">
+    <div>
         <a href="{{route('home.about')}}" class="btn btn-success" role="button" >説明を見に行く<i class="fa-solid fa-book-open-reader"></i></a>
         @auth
             <a href="{{route('dojos.index')}}" class="btn btn-warning" role="button" >弓道場を探しにいく<i class="fa-solid fa-arrow-up-right-from-square"></i></a>

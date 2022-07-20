@@ -6,33 +6,83 @@
 @section('content')
 
 <!--パンくずリスト-->
-<div>
-    <div>
-        <a href="{{route('home')}}">Home</a>>
-        <strong class="now">新規弓道場作成</strong>
-    </div>
+
+<div class="route">
+    <a href="{{route('home')}}">
+        <i class="fa-solid fa-vihara"></i>
+        Home
+    </a>
+    <i class="fa-solid fa-angles-right"></i>
+    <strong class="now">
+        <i class="fa-solid fa-bullseye"></i>
+        新規弓道場作成
+    </strong>
 </div>
 
 
-<div>
+<div id="createtop">
     <h1>新規弓道場登録</h1>
-    <h4>弓道のTEBIKIに、まだ掲載されていない弓道場を登録して、みんなと共有しよう！<br>
-    みんなと共有することで、まだあなたの知らない弓道場に巡り合えるかも？</h4>
-    <p>※登録後、弓道のTEBIKI管理者で登録された道場の内容を確認させていただきます。<br>
-    内容を確認し、実在しない、または虚偽内容がある場合、削除する可能性がございます。</p>
+    <p>「弓道場のTEBIKI」に、まだ掲載されていない弓道場を登録して、<br>みんなと共有しよう！
+    みんなで共有し合うことで、まだあなたの知らない弓道場に巡り合えるかもしれません。</p>
 </div>
 
 
 <hr>
-<div>
-    <h4 class="mt-5">新規弓道場登録フォーム</h4>
+
+
+
+<h4 class="formname">弓道場登録フォーム</h4>
+
+<div id="createform">
     
-    <form id="form_dojocreate" action="/dojos" method="POST" enctype="multipart/form-data">
+    <ul class="nav nav-tabs nav-pills" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" 
+           id="item1-tab" 
+           data-toggle="tab" 
+           href="#item1" 
+           role="tab" 
+           aria-controls="item1" 
+           aria-selected="true">
+            基本情報
+            <i class="fa-solid fa-circle-chevron-right"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" 
+           id="item2-tab" 
+           data-toggle="tab" 
+           href="#item2" 
+           role="tab" 
+           aria-controls="item2" 
+           aria-selected="false">
+            利用条件
+            <i class="fa-solid fa-circle-chevron-right"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" 
+           id="item3-tab" 
+           data-toggle="tab" 
+           href="#item3" 
+           role="tab" 
+           aria-controls="item3" 
+           aria-selected="false">
+            施設情報
+            <i class="fa-solid fa-circle-chevron-right"></i>
+        </a>
+      </li>
+    </ul>
+    
+    <form id="form_dojocreate" 
+          action="/dojos" 
+          method="POST" 
+          enctype="multipart/form-data" 
+          class="tab-content">
         {{ csrf_field() }}
         
-        
         <!--グループ１-->
-        <div>
+        <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
 
             <!--作成ユーザー-->
             <input type="hidden" name="user_id" value="{{$user->id}}">
@@ -40,8 +90,11 @@
             <!--道場名-->
             <div class="form-group row">
                 <label for="name" 
-                       class="col-md-5 col-form-label text-md-left">道場名
-                       <span class="ml-1">必須</span>
+                       class="col-md-5 
+                              col-form-label 
+                              text-md-left">
+                    道場名
+                       <span class="ml-1 required">必須</span>
                 </label>
 
                 <div class="col-md-5">
@@ -53,7 +106,8 @@
                           value="{{ old('name') }}" 
                           required 
                           autocomplete="name" 
-                          autofocus placeholder="サンプル弓道場">
+                          autofocus 
+                          placeholder="サンプル弓道場/スポーツセンター">
 
                    @error('name')
                     <span class="invalid-feedback" role="alert">
@@ -65,8 +119,11 @@
             <!--住所（都道府県）-->
             <div class="form-group row">
                 <label for="area_id" 
-                       class="col-md-5 col-form-label text-md-left">住所①（都道府県）
-                       <span class="ml-1">必須</span>
+                       class="col-md-5 
+                              col-form-label 
+                              text-md-left">
+                    住所①（都道府県）
+                       <span class="ml-1 required">必須</span>
                 </label>
 
                 <div class="col-md-5">
@@ -79,7 +136,7 @@
                         <option disabled 
                                 selected 
                                 style="display:none;">
-                            都道府県を選択してください
+                            都道府県を選択
                         </option>
                         @foreach($areas as $area)
                             <option value="{{ $area->id }}" @if( $area->id == old('area_id')) selected @endif>{{$area->name}}</option>
@@ -96,9 +153,11 @@
             <!--住所（市区町村）-->
             <div class="form-group row">
                 <label for="address1" 
-                       class="col-md-5 col-form-label text-md-left">
+                       class="col-md-5 
+                              col-form-label 
+                              text-md-left">
                     住所②（市区町村）
-                    <span class="ml-1">必須</span>
+                    <span class="ml-1 required">必須</span>
                 </label>
 
                 <div class="col-md-5">
@@ -111,7 +170,7 @@
                           required 
                           autocomplete="address-level2" 
                           autofocus 
-                          placeholder="市区町村名を記入してください">
+                          placeholder="市区町村名を記入">
 
                    @error('address1')
                     <span class="invalid-feedback" role="alert">
@@ -123,9 +182,11 @@
             <!--住所（市区町村以下）-->
             <div class="form-group row">
                 <label for="address2" 
-                       class="col-md-5 col-form-label text-md-left">
+                       class="col-md-5 
+                              col-form-label 
+                              text-md-left">
                     住所③（建物名・ビル名など）
-                    <span class="ml-1">必須</span>
+                    <span class="ml-1 required">必須</span>
                 </label>
 
                 <div class="col-md-5">
@@ -138,7 +199,7 @@
                           required 
                           autocomplete="address-level3" 
                           autofocus 
-                          placeholder="建物名・ビル名を記入してください">
+                          placeholder="建物名・ビル名を記入">
 
                    @error('address2')
                     <span class="invalid-feedback" role="alert">
@@ -150,9 +211,11 @@
             <!--電話番号-->
             <div class="form-group row">
                 <label for="tel" 
-                       class="col-md-5 col-form-label text-md-left">
+                       class="col-md-5 
+                              col-form-label 
+                              text-md-left">
                     電話番号
-                    <span class="ml-1">必須</span>
+                    <span class="ml-1 required">必須</span>
                 </label>
 
                 <div class="col-md-5">
@@ -165,7 +228,7 @@
                           required 
                           autocomplete="tel" 
                           autofocus 
-                          placeholder="電話番号を入力してください（例：03-0000-0000）">
+                          placeholder="例：03-0000-0000">
 
                    @error('tel')
                     <span class="invalid-feedback" role="alert">
@@ -179,7 +242,6 @@
                 <label for="use_money" 
                        class="col-md-5 col-form-label text-md-left">
                     利用料金
-                    <span class="ml-1">任意</span>
                 </label>
 
                 <div class="col-md-5">
@@ -191,7 +253,7 @@
                           value="{{ old('use_money') }}"  
                           autocomplete="off" 
                           autofocus 
-                          placeholder="利用料金を入力してください（例：2時間500円）">
+                          placeholder="例：2時間500円">
 
                    @error('use_money')
                     <span class="invalid-feedback" role="alert">
@@ -208,7 +270,6 @@
                               text-md-left 
                               @error('url') is-invalid @enderror">
                     弓道場のホームページ
-                    <span class="ml-1">任意</span>
                 </label>
 
                 <div class="col-md-5">
@@ -219,7 +280,7 @@
                           value="{{ old('url') }}"  
                           autocomplete="off" 
                           autofocus 
-                          placeholder="弓道場の公式ホームページのURLを入力してください">
+                          placeholder="公式ホームページのURLを入力">
                    
                    @error('url')
                     <span class="invalid-feedback" role="alert">
@@ -235,9 +296,8 @@
                               text-md-left 
                               @error('img') is-invalid @enderror">
                     弓道場画像
-                    <span class="ml-1">任意</span>
                 </label>
-                <div>
+                <div class="col-md-7">
                     @if(empty(old('img')))
                     <div class="imgbox">
                         <input type="file" 
@@ -245,23 +305,31 @@
                                class="form-controle-file" 
                                name="img[]"
                                class="img">
-                        <button type="button" class="append_imgs">+</button>
-                        <button type="button" class="remove_imgs">-</button>
+                        <a type="button" class="append_imgs">
+                            <i class="fa-solid fa-circle-plus"></i>
+                        </a>
+                        <a type="button" class="remove_imgs">
+                            <i class="fa-solid fa-circle-minus"></i>
+                        </a>
                     </div>
                     @else
                         @foreach(old('img') as $value)
-                        <div class="imgbox">
-                        <input type="file" 
-                               multiple
-                               class="form-controle-file img" 
-                               name="img[]"
-                               value="{{$value}}">
-                        <button type="button" class="append_imgs">+</button>
-                        <button type="button" class="remove_imgs">-</button>
+                            <div class="imgbox">
+                                <input type="file" 
+                                       multiple
+                                       class="form-controle-file img" 
+                                       name="img[]"
+                                       value="{{$value}}">
+                                <button type="button" class="append_imgs">
+                                    <i class="fa-solid fa-circle-plus"></i>
+                                </button>
+                                <button type="button" class="remove_imgs">
+                                    <i class="fa-solid fa-circle-minus"></i>
+                                </button>
+                            </div>
                         @endforeach
                     @endif
                 </div>
-                
 
                 @error('img')
                     <span class="invalid-feedback" role="alert">
@@ -283,11 +351,11 @@
     
         
         <!--ボタン-->
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary w-50" id="btn_submit">
+        <div id="btn_submit">
+            <button type="submit" class="btn btn_check">
                 新規登録
+                <i class="fa-solid fa-pen-to-square"></i>
             </button>
-            <p>※step1~step3入力後、登録ボタンを押してください</p>
         </div>
 
         
