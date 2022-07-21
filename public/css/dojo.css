@@ -2,6 +2,7 @@
     background: url(/images/background_arrowPattern.jpg?c8b13adc542d888f9273db3caaca7c94) repeat-y center;
     background-size: contain;
     max-width: 1100px;
+    height: auto;
     margin: auto;
     font-family: 'Kaisei HarunoUmi', serif;
     
@@ -59,6 +60,9 @@ main{
     max-width: 960px;
     margin: 100px auto 0;
     background-color: #FFFFEE;
+    /*background-image: url(/images/background_wasi.jpg);*/
+    /*background-repeat: repeat;*/
+    /*background-size:contain; */
     border-radius:10px;
 }
 
@@ -222,14 +226,26 @@ main{
 #reviews img{
     margin-left: 100px;
 }
-/*create画面*/
-
-/*トップ画面*/
+/*パンくずリスト*/
 .route{
-    padding: 20px;
+    padding: 20px 20px 0 20px;
+}
+
+.route a{
+    text-decoration: none;
+    color: #6B8E23;
+}
+
+.route a:hover{
+    border-bottom:dotted;
+    border-color: #6B8E23;
+    border-width: 2px;
 }
 
 
+
+/*create画面*/
+/*トップ画面*/
 #createtop{
     width: 100%;
     height: 500px;
@@ -262,7 +278,7 @@ main{
     text-align: center;
 }
 
-#createform{
+#dojoform{
     width: 95%;
     margin: auto;
     display: flex;
@@ -284,27 +300,27 @@ main{
 }
 
 
-#createform form{
+#dojoform form{
     flex-grow: 1;
     
 }
 
-#createform .required{
+#dojoform .required{
     font-size: 13px;
     background-color: red;
     color: #fff;
     border-radius: 5px;
 }
 
-#createform .tab-pane{
+#dojoform .tab-pane{
     padding: 20px;
     background-color: #FFF;
     border-radius: 15px;
 }
 
 
-#btn_submit{
-    width:25%;
+.btn_submit{
+    width:35%;
     margin: 5px auto 10px;
 }
 
@@ -312,11 +328,162 @@ main{
     background-color: #2F4F4F;
     color: #fff;
 }
-.btn:hover{
+.btn_check:hover{
     color: 	#F0E68C;
 }
 
 .append_imgs, .remove_imgs{
     color: #2F4F4F;
+}/*道場編集画面のCSS*/
+
+#edittop{
+    width: 100%;
+    height: 500px;
+    border-radius:10px;
+    position: relative;
+}
+
+#edittop h1{
+    margin: 0;
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#edittop div{
+    width: 85%;
+    height: 50%;
+    padding-top: 50px;
+    text-align: center;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    background-image: url(/images/dojoedit_flame.gif);
+    background-position: center center;
+    background-size:contain;
+    background-repeat: no-repeat; 
+}
+
+#edittop div h5{
+    font-weight: bold;
+}
+
+
+#edittop div span{
+    margin-right: 10px;
+    background-color: #DAA520;
+    border-radius: 10px;
+}
+
+#edittop > p{
+    width: 65%;
+    font-size: 18px;
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/*道場詳細画面のcss*/
+
+
+/*top情報*/
+#showtop{
+    padding: 20px 40px;
+    display: flex;
+}
+#showtop div{
+    flex-grow: 0.5;
+}
+
+#showtop small{
+    margin-right: 10px;
+    font-size: 13px;
+}
+
+.btn-favorite{
+    font-size: 12px;
+    background-color: #CD5C5C;
+    color: #fff;
+}
+.btn-favorite:hover{
+    color: #F0E68C;
+}
+
+.btn-delete{
+    font-size: 12px;
+    background-color: #808080;
+    color: #FFFFFF;
+}
+.btn-delete:hover{
+    color: #FFFFE0;
+}
+
+#showtop dl{
+    padding: 20px 20px 20px 0;
+}
+#showtop dt{
+    width: 150px;
+    float: left;
+}
+
+#topaddress{
+    border-top: 1px #DEB887 solid;
+}
+#showtop dl div{
+    border-bottom:1px #DEB887 solid; 
+    overflow: hidden;
+}
+
+
+/*写真部分*/
+
+
+.slide{
+    width: 400px;
+    height: 300px;
+    display: flex;
+    overflow-x: scroll;
+    margin: auto;
+    padding: 0;
+    background-color: #F5FFFA;
+}
+.slide::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+    
+}
+.slide::-webkit-scrollbar-track{
+    background: #EEE8AA;
+    border-radius: 5px;
+    box-shadow:0 0 5px #BDB76B inset ;
+}
+.slide::-webkit-scrollbar-thumb{
+    background: #6B8E23;
+    border-radius: 5px;
+}
+
+.slide img{
+    width: 380px;
+    margin: 10px;
+    padding: 0;
+    list-style: none;
+}
+
+#btn_img{
+    padding: 20px 0 0 50px; 
+}
+.btn_show{
+    margin-right: 10px;
+    font-size: 13px;
+    background-color: #6B8E23;
+    color: #fff;
+}
+.btn_show:hover{
+    color: #FFD700;
 }
 

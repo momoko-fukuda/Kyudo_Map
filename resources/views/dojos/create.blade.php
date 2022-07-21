@@ -10,7 +10,6 @@
 <div class="route">
     <a href="{{route('home')}}">
         <i class="fa-solid fa-vihara"></i>
-        Home
     </a>
     <i class="fa-solid fa-angles-right"></i>
     <strong class="now">
@@ -18,6 +17,7 @@
         新規弓道場作成
     </strong>
 </div>
+<hr>
 
 
 <div id="createtop">
@@ -33,7 +33,7 @@
 
 <h4 class="formname">弓道場登録フォーム</h4>
 
-<div id="createform">
+<div id="dojoform">
     
     <ul class="nav nav-tabs nav-pills" role="tablist">
       <li class="nav-item">
@@ -351,7 +351,7 @@
     
         
         <!--ボタン-->
-        <div id="btn_submit">
+        <div class="btn_submit">
             <button type="submit" class="btn btn_check">
                 新規登録
                 <i class="fa-solid fa-pen-to-square"></i>

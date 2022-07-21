@@ -5,95 +5,139 @@
 @section('content')
 
 <!--パンくずリスト-->
-<div>
-    <div>
-        <a href="{{route('home')}}">Home</a>>
-        <a href="{{route('dojos.index')}}">弓道場検索</a>>
-        <strong class="now">{{$dojo->name}}</strong>
-    </div>
+
+<div class="route">
+    <a href="{{route('home')}}">
+        <i class="fa-solid fa-vihara"></i>
+    </a>
+    <i class="fa-solid fa-angles-right"></i>
+    <a href="{{route('dojos.index')}}">弓道場検索</a>
+    <i class="fa-solid fa-angles-right"></i>
+    <strong class="now">
+        <i class="fa-solid fa-bullseye"></i>
+        {{$dojo->name}}
+    </strong>
 </div>
+<hr>
 
 
-<div>
-    <div>
+
+<div id="showtop">
+    <div id="dojoinfo" style="flex-grow:0.5;">
         <div>
-            <h1>{{$dojo->name}}</h1>
-            <p><small>最近更新された日時：{{$dojo->updated_at}}</small></p>
-            <span>口コミ{{$dojo->reviews->count()}}件</span>
-            <span>お気に入り{{ $dojo->favoritebuttons->count() }}件</span>
-            <span>利用数{{ $dojo->usebuttons->count() }}件</span>
+            <div>
+                <h1>{{$dojo->name}}</h1>
+                <small>
+                    <i class="fa-solid fa-comment-dots"></i>
+                    {{$dojo->reviews->count()}}件
+                </small>
+                <small>
+                    <i class="fa-solid fa-heart"></i>
+                    {{ $dojo->favoritebuttons->count() }}件
+                </small>
+                <small>
+                    <i class="fa-solid fa-user-check"></i>
+                    {{ $dojo->usebuttons->count() }}件
+                </small>
+                <p>
+                    <small>最近更新された日時：{{$dojo->updated_at}}</small>
+                </p>
+            </div>
         </div>
-    </div>
-    <div>
-        <p><span>住所：</span>{{$dojo->area->name}}{{$dojo->address1}}{{$dojo->address2}}</p>
-        <p><span>電話番号：</span>{{$dojo->tel}}</p>
-        <span>ホームページ：</span><a href="{{$dojo->url}}"> {{$dojo->url}}</a>
-    </div>
-    <div>
         <div>
             @if($favoritebutton)
-            <a href="/dojos/{{ $dojo->id }}/unfavoritebutton" class="btn btn-secondary w-10">
-                お気に入り解除
+            <a href="/dojos/{{ $dojo->id }}/unfavoritebutton" 
+               class="btn btn-delete w-10">
+                <i class="fa-solid fa-heart"></i>
+                お気に入り済
             </a>
             @else
-            <a href="/dojos/{{ $dojo->id }}/favoritebutton" class="btn btn-primary w-10">
-                お気に入り
+            <a href="/dojos/{{ $dojo->id }}/favoritebutton" 
+               class="btn btn-favorite w-10">
+                <i class="fa-solid fa-heart"></i>
+                お気に入り登録
             </a>
             @endif
-        </div>
-        <div>
+    
             @if($usebutton)
-            <a href="/dojos/{{ $dojo->id }}/unusebutton" class="btn btn-secondary w-10">
-                利用した解除
+            <a href="/dojos/{{ $dojo->id }}/unusebutton" 
+               class="btn btn-delete w-10">
+                <i class="fa-solid fa-user-check"></i>
+                利用済
             </a>
             @else
-            <a href="/dojos/{{ $dojo->id }}/usebutton" class="btn btn-primary w-10">
-                利用した
+            <a href="/dojos/{{ $dojo->id }}/usebutton" 
+               class="btn btn-favorite w-10">
+                <i class="fa-solid fa-user-check"></i>
+                未利用
             </a>
             @endif
         </div>
+        <dl>
+            <div id="topaddress">
+                <dt>住所</dt>
+                <dd>{{$dojo->area->name}}{{$dojo->address1}}{{$dojo->address2}}</dd>
+            </div>
+            <div>
+                <dt>電話番号</dt>
+                <dd>
+                    <a href="tel:{{$dojo->tel}}">{{$dojo->tel}}</a></dd>
+            </div>
+
+            <div> 
+            @if(!empty($dojo->url))
+            <dt>ホームページ</dt>
+            <dd>
+                <a href="{{$dojo->url}}"> {{$dojo->url}}</a>
+            </dd>
+            @else
+            <dt>ホームページ</dt>
+            <dd>未登録</dd>
+            @endif
+            </div>
+        </dl>
+    </div>
+    
+    <div class="dojoimg">
+        <div class="slide">
+            @if($dojophotos->isEmpty())
+                <img src="../../img/dojos/noimage2.png" alt="写真を投稿しよう">
+                <img src="../../img/dojos/noimage1.png" alt="No Image">
+            @else
+                @foreach($dojophotos as $dojophoto)
+                    <img src="{{ $dojophoto['img'] }}">
+                @endforeach
+            @endif
+        </div>
+        <div id="btn_img">
+            @if($dojophotos->isNotEmpty())
+                <a type="button" 
+                   class="btn btn_show" 
+                   href="{{route('photos.index', $dojo->id)}}">
+                    <i class="fa-solid fa-camera"></i>
+                    その他の写真もみる
+                </a>
+            @endif
+            <a type=button 
+               class="btn btn_show" 
+               href="{{route('reviews.create', $dojo->id)}}">
+                <i class="fa-solid fa-image"></i>
+                写真を投稿する
+            </a>
+        </div>
+        
     </div>
 </div>
 
-<hr>
 <div>
-    <!--<ul class="nav nav-tabs nav-justified" role="tablist">-->
-    <!--    <li class="nav-item">-->
-    <!--       <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">トップページ</a>-->
-    <!--    </li>-->
-    <!--    <li class="nav-item">-->
-    <!--       <a class="nav-link" id="item2-tab" data-toggle="tab" href="#item2" role="tab" aria-controls="item2" aria-selected="false">口コミ</a>-->
-    <!--    </li>-->
-    <!--</ul>-->
-    
-    
     <div class="tab-content">
         <div class="" id="item1" role="tabpanel" aria-labelledby="item1-tab">
-            <div>
-                <h4>写真</h4>
-                
-                <a type=button class="btn btn-primary" href="{{route('reviews.create', $dojo->id)}}">写真を投稿する</a>
-                
-                
-
-                <div>
-                    @if($dojophotos->isEmpty())
-                        <p>ごめんなさい、まだ投稿されてません。</p>
-                    @else
-                        <p>{{$dojo->name}}のユーザーがアップロードした写真になります</p>
-                        
-                        @foreach($dojophotos as $dojophoto)
-                        <img src="{{ $dojophoto['img'] }}" class="w-25 h-50">
-                        @endforeach
-                        <a type="button" class="btn btn-primary" href="{{route('photos.index', $dojo->id)}}">その他の写真もみる</a>
-                    @endif
-                </div>
-            </div>
+            
             <hr>
             <div>
                 <div>
                     <h4>弓道場利用制限</h4>
-                    <button type="button" class="btn btn-primary" onclick="location.href='{{route('dojos.edit', $dojo->id)}}'">道場情報を更新する</button>
+                    <button type="button" class="btn btn_show" onclick="location.href='{{route('dojos.edit', $dojo->id)}}'">道場情報を更新する</button>
                     <table>
                         <tr>
                             <th>利用料金</th>
@@ -160,27 +204,45 @@
                         
                         <tr>
                             <th>営業時間</th>
-                            
+                       
                             @if(!empty($businesshour->from1))
-                            <td>1 開始時間：{{ substr($businesshour ->from1, 0, 5) }}</td>
-                            <td>終了時間：{{ substr($businesshour ->to1, 0, 5) }}</td>
+                            <td style="display: block;">
+                                <span>1 開始時間：</span>{{ substr($businesshour ->from1, 0, 5) }}
+                                <span>終了時間：</span>{{ substr($businesshour ->to1, 0, 5) }}
+                            </td>
                             @endif
                             @if(!empty($businesshour->from2))
-                            <td>2 開始時間：{{ substr($businesshour ->from2, 0, 5) }}</td>
-                            <td>終了時間：{{ substr($businesshour ->to2, 0, 5) }}</td>
+                            <td style="display: block;">
+                                <span>2 開始時間：</span>{{ substr($businesshour ->from2, 0, 5) }}
+                                <span>終了時間：</span>{{ substr($businesshour ->to2, 0, 5) }}
+                            </td>
                             @endif
                             @if(!empty($businesshour->from3))
-                            <td>3 開始時間：{{ substr($businesshour ->from3, 0, 5) }}</td>
-                            <td>終了時間：{{ substr($businesshour ->to3, 0, 5) }}</td>
+                            <td style="display: block;">
+                                <span>3 開始時間：</span>{{ substr($businesshour ->from3, 0, 5) }}
+                                <span>終了時間：</span>{{ substr($businesshour ->to3, 0, 5) }}
+                            </td>
                             @endif
                             @if(!empty($businesshour->from4))
-                            <td>4 開始時間：{{ substr($businesshour ->from4, 0, 5) }}</td>
-                            <td>終了時間：{{ substr($businesshour ->to4, 0, 5) }}</td>
+                            <td style="display: block;">
+                                <span>4 開始時間：</span>{{ substr($businesshour ->from4, 0, 5) }}
+                                <span>終了時間：</span>{{ substr($businesshour ->to4, 0, 5) }}
+                            </td>
                             @endif
                             @if(!empty($businesshour->from5))
-                            <td>5 開始時間：{{ substr($businesshour ->from5, 0, 5) }}</td>
-                            <td>終了時間：{{ substr($businesshour ->to5, 0, 5) }}</td>
+                            <td style="display: block;">
+                                <span>5 開始時間：</span>{{ substr($businesshour ->from5, 0, 5) }}
+                                <span>終了時間：</span>{{ substr($businesshour ->to5, 0, 5) }}
+                            </td>
                             @endif
+                        
+                            @if(empty($businesshour->from1) 
+                                && empty($businesshour->from2) 
+                                && empty($businesshour->from3) 
+                                && empty($businesshour->from4) 
+                                && empty($businesshour->from5))
+                            <td>未登録</td>
+                           @endif
 
                         </tr>
                         
@@ -236,7 +298,7 @@
         <hr>
         <div class="" id="item2" role="tabpanel" aria-labelledby="item2-tab">
             <h4>口コミ</h4>
-            <a type=button class="btn btn-primary" href="{{route('reviews.create', $dojo->id)}}">口コミ投稿する</a>
+            <a type=button class="btn btn_show" href="{{route('reviews.create', $dojo->id)}}">口コミ投稿する</a>
             <div>
                 @if(count($reviews) > 0)
                     @foreach($reviews as $review)
@@ -255,7 +317,7 @@
                             
                         </div>
                     @endforeach
-                <a type="button" class="btn btn-primary" href="{{route('reviews.index', $dojo->id )}}">もっと{{$dojo->name}}の口コミをみる</a>
+                <a type="button" class="btn btn_show" href="{{route('reviews.index', $dojo->id )}}">もっと{{$dojo->name}}の口コミをみる</a>
                 
                 @else
                 

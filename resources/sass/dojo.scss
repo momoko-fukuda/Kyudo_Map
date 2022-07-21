@@ -1,5 +1,11 @@
-// トップページのCSS
+// トップページ(他共通部分)のCSS
 @import '../../public/css/dojos/home.css';
 
 //新規弓道場登録画面のcss
 @import '../../public/css/dojos/dojocreate.css';
+
+//道場編集画面のcss
+@import '../../public/css/dojos/dojoedit.css';
+
+//道場詳細画面のcss
+@import '../../public/css/dojos/dojoshow.css';

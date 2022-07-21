@@ -203,7 +203,7 @@
         @auth
             <a href="{{route('dojos.index')}}" class="btn btn-warning" role="button" >弓道場を探しにいく<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         @else
-            <a href="{{route('register')}}" class="btn btn-warning" role="button" >新規会員登録をする<i class="fa-solid fa-chevrons-right"></i></a>
+            <a href="{{route('register')}}" class="btn btn-warning" role="button" >新規会員登録をする<i class="fa-solid fa-person-rays"></i></a>
         @endauth
     </div>
 </div>

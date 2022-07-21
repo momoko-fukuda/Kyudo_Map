@@ -22,7 +22,7 @@
                           value="{{ old('use_age') }}" 
                           autocomplete="off" 
                           autofocus 
-                          placeholder="（例：10）※10歳以上の場合">
+                          placeholder="例：10（※10歳以上の場合）">
     
                    @error('use_age')
                     <span class="invalid-feedback" role="alert">
@@ -37,7 +37,7 @@
                        class="col-md-5 
                               col-form-label 
                               text-md-left">
-                    段制限
+                    段資格の制限
                 </label>
 
                 <div class="col-md-5">

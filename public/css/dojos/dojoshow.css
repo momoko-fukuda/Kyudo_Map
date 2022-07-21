@@ -1,0 +1,98 @@
+/*道場詳細画面のcss*/
+
+
+/*top情報*/
+#showtop{
+    padding: 20px 40px;
+    display: flex;
+}
+#showtop div{
+    flex-grow: 0.5;
+}
+
+#showtop small{
+    margin-right: 10px;
+    font-size: 13px;
+}
+
+.btn-favorite{
+    font-size: 12px;
+    background-color: #CD5C5C;
+    color: #fff;
+}
+.btn-favorite:hover{
+    color: #F0E68C;
+}
+
+.btn-delete{
+    font-size: 12px;
+    background-color: #808080;
+    color: #FFFFFF;
+}
+.btn-delete:hover{
+    color: #FFFFE0;
+}
+
+#showtop dl{
+    padding: 20px 20px 20px 0;
+}
+#showtop dt{
+    width: 150px;
+    float: left;
+}
+
+#topaddress{
+    border-top: 1px #DEB887 solid;
+}
+#showtop dl div{
+    border-bottom:1px #DEB887 solid; 
+    overflow: hidden;
+}
+
+
+/*写真部分*/
+
+
+.slide{
+    width: 400px;
+    height: 300px;
+    display: flex;
+    overflow-x: scroll;
+    margin: auto;
+    padding: 0;
+    background-color: #F5FFFA;
+}
+.slide::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+    
+}
+.slide::-webkit-scrollbar-track{
+    background: #EEE8AA;
+    border-radius: 5px;
+    box-shadow:0 0 5px #BDB76B inset ;
+}
+.slide::-webkit-scrollbar-thumb{
+    background: #6B8E23;
+    border-radius: 5px;
+}
+
+.slide img{
+    width: 380px;
+    margin: 10px;
+    padding: 0;
+    list-style: none;
+}
+
+#btn_img{
+    padding: 20px 0 0 50px; 
+}
+.btn_show{
+    margin-right: 10px;
+    font-size: 13px;
+    background-color: #6B8E23;
+    color: #fff;
+}
+.btn_show:hover{
+    color: #FFD700;
+}

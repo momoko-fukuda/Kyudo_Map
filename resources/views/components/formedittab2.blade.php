@@ -1,9 +1,8 @@
-<div>
+<div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
     <!--屋内/屋外-->
             <div class="form-group row">
-                <label class="col-md-4 col-form-label text-md-left">
+                <label class="col-md-5 col-form-label text-md-left">
                     屋内/屋外
-                    <span class="ml-1">任意</span>
                 </label>
                 
                 <div class="form-check form-check-inline">
@@ -50,9 +49,8 @@
             </div>
             <!--巻藁あり/なし-->
             <div class="form-group row">
-                <label class="col-md-4 col-form-label text-md-left">
-                    巻藁
-                    <span class="ml-1">任意</span>
+                <label class="col-md-5 col-form-label text-md-left">
+                    巻藁の設置
                 </label>
                 
                 <div class="form-check form-check-inline">
@@ -99,9 +97,8 @@
             </div>
             <!--冷暖房あり/なし-->
             <div class="form-group row">
-                <label class="col-md-4 col-form-label text-md-left">
+                <label class="col-md-5 col-form-label text-md-left">
                     冷暖房設備
-                    <span class="ml-1">任意</span>
                 </label>
                 
                 <div class="form-check form-check-inline">
@@ -151,7 +148,6 @@
                 <label for="facility_matonumber" 
                        class="col-md-5 col-form-label text-md-left">
                     的数
-                    <span class="ml-1">任意</span>
                 </label>
     
                 <div class="col-md-5">
@@ -174,9 +170,8 @@
             </div>
             <!--更衣室あり/なし-->
             <div class="form-group row">
-                <label class="col-md-4 col-form-label text-md-left">
+                <label class="col-md-5 col-form-label text-md-left">
                     更衣室
-                    <span class="ml-1">任意</span>
                 </label>
                 
                 <div class="form-check form-check-inline">
@@ -221,37 +216,11 @@
                 
                 
             </div>
-            <!--人数制限-->
-            <div class="form-group row">
-                <label for="facility_numberlimit" 
-                       class="col-md-5 col-form-label text-md-left">
-                    人数制限
-                    <span class="ml-1">任意</span>
-                </label>
-    
-                <div class="col-md-5">
-                   <input id="facility_numberlimit" 
-                          type="text" 
-                          class="form-control 
-                                 @error('facility_numberlimit') is-invalid @enderror" 
-                          name="facility_numberlimit" 
-                          value="{{old('facility_numberlimit') == '' ? $dojo->facility_numberlimit : old('facility_numberlimit')}}" 
-                          autocomplete="off" 
-                          autofocus 
-                          placeholder="人数の制限がある場合、条件を入力してください">
-    
-                   @error('facility_numberlimit')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>入力できる文字数は20文字までになります</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
+            
             <!--駐車場あり/なし-->
             <div class="form-group row">
-                <label class="col-md-4 col-form-label text-md-left">
+                <label class="col-md-5 col-form-label text-md-left">
                     駐車場
-                    <span class="ml-1">任意</span>
                 </label>
                 
                 <div class="form-check form-check-inline">
@@ -310,122 +279,122 @@
             </div>
             <!--定休日★oldeヘルパー上手くいかない-->
             <div class="form-group row">
-                <label class="col-md-4 col-form-label text-md-left">
+                <label class="col-md-5 col-form-label text-md-left">
                     定休日（複数選択可）
-                    <span class="ml-1">任意</span>
                 </label>
-                <div class="form-check form-check-inline">
-                    <input type="hidden" name="holiday_mon" value="false">
-                    <input class="form-check-input" 
-                           type="checkbox" 
-                           name="holiday_mon" 
-                           id="holiday_mon" 
-                           value= "true"
-                           @if($errors->any())
-                                  {{ old('holiday_mon') == 'true' ? 'checked' : 'false' }}
-                           @else
-                                  {{ $dojo->holiday_mon == 'true' ? 'checked' : 'false' }}
-                           @endif>
-                    <label class="form-check-label" for="holiday_mon">月曜日</label>
-                </div>
-                
-                <div class="form-check form-check-inline">
-                    <input type="hidden" name="holiday_tues" value="false">
-                    <input class="form-check-input" 
-                           type="checkbox" 
-                           name="holiday_tues" 
-                           id="holiday_tues" 
-                           value="true"
-                                  @if($errors->any())
-                                    {{ old('holiday_tues') == 'true' ? 'checked' : '' }}
-                                  @else
-                                    {{ $dojo->holiday_tues == 'true' ? 'checked' : '' }}
-                                  @endif>
-                    <label class="form-check-label" for="holiday_tues">火曜日</label>
-                </div>
-                
-                <div class="form-check form-check-inline">
-                    <input type="hidden" name="holiday_wednes" value="false">
-                    <input class="form-check-input" 
-                           type="checkbox" 
-                           name="holiday_wednes" 
-                           id="holiday_wednes" 
-                           value="true"
-                                  @if($errors->any())
-                                    {{ old('holiday_wednes') == 'true' ? 'checked' : 'false' }}
-                                  @else
-                                    {{ $dojo->holiday_wednes == 'true' ? 'checked' : 'false' }}
-                                  @endif>
-                    <label class="form-check-label" for="holiday_wednes">水曜日</label>
-                </div>
-                
-                <div class="form-check form-check-inline">
-                    <input type="hidden" name="holiday_thurs" value="false">
-                    <input class="form-check-input" 
-                           type="checkbox" 
-                           name="holiday_thurs" 
-                           id="holiday_thurs" 
-                           value="true"
-                                  @if($errors->any())
-                                    {{ old('holiday_thurs') == 'true' ? 'checked' : '' }}
-                                  @else
-                                    {{ $dojo->holiday_thurs == 'true' ? 'checked' : '' }}
-                                  @endif>
-                    <label class="form-check-label" for="holiday_thurs">木曜日</label>
-                </div>
-                
-                <div class="form-check form-check-inline">
-                    <input type="hidden" name="holiday_fri" value="false">
-                    <input class="form-check-input" 
-                           type="checkbox" 
-                           name="holiday_fri" 
-                           id="holiday_fri" 
-                           value="true"
-                                  @if($errors->any())
-                                    {{ old('holiday_fri') == 'true' ? 'checked' : '' }}
-                                  @else
-                                    {{ $dojo->holiday_fri == 'true' ? 'checked' : '' }}
-                                  @endif>
-                    <label class="form-check-label" for="holiday_fri">金曜日</label>
-                </div>
-                
-                <div class="form-check form-check-inline">
-                    <input type="hidden" name="holiday_satur" value="false">
-                    <input class="form-check-input" 
-                           type="checkbox" 
-                           name="holiday_satur" 
-                           id="holiday_satur" 
-                           value="true"
-                                  @if($errors->any())
-                                    {{ old('holiday_satur') == 'true' ? 'checked' : '' }}
-                                  @else
-                                    {{ $dojo->holiday_satur == 'true' ? 'checked' : '' }}
-                                  @endif>
-                    <label class="form-check-label" for="holiday_satur">土曜日</label>
-                </div>
-                
-                <div class="form-check form-check-inline">
-                    <input type="hidden" name="holiday_sun" value="false">
-                    <input class="form-check-input" 
-                           type="checkbox" 
-                           name="holiday_sun" 
-                           id="holiday_sun" 
-                           value="true"
-                                  @if($errors->any())
-                                    {{ old('holiday_sun') == 'true' ? 'checked' : '' }}
-                                  @else
-                                    {{ $dojo->holiday_sun == 'true' ? 'checked' : '' }}
-                                  @endif>
-                    <label class="form-check-label" for="holiday_sun">日曜日</label>
+                <div class="w-50">
+                    <div class="form-check form-check-inline">
+                        <input type="hidden" name="holiday_mon" value="false">
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               name="holiday_mon" 
+                               id="holiday_mon" 
+                               value= "true"
+                               @if($errors->any())
+                                      {{ old('holiday_mon') == 'true' ? 'checked' : 'false' }}
+                               @else
+                                      {{ $dojo->holiday_mon == 'true' ? 'checked' : 'false' }}
+                               @endif>
+                        <label class="form-check-label" for="holiday_mon">月曜日</label>
+                    </div>
+                    
+                    <div class="form-check form-check-inline">
+                        <input type="hidden" name="holiday_tues" value="false">
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               name="holiday_tues" 
+                               id="holiday_tues" 
+                               value="true"
+                                      @if($errors->any())
+                                        {{ old('holiday_tues') == 'true' ? 'checked' : '' }}
+                                      @else
+                                        {{ $dojo->holiday_tues == 'true' ? 'checked' : '' }}
+                                      @endif>
+                        <label class="form-check-label" for="holiday_tues">火曜日</label>
+                    </div>
+                    
+                    <div class="form-check form-check-inline">
+                        <input type="hidden" name="holiday_wednes" value="false">
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               name="holiday_wednes" 
+                               id="holiday_wednes" 
+                               value="true"
+                                      @if($errors->any())
+                                        {{ old('holiday_wednes') == 'true' ? 'checked' : 'false' }}
+                                      @else
+                                        {{ $dojo->holiday_wednes == 'true' ? 'checked' : 'false' }}
+                                      @endif>
+                        <label class="form-check-label" for="holiday_wednes">水曜日</label>
+                    </div>
+                    
+                    <div class="form-check form-check-inline">
+                        <input type="hidden" name="holiday_thurs" value="false">
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               name="holiday_thurs" 
+                               id="holiday_thurs" 
+                               value="true"
+                                      @if($errors->any())
+                                        {{ old('holiday_thurs') == 'true' ? 'checked' : '' }}
+                                      @else
+                                        {{ $dojo->holiday_thurs == 'true' ? 'checked' : '' }}
+                                      @endif>
+                        <label class="form-check-label" for="holiday_thurs">木曜日</label>
+                    </div>
+                    
+                    <div class="form-check form-check-inline">
+                        <input type="hidden" name="holiday_fri" value="false">
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               name="holiday_fri" 
+                               id="holiday_fri" 
+                               value="true"
+                                      @if($errors->any())
+                                        {{ old('holiday_fri') == 'true' ? 'checked' : '' }}
+                                      @else
+                                        {{ $dojo->holiday_fri == 'true' ? 'checked' : '' }}
+                                      @endif>
+                        <label class="form-check-label" for="holiday_fri">金曜日</label>
+                    </div>
+                    
+                    <div class="form-check form-check-inline">
+                        <input type="hidden" name="holiday_satur" value="false">
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               name="holiday_satur" 
+                               id="holiday_satur" 
+                               value="true"
+                                      @if($errors->any())
+                                        {{ old('holiday_satur') == 'true' ? 'checked' : '' }}
+                                      @else
+                                        {{ $dojo->holiday_satur == 'true' ? 'checked' : '' }}
+                                      @endif>
+                        <label class="form-check-label" for="holiday_satur">土曜日</label>
+                    </div>
+                    
+                    <div class="form-check form-check-inline">
+                        <input type="hidden" name="holiday_sun" value="false">
+                        <input class="form-check-input" 
+                               type="checkbox" 
+                               name="holiday_sun" 
+                               id="holiday_sun" 
+                               value="true"
+                                      @if($errors->any())
+                                        {{ old('holiday_sun') == 'true' ? 'checked' : '' }}
+                                      @else
+                                        {{ $dojo->holiday_sun == 'true' ? 'checked' : '' }}
+                                      @endif>
+                        <label class="form-check-label" for="holiday_sun">日曜日</label>
+                    </div>
                 </div>
             </div>
             
             <!--営業時間-->
             <div class="form-group row" >
                 <label for="from" 
-                       class="col-md-4 col-form-label text-md-left">
+                       class="col-md-5 col-form-label text-md-left">
                     営業時間
-                    <span class="ml-1">任意</span>
                 </label>
                 <div class="w-50" id="businesshours" >
                     @if(empty($businesshour))
@@ -501,7 +470,7 @@
                     @endif
                     
                     <button type="button" 
-                            class="btn btn-primary fadehourbtn">
+                            class="btn btn_check fadehourbtn">
                         もっとみる
                     </button>
                    
@@ -515,7 +484,6 @@
                 <label for="other" 
                        class="col-md-5 col-form-label text-md-left">
                     備考
-                    <span class="ml-1">任意</span>
                 </label>
     
                 <div class="col-md-5">
@@ -536,8 +504,5 @@
                     @enderror
                 </div>
             </div>
-    
-    
-    
-    
+
 </div>
