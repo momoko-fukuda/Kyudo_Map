@@ -1,22 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi&display=swap');
 
-
-html{
-    background: url("../../img/home/background_arrowPattern.jpg") repeat-y center;
-    background-size: contain;
-    max-width: 1100px;
-    height: auto;
+body{
+    background: url(/images/background.jpg) repeat-y center;
+    background-size: 1100px auto;
     margin: auto;
     font-family: 'Kaisei HarunoUmi', serif;
-    
-}
-
-body{
-    max-width: 960px;
-    margin: 100px auto 0;
-    font-family: 'Kaisei HarunoUmi', serif;
     color: #2F4F4F;
-    border-radius:10px;
 }
 
 
@@ -38,10 +27,15 @@ nav a{
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(77,103,93)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
+nav ul{
+    text-decoration: none;
+}
+
+
 #footer{
     max-width: 960px;
     height: 70px;
-    margin: 0;
+    margin: 0 auto;
     background-color: #EEE8AA;
     border-radius:10px;
     display: flex;
@@ -49,12 +43,16 @@ nav a{
 }
 
 #footer a{
-    color: #2F4F4F;
     margin-right: 10px;
+    text-decoration: none;
+    color: #2F4F4F;
 }
 
 
-
+nav li a:hover, #footerlink a:hover{
+    border-bottom: dotted 2px #6B8E23;
+    color: #6B8E23;
+}
 
 
 /*home画面*/
@@ -63,9 +61,6 @@ main{
     max-width: 960px;
     margin: 100px auto 0;
     background-color: #FFFFEE;
-    /*background-image: url(/images/background_wasi.jpg);*/
-    /*background-repeat: repeat;*/
-    /*background-size:contain; */
     border-radius:10px;
 }
 
@@ -199,9 +194,25 @@ main{
 }
 
 #kyudo_about div{
-    width: 500px;
+    width: 70%;
     margin: auto;
 }
+
+.btn_about{
+    margin-right:10px;
+    background-color: #006400;
+}
+.btn_search{
+    background-color: #DAA520;
+}
+.btn_about, .btn_search{
+    color:#fff;
+    box-shadow: 1px 1px 3px #556B2F;
+}
+.btn_about:hover, .btn_search:hover{
+    color: #EEE8AA;
+}
+
 
 #news{
     width: 80%;
@@ -227,5 +238,52 @@ main{
 }
 
 #reviews img{
+    width:100px; 
+    height:auto;
     margin-left: 100px;
+}
+
+#reviews h3{
+    display: inline;
+}
+
+#reviews .card{
+    width:500px; 
+    margin:10px auto;
+    border: solid 1px #556B2F;
+}
+
+
+#reviews .card-header{
+    background-color: #6B8E23;
+}
+
+#reviews .card a{
+    color: #6B8E23;
+}
+#reviews .card a:hover{
+    text-decoration: none;
+    border-bottom: dotted 2px;
+}
+
+#reviews .card-header a{
+    color: #FFF;
+    font-size: 18px;
+}
+
+
+#reviews > div > p{
+    width: 50%;
+    margin: auto;
+}
+
+#reviews > div> img{
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+}
+#reviews > div> a{
+    display: block;
+    width: 30%;
+    margin: 20px auto;
 }

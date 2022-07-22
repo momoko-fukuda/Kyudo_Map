@@ -1,19 +1,9 @@
-@import url(https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi&display=swap);html{
-    background: url(/images/background_arrowPattern.jpg?c8b13adc542d888f9273db3caaca7c94) repeat-y center;
-    background-size: contain;
-    max-width: 1100px;
-    height: auto;
+@import url(https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi&display=swap);body{
+    background: url(/images/background.jpg) repeat-y center;
+    background-size: 1100px auto;
     margin: auto;
     font-family: 'Kaisei HarunoUmi', serif;
-    
-}
-
-body{
-    max-width: 960px;
-    margin: 100px auto 0;
-    font-family: 'Kaisei HarunoUmi', serif;
     color: #2F4F4F;
-    border-radius:10px;
 }
 
 
@@ -35,10 +25,15 @@ nav a{
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(77,103,93)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
+nav ul{
+    text-decoration: none;
+}
+
+
 #footer{
     max-width: 960px;
     height: 70px;
-    margin: 0;
+    margin: 0 auto;
     background-color: #EEE8AA;
     border-radius:10px;
     display: flex;
@@ -46,12 +41,16 @@ nav a{
 }
 
 #footer a{
-    color: #2F4F4F;
     margin-right: 10px;
+    text-decoration: none;
+    color: #2F4F4F;
 }
 
 
-
+nav li a:hover, #footerlink a:hover{
+    border-bottom: dotted 2px #6B8E23;
+    color: #6B8E23;
+}
 
 
 /*home画面*/
@@ -60,9 +59,6 @@ main{
     max-width: 960px;
     margin: 100px auto 0;
     background-color: #FFFFEE;
-    /*background-image: url(/images/background_wasi.jpg);*/
-    /*background-repeat: repeat;*/
-    /*background-size:contain; */
     border-radius:10px;
 }
 
@@ -196,9 +192,25 @@ main{
 }
 
 #kyudo_about div{
-    width: 500px;
+    width: 70%;
     margin: auto;
 }
+
+.btn_about{
+    margin-right:10px;
+    background-color: #006400;
+}
+.btn_search{
+    background-color: #DAA520;
+}
+.btn_about, .btn_search{
+    color:#fff;
+    box-shadow: 1px 1px 3px #556B2F;
+}
+.btn_about:hover, .btn_search:hover{
+    color: #EEE8AA;
+}
+
 
 #news{
     width: 80%;
@@ -224,9 +236,55 @@ main{
 }
 
 #reviews img{
+    width:100px; 
+    height:auto;
     margin-left: 100px;
 }
-/*パンくずリスト*/
+
+#reviews h3{
+    display: inline;
+}
+
+#reviews .card{
+    width:500px; 
+    margin:10px auto;
+    border: solid 1px #556B2F;
+}
+
+
+#reviews .card-header{
+    background-color: #6B8E23;
+}
+
+#reviews .card a{
+    color: #6B8E23;
+}
+#reviews .card a:hover{
+    text-decoration: none;
+    border-bottom: dotted 2px;
+}
+
+#reviews .card-header a{
+    color: #FFF;
+    font-size: 18px;
+}
+
+
+#reviews > div > p{
+    width: 50%;
+    margin: auto;
+}
+
+#reviews > div> img{
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+}
+#reviews > div> a{
+    display: block;
+    width: 30%;
+    margin: 20px auto;
+}/*パンくずリスト*/
 .route{
     padding: 20px 20px 0 20px;
 }
@@ -361,7 +419,7 @@ main{
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: bold;
-    background-image: url(/images/dojoedit_flame.gif);
+    background-image: url(/images/dojoedit_flame.gif?5c75b26abee4d4eb8cec32a676f307f4);
     background-position: center center;
     background-size:contain;
     background-repeat: no-repeat; 
@@ -386,8 +444,6 @@ main{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-
-
 /*道場詳細画面のcss*/
 
 
@@ -423,20 +479,21 @@ main{
     color: #FFFFE0;
 }
 
-#showtop dl{
-    padding: 20px 20px 20px 0;
+#showtop table{
+    margin-top: 20px;
 }
-#showtop dt{
-    width: 150px;
-    float: left;
+#showtop tr{
+    height: 40px;
+    border-bottom: 1px #DEB887 solid;
 }
 
-#topaddress{
+.toptable{
     border-top: 1px #DEB887 solid;
 }
-#showtop dl div{
-    border-bottom:1px #DEB887 solid; 
-    overflow: hidden;
+
+#showtop th{
+    width: 150px;
+    background-color: #EEE8AA;
 }
 
 
@@ -485,5 +542,177 @@ main{
 }
 .btn_show:hover{
     color: #FFD700;
+}
+
+
+/*詳細情報の部分*/
+
+#dojoterms{
+    margin: 0 40px;
+    display: flex;
+}
+#dojoterms div{
+    padding: 20px 0;
+    flex-grow: 0.5;
+}
+
+#dojoterms h4{
+    text-align: center;
+}
+#dojoterms tr{
+    border-bottom:1px #DEB887 solid; 
+}
+
+#dojoterms th{
+   width: 200px;
+   height: 40px;
+   background-color: #EEE8AA;
+}
+#dojoterms td{
+    width: 200px;
+}
+
+#toedit{
+    margin: 35px auto;
+}
+#toedit p{
+    width:50%;
+    margin: auto;
+}
+#toedit img{
+    width: 60px;
+}
+
+#toedit div{
+    width: 30%;
+    margin: auto;
+}
+
+
+/*口コミ部分（home画面と共有）*/
+#reviews h4{
+    text-align: center;
+    margin: 20px auto;
+}
+
+
+
+#reviews > p{
+    width: 70%;
+    margin: 10px auto 0;
+}
+/*道場検索画面*/
+
+#searchtop h1{
+    margin: 20px auto;
+    text-align: center;
+}
+
+#searchtop form{
+    width: 80%;
+    margin: auto;
+    padding: 40px 120px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+#conditions ul{
+    list-style: none;
+}
+#conditions li{
+    display: inline-block;
+    margin-right: 20px; 
+}
+#searchtop button{
+    display: block;
+    width: 30%;
+    margin: auto;
+}
+#searchtop form > div{
+    margin: 20px 0;
+}
+
+#searchresults{
+    width: 80%;
+    margin: 20px auto 0;
+    padding: 30px 20px 20px;
+    background-color: #fff;
+}
+
+#searchresults h4{
+    margin:10px auto;
+    text-align: center;
+}
+.searchcount{
+    width: 70%;
+    margin: 20px auto;
+}
+#searchresults .card{
+    width:70%;
+    margin:20px auto;
+    border:solid 1px #BDB76B;
+}
+#searchresults .card-header{
+    background-color: #EEE8AA;
+   
+}
+
+#searchresults .card-header:hover{
+    background-color: #FAFAD2;
+}
+
+#searchresults .card-header a{
+    text-decoration: none;
+    color:#556B2F;
+    font-size: 20px;
+    font-weight: bold;
+}
+#searchresults .card-body{
+    background-color: #FFFFE0;
+}
+#searchresults .card-body > span{
+    display: inline-block;
+    padding: 5px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #2F4F4F;
+    border-radius:5px;
+    box-shadow: 1px 1px 3px #808080;
+}
+
+#searchresults .card-body a{
+    color: #6B8E23;
+    text-decoration: none;
+}
+#searchresults .card-body a:hover{
+    border-bottom: dotted 1px #6B8E23;
+}
+
+#searchresults .card-body small{
+    margin-right: 5px;
+}
+
+.nosearch{
+    text-align:center;
+}
+.nosearch img{
+    display:block;
+    width:50%;
+    margin: 20px auto;
+}
+
+
+
+/*ページネーション*/
+#searchresults .pagination{
+    width:70%;
+    margin:auto;
+}
+.page-item.active .page-link{
+    background-color:#6B8E23;
+    border-color:#6B8E23;
+}
+.page-link{
+    color: #556B2F;
 }
 

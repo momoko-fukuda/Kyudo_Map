@@ -23,10 +23,10 @@
 
 
 <div id="showtop">
-    <div id="dojoinfo" style="flex-grow:0.5;">
+    <div id="dojoinfo">
         <div>
             <div>
-                <h1>{{$dojo->name}}</h1>
+                <h1><strong>{{$dojo->name}}</strong></h1>
                 <small>
                     <i class="fa-solid fa-comment-dots"></i>
                     {{$dojo->reviews->count()}}件
@@ -73,29 +73,33 @@
             </a>
             @endif
         </div>
-        <dl>
-            <div id="topaddress">
-                <dt>住所</dt>
-                <dd>{{$dojo->area->name}}{{$dojo->address1}}{{$dojo->address2}}</dd>
-            </div>
-            <div>
-                <dt>電話番号</dt>
-                <dd>
-                    <a href="tel:{{$dojo->tel}}">{{$dojo->tel}}</a></dd>
-            </div>
+        <table>
+            <tr class="toptable">
+                <th>住所</th>
+                <td>
+                    {{$dojo->area->name}}
+                    {{$dojo->address1}}
+                    {{$dojo->address2}}
+                </td>
+            </tr>
+            <tr>
+                <th>電話番号</dt>
+                <td>
+                    <a href="tel:{{$dojo->tel}}">{{$dojo->tel}}</a></td>
+            </tr>
 
-            <div> 
+            <tr> 
             @if(!empty($dojo->url))
-            <dt>ホームページ</dt>
-            <dd>
+            <th>ホームページ</th>
+            <td>
                 <a href="{{$dojo->url}}"> {{$dojo->url}}</a>
-            </dd>
+            </td>
             @else
-            <dt>ホームページ</dt>
-            <dd>未登録</dd>
+            <th>ホームページ</th>
+            <td>未登録</td>
             @endif
-            </div>
-        </dl>
+            </tr>
+        </table>
     </div>
     
     <div class="dojoimg">
@@ -129,213 +133,275 @@
     </div>
 </div>
 
+<hr>
 <div>
-    <div class="tab-content">
-        <div class="" id="item1" role="tabpanel" aria-labelledby="item1-tab">
-            
-            <hr>
-            <div>
-                <div>
-                    <h4>弓道場利用制限</h4>
-                    <button type="button" class="btn btn_show" onclick="location.href='{{route('dojos.edit', $dojo->id)}}'">道場情報を更新する</button>
-                    <table>
-                        <tr>
-                            <th>利用料金</th>
-                            <td>{{$dojo->use_money}}</td>
-                        </tr>
-                        <tr>
-                            <th>年齢制限</th>
-                            <td>{{$dojo->use_age}}歳</td>
-                        </tr>
-                        <tr>
-                            <th>段制限</th>
-                            <td>{{$dojo->use_step}}以上</td>
-                        </tr>
-                        <tr>
-                            <th>個人利用</th>
-                            <td>{{$dojo->use_personal}}</td>
-                        </tr>
-                        <tr>
-                            <th>団体利用</th>
-                            <td>{{$dojo->use_group}}</td>
-                        </tr>
-                        <tr>
-                            <th>連盟/団体への所属</th>
-                            <td>{{$dojo->use_affiliation}}</td>
-                        </tr>
-                        <tr>
-                            <th>事前予約</th>
-                            <td>{{$dojo->use_reserve}}</td>
-                        </tr>
-                        
-                    </table>
-                </div>
-                <div>
-                    <h4>弓道場設備情報</h4>
-                    <table>
-                        <tr>
-                            <th>屋内・屋外</th>
-                            <td>{{$dojo->facility_inout}}</td>
-                        </tr>
-                        <tr>
-                            <th>巻藁</th>
-                            <td>{{$dojo->facility_makiwara}}</td>
-                        </tr>
-                        <tr>
-                            <th>冷暖房設備</th>
-                            <td>{{$dojo->facility_aircondition}}</td>
-                        </tr>
-                        <tr>
-                            <th>的数</th>
-                            <td>{{$dojo->facility_matonumber}}</td>
-                        </tr>
-                        <tr>
-                            <th>更衣室</th>
-                            <td>{{$dojo->facility_lockerroom}}</td>
-                        </tr>
-                        <tr>
-                            <th>人数制限</th>
-                            <td>{{$dojo->facility_numberlimit}}</td>
-                        </tr>
-                        <tr>
-                            <th>駐車場</th>
-                            <td>{{$dojo->facility_parking}}</td>
-                        </tr>
-                        
-                        <tr>
-                            <th>営業時間</th>
-                       
-                            @if(!empty($businesshour->from1))
-                            <td style="display: block;">
-                                <span>1 開始時間：</span>{{ substr($businesshour ->from1, 0, 5) }}
-                                <span>終了時間：</span>{{ substr($businesshour ->to1, 0, 5) }}
-                            </td>
-                            @endif
-                            @if(!empty($businesshour->from2))
-                            <td style="display: block;">
-                                <span>2 開始時間：</span>{{ substr($businesshour ->from2, 0, 5) }}
-                                <span>終了時間：</span>{{ substr($businesshour ->to2, 0, 5) }}
-                            </td>
-                            @endif
-                            @if(!empty($businesshour->from3))
-                            <td style="display: block;">
-                                <span>3 開始時間：</span>{{ substr($businesshour ->from3, 0, 5) }}
-                                <span>終了時間：</span>{{ substr($businesshour ->to3, 0, 5) }}
-                            </td>
-                            @endif
-                            @if(!empty($businesshour->from4))
-                            <td style="display: block;">
-                                <span>4 開始時間：</span>{{ substr($businesshour ->from4, 0, 5) }}
-                                <span>終了時間：</span>{{ substr($businesshour ->to4, 0, 5) }}
-                            </td>
-                            @endif
-                            @if(!empty($businesshour->from5))
-                            <td style="display: block;">
-                                <span>5 開始時間：</span>{{ substr($businesshour ->from5, 0, 5) }}
-                                <span>終了時間：</span>{{ substr($businesshour ->to5, 0, 5) }}
-                            </td>
-                            @endif
-                        
-                            @if(empty($businesshour->from1) 
-                                && empty($businesshour->from2) 
-                                && empty($businesshour->from3) 
-                                && empty($businesshour->from4) 
-                                && empty($businesshour->from5))
-                            <td>未登録</td>
-                           @endif
-
-                        </tr>
-                        
-                        <tr>
-                            <th>定休日</th>
-                            <!--foreachでビジネスアワーテーブルより持ってくる-->
-                            <!--$dojo->businesshours->holiday-->
-                            <td>
-                                
-                                @if($dojo->holiday_mon == 'true')
-                                  月曜日
-                                @endif
-                                @if($dojo->holiday_tues == 'true')
-                                  火曜日
-                                @endif
-                                @if($dojo->holiday_wednes == 'true')
-                                  水曜日
-                                @endif
-                                @if($dojo->holiday_thurs == 'true')
-                                  木曜日
-                                @endif
-                                @if($dojo->holiday_fri == 'true')
-                                  金曜日
-                                @endif
-                                @if($dojo->holiday_satur == 'true')
-                                  土曜日
-                                @endif
-                                @if($dojo->holiday_sun == 'true')
-                                  日曜日
-                                @endif
-                                @if($dojo->holiday_mon == 'false' 
-                                    and $dojo->holiday_tues == 'false' 
-                                    and $dojo->holiday_wednes == 'false' 
-                                    and $dojo->holiday_thurs == 'false' 
-                                    and $dojo->holiday_fri == 'false' 
-                                    and $dojo->holiday_satur == 'false' 
-                                    and $dojo->holiday_sun == 'false' )
-                                　不明
-                                @endif
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>その他</th>
-                            <td>{{$dojo->other}}</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            
-            
+    <div id="dojoterms">
+        <div>
+            <h4>弓道場利用制限</h4>
+            <table>
+                <tr class="toptable">
+                    <th>利用料金</th>
+                    @if(!empty($dojo->use_money))
+                        <td>{{$dojo->use_money}}</td>
+                    @else
+                        <td>不明</td>
+                    @endif
+                </tr>
+                <tr>
+                    <th>年齢制限</th>
+                    @if(!empty($dojo->use_age))
+                        <td>{{$dojo->use_age}}歳</td>
+                    @else
+                        <td>不明</td>
+                    @endif
+                </tr>
+                <tr>
+                    <th>段資格の制限</th>
+                    @if(!empty($dojo->use_step))
+                        <td>{{$dojo->use_step}}以上</td>
+                    @else
+                        <td>不明</td>
+                    @endif
+                </tr>
+                <tr>
+                    <th>個人利用の可否</th>
+                    <td>{{$dojo->use_personal}}</td>
+                </tr>
+                <tr>
+                    <th>団体利用の可否</th>
+                    <td>{{$dojo->use_group}}</td>
+                </tr>
+                <tr>
+                    <th>連盟/団体への所属要否</th>
+                    <td>{{$dojo->use_affiliation}}</td>
+                </tr>
+                <tr>
+                    <th>事前予約の要否</th>
+                    <td>{{$dojo->use_reserve}}</td>
+                </tr>
+                <tr>
+                    <th>人数制限</th>
+                     @if(!empty($dojo->facility_numberlimit))
+                        <td>{{$dojo->facility_numberlimit}}</td>
+                    @else
+                        <td>不明</td>
+                    @endif
+                    
+                </tr>
+            </table>
         </div>
-        <hr>
-        <div class="" id="item2" role="tabpanel" aria-labelledby="item2-tab">
-            <h4>口コミ</h4>
-            <a type=button class="btn btn_show" href="{{route('reviews.create', $dojo->id)}}">口コミ投稿する</a>
-            <div>
-                @if(count($reviews) > 0)
-                    @foreach($reviews as $review)
-                        <div class="card" style="width:50rem;">
-                            <div class="card-body">
-                                @if($review->user)
-                                    <h6 class="card-subtitle">{{$review->user->name}}</h6>
-                                @else
-                                    <h6 class="card-subtitle">退会済ユーザー</h6>
-                                @endif
-                                <h5 class="card-title">{{$review->title}}</h5>
-                                <p class="card-text">{{$review->body}}</p>
-                                <p>{{$review->created_at}}</p>
-                            </div>
-                            <span>参考になった数：{{$review->favorites->count()}}</span>
-                            
-                        </div>
-                    @endforeach
-                <a type="button" class="btn btn_show" href="{{route('reviews.index', $dojo->id )}}">もっと{{$dojo->name}}の口コミをみる</a>
+        <div>
+            <h4>弓道場設備情報</h4>
+            <table>
+                <tr class="toptable">
+                    <th>屋内・屋外</th>
+                    <td>{{$dojo->facility_inout}}</td>
+                </tr>
+                <tr>
+                    <th>巻藁の設置</th>
+                    <td>{{$dojo->facility_makiwara}}</td>
+                </tr>
+                <tr>
+                    <th>冷暖房設備</th>
+                    <td>{{$dojo->facility_aircondition}}</td>
+                </tr>
+                <tr>
+                    <th>的数</th>
+                    @if(!empty($dojo->facility_matonumber))
+                        <td>{{$dojo->facility_matonumber}}</td>
+                    @else
+                        <td>不明</td>
+                    @endif
+                </tr>
+                <tr>
+                    <th>更衣室</th>
+                    <td>{{$dojo->facility_lockerroom}}</td>
+                </tr>
                 
-                @else
-                
-                <p>ごめんなさい、まだ口コミは投稿されてません。</p>
-                
-                @endif
-                
-            </div>
-            
-
-            <p>※問題のある口コミを発見された場合は、こちらに通報ください。</p>
+                <tr>
+                    <th>駐車場</th>
+                    <td>{{$dojo->facility_parking}}</td>
+                </tr>
+                        
+                <tr>
+                    <th>営業時間</th>
+                       
+                    @if(!empty($businesshour->from1))
+                        <td style="display: block;">
+                            {{ substr($businesshour ->from1, 0, 5) }}
+                            <span>～</span>
+                            {{ substr($businesshour ->to1, 0, 5) }}
+                        </td>
+                    @endif
+                    @if(!empty($businesshour->from2))
+                        <td style="display: block;">
+                            {{ substr($businesshour ->from2, 0, 5) }}
+                            <span>～</span>
+                            {{ substr($businesshour ->to2, 0, 5) }}
+                        </td>
+                    @endif
+                    @if(!empty($businesshour->from3))
+                        <td style="display: block;">
+                            {{ substr($businesshour ->from3, 0, 5) }}
+                            <span>～</span>
+                            {{ substr($businesshour ->to3, 0, 5) }}
+                        </td>
+                    @endif
+                    @if(!empty($businesshour->from4))
+                        <td style="display: block;">
+                            {{ substr($businesshour ->from4, 0, 5) }}
+                            <span>～</span>
+                            {{ substr($businesshour ->to4, 0, 5) }}
+                        </td>
+                    @endif
+                    @if(!empty($businesshour->from5))
+                        <td style="display: block;">
+                            {{ substr($businesshour ->from5, 0, 5) }}
+                            <span>～</span>
+                            {{ substr($businesshour ->to5, 0, 5) }}
+                        </td>
+                    @endif
+                        
+                    @if(empty($businesshour->from1) 
+                        && empty($businesshour->from2) 
+                        && empty($businesshour->from3) 
+                        && empty($businesshour->from4) 
+                        && empty($businesshour->from5))
+                        <td>不明</td>
+                   @endif
+                </tr>
+                        
+                <tr>
+                    <th>定休日</th>
+                    <td>
+                                
+                        @if($dojo->holiday_mon)
+                                月曜日
+                        @endif
+                        @if($dojo->holiday_tues)
+                                火曜日
+                        @endif
+                        @if($dojo->holiday_wednes)
+                                水曜日
+                        @endif
+                        @if($dojo->holiday_thurs)
+                                木曜日
+                        @endif
+                        @if($dojo->holiday_fri)
+                                金曜日
+                        @endif
+                        @if($dojo->holiday_satur)
+                                土曜日
+                        @endif
+                        @if($dojo->holiday_sun)
+                                日曜日
+                        @endif
+                        @if(!$dojo->holiday_mon
+                            && !$dojo->holiday_tues 
+                            && !$dojo->holiday_wednes 
+                            && !$dojo->holiday_thurs 
+                            && !$dojo->holiday_fri 
+                            && !$dojo->holiday_satur 
+                            && !$dojo->holiday_sun)
+                                不明
+                        @endif
+                                
+                    </td>
+                </tr>
+                <tr>
+                    <th>備考</th>
+                    @if(!empty($dojo->other))
+                        <td>{{$dojo->other}}</td>
+                    @else
+                        <td>不明</td>
+                    @endif
+                </tr>
+            </table>
         </div>
     </div>
-    
-    
+    <div id="toedit">
+        <p>古い情報や、不明の箇所を更新してみんなに共有しよう！</p>
+        <div>
+            <img src="../../img/dojos/to_dojoedit.gif" 
+                 alt="道場情報を更新しよう">
+            <a type="button" class="btn btn_show" 
+               href='{{route('dojos.edit', $dojo->id)}}'>
+                道場情報を更新する
+                <i class="fa-solid fa-rotate-right"></i>
+            </a>
+        </div>
+    </div>
 </div>
 
-
-
+<hr>
+<div id="reviews">
+    <h4>{{$dojo->name}}に関する口コミ</h4>
+    
+    <div>
+        <a type=button 
+           class="btn btn_show" 
+           href="{{route('reviews.create', $dojo->id)}}">
+            口コミ投稿する
+        </a>
+        
+        @if($reviews->isNotEmpty())
+            @foreach($reviews as $review)
+                <div class="card">
+                    <div class="card-header">
+                        <a href="{{route('dojos.show', $review->dojo->id)}}" 
+                           class="card-link">
+                            <i class="fa-solid fa-vihara"></i>
+                            <strong>{{ $review->dojo->name }}</strong>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{$review->title}}</h5>
+                        <hr>
+                        <p class="card-text">{{$review->body}}</p>
+                        
+                        @if($review->user)
+                            <span class="card-subtitle">
+                                <i class="fa-solid fa-person-circle-check"></i>
+                                {{$review->user->name}} | 
+                            </span>
+                        @else
+                            <span class="card-subtitle">
+                                <i class="fa-solid fa-person-circle-minus"></i>
+                                退会済 | 
+                            </span>
+                        @endif
+                        <span>
+                            <i class="fa-solid fa-thumbs-up"></i>
+                            {{$review->favorites->count()}} | 
+                        </span>
+                        <a href="{{route('reviews.index', $review->dojo->id)}}">
+                            <i class="fa-solid fa-images"></i>
+                            {{$review->dojophotos->count()}}
+                        </a>|
+                        <a href="#">
+                            <i class="fa-solid fa-ghost"></i>
+                            <small>違反報告</small>
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+            <a type=button 
+               class="btn btn_show" 
+               href="{{route('reviews.index', $review->dojo->id)}}">
+                口コミの詳細を見る
+            </a>
+        @else
+            <p>ごめんなさい、まだ口コミは投稿されてません。</p>
+            <img src="../img/home/sorry.gif">
+        @endif
+        
+        
+    </div>
+    <p>
+        ※問題のある口コミを発見された場合は、
+        <a href="#">こちら</a>
+        に通報ください。
+    </p>
+</div>
 
 @endsection

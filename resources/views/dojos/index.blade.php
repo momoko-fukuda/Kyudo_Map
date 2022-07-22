@@ -5,51 +5,54 @@
 @section('content')
 
 <!--パンくずリスト-->
-<div>
-    <div>
-        <a href="{{route('home')}}">Home</a>>
-        <strong class="now">弓道場検索</strong>
-    </div>
+<div class="route">
+    <a href="{{route('home')}}">
+        <i class="fa-solid fa-vihara"></i>
+    </a>
+    <i class="fa-solid fa-angles-right"></i>
+    <strong class="now">弓道場検索</strong>
 </div>
+<hr>
 
 
-<div>
+<div id="searchtop">
     <h1>弓道場検索</h1>
+    
     <form method="GET" action="{{ route('dojos.index') }}">
         @csrf
-        <div id="area" class="mt-1">
-            <label for="area_id">都道府県検索</label>
-            <select id="area_id" class="form-control w-50" name="area_id" data-toggle="select">
+        <div>
+            <label for="area_id"><strong>都道府県検索</strong></label>
+            <select id="area_id" class="form-control" name="area_id" data-toggle="select">
                 <option value="">全ての都道府県を検索する</option>
                 @foreach($areas as $area)
                     <option value="{{$area->id}}" @if( $area_id == $area->id ) selected @endif>{{$area->name}}</option>
                 @endforeach
             </select>
         </div>
-        <div id="address" class="mt-1">
-            <label for="addresskeyword">市区町村検索</label>
+        <div>
+            <label for="addresskeyword"><strong>市区町村検索</strong></label>
             <input id="addresskeyword" 
                    type="text" 
-                   class="form-control w-50" 
+                   class="form-control" 
                    name="addresskeyword" 
                    value="{{ $addresskeyword }}"
                    autocomplete="address-level2" 
                    autofocus 
                    placeholder="検索したい市区町村名を記入してください">
         </div>
-        <div id="name" class="mt-1">
-            <label for="dojo_name">道場名検索</label>
+        <div>
+            <label for="dojo_name"><strong>道場名検索</strong></label>
             <input id="dojo_name" 
                    type="text" 
-                   class="form-control w-50" 
+                   class="form-control" 
                    name="dojo_name" 
                    value="{{ $dojo_name }}"
                    autocomplete="on" 
                    autofocus 
                    placeholder="検索したい道場名を記入してください">
         </div>
-        <div id="conditions" class="mt-1">
-            <p>利用条件</p>
+        <div id="conditions">
+            <p><strong>利用条件</strong></p>
             <ul>
                 <li>
                     <input type="checkbox" name="use_personal" value="可能" @if( $use_personal == "可能" ) checked @endif>
@@ -62,7 +65,7 @@
             </ul>
         </div>
         
-        <button type="submit" class="btn btn-primary">検索</button>
+        <button type="submit" class="btn btn_check">検索</button>
     </form>
 </div>
 
@@ -77,32 +80,67 @@
 
 
 <!--検索結果一覧-->
-<hr>
-<div>
+
+<div id="searchresults">
     <h4>検索結果</h4>
     @if(count($dojos) > 0)
-        <p>全{{$dojos->total()}}件中
+        
+        <p class="searchcount">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            全{{$dojos->total()}}件中
             {{($dojos->currentPage() -1)* $dojos->perPage() + 1}}-
-            {{(($dojos->currentPage() -1)* $dojos->perPage() + 1)+(count($dojos)-1)}}件の弓道場が表示されています。<p>
+            {{(($dojos->currentPage() -1)* $dojos->perPage() + 1)+(count($dojos)-1)}}件の弓道場が表示されています。
+        <p>
     @else
-        <p>0件</p>
+        <p class="searchcount">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            0件
+        </p>
     @endif
 
 
     @forelse($dojos as $dojo)
-    <div class="card" style="width:50rem;">
+    <div class="card">
+        <div class="card-header">
+            <a href="{{route('dojos.show', $dojo)}}">
+                <i class="fa-solid fa-vihara"></i>
+                {{$dojo->name}}
+            </a>
+        </div>
         <div class="card-body">
-            <h5 class="card-title"><a href="{{route('dojos.show', $dojo)}}">{{$dojo->name}}</a></h5>
-            <p class="card-subtitle">{{$dojo->area->name}}{{$dojo->address1}}{{$dojo->address2}}</p>
-            <p class="card-text">{{$dojo->tel}}</p>
-            <p class="card-text">口コミ{{$dojo->reviews->count()}}件</p>
-            <p class="card-text">お気に入り{{ $dojo->favoritebuttons->count() }}件</p>
-            <p class="card-text">利用したアプリ内ユーザー数{{ $dojo->usebuttons->count() }}件</p>
+            
+            <p class="card-text">住所：{{$dojo->area->name}}{{$dojo->address1}}{{$dojo->address2}}</p>
+            <p class="card-text">電話番号：<a href="tel:{{$dojo->tel}}">{{$dojo->tel}}</a></p>
+            @if($dojo->use_personal == '可能')
+            <span>個人利用可</span>
+            @endif
+            @if($dojo->use_group == '可能')
+            <span>団体利用可</span>
+            @endif
+            <hr>
+            <small>
+                <i class="fa-solid fa-comment-dots"></i>
+                {{$dojo->reviews->count()}}件
+            </small>
+            <small>
+                <i class="fa-solid fa-heart"></i>
+                {{ $dojo->favoritebuttons->count() }}件
+            </small>
+            <small>
+                <i class="fa-solid fa-user-check"></i>
+                {{ $dojo->usebuttons->count() }}件
+            </small>
         </div>
     </div>
     
     @empty
-    <div>該当する道場は見つかりませんでした</div>
+    <div class="nosearch">
+        <p>該当する道場は見つかりませんでした</p>
+        <img src="../../img/dojos/sorry_dojosearch.gif" alt="弓道場が見つかりません">
+        <a type="button" class="btn btn_check" href="{{route('dojos.create')}}">
+            知っている弓道場を登録する
+        </a>
+    </div>
     
     @endforelse
     {{$dojos->links()}}

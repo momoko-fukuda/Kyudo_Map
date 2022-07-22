@@ -25,7 +25,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-weight: bold;
-    background-image: url(/images/dojoedit_flame.gif);
+    background-image: url(../../img/dojos/dojoedit_flame.gif);
     background-position: center center;
     background-size:contain;
     background-repeat: no-repeat; 

@@ -199,11 +199,11 @@
     <h3>弓道場のTEBIKIって何ができるの？</h3>
     <img src="../img/home/kyudo_about.png">
     <div>
-        <a href="{{route('home.about')}}" class="btn btn-success" role="button" >説明を見に行く<i class="fa-solid fa-book-open-reader"></i></a>
+        <a href="{{route('home.about')}}" class="btn btn_about" role="button" >説明を見に行く<i class="fa-solid fa-book-open-reader"></i></a>
         @auth
-            <a href="{{route('dojos.index')}}" class="btn btn-warning" role="button" >弓道場を探しにいく<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="{{route('dojos.index')}}" class="btn btn_search" role="button" >弓道場を探しにいく<i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         @else
-            <a href="{{route('register')}}" class="btn btn-warning" role="button" >新規会員登録をする<i class="fa-solid fa-person-rays"></i></a>
+            <a href="{{route('register')}}" class="btn btn_search" role="button" >新規会員登録をする<i class="fa-solid fa-person-rays"></i></a>
         @endauth
     </div>
 </div>
@@ -221,15 +221,19 @@
 
 <!--レビュー表示部分-->
 <div id="reviews">
-    <img src="../img/home/kyudo_review.png" style="width:100px; height:auto;">
-    <h3 style="display:inline;">弓道場に関する口コミ</h3>
+    <img src="../img/home/kyudo_review.png">
+    <h3>弓道場に関する口コミ</h3>
     
     <div>
         @if($reviews->isNotEmpty())
             @foreach($reviews as $review)
-                <div class="card border-warning" style="width:500px; margin:10px auto;">
+                <div class="card">
                     <div class="card-header">
-                        <a href="{{route('dojos.show', $review->dojo->id)}}" class="card-link"><i class="fa-solid fa-vihara"></i>{{ $review->dojo->name }}</a>
+                        <a href="{{route('dojos.show', $review->dojo->id)}}" 
+                           class="card-link">
+                            <i class="fa-solid fa-vihara"></i>
+                            <strong>{{ $review->dojo->name }}</strong>
+                        </a>
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">{{$review->title}}</h5>
@@ -237,23 +241,37 @@
                         <p class="card-text">{{$review->body}}</p>
                         
                         @if($review->user)
-                            <span class="card-subtitle"><i class="fa-solid fa-person-circle-check"></i>{{$review->user->name}} | </span>
-                            <span><i class="fa-solid fa-thumbs-up"></i>{{$review->favorites->count()}} | </span>
-                            <a href="{{route('reviews.index', $review->dojo->id)}}"><i class="fa-solid fa-images"></i>{{$review->dojophotos->count()}}</a>
+                            <span class="card-subtitle">
+                                <i class="fa-solid fa-person-circle-check"></i>
+                                {{$review->user->name}} | 
+                            </span>
                         @else
-                            <span class="card-subtitle"><i class="fa-solid fa-person-circle-minus"></i>退会済 | </span>
-                            <span><i class="fa-solid fa-thumbs-up"></i>{{$review->favorites->count()}} | </span>
-                            <a href="{{route('reviews.index', $review->dojo->id)}}"><i class="fa-solid fa-images"></i>{{$review->dojophotos->count()}}</a>
+                            <span class="card-subtitle">
+                                <i class="fa-solid fa-person-circle-minus"></i>
+                                退会済 | 
+                                </span>
                         @endif
+                        <span>
+                            <i class="fa-solid fa-thumbs-up"></i>
+                            {{$review->favorites->count()}} | 
+                        </span>
+                        <a href="{{route('reviews.index', $review->dojo->id)}}">
+                            <i class="fa-solid fa-images"></i>
+                            {{$review->dojophotos->count()}}
+                            </a>|
+                        <a href="#">
+                            <i class="fa-solid fa-ghost"></i>
+                            <small>違反報告</small>
+                        </a>
                     </div>
                 </div>
             @endforeach
         @else
             <p>ごめんなさい、まだ口コミは投稿されてません。</p>
             <a href="{{route('dojos.index')}}">知っている弓道場を探して、口コミを投稿する</a>
-            <img src="../img/home/kyudo_review.png">
+            <img src="../img/home/sorry.gif">
         @endif
-     </div>
+    </div>
 </div>
 
 @endsection

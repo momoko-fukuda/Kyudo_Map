@@ -33,20 +33,21 @@
     color: #FFFFE0;
 }
 
-#showtop dl{
-    padding: 20px 20px 20px 0;
+#showtop table{
+    margin-top: 20px;
 }
-#showtop dt{
-    width: 150px;
-    float: left;
+#showtop tr{
+    height: 40px;
+    border-bottom: 1px #DEB887 solid;
 }
 
-#topaddress{
+.toptable{
     border-top: 1px #DEB887 solid;
 }
-#showtop dl div{
-    border-bottom:1px #DEB887 solid; 
-    overflow: hidden;
+
+#showtop th{
+    width: 150px;
+    background-color: #EEE8AA;
 }
 
 
@@ -95,4 +96,62 @@
 }
 .btn_show:hover{
     color: #FFD700;
+}
+
+
+/*詳細情報の部分*/
+
+#dojoterms{
+    margin: 0 40px;
+    display: flex;
+}
+#dojoterms div{
+    padding: 20px 0;
+    flex-grow: 0.5;
+}
+
+#dojoterms h4{
+    text-align: center;
+}
+#dojoterms tr{
+    border-bottom:1px #DEB887 solid; 
+}
+
+#dojoterms th{
+   width: 200px;
+   height: 40px;
+   background-color: #EEE8AA;
+}
+#dojoterms td{
+    width: 200px;
+}
+
+#toedit{
+    margin: 35px auto;
+}
+#toedit p{
+    width:50%;
+    margin: auto;
+}
+#toedit img{
+    width: 60px;
+}
+
+#toedit div{
+    width: 30%;
+    margin: auto;
+}
+
+
+/*口コミ部分（home画面と共有）*/
+#reviews h4{
+    text-align: center;
+    margin: 20px auto;
+}
+
+
+
+#reviews > p{
+    width: 70%;
+    margin: 10px auto 0;
 }
