@@ -237,7 +237,7 @@ main{
     border-radius: 10px;
 }
 
-#reviews img{
+#usagi{
     width:100px; 
     height:auto;
     margin-left: 100px;
@@ -256,6 +256,13 @@ main{
 
 #reviews .card-header{
     background-color: #6B8E23;
+}
+#reviews .card-header p{
+    color: #FFF;
+}
+
+#reviews .card-body{
+    background-color: #FAFAD2;
 }
 
 #reviews .card a{

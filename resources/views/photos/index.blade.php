@@ -5,52 +5,43 @@
 @section('content')
 
 <!--パンくずリスト-->
-<div>
-    <div>
-        <a href="{{route('home')}}">Home</a>>
-        <a href="{{route('dojos.index')}}">弓道場検索</a>>
-        <a href="/dojos/{{$dojo->id}}">{{$dojo->name}}詳細</a>>
-        <strong class="now">{{$dojo->name}}道場写真一覧</strong>
-    </div>
+<div class="route">
+    <a href="{{route('home')}}">
+        <i class="fa-solid fa-vihara"></i>
+    </a>
+    <i class="fa-solid fa-angles-right"></i>
+    <a href="{{route('dojos.index')}}">弓道場検索</a>
+    <i class="fa-solid fa-angles-right"></i>
+    <a href="/dojos/{{$dojo->id}}">{{$dojo->name}}</a>
+    <i class="fa-solid fa-angles-right"></i>
+    <strong class="now">{{$dojo->name}}写真館</strong>
 </div>
 
-<div>
-    <h1>道場写真館</h1>
-    <div>
-        <p><span>弓道場名：</span>{{$dojo->name}}</p>
-        <p><span>住所：</span>{{$dojo->area->name}}{{$dojo->address1}}{{$dojo->address2}}</p>
-        <p><span>電話番号：</span>{{$dojo->tel}}</p>
-        <p><small>最近更新された日時：{{$dojo->updated_at}}</small></p>
-    </div>
-    
-    <h4>{{$dojo->name}}の写真をもっている場合、みんなに共有しよう！</h4>
-    <p>※登録後、弓道のTEBIKI管理者で登録された道場の内容を確認させていただきます。<br>
-    内容を確認し、実在しない、または虚偽内容がある場合、削除する可能性がございます。</p>
+
+<div class="dojophototop">
+    <h1>{{$dojo->name}}<br>写真館</h1>
+    <img src="../../../images/dojophoto.gif" alt="弓道場写真館">
 </div>
 
-<hr>
-<div>
+
+<div id="dojophotos">
     <div>
-        @if($dojophotos->isEmpty())
-            <p>ごめんなさい、まだ写真はアップされてません</p>
-        @else
-            @foreach($dojophotos as $dojophoto)
-                <div>
-                    <img src="{{ $dojophoto['img'] }}" class="w-25 h-50">
-                    @if($dojophoto->user)
-                        <small>投稿者：{{$dojophoto->user->name}}さん</small>
-                    @else
-                        <small>投稿者：退会済ユーザー</small>
-                    @endif
-                </div>
-            @endforeach
-            {{$dojophotos->links()}}
-        @endif
-        
+        @foreach($dojophotos as $dojophoto)
+            <div class="dojoimg">
+                <img src="{{ $dojophoto['img'] }}">
+                @if($dojophoto->user)
+                    <small>投稿者：{{$dojophoto->user->name}}さん</small>
+                @else
+                    <small>投稿者：退会済ユーザー</small>
+                @endif
+            </div>
+        @endforeach
+        {{$dojophotos->links()}}
     </div>
-    
-    
-    
+</div>
+<div class="toreviewcreate">
+    <p>{{$dojo->name}}の写真をもっていたら、みんなに共有しよう！</p>
+    <a type=button class="btn btn_check" href="{{route('reviews.create', $dojo->id)}}">写真を投稿する</a>
 </div>
 
 @endsection

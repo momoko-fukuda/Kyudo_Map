@@ -92,8 +92,9 @@
 
 
 .btn_submit{
-    width:35%;
-    margin: 5px auto 10px;
+    width: 155px;
+    margin: 30px auto 0;
+    padding-bottom: 20px;
 }
 
 .btn_check{
@@ -106,4 +107,8 @@
 
 .append_imgs, .remove_imgs{
     color: #2F4F4F;
+}
+
+.append_imgs i, .remove_imgs i{
+    font-size: 25px;
 }

@@ -348,21 +348,15 @@
             @foreach($reviews as $review)
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{route('dojos.show', $review->dojo->id)}}" 
-                           class="card-link">
-                            <i class="fa-solid fa-vihara"></i>
-                            <strong>{{ $review->dojo->name }}</strong>
-                        </a>
+                        <p class="card-title">{{$review->title}}</p>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">{{$review->title}}</h5>
-                        <hr>
                         <p class="card-text">{{$review->body}}</p>
                         
                         @if($review->user)
                             <span class="card-subtitle">
                                 <i class="fa-solid fa-person-circle-check"></i>
-                                {{$review->user->name}} | 
+                                {{$review->user->name}}さん | 
                             </span>
                         @else
                             <span class="card-subtitle">
@@ -388,7 +382,7 @@
             <a type=button 
                class="btn btn_show" 
                href="{{route('reviews.index', $review->dojo->id)}}">
-                口コミの詳細を見る
+                その他の口コミを見に行く
             </a>
         @else
             <p>ごめんなさい、まだ口コミは投稿されてません。</p>

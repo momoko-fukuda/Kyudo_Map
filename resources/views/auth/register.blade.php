@@ -85,9 +85,17 @@
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"placeholder="パスワードを再入力してください">
                     </div>
                 </div>
+                
+                <div class="form-group row">
+                    <label for="check_agree" class="col-md-5 col-form-label text-md-left">利用規約</label>
+                    <div class="col-md-7">
+                        <input type="checkbox" id="check_agree" class="form-control" >
+                    </div>
+                </div>
+                
 
                 <div class="form-group">
-                    <button type="submit" class="btn w-100">
+                    <button type="submit" id="button_submit" class="btn w-100" disabled="true">
                         アカウント作成
                     </button>
                 </div>
@@ -95,4 +103,25 @@
         </div>
     </div>
 </div>
+@endsection
+
+
+
+
+@section('script')
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+
+$("#check_agree").change(function(e){
+  if($(this).prop("checked")){
+    $("#button_submit").prop("disabled", false);
+  } else {
+    $("#button_submit").prop("disabled", true);
+  }
+
+});
+
+</script>
+
 @endsection

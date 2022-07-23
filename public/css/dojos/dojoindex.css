@@ -101,7 +101,7 @@
 
 
 /*ページネーション*/
-#searchresults .pagination{
+.pagination{
     width:70%;
     margin:auto;
 }

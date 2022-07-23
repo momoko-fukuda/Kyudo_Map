@@ -320,12 +320,12 @@
                                        class="form-controle-file img" 
                                        name="img[]"
                                        value="{{$value}}">
-                                <button type="button" class="append_imgs">
+                                <a type="button" class="append_imgs">
                                     <i class="fa-solid fa-circle-plus"></i>
-                                </button>
-                                <button type="button" class="remove_imgs">
+                                </a>
+                                <a type="button" class="remove_imgs">
                                     <i class="fa-solid fa-circle-minus"></i>
-                                </button>
+                                </a>
                             </div>
                         @endforeach
                     @endif
