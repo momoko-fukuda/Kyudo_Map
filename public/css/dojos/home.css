@@ -11,6 +11,12 @@ body{
 
 
 /*header・footer部分*/
+
+.logo{
+    max-width: 180px;
+}
+
+
 nav{
     max-width: 960px;
     min-height: 70px;
@@ -34,7 +40,7 @@ nav ul{
 
 #footer{
     max-width: 960px;
-    height: 70px;
+    min-height: 70px;
     margin: 0 auto;
     background-color: #EEE8AA;
     border-radius:10px;

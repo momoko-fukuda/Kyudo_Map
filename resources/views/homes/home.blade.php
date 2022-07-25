@@ -256,12 +256,16 @@
                             {{$review->favorites->count()}} | 
                         </span>
                         <a href="{{route('reviews.index', $review->dojo->id)}}">
-                            <i class="fa-solid fa-images"></i>
-                            {{$review->dojophotos->count()}}
-                            </a>|
-                        <a href="#">
-                            <i class="fa-solid fa-ghost"></i>
-                            <small>違反報告</small>
+                            <span>
+                                <i class="fa-solid fa-images"></i>
+                                {{$review->dojophotos->count()}}
+                            </span>
+                        </a>|
+                        <a href="{{route('home.contact')}}">
+                            <span>
+                                <i class="fa-solid fa-ghost"></i>
+                                <small>違反報告</small>
+                            </span>
                         </a>
                     </div>
                 </div>

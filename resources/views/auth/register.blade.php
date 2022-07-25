@@ -4,7 +4,14 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <h3 class="mt-3 mb-3">新規登録</h3>
+            <h3 class="mt-3 
+                       mb-3
+                       text-center">
+                新規登録
+                <img src="../../images/register.png" 
+                     alt="新規登録"
+                     class="formimg">
+            </h3>
 
             <hr>
 
@@ -13,7 +20,7 @@
                 
                 <!--名前入力フォーム-->
                 <div class="form-group row">
-                    <label for="name" class="col-md-5 col-form-label text-md-left">アカウント名<span class="ml-1">必須</span></label>
+                    <label for="name" class="col-md-5 col-form-label text-md-left">アカウント名<span class="ml-1 required">必須</span></label>
 
                     <div class="col-md-7">
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="弓太郎">
@@ -28,7 +35,7 @@
                 
                 <!--メールアドレスフォーム-->
                 <div class="form-group row">
-                    <label for="email" class="col-md-5 col-form-label text-md-left">メールアドレス<span class="ml-1">必須</span></label>
+                    <label for="email" class="col-md-5 col-form-label text-md-left">メールアドレス<span class="ml-1 required">必須</span></label>
 
                     <div class="col-md-7">
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="kyudo@kyudo.com">
@@ -43,7 +50,7 @@
                 
                 <!--活動エリア入力フォーム-->
                 <div class="form-group row">
-                    <label for="area_id" class="col-md-5 col-form-label text-md-left">活動エリア<span class="ml-1">必須</span></label>
+                    <label for="area_id" class="col-md-5 col-form-label text-md-left">活動エリア<span class="ml-1 required">必須</span></label>
 
                     <div class="col-md-7">
                         <!--areasテーブルのデータ$areasから都道府県id,nameを取ってきている-->
@@ -65,7 +72,7 @@
                 
                 <!--パスワード入力フォーム-->
                 <div class="form-group row">
-                    <label for="password" class="col-md-5 col-form-label text-md-left">パスワード<span class="ml-1">必須</span></label>
+                    <label for="password" class="col-md-5 col-form-label text-md-left">パスワード<span class="ml-1 required">必須</span></label>
 
                     <div class="col-md-7">
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"placeholder="パスワードを設定してください">
@@ -79,7 +86,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="password-confirm" class="col-md-5 col-form-label text-md-left">パスワードの確認<span class="ml-1">必須</span></label>
+                    <label for="password-confirm" class="col-md-5 col-form-label text-md-left">パスワードの確認<span class="ml-1 required">必須</span></label>
 
                     <div class="col-md-7">
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"placeholder="パスワードを再入力してください">
@@ -87,15 +94,39 @@
                 </div>
                 
                 <div class="form-group row">
-                    <label for="check_agree" class="col-md-5 col-form-label text-md-left">利用規約</label>
-                    <div class="col-md-7">
-                        <input type="checkbox" id="check_agree" class="form-control" >
+                    <label for="check_agree" class="col-md-5 col-form-label text-md-left">
+                        利用規約
+                        <span class="ml-1 required">必須</span>
+                    </label>
+                    <div class="ml-5 pt-2">
+                        <input type="checkbox" 
+                               id="check_agree" 
+                               class="form-check-input
+                                      check_agree" 
+                               name="check_agree"
+                               value="true"
+                               required>
+                               同意する
+                               <p><a class="loginlink" href="{{route('home.role')}}" target="_blank">利用規約を確認する</a></p>
+                               
+                                @error('check_agree')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>ご利用いただく上で、利用規約への同意は必須となります。</strong>
+                                    </span>
+                                @enderror
                     </div>
+                    
                 </div>
+                <!--<div class="form-group row">-->
+                <!--    <label for="check_agree" class="col-md-5 col-form-label text-md-left">利用規約</label>-->
+                <!--    <div class="col-md-7">-->
+                <!--        <input type="checkbox" id="check_agree" class="form-control" >-->
+                <!--    </div>-->
+                <!--</div>-->
                 
 
-                <div class="form-group">
-                    <button type="submit" id="button_submit" class="btn w-100" disabled="true">
+                <div class="form-group w-25 mx-auto my-5">
+                    <button type="submit" id="button_submit" class="btn btn_check">
                         アカウント作成
                     </button>
                 </div>
@@ -108,20 +139,20 @@
 
 
 
-@section('script')
+<!--@section('script')-->
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script>
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>-->
+<!--<script>-->
 
-$("#check_agree").change(function(e){
-  if($(this).prop("checked")){
-    $("#button_submit").prop("disabled", false);
-  } else {
-    $("#button_submit").prop("disabled", true);
-  }
+<!--$("#check_agree").change(function(e){-->
+<!--  if($(this).prop("checked")){-->
+<!--    $("#button_submit").prop("disabled", false);-->
+<!--  } else {-->
+<!--    $("#button_submit").prop("disabled", true);-->
+<!--  }-->
 
-});
+<!--});-->
 
-</script>
+<!--</script>-->
 
-@endsection
+<!--@endsection-->

@@ -77,7 +77,7 @@
     
 }
 
-#dojoform .required{
+.required{
     font-size: 13px;
     background-color: red;
     color: #fff;

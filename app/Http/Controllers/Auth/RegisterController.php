@@ -58,6 +58,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'area_id' => ['required', 'integer'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'check_agree'=>['required'],
         ]);
     }
 

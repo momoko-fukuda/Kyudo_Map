@@ -58,4 +58,12 @@ class HomeController extends Controller
     {
         return view('homes.policy');
     }
+    
+    /**
+     * お問合せフォーム画面
+     */
+    public function contact()
+    {
+        return view('homes.contact');
+    }
 }

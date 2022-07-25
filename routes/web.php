@@ -17,6 +17,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('home.about');
 Route::get('/role', 'HomeController@role')->name('home.role');
 Route::get('/policy', 'HomeController@policy')->name('home.policy');
+Route::get('/contact', 'HomeController@contact')->name('home.contact');
 
 
 // 道場データ表示関連

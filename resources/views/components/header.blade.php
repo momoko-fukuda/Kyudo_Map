@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg shadow-sm fixed-top">
     <a href="/" class="navbar-brand">
-        <img src="../../../img/home/logo.gif" alt="弓道場のTEBIKIのロゴ" style="height:55px;">
+        <img class="logo" src="../../../img/home/logo.gif" alt="弓道場のTEBIKIのロゴ">
     </a>
     <button 
         class="navbar-toggler"

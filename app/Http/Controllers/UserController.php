@@ -180,9 +180,9 @@ class UserController extends Controller
     public function destroy()
     {
         $id = Auth::id();
-        User::find($id)->forceDelete();
-        
         Auth::logout();
+        User::find($id)->forceDelete();
+
         return redirect('/');
     }
 }

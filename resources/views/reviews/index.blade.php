@@ -100,7 +100,7 @@
                         <span>{{$review->favorites->count()}}</span>
                     </a>
                 @endauth
-                <a href="#">
+                <a href="{{route('home.contact')}}">
                     <i class="fa-solid fa-ghost"></i>
                     <span>違反報告</span>
                 </a>
@@ -111,7 +111,7 @@
     
 </div>
 <div class="toreviewcreate">
-    <p>{{$dojo->name}}を利用したなら、是非みんなに情報を共有しよう！</p>
+    <p>{{$dojo->name}}を利用したら、みんなに情報を共有しよう！</p>
     <a type=button class="btn btn_check" href="{{route('reviews.create', $dojo->id)}}">口コミ投稿する</a>
 </div>
 
