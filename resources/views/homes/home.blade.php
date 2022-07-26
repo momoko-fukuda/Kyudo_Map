@@ -221,7 +221,7 @@
 
 <!--レビュー表示部分-->
 <div id="reviews">
-    <img src="../img/home/kyudo_review.png" id="usagi">
+    <img src="../../images/kyudo_review.png" id="usagi">
     <h3>弓道場に関する口コミ</h3>
     
     <div>

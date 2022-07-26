@@ -471,7 +471,7 @@
         
         <!--ボタン-->
         <div class="btn_submit">
-            <button type="submit" class="btn btn_check w-50" id="btn_submit">
+            <button type="submit" class="btn btn_check" id="btn_submit">
                 変更を登録
                 <i class="fa-solid fa-file-pen"></i>
             </button>

@@ -8,10 +8,12 @@ use App\Model\Review;
 use App\Model\Area;
 use App\Model\User;
 use App\Model\Photos;
+use App\Mail\ContactForm;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * ホーム画面、アプリ説明画面、プライバシーポリシー画面、利用規約画面のクラスコントローラ
@@ -59,11 +61,32 @@ class HomeController extends Controller
         return view('homes.policy');
     }
     
+    
     /**
      * お問合せフォーム画面
      */
     public function contact()
     {
         return view('homes.contact');
+    }
+    /**
+     * お問合せフォームメール送信処理
+     */
+    public function contact_send(Request $request)
+    {
+        $request->validate([
+            'contacttype'=> 'required',
+            'name' => 'required',
+            'email'=> 'required|email',
+            'contact' => 'required',
+            'check_agree' => 'required'
+            ]);
+            
+        ContactForm::contactSend($request);
+        
+        return redirect('/contact')->with(
+            'success',
+            'お問合せを受け付けました。'
+        );
     }
 }

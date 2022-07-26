@@ -356,17 +356,17 @@ main{
     
 }
 
-.nav-tabs, .nav-item{
+#dojoform .nav-tabs, .nav-item{
     flex-direction: column;
 }
 
-.nav-pills .nav-link.active{
+#dojoform .nav-pills .nav-link.active{
     background-color: #FFF;
     color: #2F4F4F;
     border:solid 2px;
 }
 
-.nav-pills .nav-link{
+#dojoform .nav-pills .nav-link{
     color: #2F4F4F;
 }
 
@@ -858,3 +858,61 @@ main{
     width: 50px;
 }
 
+/*マイページ画面*/
+.usermenu{
+    width:80%; 
+    margin: 30px auto;
+    display: flex;
+}
+.usermenu h3{
+    flex-grow: 1;
+}
+.usermenu img{
+    width:60px;
+}
+.usermenu i{
+    font-size: 18px;
+}
+#users{
+    width:80%; 
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+.userimg{
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    background-color: #EEE8AA;
+    border: 5px solid #2F4F4F;
+    position: relative;
+}
+#users img{
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 200px;
+}
+
+#userinfo{
+    width: 80%;
+    margin: 50px auto 0;
+    padding-bottom: 30px;
+}
+
+#userinfo .nav-item{
+    flex-grow:0.25;
+}
+#userinfo .nav-tabs .nav-link{
+    
+    color: #2F4F4F;
+    background-color: #fff;
+    border: 2px solid #2F4F4F;
+}
+
+#userinfo .nav-tabs .nav-link.active{
+    color: #fff;
+    background-color:#2F4F4F; 
+}

@@ -17,7 +17,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('home.about');
 Route::get('/role', 'HomeController@role')->name('home.role');
 Route::get('/policy', 'HomeController@policy')->name('home.policy');
+//お問合せフォームの送信
 Route::get('/contact', 'HomeController@contact')->name('home.contact');
+Route::post('/contact_send', 'HomeController@contact_send')->name('home.contact_send');
 
 
 // 道場データ表示関連
@@ -56,12 +58,6 @@ Route::delete('mypage/{user}', 'UserController@destroy')->name('mypage.delete');
 //パスワードの更新
 Route::get('mypage/{user}/password/edit', 'UserController@edit_password')->name('mypage.edit_password');
 Route::put('mypage/{user}/password', 'UserController@update_password')->name('mypage.update_password');
-
-
-
-// API関連
-Route::get('api/area', 'ApiController@getArea');
-
 
 
 // 認証関連

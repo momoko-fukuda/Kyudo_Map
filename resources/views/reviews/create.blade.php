@@ -91,12 +91,10 @@
                        <textarea id="body" 
                                  class="form-control 
                                         @error('body') is-invalid @enderror" 
-                                 name="body" 
-                                 value="{{ old('body') }}" 
+                                 name="body"
                                  autocomplete="on" 
                                  autofocus 
-                                 placeholder="道場を利用した際の感想を記載してください">
-                       </textarea>
+                                 placeholder="道場を利用した際の感想を記載してください">{{ old('body') }}</textarea>
         
                        @error('body')
                         <span class="invalid-feedback" role="alert">

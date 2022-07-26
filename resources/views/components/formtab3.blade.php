@@ -429,12 +429,10 @@
                    <textarea id="other" 
                              class="form-control 
                                     @error('other') is-invalid @enderror" 
-                             name="other" 
-                             value="{{ old('other') }}" 
+                             name="other"
                              autocomplete="on" 
                              autofocus 
-                             placeholder="その他、利用する上での注意事項を記入してください">
-                   </textarea>
+                             placeholder="その他、利用する上での注意事項を記入してください">{{ old('other') }}</textarea>
     
                    @error('other')
                     <span class="invalid-feedback" role="alert">

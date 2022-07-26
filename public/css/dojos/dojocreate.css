@@ -57,17 +57,17 @@
     
 }
 
-.nav-tabs, .nav-item{
+#dojoform .nav-tabs, .nav-item{
     flex-direction: column;
 }
 
-.nav-pills .nav-link.active{
+#dojoform .nav-pills .nav-link.active{
     background-color: #FFF;
     color: #2F4F4F;
     border:solid 2px;
 }
 
-.nav-pills .nav-link{
+#dojoform .nav-pills .nav-link{
     color: #2F4F4F;
 }
 

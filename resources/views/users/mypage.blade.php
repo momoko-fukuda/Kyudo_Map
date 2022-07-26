@@ -5,12 +5,16 @@
 
 @section('content')
 
-<div>
+<div class="route">
     <div>
-        <a href="{{route('home')}}">Home</a>>
+        <a href="{{route('home')}}">
+            <i class="fa-solid fa-vihara"></i>
+        </a>
+        <i class="fa-solid fa-angles-right"></i>
         <strong class="now">マイページ編集</strong>
     </div>
 </div>
+<hr>
 
 <!--メッセージ-->
 @if(session('status'))
@@ -25,35 +29,77 @@
 
 
 <!--ユーザー情報-->
-<h1><strong>{{$user->name}}</strong>さんのマイページ</h1>
-<div>
+<div class="usermenu">
+    <h3>
+        <img src="../../images/to_edit.png">
+        <strong>{{$user->name}}</strong>さんのマイページ
+    </h3>
     
-    <div>
-        @if($user->img)
-        <img src="https://s3-ap-northeast-1.amazonaws.com/kyudo-map-img/{{$user->img}} " alt="{{$user->name}}のユーザー画像" class="w-25 h-50">
-        @else
-        <p>ユーザー画像は登録されてません</p>
-        @endif
-    </div>
     
-    <div>
-        <p>ユーザー情報</p>
-        <p>ユーザー名：<strong>{{$user->name}}</strong></p>
-        <p>登録メールアドレス：<strong>{{$user->email}}</strong></p>
-        <p>登録エリア：<strong>{{$user->area->name}}</strong></p>
+    <div class="dropdown">
+        <button type="button" id="dropdown1"
+                class="btn btn_check dropdown-toggle btn-sm"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+            <i class="fa-solid fa-user-pen"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" 
+             aria-labelledby="dropdown1">
+            <a class="dropdown-item" 
+               href="{{route('mypage.edit', $user->id)}}">
+                ユーザー情報を編集する
+            </a>
+            <a class="dropdown-item" 
+               href="{{route('mypage.edit_password', $user->id)}}">
+                パスワードを更新する
+            </a>
+            <a class="dropdown-item" 
+               href="{{route('mypage.deleteview', $user->id)}}">
+                退会申請
+            </a>
+        </div>
     </div>
-    <div>
-        <a href="{{route('mypage.edit', $user->id)}}" type="button" class="btn btn-primary">ユーザー情報を編集する</a>
-        <a href="{{route('mypage.edit_password', $user->id)}}" type="button" class="btn btn-primary">パスワードを更新する</a>
-        <a href="{{route('mypage.deleteview', $user->id)}}" type="button" class="btn btn-secondary">退会申請</a>
-    </div>
-    
 </div>
+
+<div id="users">
+    <h4>ユーザー情報</h4>
+    <div class="usermenu">
+        
+        <div class="userimg">
+            @if($user->img)
+            <img src="https://s3-ap-northeast-1.amazonaws.com/kyudo-map-img/{{$user->img}}" alt="{{$user->name}}のユーザー画像">
+            @else
+            <img src="../../images/kyudo_review.png" alt="{{$user->name}}のユーザー画像">
+            @endif
+        </div>
+        
+        <div class="flex-grow-1 pl-5">
+            <p>
+                <i class="fa-solid fa-person-circle-check"></i>
+                ユーザー名<br>
+                <strong>{{$user->name}}</strong>
+            </p>
+            <p>
+                <i class="fa-solid fa-envelope-circle-check"></i>
+                登録メールアドレス<br>
+                <strong>{{$user->email}}</strong>
+            </p>
+            <p>
+                <i class="fa-solid fa-location-dot"></i>
+                登録エリア<br>
+                <strong>{{$user->area->name}}</strong>
+            </p>
+        </div>
+    </div>
+
+</div>
+
 
 <hr>
 <!--各種情報-->
-<div>
-    <ul class="nav nav-tabs nav-justified" role="tablist">
+<div id="userinfo">
+    <ul class="nav nav-tabs justify-content-center" role="tablist">
         <li class="nav-item">
            <a class="nav-link active" id="item1-tab" data-toggle="tab" href="#item1" role="tab" aria-controls="item1" aria-selected="true">投稿した口コミ</a>
         </li>
@@ -71,67 +117,121 @@
         </li>
     </ul>
     
-    <div class="tab-content">
-        <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+    <!--投稿した口コミ一覧-->
+    <div class="tab-content" id="reviews">
+        <div class="tab-pane fade show active" 
+             id="item1" 
+             role="tabpanel" 
+             aria-labelledby="item1-tab">
             
             @if($reviews->isEmpty())
                 <p>まだ口コミ投稿されてません。しっている道場がある場合、口コミ投稿して情報を共有しよう！</p>
                 <a href="{{route('dojos.index')}}">弓道場を探しにいく</a>
             @else
-                <p>{{$user->name}}さんが投稿した口コミを一覧表示しております。</p>
+                <p>
+                    <strong>{{$user->name}}</strong>さんが投稿した口コミを一覧
+                </p>
                 @foreach($reviews as $review)
-                    <div class="card" style="width:50rem;">
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="{{route('dojos.show', $review->dojo->id)}}" 
+                               class="card-link">
+                                <i class="fa-solid fa-vihara"></i>
+                                <strong>{{ $review->dojo->name }}</strong>
+                            </a>
+                        </div>
                         <div class="card-body">
-                            <p class="card-subtitle"><strong>{{$review->user->name}}</strong>さんの口コミ</p>
                             <h5 class="card-title">{{$review->title}}</h5>
+                            <hr>
                             <p class="card-text">{{$review->body}}</p>
+        
                             <div>
                                 @foreach($review->dojophotos as $value)
-                                    <img src="{{ $value['img'] }}" class="w-25 h-50 hidephotos" style="display:none;">
+                                    <img src="{{ $value['img'] }}" 
+                                         class="hidephotos">
                                 @endforeach
                                 @if($review->dojophotos->isNotEmpty())
-                                    <a type="button" class="photomore" style="display:block;">写真を表示する</a>
+                                    <a type="button" class="photomore">写真を表示する</a>
                                 @endif
                             </div>
-                            <span>参考になった数：{{$review->favorites->count()}}</span>
-                            <p>{{$review->created_at}}</p>
-                            <a href="{{route('reviews.index', $review->dojo->id)}}">{{$review->dojo->name}}を見に行く</a>
+                            <span>投稿日：{{$review->created_at->format('Y年m月d日')}}</span>|
+                            <span>
+                                <i class="fa-solid fa-thumbs-up"></i>
+                                {{$review->favorites->count()}} | 
+                            </span>
+                            <a href="{{route('reviews.index', $review->dojo->id)}}">
+                                <span>
+                                    <i class="fa-solid fa-comments"></i>
+                                    {{$review->dojo->name}}の口コミ
+                                </span>
+                            </a>
                         </div>
                     </div>
                 @endforeach
             @endif
         </div>
         
+        <!--参考になった口コミ-->
         <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
             
             @if($reviews->isEmpty())
                 <p>まだ口コミ投稿にリアクションしてません。口コミをみにいきましょう！</p>
                 <a href="{{route('dojos.index')}}">弓道場を探しにいく</a>
             @else
-            <p>{{$user->name}}さんが参考になったボタンを押した口コミを表示しております。</p>
+            <p><strong>{{$user->name}}</strong>さんが参考になった口コミ</p>
             @foreach($favoriteReviews as $favoriteReview)
             
-                <div class="card" style="width:50rem;">
-                    <div class="card-body">
-                        <p class="card-subtitle"><strong>{{$favoriteReview->user->name}}</strong>さんの口コミ</p>
-                        <h5 class="card-title">{{App\Model\Review::find($favoriteReview->favoriteable_id)->title}}</h5>
-                        <p class="card-text">{{App\Model\Review::find($favoriteReview->favoriteable_id)->body}}</p>
-                        <div>
-                            @foreach(App\Model\Review::find($favoriteReview->favoriteable_id)->dojophotos as $value)
-                                <img src="{{ $value['img'] }}" class="w-25 h-50 hidephotos" style="display:none;">
-                            @endforeach
-                            @if(App\Model\Review::find($favoriteReview->favoriteable_id)->dojophotos->isNotEmpty())
-                                <a type="button" class="photomore" style="display:block;">写真を表示する</a>
+                <div class="card">
+                        <div class="card-header">
+                            <a href="{{route('dojos.show',App\Model\Review::find($favoriteReview->favoriteable_id)->id)}}" 
+                               class="card-link">
+                                <i class="fa-solid fa-vihara"></i>
+                                <strong>{{App\Model\Review::find($favoriteReview->favoriteable_id)->dojo->name}}</strong>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{App\Model\Review::find($favoriteReview->favoriteable_id)->title}}</h5>
+                            <hr>
+                            <p class="card-text">{{App\Model\Review::find($favoriteReview->favoriteable_id)->body}}</p>
+        
+                            <div>
+                                @foreach(App\Model\Review::find($favoriteReview->favoriteable_id)->dojophotos as $value)
+                                <img src="{{ $value['img'] }}" class="hidephotos">
+                                @endforeach
+                                @if(App\Model\Review::find($favoriteReview->favoriteable_id)->dojophotos->isNotEmpty())
+                                    <a type="button" class="photomore">写真を表示する</a>
+                                @endif
+                            </div>
+                            <span>投稿日：{{App\Model\Review::find($favoriteReview->favoriteable_id)->created_at->format('Y年m月d日')}}</span>|
+                            @if(App\Model\Review::find($favoriteReview->favoriteable_id)->user)
+                                <span class="card-subtitle">
+                                    <i class="fa-solid fa-person-circle-check"></i>
+                                    {{App\Model\Review::find($favoriteReview->favoriteable_id)->user->name}} | 
+                                </span>
+                            @else
+                                <span class="card-subtitle">
+                                    <i class="fa-solid fa-person-circle-minus"></i>
+                                    退会済 | 
+                                    </span>
                             @endif
+                            <span>
+                                <i class="fa-solid fa-thumbs-up"></i>
+                                {{App\Model\Review::find($favoriteReview->favoriteable_id)->favorites->count()}} | 
+                            </span>
+                            <a href="{{route('reviews.index', App\Model\Review::find($favoriteReview->favoriteable_id)->id)}}">
+                                <span>
+                                    <i class="fa-solid fa-comments"></i>
+                                    {{App\Model\Review::find($favoriteReview->favoriteable_id)->dojo->name}}の口コミ
+                                </span>
+                            </a>
                         </div>
                     </div>
-                        <p>{{App\Model\Review::find($favoriteReview->favoriteable_id)->created_at}}</p>
-                        <a href="{{route('dojos.show', App\Model\Review::find($favoriteReview->favoriteable_id)->dojo->id)}}" class="card-link">{{ App\Model\Review::find($favoriteReview->favoriteable_id)->dojo->name }}を見に行く</a>
-                </div>
             @endforeach
             @endif
         </div>
         
+        
+        <!--お気に入り道場-->
         <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">
             
             
@@ -139,16 +239,38 @@
                 <p>まだ道場にリアクションしてません。道場をみにいきましょう！</p>
                 <a href="{{route('dojos.index')}}">弓道場を探しにいく</a>
             @else
-                <p>{{$user->name}}さんがお気に入りボタンを押した道場を表示しております。</p>
+                <p><strong>{{$user->name}}</strong>さんがお気に入りした道場</p>
                 @foreach($favoriteDojos as $favoriteDojo)
-                    <div class="card" style="width:50rem;">
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="{{route('dojos.show', $favoriteDojo)}}">
+                                <i class="fa-solid fa-vihara"></i>
+                                {{$favoriteDojo->dojo->name}}
+                            </a>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title"><a href="{{route('dojos.show', $favoriteDojo->dojo->id)}}">{{$favoriteDojo->dojo->name}}</a></h5>
-                            <p class="card-subtitle">{{$favoriteDojo->dojo->area->name}}{{$favoriteDojo->dojo->address1}}{{$favoriteDojo->dojo->address2}}</p>
-                            <p class="card-text">{{$favoriteDojo->dojo->tel}}</p>
-                            <p class="card-text">口コミ{{$favoriteDojo->dojo->reviews->count()}}件</p>
-                            <p class="card-text">お気に入り{{ $favoriteDojo->dojo->favoritebuttons->count() }}件</p>
-                            <p class="card-text">利用したアプリ内ユーザー数{{ $favoriteDojo->dojo->usebuttons->count() }}件</p>
+                            
+                            <p class="card-text">住所：{{$favoriteDojo->dojo->area->name}}{{$favoriteDojo->dojo->address1}}{{$favoriteDojo->dojo->address2}}</p>
+                            <p class="card-text">電話番号：<a href="tel:{{$favoriteDojo->dojo->tel}}">{{$favoriteDojo->dojo->tel}}</a></p>
+                            @if($favoriteDojo->dojo->use_personal == '可能')
+                            <span>個人利用可</span>
+                            @endif
+                            @if($favoriteDojo->dojo->use_group == '可能')
+                            <span>団体利用可</span>
+                            @endif
+                            <hr>
+                            <small>
+                                <i class="fa-solid fa-comment-dots"></i>
+                                {{$favoriteDojo->dojo->reviews->count()}}件
+                            </small>
+                            <small>
+                                <i class="fa-solid fa-heart"></i>
+                                {{ $favoriteDojo->dojo->favoritebuttons->count() }}件
+                            </small>
+                            <small>
+                                <i class="fa-solid fa-user-check"></i>
+                                {{ $favoriteDojo->dojo->usebuttons->count() }}件
+                            </small>
                         </div>
                     </div>
                 @endforeach
@@ -156,6 +278,7 @@
             
         </div>
         
+        <!--利用した道場一覧-->
         <div class="tab-pane fade" id="item4" role="tabpanel" aria-labelledby="item4-tab">
             
             @if($favoriteDojos->isEmpty())
@@ -163,18 +286,40 @@
                 <a href="{{route('dojos.index')}}">弓道場を探しにいく</a>
                 
             @else
-                <p>{{$user->name}}さんが利用したボタンを押した道場を表示しております。</p>
+                <p><strong>{{$user->name}}</strong>さんが利用した道場</p>
                 @foreach($useDojos as $useDojo)
-                    <div class="card" style="width:50rem;">
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="{{route('dojos.show', $useDojo->dojo->id)}}">{{$useDojo->dojo->name}}</a></h5>
-                                <p class="card-subtitle">{{$useDojo->dojo->area->name}}{{$useDojo->dojo->address1}}{{$useDojo->dojo->address2}}</p>
-                                <p class="card-text">{{$useDojo->dojo->tel}}</p>
-                                <p class="card-text">口コミ{{$useDojo->dojo->reviews->count()}}件</p>
-                                <p class="card-text">お気に入り{{ $useDojo->dojo->favoritebuttons->count() }}件</p>
-                                <p class="card-text">利用したアプリ内ユーザー数{{ $useDojo->dojo->usebuttons->count() }}件</p>
-                            </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="{{route('dojos.show', $useDojo)}}">
+                                <i class="fa-solid fa-vihara"></i>
+                                {{$useDojo->dojo->name}}
+                            </a>
                         </div>
+                        <div class="card-body">
+                            
+                            <p class="card-text">住所：{{$useDojo->dojo->area->name}}{{$useDojo->dojo->address1}}{{$useDojo->dojo->address2}}</p>
+                            <p class="card-text">電話番号：<a href="tel:{{$useDojo->dojo->tel}}">{{$useDojo->dojo->tel}}</a></p>
+                            @if($useDojo->dojo->use_personal == '可能')
+                            <span>個人利用可</span>
+                            @endif
+                            @if($useDojo->dojo->use_group == '可能')
+                            <span>団体利用可</span>
+                            @endif
+                            <hr>
+                            <small>
+                                <i class="fa-solid fa-comment-dots"></i>
+                                {{$useDojo->dojo->reviews->count()}}件
+                            </small>
+                            <small>
+                                <i class="fa-solid fa-heart"></i>
+                                {{ $useDojo->dojo->favoritebuttons->count() }}件
+                            </small>
+                            <small>
+                                <i class="fa-solid fa-user-check"></i>
+                                {{ $useDojo->dojo->usebuttons->count() }}件
+                            </small>
+                        </div>
+                    </div>
                 @endforeach
             @endif
         </div>
@@ -186,17 +331,42 @@
                 <a href="{{route('dojos.create')}}">知っている道場を新規登録する</a>
                 <a href="{{route('dojos.index')}}">弓道場を探しにいく</a>
             @else
-                <p>{{$user->name}}さんの登録した活動エリアの道場を、更新日時が新しい順に表示してます。</p>
+                <p>
+                    <strong>{{$user->name}}</strong>さんの登録した活動エリアの道場
+                    <br>※更新順に表示
+                </p>
+
                 @foreach($latestDojos as $latestDojo)
-                    <div class="card" style="width:50rem;">
+                    <div class="card">
+                        <div class="card-header">
+                            <a href="{{route('dojos.show', $useDojo)}}">
+                                <i class="fa-solid fa-vihara"></i>
+                                {{$latestDojo->name}}
+                            </a>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title"><a href="{{route('dojos.show', $latestDojo->id)}}">{{$latestDojo->name}}</a></h5>
-                            <p class="card-subtitle">{{$latestDojo->area->name}}{{$latestDojo->address1}}{{$latestDojo->address2}}</p>
-                            <p class="card-text">{{$latestDojo->tel}}</p>
-                            <p class="card-text">口コミ{{$latestDojo->reviews->count()}}件</p>
-                            <p class="card-text">お気に入り{{ $latestDojo->favoritebuttons->count() }}件</p>
-                            <p class="card-text">利用したアプリ内ユーザー数{{ $latestDojo->usebuttons->count() }}件</p>
-                            <p>最終更新：{{$latestDojo->updated_at}}</p>
+                            
+                            <p class="card-text">住所：{{$latestDojo->area->name}}{{$latestDojo->address1}}{{$latestDojo->address2}}</p>
+                            <p class="card-text">電話番号：<a href="tel:{{$latestDojo->tel}}">{{$latestDojo->tel}}</a></p>
+                            @if($latestDojo->use_personal == '可能')
+                            <span>個人利用可</span>
+                            @endif
+                            @if($latestDojo->use_group == '可能')
+                            <span>団体利用可</span>
+                            @endif
+                            <hr>
+                            <small>
+                                <i class="fa-solid fa-comment-dots"></i>
+                                {{$latestDojo->reviews->count()}}件
+                            </small>
+                            <small>
+                                <i class="fa-solid fa-heart"></i>
+                                {{ $latestDojo->favoritebuttons->count() }}件
+                            </small>
+                            <small>
+                                <i class="fa-solid fa-user-check"></i>
+                                {{ $latestDojo->usebuttons->count() }}件
+                            </small>
                         </div>
                     </div>
                 @endforeach
