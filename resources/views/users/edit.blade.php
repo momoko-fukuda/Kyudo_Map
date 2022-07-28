@@ -3,32 +3,43 @@
 
 @extends('layouts.app')
 
-
 @section('content')
 
-<div>
-    <div>
-        <a href="{{route('home')}}">Home</a>>
-        <a href="{{route('mypage')}}"><strong>{{$user->name}}さん</strong>のマイページ</a>>
-        <strong class="now">マイページ編集</strong>
-    </div>
-</div>
 
-<div>
-    <h1>ユーザー情報の編集</h1>
-    <form method="POST" action="{{route('mypage.update', $user->id)}}" enctype="multipart/form-data">
+<div class="route">
+    <a href="{{route('home')}}">
+        <i class="fa-solid fa-vihara"></i>
+    </a>
+    <i class="fa-solid fa-angles-right"></i>
+    <a href="{{route('mypage')}}">
+        <strong>{{$user->name}}さん</strong>のマイページ
+    </a>
+    <i class="fa-solid fa-angles-right"></i>
+    <strong class="now">
+        <i class="fa-solid fa-bullseye"></i>
+        マイページ編集
+    </strong>
+</div>
+<hr>
+
+
+<div id="mypageedit">
+    <h3>ユーザー情報の編集</h3>
+    
+    <form method="POST" 
+          action="{{route('mypage.update', $user->id)}}" 
+          enctype="multipart/form-data">
         {{csrf_field()}}
         <input type="hidden" name="_method" value="PUT">
         
         <!--ユーザー名-->
         <div class="form-group">
-                    <label for="name" 
-                           class="col-md-5 col-form-label text-md-left">
-                        ユーザー名
-                        <span class="ml-1">必須</span>
-                    </label>
-    
-            <div class="col-md-5">
+            <label for="name" 
+                   class="col-form-label text-md-left">
+                ユーザー名
+                <span class="ml-1 required">必須</span>
+            </label>
+            <div>
                 <input id="name" 
                        type="text" 
                        class="form-control 
@@ -46,15 +57,16 @@
                 @enderror
             </div>
         </div>
+        
         <!--メールアドレス-->
         <div class="form-group">
-                    <label for="email" 
-                           class="col-md-5 col-form-label text-md-left">
-                        ユーザー名
-                        <span class="ml-1">必須</span>
-                    </label>
+            <label for="email" 
+                   class="col-form-label text-md-left">
+                ユーザー名
+                <span class="ml-1 required">必須</span>
+            </label>
     
-            <div class="col-md-5">
+            <div>
                 <input id="email" 
                        type="text" 
                        class="form-control 
@@ -72,15 +84,16 @@
                 @enderror
             </div>
         </div>
+        
         <!--登録エリア-->
         <div class="form-group">
             <label for="area_id" 
-                   class="col-md-5 col-form-label text-md-left">
+                   class="col-form-label text-md-left">
                 活動エリア
-                <span class="ml-1">必須</span>
+                <span class="ml-1 required">必須</span>
             </label>
 
-            <div class="col-md-5">
+            <div>
                 <select id="area_id" 
                         class="form-control 
                               @error('area_id') is-invalid @enderror" 
@@ -109,14 +122,12 @@
         </div>
         
         
-        <!--画像登録するかどうか-->
+        <!--画像登録-->
         <div class="form-group">
-                <label class="col-md-5 
-                              col-form-label 
+                <label class="col-form-label 
                               text-md-left 
                               @error('img') is-invalid @enderror">
                     ユーザー画像
-                    <span class="ml-1">任意</span>
                 </label>
                 <div>
                     <div class="imgbox">
@@ -136,8 +147,8 @@
         </div>
         
         <!--ボタン-->
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary w-25" id="btn_submit">
+        <div class="text-center">
+            <button type="submit" class="btn btn_check" id="btn_submit">
                 変更を登録
             </button>
         </div>

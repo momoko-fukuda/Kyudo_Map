@@ -48,9 +48,9 @@
                     </div>
                 </div>
                 
-                <!--活動エリア入力フォーム-->
+                <!--活動地域入力フォーム-->
                 <div class="form-group row">
-                    <label for="area_id" class="col-md-5 col-form-label text-md-left">活動エリア<span class="ml-1 required">必須</span></label>
+                    <label for="area_id" class="col-md-5 col-form-label text-md-left">活動地域<span class="ml-1 required">必須</span></label>
 
                     <div class="col-md-7">
                         <!--areasテーブルのデータ$areasから都道府県id,nameを取ってきている-->
@@ -64,7 +64,7 @@
                         
                         @error('area_id')
                         <span class="invalid-feedback" role="alert">
-                            <strong>活動エリアを選択してください</strong>
+                            <strong>活動地域を選択してください</strong>
                         </span>
                         @enderror
                     </div>

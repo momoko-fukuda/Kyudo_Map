@@ -845,8 +845,6 @@ main{
 #dojophotos small{
     display: block;
 }
-
-
 /*login画面*/
 .loginlink{
     color: #6B904A;
@@ -857,6 +855,7 @@ main{
 .formimg{
     width: 50px;
 }
+
 
 /*マイページ画面*/
 .usermenu{
@@ -889,7 +888,8 @@ main{
     position: relative;
 }
 #users img{
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -916,3 +916,43 @@ main{
     color: #fff;
     background-color:#2F4F4F; 
 }
+
+
+
+
+/*マイページ編集画面*/
+
+#mypageedit{
+    padding-bottom: 20px;
+}
+
+#mypageedit h3{
+    margin: 20px auto;
+    text-align: center;
+}
+#mypageedit form{
+    width: 50%;
+    margin: auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+/*パスワード更新画面*/
+#password_edit{
+    padding: 20px;
+}
+#password_edit form{
+    width: 70%;
+    margin: auto;
+}
+
+/*退会申請画面*/
+.user_deleteimg{
+    margin: 20px auto;
+}
+
+.btn-userdelete{
+    padding: 30px;
+}
+

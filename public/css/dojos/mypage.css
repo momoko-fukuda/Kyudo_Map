@@ -1,0 +1,98 @@
+/*マイページ画面*/
+.usermenu{
+    width:80%; 
+    margin: 30px auto;
+    display: flex;
+}
+.usermenu h3{
+    flex-grow: 1;
+}
+.usermenu img{
+    width:60px;
+}
+.usermenu i{
+    font-size: 18px;
+}
+#users{
+    width:80%; 
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+.userimg{
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    background-color: #EEE8AA;
+    border: 5px solid #2F4F4F;
+    position: relative;
+}
+#users img{
+    -o-object-fit: cover;
+       object-fit: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 200px;
+}
+
+#userinfo{
+    width: 80%;
+    margin: 50px auto 0;
+    padding-bottom: 30px;
+}
+
+#userinfo .nav-item{
+    flex-grow:0.25;
+}
+#userinfo .nav-tabs .nav-link{
+    
+    color: #2F4F4F;
+    background-color: #fff;
+    border: 2px solid #2F4F4F;
+}
+
+#userinfo .nav-tabs .nav-link.active{
+    color: #fff;
+    background-color:#2F4F4F; 
+}
+
+
+
+
+/*マイページ編集画面*/
+
+#mypageedit{
+    padding-bottom: 20px;
+}
+
+#mypageedit h3{
+    margin: 20px auto;
+    text-align: center;
+}
+#mypageedit form{
+    width: 50%;
+    margin: auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+/*パスワード更新画面*/
+#password_edit{
+    padding: 20px;
+}
+#password_edit form{
+    width: 70%;
+    margin: auto;
+}
+
+/*退会申請画面*/
+.user_deleteimg{
+    margin: 20px auto;
+}
+
+.btn-userdelete{
+    padding: 30px;
+}
