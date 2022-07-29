@@ -1,0 +1,97 @@
+/*弓道場のTEBIKIとはの画面*/
+#aboutview{
+    width: 100%;
+    height: 500px;
+    background: url(/images/aboutview.png) no-repeat;
+    background-position: 20px 10px;
+    background-size: contain;
+    border-radius:10px;
+    position: relative;
+}
+#aboutview h1{
+    position: absolute;
+    top: 130px;
+    left: 240px;
+    font-size: 60px;
+    font-weight: bold;
+}
+#aboutview h4{
+    text-align: center;
+    position: absolute;
+    top: 250px;
+    left: 130px;
+    font-weight: bold;
+}
+#aboutview span{
+    color: #CD5C5C;   
+}
+
+#aboutworry{
+    margin: 100px auto;
+
+}
+#aboutworry h4{
+    text-align: center;
+}
+#aboutworry > div{
+    width: 80%;
+    margin: 20px auto;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.worries{
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.worries p{
+    padding-left: 20px;
+    font-size: 18px;
+}
+
+#solution{
+    
+    text-align: center;
+}
+#solution > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#solution > div div{
+    padding: 10px;
+}
+
+#howtouse{
+    width: 80%;
+    margin: 50px auto;
+}
+#howtouse h4{
+    text-align: center;
+    margin-bottom: 30px;
+}
+#howtouse > div{
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    
+}
+#howtouse > div div{
+    margin: 10px auto 40px;
+    text-align: center;
+}
+#howtouse span{
+    color: #CD5C5C;
+}
+.usetop{
+    font-size: 19px;
+    border-bottom: dotted 2px;
+}
+#aboutbottom{
+    padding-bottom: 40px;
+    text-align: center;
+}

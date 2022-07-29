@@ -16,8 +16,6 @@
     <i class="fa-solid fa-angles-right"></i>
     <a href="{{ route('dojos.show', $dojo->id )}}"> {{$dojo->name}} </a>
     <i class="fa-solid fa-angles-right"></i>
-    <a href="{{ route('reviews.index', $dojo->id )}}">{{$dojo->name}}の口コミ一覧</a>
-    <i class="fa-solid fa-angles-right"></i>
     <strong class="now">
         <i class="fa-solid fa-bullseye"></i>
         写真・口コミ投稿

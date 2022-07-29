@@ -1,0 +1,13 @@
+/*利用規約・プライバシーポリシー*/
+#role{
+    width: 90%;
+    margin: auto;
+    padding: 30px;
+}
+#role h1{
+    text-align: center;
+    margin: 10px auto 30px;
+}
+.tR{
+    text-align: right;
+}

@@ -191,7 +191,7 @@
                     同意する
                 <p>
                     <a class="loginlink" 
-                       href="{{route('home.role')}}" 
+                       href="{{route('home.policy')}}" 
                        target="_blank">
                         プライバシーポリシーを確認する
                     </a>

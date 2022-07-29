@@ -1,6 +1,9 @@
 // トップページ(他共通部分)のCSS
 @import '../../public/css/dojos/home.css';
 
+//弓道場のTEBIKIとはの画面
+@import '../../public/css/dojos/homeabout.css';
+
 //新規弓道場登録画面のcss
 @import '../../public/css/dojos/dojocreate.css';
 
@@ -24,3 +27,6 @@
 
 //マイページ画面のCSS
 @import '../../public/css/dojos/mypage.css';
+
+//利用規約・プライバシーポリシーの画面
+@import '../../public/css/dojos/role_policy.css';
