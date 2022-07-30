@@ -335,7 +335,7 @@
 
 <hr>
 <div id="reviews">
-    <h4>{{$dojo->name}}に関する口コミ</h4>
+    <h4>{{$dojo->name}}に関する最新５件の口コミ</h4>
     
     <div>
         <a type=button 
@@ -397,7 +397,7 @@
     </div>
     <p>
         ※問題のある口コミを発見された場合は、
-        <a href="#">こちら</a>
+        <a href="{{route('home.contact')}}">こちら</a>
         に通報ください。
     </p>
 </div>

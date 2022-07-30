@@ -8,6 +8,10 @@
     color: #6B8E23;
 }
 
+.route a, .route strong, .route i{
+    font-size: 14px;
+}
+
 .route a:hover{
     border-bottom:dotted;
     border-color: #6B8E23;
@@ -17,12 +21,15 @@
 
 
 /*create画面*/
+
+/*★PC用画面*/
 /*トップ画面*/
 #createtop{
     width: 100%;
     height: 500px;
-    border-radius:10px;
     position: relative;
+    background: url(/images/dojocreate.png) no-repeat center;
+    background-size: auto;
 
 }
 
@@ -45,16 +52,20 @@
 
 
 /*フォーム部分*/
+.form-group{
+    margin: 10px 0 30px;
+}
+
 .formname{
     margin: 30px auto;
     text-align: center;
 }
 
+
 #dojoform{
     width: 95%;
     margin: auto;
     display: flex;
-    
 }
 
 #dojoform .nav-tabs, .nav-item{
@@ -74,6 +85,7 @@
 
 #dojoform form{
     flex-grow: 1;
+    width: 85%;
     
 }
 
@@ -89,7 +101,9 @@
     background-color: #FFF;
     border-radius: 15px;
 }
-
+#dojoform .form-check{
+    margin-left: 15px;
+}
 
 .btn_submit{
     width: 155px;
@@ -111,4 +125,19 @@
 
 .append_imgs i, .remove_imgs i{
     font-size: 25px;
+}
+
+
+/*★スマホ用(create)*/
+@media screen and (max-width:659px){
+    #createtop h1{
+        text-align: center;
+        font-size: 35px;
+    }
+    #createtop p{
+        font-size: 16px;
+    }
+    #dojoform .nav-link{
+    width:53px;
+    }
 }

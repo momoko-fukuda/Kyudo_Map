@@ -24,19 +24,14 @@
 
 
 <div id="edittop">
-    <h1>弓道場情報編集</h1>
-    <div>
-        <h5>～基本情報～</h5>
-        <p><span>弓道場名</span>{{$dojo->name}}</p>
-        <p><span>住所</span>{{$dojo->area->name}}{{$dojo->address1}}{{$dojo->address2}}</p>
-        <p><span>電話番号</span>{{$dojo->tel}}</p>
-        
-    </div>
-    
+    <h1>{{$dojo->name}}の<br>編集</h1>
     <p>
-        弓道場の情報が古くなったら、知っている情報を登録してみんなと共有しよう！
-        新しい情報へ更新して、正しい情報を元に、みんなと弓道を楽しもう！
+        弓道場に関する新しい情報へ更新して、正しい情報を元にみんなと弓道を楽しもう！
     </p>
+    <span>
+        ※弓道場の基本情報（道場名/住所/電話番号）を変更されたい方は
+        <a href="{{route('home.contact')}}">こちら>></a>
+    </span>
 </div>
 
 <hr>
@@ -105,7 +100,7 @@
                     利用料金
                 </label>
 
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                    <input id="use_money" 
                           type="text" 
                           class="form-control 
@@ -114,7 +109,7 @@
                           value="{{old('use_money') == '' ? $dojo->use_money : old('use_money')}}"  
                           autocomplete="off" 
                           autofocus 
-                          placeholder="利用料金を入力してください（例：2時間500円）">
+                          placeholder="利用料金を入力（例：2時間500円）">
 
                    @error('use_money')
                     <span class="invalid-feedback" role="alert">
@@ -134,7 +129,7 @@
                     弓道場のホームページ
                 </label>
 
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                    <input id="url" 
                           type="text" 
                           class="form-control " 
@@ -142,7 +137,7 @@
                           value="{{old('url') == '' ? $dojo->url : old('url')}}"  
                           autocomplete="off" 
                           autofocus 
-                          placeholder="公式ホームページのURLを入力">
+                          placeholder="ホームページのURLを入力">
                    
                    @error('url')
                     <span class="invalid-feedback" role="alert">
@@ -161,7 +156,7 @@
                     年齢制限
                 </label>
     
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                    <input id="use_age" 
                           type="text" 
                           class="form-control 
@@ -189,7 +184,7 @@
                     段資格の制限
                 </label>
 
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                     <select id="use_step" 
                             class="form-control" 
                             name="use_step" 
@@ -197,7 +192,7 @@
                         <option disabled 
                                 selected 
                                 style="display:none;">
-                            段数を選択してください
+                            段数を選択
                         </option>
                         <option value="不明・無指定" 
                                       {{ '不明・無指定' == old('use_step', $dojo->use_step) ? 'selected' : '' }}>
@@ -236,6 +231,32 @@
                             八段
                         </option>
                     </select>
+                </div>
+            </div>
+            
+            <!--人数制限-->
+            <div class="form-group row">
+                <label for="facility_numberlimit" 
+                       class="col-md-5 col-form-label text-md-left">
+                    人数制限
+                </label>
+    
+                <div class="col-md-7 flex-grow-1">
+                   <input id="facility_numberlimit" 
+                          type="text" 
+                          class="form-control 
+                                 @error('facility_numberlimit') is-invalid @enderror" 
+                          name="facility_numberlimit" 
+                          value="{{old('facility_numberlimit') == '' ? $dojo->facility_numberlimit : old('facility_numberlimit')}}" 
+                          autocomplete="off" 
+                          autofocus 
+                          placeholder="人数制限の条件を入力">
+    
+                   @error('facility_numberlimit')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>入力できる文字数は20文字までになります</strong>
+                    </span>
+                    @enderror
                 </div>
             </div>
             
@@ -435,31 +456,7 @@
                 </div>
             </div>
             
-            <!--人数制限-->
-            <div class="form-group row">
-                <label for="facility_numberlimit" 
-                       class="col-md-5 col-form-label text-md-left">
-                    人数制限
-                </label>
-    
-                <div class="col-md-5">
-                   <input id="facility_numberlimit" 
-                          type="text" 
-                          class="form-control 
-                                 @error('facility_numberlimit') is-invalid @enderror" 
-                          name="facility_numberlimit" 
-                          value="{{old('facility_numberlimit') == '' ? $dojo->facility_numberlimit : old('facility_numberlimit')}}" 
-                          autocomplete="off" 
-                          autofocus 
-                          placeholder="人数の制限がある場合、条件を入力してください">
-    
-                   @error('facility_numberlimit')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>入力できる文字数は20文字までになります</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
+            
         </div>
         
         

@@ -1,7 +1,35 @@
 <div class="tab-pane fade" id="item2" role="tabpanel" aria-labelledby="item2-tab">
-    <!--屋内/屋外-->
+            
+            <!--的数-->
             <div class="form-group row">
-                <label class="col-md-5 col-form-label text-md-left">
+                <label for="facility_matonumber" 
+                       class="col-md-4 col-form-label text-md-left">
+                    的数
+                </label>
+    
+                <div class="col-md-7 flex-grow-1">
+                   <input id="facility_matonumber" 
+                          type="text" 
+                          class="form-control 
+                                 @error('facility_matonumber') is-invalid @enderror" 
+                          name="facility_matonumber" 
+                          value="{{old('facility_matonumber') == '' ? $dojo->facility_matonumber : old('facility_matonumber')}}" 
+                          autocomplete="off" 
+                          autofocus 
+                          placeholder="（例：5）※的数5つの場合">
+    
+                   @error('facility_matonumber')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>的の数を数字で入力してください</strong>
+                    </span>
+                    @enderror
+                </div>
+            </div>
+            
+            
+            <!--屋内/屋外-->
+            <div class="form-group row">
+                <label class="col-md-4 col-form-label text-md-left">
                     屋内/屋外
                 </label>
                 
@@ -49,7 +77,7 @@
             </div>
             <!--巻藁あり/なし-->
             <div class="form-group row">
-                <label class="col-md-5 col-form-label text-md-left">
+                <label class="col-md-4 col-form-label text-md-left">
                     巻藁の設置
                 </label>
                 
@@ -97,7 +125,7 @@
             </div>
             <!--冷暖房あり/なし-->
             <div class="form-group row">
-                <label class="col-md-5 col-form-label text-md-left">
+                <label class="col-md-4 col-form-label text-md-left">
                     冷暖房設備
                 </label>
                 
@@ -143,34 +171,10 @@
                 
                 
             </div>
-            <!--的数-->
-            <div class="form-group row">
-                <label for="facility_matonumber" 
-                       class="col-md-5 col-form-label text-md-left">
-                    的数
-                </label>
-    
-                <div class="col-md-5">
-                   <input id="facility_matonumber" 
-                          type="text" 
-                          class="form-control 
-                                 @error('facility_matonumber') is-invalid @enderror" 
-                          name="facility_matonumber" 
-                          value="{{old('facility_matonumber') == '' ? $dojo->facility_matonumber : old('facility_matonumber')}}" 
-                          autocomplete="off" 
-                          autofocus 
-                          placeholder="（例：5）※的数5つの場合">
-    
-                   @error('facility_matonumber')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>的の数を数字で入力してください</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
+            
             <!--更衣室あり/なし-->
             <div class="form-group row">
-                <label class="col-md-5 col-form-label text-md-left">
+                <label class="col-md-4 col-form-label text-md-left">
                     更衣室
                 </label>
                 
@@ -219,7 +223,7 @@
             
             <!--駐車場あり/なし-->
             <div class="form-group row">
-                <label class="col-md-5 col-form-label text-md-left">
+                <label class="col-md-4 col-form-label text-md-left">
                     駐車場
                 </label>
                 
@@ -279,10 +283,10 @@
             </div>
             <!--定休日★oldeヘルパー上手くいかない-->
             <div class="form-group row">
-                <label class="col-md-5 col-form-label text-md-left">
+                <label class="col-md-4 col-form-label text-md-left">
                     定休日（複数選択可）
                 </label>
-                <div class="w-50">
+                <div class="w-50  flex-grow-1">
                     <div class="form-check form-check-inline">
                         <input type="hidden" name="holiday_mon" value="false">
                         <input class="form-check-input" 
@@ -393,78 +397,78 @@
             <!--営業時間-->
             <div class="form-group row" >
                 <label for="from" 
-                       class="col-md-5 col-form-label text-md-left">
+                       class="col-md-4 col-form-label text-md-left">
                     営業時間
                 </label>
-                <div class="w-50" id="businesshours" >
+                <div class="w-50 flex-grow-1" id="businesshours" >
                     @if(empty($businesshour))
                     <div>
-                        <label>１開始時間</label>
+                        <label>１</label>
                         <input type="time" class="from1" name="from1" value="{{old('from1')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to1" name="to1" value="{{old('to1')}}">
                     </div>
                     
                     
                     
                     <div class="hidehours">
-                        <label>２開始時間</label>
+                        <label>２</label>
                         <input type="time" class="from2" name="from2" value="{{old('from2')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to2" name="to2" value="{{old('to2')}}">
                     </div>
                     <div class="hidehours">
-                        <label>３開始時間</label>
+                        <label>３</label>
                         <input type="time" class="from3" name="from3" value="{{old('from3')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to3" name="to3" value="{{old('to3')}}">
                     </div>
                     <div class="hidehours">
-                        <label>４開始時間</label>
+                        <label>４</label>
                         <input type="time" class="from4" name="from4" value="{{old('from4')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to4" name="to4" value="{{old('to4')}}">
                     </div>
                     <div class="hidehours">
-                        <label>５開始時間</label>
+                        <label>５</label>
                         <input type="time" class="from5" name="from5" value="{{old('from5')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to5" name="to5" value="{{old('to5')}}">
                     </div>
                     
                     
                     @else
                     <div>
-                        <label>１開始時間</label>
+                        <label>１</label>
                         <input type="time" class="from1" name="from1" value="{{old('from1') == '' ? $businesshour->from1 : old('from1')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to1" name="to1" value="{{old('to1') == '' ? $businesshour->to1 : old('to1')}}">
                     </div>
                     
                     
                     
                     <div class="hidehours">
-                        <label>２開始時間</label>
+                        <label>２</label>
                         <input type="time" class="from2" name="from2" value="{{old('from2') == '' ? $businesshour->from2 : old('from2')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to2" name="to2" value="{{old('to2') == '' ? $businesshour->to2 : old('to2')}}">
                     </div>
                     <div class="hidehours">
-                        <label>３開始時間</label>
+                        <label>３</label>
                         <input type="time" class="from3" name="from3" value="{{old('from3') == '' ? $businesshour->from3 : old('from3')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to3" name="to3" value="{{old('to3') == '' ? $businesshour->to3 : old('to3')}}">
                     </div>
                     <div class="hidehours">
-                        <label>４開始時間</label>
+                        <label>４</label>
                         <input type="time" class="from4" name="from4" value="{{old('from4') == '' ? $businesshour->from4 : old('from4')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to4" name="to4" value="{{old('to4') == '' ? $businesshour->to4 : old('to4')}}">
                     </div>
                     <div class="hidehours">
-                        <label>５開始時間</label>
+                        <label>５</label>
                         <input type="time" class="from5" name="from5" value="{{old('from5') == '' ? $businesshour->from5 : old('from5')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to5" name="to5" value="{{old('to5') == '' ? $businesshour->to5 : old('to5')}}">
                     </div>
                     @endif
@@ -482,11 +486,11 @@
             <!--備考-->
             <div class="form-group row">
                 <label for="other" 
-                       class="col-md-5 col-form-label text-md-left">
+                       class="col-md-4 col-form-label text-md-left">
                     備考
                 </label>
     
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                    <textarea id="other" 
                              class="form-control 
                                     @error('other') is-invalid @enderror" 

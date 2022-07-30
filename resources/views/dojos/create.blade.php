@@ -22,8 +22,9 @@
 
 <div id="createtop">
     <h1>新規弓道場登録</h1>
-    <p>「弓道場のTEBIKI」に、まだ掲載されていない弓道場を登録して、<br>みんなと共有しよう！
-    みんなで共有し合うことで、まだあなたの知らない弓道場に巡り合えるかもしれません。</p>
+    <p>
+        「弓道場のTEBIKI」に、まだ掲載されていない弓道場を登録して、みんなと共有しよう！
+        みんなで共有し合うことで、まだあなたの知らない弓道場に巡り合えるかもしれません。</p>
 </div>
 
 
@@ -82,10 +83,15 @@
         {{ csrf_field() }}
         
         <!--グループ１-->
-        <div class="tab-pane fade show active" id="item1" role="tabpanel" aria-labelledby="item1-tab">
+        <div class="tab-pane fade show active" 
+             id="item1" 
+             role="tabpanel" 
+             aria-labelledby="item1-tab">
 
             <!--作成ユーザー-->
-            <input type="hidden" name="user_id" value="{{$user->id}}">
+            <input type="hidden" 
+                   name="user_id" 
+                   value="{{$user->id}}">
             
             <!--道場名-->
             <div class="form-group row">
@@ -97,7 +103,7 @@
                        <span class="ml-1 required">必須</span>
                 </label>
 
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                    <input id="name" 
                           type="text" 
                           class="form-control 
@@ -126,7 +132,7 @@
                        <span class="ml-1 required">必須</span>
                 </label>
 
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                     <select id="area_id" 
                             class="form-control 
                                    @error('area_id') is-invalid @enderror" 
@@ -160,7 +166,7 @@
                     <span class="ml-1 required">必須</span>
                 </label>
 
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                    <input id="address1" 
                           type="text" 
                           class="form-control 
@@ -185,11 +191,11 @@
                        class="col-md-5 
                               col-form-label 
                               text-md-left">
-                    住所③（建物名・ビル名など）
+                    住所③（建物・ビル名など）
                     <span class="ml-1 required">必須</span>
                 </label>
 
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                    <input id="address2" 
                           type="text" 
                           class="form-control 
@@ -218,7 +224,7 @@
                     <span class="ml-1 required">必須</span>
                 </label>
 
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                    <input id="tel" 
                           type="text" 
                           class="form-control 
@@ -244,7 +250,7 @@
                     利用料金
                 </label>
 
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                    <input id="use_money" 
                           type="text" 
                           class="form-control 
@@ -272,7 +278,7 @@
                     弓道場のホームページ
                 </label>
 
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                    <input id="url" 
                           type="url" 
                           class="form-control " 
@@ -295,7 +301,7 @@
                               col-form-label 
                               text-md-left 
                               @error('img') is-invalid @enderror">
-                    弓道場画像
+                    弓道場画像(約5枚~10枚まで可<small>※10MB</small>)
                 </label>
                 <div class="col-md-7">
                     @if(empty(old('img')))

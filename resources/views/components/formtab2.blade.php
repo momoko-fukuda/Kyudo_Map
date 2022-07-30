@@ -13,7 +13,7 @@
                     年齢制限
                 </label>
     
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                    <input id="use_age" 
                           type="text" 
                           class="form-control 
@@ -40,7 +40,7 @@
                     段資格の制限
                 </label>
 
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                     <select id="use_step" 
                             class="form-control" 
                             name="use_step" 
@@ -91,6 +91,34 @@
                 </div>
             </div>
             
+            <!--人数制限-->
+            <div class="form-group row">
+                <label for="facility_numberlimit" 
+                       class="col-md-5 
+                              col-form-label 
+                              text-md-left">
+                    人数制限
+                </label>
+    
+                <div class="col-md-7 flex-grow-1">
+                   <input id="facility_numberlimit" 
+                          type="text" 
+                          class="form-control 
+                                 @error('facility_numberlimit') is-invalid @enderror" 
+                          name="facility_numberlimit" 
+                          value="{{ old('facility_numberlimit') }}" 
+                          autocomplete="off" 
+                          autofocus 
+                          placeholder="人数制限の詳細を記載">
+    
+                   @error('facility_numberlimit')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>入力できる文字数は20文字までになります</strong>
+                    </span>
+                    @enderror
+                </div>
+            </div>
+            
             <!--個人利用可否-->
             <div class="form-group row">
                 <label class="col-md-5 
@@ -98,8 +126,9 @@
                               text-md-left">
                     個人利用
                 </label>
-
-                <div class="form-check form-check-inline">
+                
+                <div class="form-check 
+                           form-check-inline">
                     <input class="form-check-input" 
                            type="radio" 
                            name="use_personal" 
@@ -288,36 +317,5 @@
                 
                 
             </div>
-            
-            
-            <!--人数制限-->
-            <div class="form-group row">
-                <label for="facility_numberlimit" 
-                       class="col-md-5 
-                              col-form-label 
-                              text-md-left">
-                    人数制限
-                </label>
-    
-                <div class="col-md-5">
-                   <input id="facility_numberlimit" 
-                          type="text" 
-                          class="form-control 
-                                 @error('facility_numberlimit') is-invalid @enderror" 
-                          name="facility_numberlimit" 
-                          value="{{ old('facility_numberlimit') }}" 
-                          autocomplete="off" 
-                          autofocus 
-                          placeholder="人数の制限の詳細を記載">
-    
-                   @error('facility_numberlimit')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>入力できる文字数は20文字までになります</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
-            
-            
             
         </div>

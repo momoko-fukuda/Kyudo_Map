@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi&display=swap');
-
-body{
+@import url(https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi&display=swap);body{
     background: url(/images/background.jpg) repeat-y center;
     background-size: 1100px auto;
     margin: auto;
@@ -11,292 +9,541 @@ body{
 
 
 /*header・footer部分*/
+/*★PC用・共有用（header・footer）*/
+    .logo{
+        max-width: 180px;
+    }
+    
+    
+    nav{
+        max-width: 960px;
+        min-height: 70px;
+        margin: 10px auto;
+        background-color: #EEE8AA;
+        border-radius:10px;
+    }
+    
+    nav a{
+        color: #2F4F4F;
+    }
+    
+    .navbar-toggler .navbar-toggler-icon{
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(77,103,93)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+    
+    nav ul{
+        text-decoration: none;
+    }
+    
+    
+    #footer{
+        max-width: 960px;
+        min-height: 70px;
+        margin: 0 auto;
+        background-color: #EEE8AA;
+        border-radius:10px;
+        display: flex;
+        justify-content:space-between;
+    }
+    
+    #footer a{
+        margin-right: 10px;
+        text-decoration: none;
+        color: #2F4F4F;
+    }
+    
+    
+    nav li a:hover, #footerlink a:hover{
+        border-bottom: dotted 2px #6B8E23;
+        color: #6B8E23;
+    }
 
-.logo{
-    max-width: 180px;
+
+
+/*★タブレット用（header・footer）*/
+@media screen and (max-width:979px){
+    nav{
+        max-width: 700px;
+    }
+    
+
+    #footer{
+        max-width: 700px;
+    }
+}
+
+/*★スマホ用（header・footer）*/
+@media screen and (max-width:659px){
+    nav{
+        max-width: 500px;
+    }
+    #footer{
+        max-width: 500px;
+    }
 }
 
 
-nav{
-    max-width: 960px;
-    min-height: 70px;
-    margin: 10px auto;
-    background-color: #EEE8AA;
-    border-radius:10px;
-}
-
-nav a{
-    color: #2F4F4F;
-}
-
-.navbar-toggler .navbar-toggler-icon{
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(77,103,93)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-}
-
-nav ul{
-    text-decoration: none;
-}
-
-
-#footer{
-    max-width: 960px;
-    min-height: 70px;
-    margin: 0 auto;
-    background-color: #EEE8AA;
-    border-radius:10px;
-    display: flex;
-    justify-content:space-between;
-}
-
-#footer a{
-    margin-right: 10px;
-    text-decoration: none;
-    color: #2F4F4F;
-}
-
-
-nav li a:hover, #footerlink a:hover{
-    border-bottom: dotted 2px #6B8E23;
-    color: #6B8E23;
-}
 
 
 /*home画面*/
 
-main{
-    max-width: 960px;
-    margin: 100px auto 0;
-    background-color: #FFFFEE;
-    border-radius:10px;
-}
-
-#mainvisual{
-    width: 100%;
-    height: 500px;
-    background: url("../../img/home/fastview.png") no-repeat top center;
-    background-size: auto;
-    border-radius:10px;
-}
-
-
-/*home画面のmainmassege部分*/
-#mainmessage{
-    position: relative;
-}
-#mainmessage h1{
-    width: 500px;
-    font-size: 50px;
-    position: absolute;
-    top: 90px;
-    left: 20px;
-}
-
-#mainmessage h4{
-    width: 500px;
-    position: absolute;
-    top: 220px;
-    left: 20px;
-}
-
-
-/*home画面のmap部分*/
-#mainmap{
-    width: 100%;
-    height: 100%;
-    position: relative;
-    list-style: none;
-}
-
-#mainmap li{
-    padding: 0.5em;
-    margin: 10px 0;
-    background-color: #FFFFEE;
-    border: solid 2px #B8860B;
-    border-radius: 10px;
-}
-
-#mainmap dd{
-    font-size: 12px;
-    float: left;
-}
-
-#mainmap p{
-    width: 500px;
-    font-size: 18px;
-    position: absolute;
-    top: 80px;
-    right: 40px;
-}
-
-#area1{
-    width: 90px;
-    position: absolute;
-    top: 10px;
-    right: 180px;
-}
-#area2{
-    width: 110px;
-    position: absolute;
-    top: 120px;
-    right: 30px;
-}
-#area3{
-    width: 130px;
-    position: absolute;
-    top: 230px;
-    right: 30px;
-}
-#area4{
-    width: 120px;
-    position: absolute;
-    top: 140px;
-    right: 200px;
-}
-#area5{
-    width: 90px;
-    position: absolute;
-    top:340px;
-    right: 70px;
-}
-#area6{
-    width: 110px;
-    position: absolute;
-    bottom: 15px;
-    right: 165px;
-}
-#area7{
-    width: 110px;
-    position: absolute;
-    top: 240px;
-    right: 310px;
-}
-#area8{
-    width: 130px;
-    position: absolute;
-    bottom: 0px;
-    right: 280px;
-}
-#area9{
-    width: 130px;
-    position: absolute;
-    bottom: 100px;
-    right: 430px;
-}
-
-
-#kyudo_about{
-    width: 60%;
-    margin:50px auto;
+/*★タブレットや小さいPC画面用（home画面）*/
+@media screen and (max-width:979px){
+    main{
+        max-width: 700px;
+        margin: 100px auto 0;
+        background-color: #FFFFEE;
+        border-radius:10px;
+    }
+    #mainvisual{
+        width: 100%;
+    }
     
+    /*home画面のmainmassege部分*/
+    #mainmessage{
+        width: 100%;
+        height: 500px;
+        margin: auto;
+        padding: 30px 0;
+        text-align: center;
+        background: url(/images/sp_fastview.png) no-repeat top 10px center;
+        background-size: contain; 
+        background-size: auto;
+    }
+    
+    
+    /*home画面のmap部分*/
+    #mainmap{
+        width: 100%;
+        padding: 0;
+        margin: auto;
+        position: relative;
+        list-style: none;
+    }
+    #mainmap li{
+        width: 90%;
+        margin: 10px auto;
+        border: solid 2px #B8860B;
+        border-radius: 10px;
+    }
+    #mainmap dt{
+        height: 50px;
+        padding: 0.5em;
+        background-color: #EEE8AA;
+        border-radius: 10px 10px 0 0;
+    }
+    #mainmap dt{
+        position: relative;
+    }
+    #mainmap dt:after{
+        font-family: 'FontAwesome';
+        content:"\F13A";
+        position: absolute;
+        right: 10px;
+    }
+    #mainmap dd{
+        font-size: 12px;
+        padding: 5px;
+        display: none;
+    }
+    #mainmap dd a{
+        font-size: 1rem;
+        color: #6B8E23;
+    }
+    
+    #mainmap p{
+        width: 280px;
+        margin: 10px auto;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    
+    #kyudo_about{
+        margin: 40px 20px;
+        text-align: center;
+        
+    }
+    
+    
+    #kyudo_about img{
+        width:60px; 
+        margin: 10px auto;
+    }
+    
+    .btn_about{
+        display: inline-block;
+        width: 200px;
+        margin:10px;
+        background-color: #006400;
+    }
+    .btn_search{
+        display: inline-block;
+        width: 200px;
+        margin:10px;
+        background-color: #DAA520;
+    }
+    .btn_about, .btn_search{
+        color:#fff;
+        box-shadow: 1px 1px 3px #556B2F;
+    }
+    .btn_about:hover, .btn_search:hover{
+        color: #EEE8AA;
+    }
+    
+    #news{
+        width: 90%;
+        margin:50px auto;
+        padding: 20px 50px;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+    #news li{
+       list-style: none;
+    }
+    #news li a{
+        color: #8CA75A;
+    }
+    #reviews{
+        width: 80%;
+        margin:50px auto 0;
+        padding: 30px 0px;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+    
+    #usagi{
+        display: block;
+        width:100px; 
+        margin: auto;
+    }
+    #reviews h3{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    
+    #reviews .card{
+        width:90%; 
+        margin:10px auto;
+        border: solid 1px #556B2F;
+    }
+    
+    
+    #reviews .card-header{
+        background-color: #6B8E23;
+    }
+    #reviews .card-header p{
+        color: #FFF;
+    }
+    
+    #reviews .card-body{
+        background-color: #FAFAD2;
+    }
+    
+    #reviews .card a{
+        color: #6B8E23;
+    }
+    #reviews .card a:hover{
+        text-decoration: none;
+        border-bottom: dotted 2px;
+    }
+    
+    #reviews .card-header a{
+        color: #FFF;
+        font-size: 18px;
+    }
+    
+    
+    #reviews > div > p{
+        width: 50%;
+        margin: auto;
+    }
+    
+    #reviews > div> img{
+        display: block;
+        width: 200px;
+        margin: 20px auto;
+    }
+    #reviews > div> a{
+        display: block;
+        width: 30%;
+        margin: 20px auto;
+    }
+} 
+
+
+/*★スマホ用（home画面）*/
+@media screen and (max-width:659px){
+    main{
+        max-width: 500px;
+        margin: 100px auto 0;
+        background-color: #FFFFEE;
+        border-radius:10px;
+    }
+    
+    #mainmessage{
+        width: 100%;
+        height: 500px;
+        margin: auto;
+        padding: 30px 0;
+        text-align: center;
+        background: url(/images/ssp_fastview.png) no-repeat top 10px center;
+        background-size: contain; 
+        background-size: auto;
+    }
+    #mainmessage h4{
+        font-size: 20px;
+    }
 }
 
-#kyudo_about h3{
-    display:inline;
+/*★PC用（home画面）*/
+@media screen and (min-width:980px) {
+    main{
+        max-width: 960px;
+        margin: 100px auto 0;
+        background-color: #FFFFEE;
+        border-radius:10px;
+    }
+    
+    #mainvisual{
+        width: 100%;
+        height: 500px;
+        display: flex;
+        background: url(/images/fastview.png?a8cda7e6f7b023c23fcaea8aabc9fcbc) no-repeat top center;
+        background-size: auto;
+    }
+    
+    
+    /*home画面のmainmassege部分*/
+    #mainmessage{
+        position: relative;
+    }
+    #mainmessage h1{
+        width: 500px;
+        font-size: 50px;
+        position: absolute;
+        top: 90px;
+        left: 20px;
+    }
+    
+    #mainmessage h4{
+        width: 500px;
+        position: absolute;
+        top: 220px;
+        left: 20px;
+    }
+    
+    
+    /*home画面のmap部分*/
+    #mainmap{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        list-style: none;
+    }
+    
+    #mainmap li{
+        padding: 0.5em;
+        margin: 10px 0;
+        background-color: #FFFFEE;
+        border: solid 2px #B8860B;
+        border-radius: 10px;
+    }
+    
+    #mainmap dd{
+        float: left;
+        background-color: #FFFACD;
+        margin-right:1px;
+        border-radius: 4px;
+    }
+    #mainmap dd a{
+        font-size: 12px;
+        color: #6B8E23;
+        font-weight: bold;
+        display: inline-block;
+        padding:0 1px 2px;
+    }
+    
+    #mainmap p{
+        width: 500px;
+        font-size: 18px;
+        position: absolute;
+        top: 80px;
+        right: 40px;
+    }
+    
+    #area1{
+        width: 90px;
+        position: absolute;
+        top: 10px;
+        right: 180px;
+    }
+    #area2{
+        width: 110px;
+        position: absolute;
+        top: 120px;
+        right: 30px;
+    }
+    #area3{
+        width: 130px;
+        position: absolute;
+        top: 235px;
+        right: 30px;
+    }
+    #area4{
+        width: 120px;
+        position: absolute;
+        top: 140px;
+        right: 210px;
+    }
+    #area5{
+        width: 90px;
+        position: absolute;
+        top:350px;
+        right: 70px;
+    }
+    #area6{
+        width: 115px;
+        position: absolute;
+        top: 360px;
+        right: 163px;
+    }
+    #area7{
+        width: 110px;
+        position: absolute;
+        top: 235px;
+        right: 328px;
+    }
+    #area8{
+        width: 130px;
+        position: absolute;
+        top: 410px;
+        right: 280px;
+    }
+    #area9{
+        width: 130px;
+        position: absolute;
+        top: 250px;
+        right: 445px;
+    }
+    
+    
+    #kyudo_about{
+        width: 60%;
+        margin:50px auto;
+        
+    }
+    
+    #kyudo_about h3{
+        display:inline;
+    }
+    
+    #kyudo_about img{
+        width:60px; 
+        height:auto;
+    }
+    
+    .btn_about{
+        display: inline-block;
+        width: 200px;
+        margin:10px;
+        background-color: #006400;
+    }
+    .btn_search{
+        display: inline-block;
+        width: 200px;
+        margin:10px;
+        background-color: #DAA520;
+    }
+    .btn_about, .btn_search{
+        color:#fff;
+        box-shadow: 1px 1px 3px #556B2F;
+    }
+    .btn_about:hover, .btn_search:hover{
+        color: #EEE8AA;
+    }
+    
+    
+    #news{
+        width: 80%;
+        margin:50px auto;
+        padding: 20px 50px;
+        background-color: #fff;
+        border-radius: 10px;
+        text-align: center;
+    }
+    #news li{
+        list-style: none;
+    }
+    #news li a{
+        color: #8CA75A;
+    }
+    
+    #reviews{
+        width: 80%;
+        margin:50px auto 0;
+        padding: 30px 0px;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+    
+    #usagi{
+        width:100px; 
+        height:auto;
+        margin-left: 100px;
+    }
+    
+    #reviews h3{
+        display: inline;
+    }
+    
+    #reviews .card{
+        width:500px; 
+        margin:10px auto;
+        border: solid 1px #556B2F;
+    }
+    
+    
+    #reviews .card-header{
+        background-color: #6B8E23;
+    }
+    #reviews .card-header p{
+        color: #FFF;
+    }
+    
+    #reviews .card-body{
+        background-color: #FAFAD2;
+    }
+    
+    #reviews .card a{
+        color: #6B8E23;
+    }
+    #reviews .card a:hover{
+        text-decoration: none;
+        border-bottom: dotted 2px;
+    }
+    
+    #reviews .card-header a{
+        color: #FFF;
+        font-size: 18px;
+    }
+    
+    
+    #reviews > div > p{
+        width: 50%;
+        margin: auto;
+    }
+    
+    #reviews > div> img{
+        display: block;
+        width: 200px;
+        margin: 20px auto;
+    }
+    #reviews > div> a{
+        display: block;
+        width: 30%;
+        margin: 20px auto;
+    }
 }
 
-#kyudo_about img{
-    width:60px; 
-    height:auto;
-}
-
-#kyudo_about div{
-    width: 70%;
-    margin: auto;
-}
-
-.btn_about{
-    margin-right:10px;
-    background-color: #006400;
-}
-.btn_search{
-    background-color: #DAA520;
-}
-.btn_about, .btn_search{
-    color:#fff;
-    box-shadow: 1px 1px 3px #556B2F;
-}
-.btn_about:hover, .btn_search:hover{
-    color: #EEE8AA;
-}
-
-
-#news{
-    width: 80%;
-    margin:50px auto;
-    padding: 20px 50px;
-    background-color: #fff;
-    border-radius: 10px;
-}
-#news h3{
-    margin-left: 50px;
-}
-#news li{
-    margin-left: 80px;
-}
-
-
-#reviews{
-    width: 80%;
-    margin:50px auto 0;
-    padding: 30px 0px;
-    background-color: #fff;
-    border-radius: 10px;
-}
-
-#usagi{
-    width:100px; 
-    height:auto;
-    margin-left: 100px;
-}
-
-#reviews h3{
-    display: inline;
-}
-
-#reviews .card{
-    width:500px; 
-    margin:10px auto;
-    border: solid 1px #556B2F;
-}
-
-
-#reviews .card-header{
-    background-color: #6B8E23;
-}
-#reviews .card-header p{
-    color: #FFF;
-}
-
-#reviews .card-body{
-    background-color: #FAFAD2;
-}
-
-#reviews .card a{
-    color: #6B8E23;
-}
-#reviews .card a:hover{
-    text-decoration: none;
-    border-bottom: dotted 2px;
-}
-
-#reviews .card-header a{
-    color: #FFF;
-    font-size: 18px;
-}
-
-
-#reviews > div > p{
-    width: 50%;
-    margin: auto;
-}
-
-#reviews > div> img{
-    display: block;
-    width: 200px;
-    margin: 20px auto;
-}
-#reviews > div> a{
-    display: block;
-    width: 30%;
-    margin: 20px auto;
-}

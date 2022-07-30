@@ -135,7 +135,13 @@ class ButtonController extends Controller
         } else {
             $user->favorite($review);
         }
+        
+        // ajaxにデータをいい送る。（trueか、count数）Qどうやって受け取って送るんだろう
+        return [
+            "isFavorite" => $user->hasFavorited($review),
+            "count" => xxx
+            ];
 
-        return redirect()->route('reviews.index', ['dojo'=> $dojo->id]);
+        // return redirect()->route('reviews.index', ['dojo'=> $dojo->id]);
     }
 }

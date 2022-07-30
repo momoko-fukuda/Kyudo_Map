@@ -6,12 +6,12 @@ $( function()
     
 });
 
-$(function(){
-    $('.hidehours').hide();
-
-    $('.fadehourbtn').click(function(){
-        $('.hidehours').toggle();
-    });
+    $(function(){
+        $('.hidehours').hide();
+    
+        $('.fadehourbtn').click(function(){
+            $('.hidehours').toggle();
+        });
     
     
     
@@ -50,33 +50,22 @@ $(function(){
         }
     });
 
+    /**
+     * SP版の道場エリア表示コード
+     * （homeblade）
+     */
     
-
-    // /**
-    //  * dojos/create.blade.phpにて、新規登録ボタン押した後
-    //  * 営業時間のデータを配列化して取得
-    //  * submit送信
-    //  */
-    // $('#btn_submit').click(function(){
-        
-    //     // 配列を入れる箱
-    //     let imgarry = [];
-        
-        
-    //     // divの.hourboxデータを繰り返し配列に入れている
-    //     $('.imgbox').each(function(){
-    //         let imgvalue = $(this).find('.img').val();
-    //         imgarry.push(imgvalue);
-    //     });
-    
-        
-    //     // hourarry内の配列をJSON形式に変更し、隠しフォーム「json_businesshour」に投入
-    //     $('#json_imgs').val(JSON.stringify(imgarry));
-        
-    //     // フォーム送信
-    //     // $("#form_dojocreate").submit();
-        
-    // });
+    if(window.matchMedia("(max-width: 979px)").matches){
+        $('.area').click(function() {
+                $areaId = $(this).parent();
+                $areas = $areaId.children('dd');
+                if(!$areas.hasClass('display-none')){
+                    $areas.slideDown().addClass('display-none').css('display', 'block');
+                }else{
+                    $areas.slideUp().removeClass('display-none').css('display', 'none');
+                }
+        });
+    }
     
 });
 

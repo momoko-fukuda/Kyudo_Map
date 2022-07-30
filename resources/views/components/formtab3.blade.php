@@ -1,6 +1,37 @@
 <!--タブ内容3-->
         <div class="tab-pane fade" id="item3" role="tabpanel" aria-labelledby="item3-tab">
             
+            
+            <!--的数-->
+            <div class="form-group row">
+                <label for="facility_matonumber" 
+                       class="col-md-4 
+                              col-form-label 
+                              text-md-left">
+                    的数
+                </label>
+    
+                <div class="col-md-7 flex-grow-1">
+                   <input id="facility_matonumber" 
+                          type="text" 
+                          class="form-control 
+                                 @error('facility_matonumber') is-invalid @enderror" 
+                          name="facility_matonumber" 
+                          value="{{ old('facility_matonumber') }}" 
+                          autocomplete="off" 
+                          autofocus 
+                          placeholder="（例：5）※的数5つの場合">
+    
+                   @error('facility_matonumber')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>的の数を数字で入力してください</strong>
+                    </span>
+                    @enderror
+                </div>
+            </div>
+            
+            
+            
             <!--屋内/屋外-->
             <div class="form-group row">
                 <label class="col-md-4 
@@ -149,33 +180,7 @@
                 
                 
             </div>
-            <!--的数-->
-            <div class="form-group row">
-                <label for="facility_matonumber" 
-                       class="col-md-4 
-                              col-form-label 
-                              text-md-left">
-                    的数
-                </label>
-    
-                <div class="col-md-4">
-                   <input id="facility_matonumber" 
-                          type="text" 
-                          class="form-control 
-                                 @error('facility_matonumber') is-invalid @enderror" 
-                          name="facility_matonumber" 
-                          value="{{ old('facility_matonumber') }}" 
-                          autocomplete="off" 
-                          autofocus 
-                          placeholder="（例：5）※的数5つの場合">
-    
-                   @error('facility_matonumber')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>的の数を数字で入力してください</strong>
-                    </span>
-                    @enderror
-                </div>
-            </div>
+            
             
             <!--更衣室あり/なし-->
             <div class="form-group row">
@@ -293,7 +298,7 @@
                 <label class="col-md-4 col-form-label text-md-left">
                     定休日（複数選択可）
                 </label>
-                <div class="w-50">
+                <div class="w-50 flex-grow-1">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" 
                                type="checkbox" 
@@ -301,7 +306,9 @@
                                id="holiday_mon" 
                                value="true"
                                       {{ old('holiday_mon') == 'true' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="holiday_mon">月曜日</label>
+                        <label class="form-check-label" for="holiday_mon">
+                            月曜日
+                        </label>
                     </div>
                     
                     <div class="form-check form-check-inline">
@@ -311,7 +318,9 @@
                                id="holiday_tues" 
                                value="true"
                                       {{ old('holiday_tues') == 'true' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="holiday_tues">火曜日</label>
+                        <label class="form-check-label" for="holiday_tues">
+                            火曜日
+                        </label>
                     </div>
                     
                     <div class="form-check form-check-inline">
@@ -321,7 +330,9 @@
                                id="holiday_wednes" 
                                value="true"
                                       {{ old('holiday_wednes') == 'true' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="holiday_wednes">水曜日</label>
+                        <label class="form-check-label" for="holiday_wednes">
+                            水曜日
+                        </label>
                     </div>
                     
                     <div class="form-check form-check-inline">
@@ -331,7 +342,9 @@
                                id="holiday_thurs" 
                                value="true"
                                       {{ old('holiday_thurs') == 'true' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="holiday_thurs">木曜日</label>
+                        <label class="form-check-label" for="holiday_thurs">
+                            木曜日
+                        </label>
                     </div>
                     
                     <div class="form-check form-check-inline">
@@ -341,7 +354,9 @@
                                id="holiday_fri" 
                                value="true"
                                       {{ old('holiday_fri') == 'true' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="holiday_fri">金曜日</label>
+                        <label class="form-check-label" for="holiday_fri">
+                            金曜日
+                        </label>
                     </div>
                     
                     <div class="form-check form-check-inline">
@@ -351,7 +366,9 @@
                                id="holiday_satur" 
                                value="true"
                                       {{ old('holiday_satur') == 'true' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="holiday_satur">土曜日</label>
+                        <label class="form-check-label" for="holiday_satur">
+                            土曜日
+                        </label>
                     </div>
                     
                     <div class="form-check form-check-inline">
@@ -361,7 +378,9 @@
                                id="holiday_sun" 
                                value="true"
                                       {{ old('holiday_sun') == 'true' ? 'checked' : '' }}>
-                        <label class="form-check-label" for="holiday_sun">日曜日</label>
+                        <label class="form-check-label" for="holiday_sun">
+                            日曜日
+                        </label>
                     </div>
                 </div>
             </div>
@@ -372,44 +391,49 @@
                        class="col-md-4 
                               col-form-label 
                               text-md-left">
-                    営業時間
+                    営業時間(複数設定可)
                 </label>
-                <div class="w-50" id="businesshours" >
+                <div class="w-50 
+                            ml-3 
+                            flex-grow-1" 
+                     id="businesshours" >
                     <div>
-                        <label>１開始時間</label>
+                        <label>１</label>
                         <input type="time" class="from1" name="from1" value="{{old('from1')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to1" name="to1" value="{{old('to1')}}">
                     </div>
                     
 
                     <div class="hidehours">
-                        <label>２開始時間</label>
+                        <label>２</label>
                         <input type="time" class="from2" name="from2" value="{{old('from2')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to2" name="to2" value="{{old('to2')}}">
                     </div>
                     <div class="hidehours">
-                        <label>３開始時間</label>
+                        <label>３</label>
                         <input type="time" class="from3" name="from3" value="{{old('from3')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to3" name="to3" value="{{old('to3')}}">
                     </div>
                     <div class="hidehours">
-                        <label>４開始時間</label>
+                        <label>４</label>
                         <input type="time" class="from4" name="from4" value="{{old('from4')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to4" name="to4" value="{{old('to4')}}">
                     </div>
                     <div class="hidehours">
-                        <label>５開始時間</label>
+                        <label>５</label>
                         <input type="time" class="from5" name="from5" value="{{old('from5')}}">
-                        <label>終了時間</label>
+                        <label>～</label>
                         <input type="time" class="to5" name="to5" value="{{old('to5')}}">
                     </div>
                     
                     <button type="button" 
-                            class="btn btn_check fadehourbtn">
+                            class="btn 
+                                   btn_check 
+                                   fadehourbtn">
                         時間区分を分ける
                     </button>
                     
@@ -425,7 +449,7 @@
                     備考
                 </label>
     
-                <div class="col-md-5">
+                <div class="col-md-7 flex-grow-1">
                    <textarea id="other" 
                              class="form-control 
                                     @error('other') is-invalid @enderror" 
