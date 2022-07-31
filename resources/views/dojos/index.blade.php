@@ -20,17 +20,29 @@
     
     <form method="GET" action="{{ route('dojos.index') }}">
         @csrf
-        <div>
-            <label for="area_id"><strong>都道府県検索</strong></label>
-            <select id="area_id" class="form-control" name="area_id" data-toggle="select">
-                <option value="">全ての都道府県を検索する</option>
+        <div class="form-group col-md-8">
+            <label for="area_id">
+                <strong>都道府県検索</strong>
+            </label>
+            <select id="area_id" 
+                    class="form-control" 
+                    name="area_id" 
+                    data-toggle="select">
+                <option>
+                    全ての都道府県を検索する
+                </option>
                 @foreach($areas as $area)
-                    <option value="{{$area->id}}" @if( $area_id == $area->id ) selected @endif>{{$area->name}}</option>
+                    <option value="{{$area->id}}" 
+                            @if( $area_id == $area->id ) selected @endif>
+                        {{$area->name}}
+                    </option>
                 @endforeach
             </select>
         </div>
-        <div>
-            <label for="addresskeyword"><strong>市区町村検索</strong></label>
+        <div class="form-group col-md-8">
+            <label for="addresskeyword">
+                <strong>市区町村検索</strong>
+            </label>
             <input id="addresskeyword" 
                    type="text" 
                    class="form-control" 
@@ -38,10 +50,12 @@
                    value="{{ $addresskeyword }}"
                    autocomplete="address-level2" 
                    autofocus 
-                   placeholder="検索したい市区町村名を記入してください">
+                   placeholder="検索したい市区町村名を記入">
         </div>
-        <div>
-            <label for="dojo_name"><strong>道場名検索</strong></label>
+        <div class="form-group col-md-8">
+            <label for="dojo_name">
+                <strong>道場名検索</strong>
+            </label>
             <input id="dojo_name" 
                    type="text" 
                    class="form-control" 
@@ -49,17 +63,26 @@
                    value="{{ $dojo_name }}"
                    autocomplete="on" 
                    autofocus 
-                   placeholder="検索したい道場名を記入してください">
+                   placeholder="検索したい道場名を記入">
         </div>
-        <div id="conditions">
-            <p><strong>利用条件</strong></p>
+        <div id="conditions" 
+             class="form-group col-md-8">
+            <p>
+                <strong>利用条件</strong>
+            </p>
             <ul>
                 <li>
-                    <input type="checkbox" name="use_personal" value="可能" @if( $use_personal == "可能" ) checked @endif>
+                    <input type="checkbox" 
+                           name="use_personal" 
+                           value="可能" 
+                           @if( $use_personal == "可能" ) checked @endif>
                     <label>個人利用可</label>
                 </li>
                 <li>
-                    <input type="checkbox" name="use_group" value="可能" @if( $use_group == "可能" ) checked @endif>
+                    <input type="checkbox" 
+                           name="use_group" 
+                           value="可能" 
+                           @if( $use_group == "可能" ) checked @endif>
                     <label>団体利用可</label>
                 </li>
             </ul>
@@ -136,7 +159,7 @@
     @empty
     <div class="nosearch">
         <p>該当する道場は見つかりませんでした</p>
-        <img src="../../img/dojos/sorry_dojosearch.gif" alt="弓道場が見つかりません">
+        <img src="../../images/dojosearch.gif" alt="弓道場が見つかりません">
         <a type="button" class="btn btn_check" href="{{route('dojos.create')}}">
             知っている弓道場を登録する
         </a>

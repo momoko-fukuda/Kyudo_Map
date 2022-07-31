@@ -39,8 +39,8 @@
 
 <!--ユーザー情報-->
 <div class="usermenu">
+    <img src="../../images/to_edit.png">
     <h3>
-        <img src="../../images/to_edit.png">
         <strong>{{$user->name}}</strong>さんのマイページ
     </h3>
 
@@ -85,7 +85,8 @@
             @endif
         </div>
         
-        <div class="flex-grow-1 pl-5">
+        <div class="flex-grow-1
+                    username">
             <p>
                 <i class="fa-solid fa-person-circle-check"></i>
                 ユーザー名<br>
@@ -110,7 +111,7 @@
 <hr>
 <!--各種情報-->
 <div id="userinfo">
-    <ul class="nav nav-tabs justify-content-center" role="tablist">
+    <ul class="nav nav-pills justify-content-center" role="tablist">
         <li class="nav-item">
            <a class="nav-link active" 
               id="item1-tab" 
@@ -183,7 +184,7 @@
                 </a>
             @else
                 <p>
-                    <strong>{{$user->name}}</strong>さんが投稿した口コミを一覧
+                    投稿した口コミ
                 </p>
                 @foreach($reviews as $review)
                     <div class="card">
@@ -242,7 +243,7 @@
                     弓道場を探しにいく
                 </a>
             @else
-            <p><strong>{{$user->name}}</strong>さんが参考になった口コミ</p>
+            <p>参考になった口コミ</p>
             @foreach($favoriteReviews as $favoriteReview)
             
                 <div class="card">
@@ -322,7 +323,7 @@
                     弓道場を登録する
                 </a>
             @else
-                <p><strong>{{$user->name}}</strong>さんがお気に入りした弓道場</p>
+                <p>お気に入りの弓道場</p>
                 @foreach($favoriteDojos as $favoriteDojo)
                     <div class="card">
                         <div class="card-header">
@@ -388,7 +389,7 @@
                 </a>
             @else
                 <p>
-                    <strong>{{$user->name}}</strong>さんが利用した弓道場
+                    利用した弓道場
                 </p>
                 @foreach($useDojos as $useDojo)
                     <div class="card">
@@ -453,7 +454,7 @@
                 </a>
             @else
                 <p>
-                    <strong>{{$user->name}}</strong>さんの活動地域の弓道場
+                    活動地域の弓道場
                     <br>
                     <small>※更新順に表示</small>
                 </p>

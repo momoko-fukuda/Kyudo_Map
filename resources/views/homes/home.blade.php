@@ -193,7 +193,7 @@
 <hr>
 <div id="kyudo_about">
     <h3>弓道場のTEBIKIって何ができるの？</h3>
-    <img src="../img/home/kyudo_about.png">
+    <img src="../../images/kyudo_about.png" alt="弓道のTEBIKIとは？">
     <div>
         <a href="{{route('home.about')}}" class="btn btn_about" role="button" >
             説明を見に行く

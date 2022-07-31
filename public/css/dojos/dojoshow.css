@@ -55,7 +55,7 @@
 
 
 .slide{
-    width: 400px;
+    max-width: 400px;
     height: 300px;
     display: flex;
     overflow-x: scroll;
@@ -86,7 +86,7 @@
 }
 
 #btn_img{
-    padding: 20px 0 0 50px; 
+    padding-top: 20px; 
 }
 .btn_show{
     margin-right: 10px;
@@ -113,17 +113,21 @@
 #dojoterms h4{
     text-align: center;
 }
+#dojoterms table{
+    width: 90%;
+}
 #dojoterms tr{
     border-bottom:1px #DEB887 solid; 
 }
 
 #dojoterms th{
-   width: 200px;
+   width: 50%;
    height: 40px;
+   padding-left: 10px;
    background-color: #EEE8AA;
 }
 #dojoterms td{
-    width: 200px;
+    padding-left: 10px;
 }
 
 #toedit{
@@ -154,4 +158,40 @@
 #reviews > p{
     width: 70%;
     margin: 10px auto 0;
+}
+
+/*★タブレット・スマホ用*/
+@media screen and (max-width:979px){
+    #showtop{
+        padding: 20px 10px;
+        flex-flow:column;
+    }
+    #dojoinfo{
+        width: 90%;
+        margin: auto;
+        text-align: center;
+    }
+    #dojoinfo table{
+        margin: 20px auto;
+    }
+    #dojoinfo td{
+        font-size: 15px;
+    }
+    #showtop .dojoimg{
+        width: 90%;
+        margin: auto;
+    }
+    #dojoterms{
+        flex-flow:column;
+    }
+    #dojoterms table{
+        margin: 10px auto;
+    }
+    #toedit p{
+        width: 61%;
+    }
+    #toedit div{
+        width: 50%;
+    }
+    
 }

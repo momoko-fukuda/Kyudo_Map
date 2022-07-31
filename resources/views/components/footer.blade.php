@@ -1,7 +1,7 @@
 <div id="footer" class="navbar navbar-expand-lg shadow-sm">
     <div>
     <a class="navbar-brand" href="{{url('/')}}">
-        <img class="logo" src="../../../img/home/logo.gif" alt="弓道場のTEBIKIのロゴ">
+        <img class="logo" src="../../../images/logo.gif" alt="弓道場のTEBIKIのロゴ">
     </a>
     </div>
     <div id="footerlink">

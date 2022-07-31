@@ -1,11 +1,13 @@
 /*道場写真一覧のCSS*/
+/*PC用*/
 .dojophototop{
     width: 100%;
-    height: 400px;
-    margin: 40px auto;
+    margin: 40px auto 50px;
     text-align: center;
 }
-
+.dojophototop img{
+    width: 55%;
+}
 #dojophotos{
     width: 100%;
     padding-bottom: 30px;
@@ -18,6 +20,8 @@
     background-color: #fff;
     border-radius: 15px;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 }
 
@@ -32,4 +36,26 @@
 }
 #dojophotos small{
     display: block;
+}
+
+/*★スマホ用*/
+@media screen and (max-width:659px){
+    .dojophototop h1{
+        font-size: 30px;
+    }
+    .dojophototop img{
+        width: 80%;
+    }
+    .dojoimg{
+        width:140px;
+        text-align: center;
+    }
+    #dojophotos img{
+        width: 100px;
+        margin: 10px;
+    }
+    .toreviewcreate p{
+        width: 80%;
+        margin: auto;
+    }
 }

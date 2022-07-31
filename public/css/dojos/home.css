@@ -205,7 +205,7 @@
         color: #8CA75A;
     }
     #reviews{
-        width: 80%;
+        width: 90%;
         margin:50px auto 0;
         padding: 30px 0px;
         background-color: #fff;
@@ -267,7 +267,7 @@
     }
     #reviews > div> a{
         display: block;
-        width: 30%;
+        width: 60%;
         margin: 20px auto;
     }
 } 
@@ -542,7 +542,7 @@
     }
     #reviews > div> a{
         display: block;
-        width: 30%;
+        width: 40%;
         margin: 20px auto;
     }
 }

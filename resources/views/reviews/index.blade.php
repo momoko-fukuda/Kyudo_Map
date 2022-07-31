@@ -23,6 +23,7 @@
 
 <div id="reviewindex">
     <h1>{{$dojo->name}}の<br>口コミ一覧</h1>
+    <img src="../../images/sp_reviewindex.png" alt="弓道場の口コミ一覧">
 </div>
 
 

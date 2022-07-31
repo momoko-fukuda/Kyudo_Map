@@ -30,7 +30,7 @@
         @csrf
         <input type="hidden" name="_method" value="DELETE">
         
-        <div>いつも弓道場のTEBIKIをご利用頂きありがとうございます。
+        <div class="deletemessage">いつも弓道場のTEBIKIをご利用頂きありがとうございます。
             <br>退会されますと、{{$user->name}}さんの情報が全て削除され、復旧できなくなります。
         </div>
         <img class="user_deleteimg" src="../../images/user_delete.png" alt="退会申請">

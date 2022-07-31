@@ -34,9 +34,12 @@
 
 <hr>
 
-    <h4 class="mt-5 reviewformtitle">口コミ投稿フォーム</h4>
+    <h4 class="reviewformtitle">口コミ投稿フォーム</h4>
     
-    <form id="form_reviewcreate" action="{{ route('reviews.store', $dojo->id )}}" method="POST" enctype="multipart/form-data">
+    <form id="form_reviewcreate" 
+          action="{{ route('reviews.store', $dojo->id )}}" 
+          method="POST" 
+          enctype="multipart/form-data">
         {{ csrf_field() }}
         
         
@@ -44,13 +47,13 @@
             <!--ユーザーID（隠し）-->
             <input type="hidden" name="user_id" value="{{$user->id}}">
             
-            <!--道場ID--> 
+            <!--道場ID（隠し）--> 
             <input type="hidden" name="dojo_id" value="{{$dojo->id}}">
             
             
             
             <!--タイトル-->
-            <div class="form-group row">
+            <div class="form-group">
                     <label for="title" 
                            class="col-md-5 col-form-label text-md-left">
                         題名
@@ -78,7 +81,7 @@
             </div>
                 
             <!--コメント-->
-            <div class="form-group row">
+            <div class="form-group">
                     <label for="body" 
                            class="col-md-5 col-form-label text-md-left">
                         コメント
@@ -104,7 +107,7 @@
             
             
             <!--写真アップ-->
-            <div class="form-group row">
+            <div class="form-group">
                     <label class="col-md-5 
                                   col-form-label 
                                   text-md-left 

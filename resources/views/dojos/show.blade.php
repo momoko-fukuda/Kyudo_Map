@@ -105,8 +105,8 @@
     <div class="dojoimg">
         <div class="slide">
             @if($dojophotos->isEmpty())
-                <img src="../../img/dojos/noimage2.png" alt="写真を投稿しよう">
-                <img src="../../img/dojos/noimage1.png" alt="No Image">
+                <img src="../../images/noimage2.png" alt="写真を投稿しよう">
+                <img src="../../images/noimage1.png" alt="No Image">
             @else
                 @foreach($dojophotos as $dojophoto)
                     <img src="{{ $dojophoto['img'] }}">
@@ -322,7 +322,7 @@
     <div id="toedit">
         <p>古い情報や、不明の箇所を更新してみんなに共有しよう！</p>
         <div>
-            <img src="../../img/dojos/to_dojoedit.gif" 
+            <img src="../../images/to_edit.png" 
                  alt="道場情報を更新しよう">
             <a type="button" class="btn btn_show" 
                href='{{route('dojos.edit', $dojo->id)}}'>
@@ -335,7 +335,7 @@
 
 <hr>
 <div id="reviews">
-    <h4>{{$dojo->name}}に関する最新５件の口コミ</h4>
+    <h4>{{$dojo->name}}に関する<br>最新口コミ</h4>
     
     <div>
         <a type=button 
@@ -390,7 +390,7 @@
             </a>
         @else
             <p>ごめんなさい、まだ口コミは投稿されてません。</p>
-            <img src="../img/home/sorry.gif">
+            <img src="../images/sorry.gif">
         @endif
         
         

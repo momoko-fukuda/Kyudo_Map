@@ -1,16 +1,20 @@
 /*道場検索画面*/
-
+/*★PC用*/
 #searchtop h1{
     margin: 20px auto;
     text-align: center;
 }
 
 #searchtop form{
-    width: 80%;
+    width: 90%;
     margin: auto;
-    padding: 40px 120px;
+    padding: 30px 10px;
     background-color: #fff;
     border-radius: 15px;
+}
+
+#searchtop .form-group{
+    margin: 15px auto;
 }
 
 #conditions ul{
@@ -30,7 +34,7 @@
 }
 
 #searchresults{
-    width: 80%;
+    width: 90%;
     margin: 20px auto 0;
     padding: 30px 20px 20px;
     background-color: #fff;
@@ -40,6 +44,7 @@
     margin:10px auto;
     text-align: center;
 }
+
 .searchcount{
     width: 70%;
     margin: 20px auto;
@@ -51,7 +56,6 @@
 }
 #searchresults .card-header{
     background-color: #EEE8AA;
-   
 }
 
 #searchresults .card-header:hover{
@@ -94,10 +98,33 @@
 }
 .nosearch img{
     display:block;
-    width:50%;
+    width:40%;
     margin: 20px auto;
 }
 
+
+/*★スマホ用*/
+@media screen and (max-width:659px){
+    #searchtop h1{
+        font-size: 30px;
+    }
+    #searchresults .card{
+        width:90%;
+        margin:20px auto;
+        border:solid 1px #BDB76B;
+    }
+    #searchresults p{
+        font-size: 14px;
+    }
+    #searchresults .card-header a{
+        font-size: 17px;
+    }
+    .nosearch img{
+        display:block;
+        width:80%;
+        margin: 20px auto;
+    }
+}
 
 
 /*ページネーション*/
