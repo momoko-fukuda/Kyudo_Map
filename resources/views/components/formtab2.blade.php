@@ -16,19 +16,22 @@
                 <div class="col-md-7 flex-grow-1">
                    <input id="use_age" 
                           type="text" 
-                          class="form-control 
-                          　　　　 @error('use_age') is-invalid @enderror" 
+                          class="form-control
+                                 @error('use_age') is-invalid @enderror" 
                           name="use_age" 
                           value="{{ old('use_age') }}" 
                           autocomplete="off" 
                           autofocus 
                           placeholder="例：10（※10歳以上の場合）">
     
-                   @error('use_age')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>制限のある年齢を数字のみで入力してください</strong>
-                    </span>
-                    @enderror
+                   @if($errors->has('use_age'))
+                            @foreach($errors->get('use_age') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
                 </div>
             </div>
              <!--段数制限-->
@@ -42,7 +45,8 @@
 
                 <div class="col-md-7 flex-grow-1">
                     <select id="use_step" 
-                            class="form-control" 
+                            class="form-control
+                                   @error('use_step') is-invalid @enderror" 
                             name="use_step" 
                             autofocus>
                         <option disabled 
@@ -103,7 +107,7 @@
                 <div class="col-md-7 flex-grow-1">
                    <input id="facility_numberlimit" 
                           type="text" 
-                          class="form-control 
+                          class="form-control
                                  @error('facility_numberlimit') is-invalid @enderror" 
                           name="facility_numberlimit" 
                           value="{{ old('facility_numberlimit') }}" 
@@ -111,11 +115,14 @@
                           autofocus 
                           placeholder="人数制限の詳細を記載">
     
-                   @error('facility_numberlimit')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>入力できる文字数は20文字までになります</strong>
-                    </span>
-                    @enderror
+                   @if($errors->has('facility_numberlimit'))
+                            @foreach($errors->get('facility_numberlimit') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
                 </div>
             </div>
             

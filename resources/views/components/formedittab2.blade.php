@@ -10,19 +10,22 @@
                 <div class="col-md-7 flex-grow-1">
                    <input id="facility_matonumber" 
                           type="text" 
-                          class="form-control 
-                                 @error('facility_matonumber') is-invalid @enderror" 
+                          class="form-control
+                                @error('facility_matonumber') is-invalid @enderror" 
                           name="facility_matonumber" 
                           value="{{old('facility_matonumber') == '' ? $dojo->facility_matonumber : old('facility_matonumber')}}" 
                           autocomplete="off" 
                           autofocus 
                           placeholder="（例：5）※的数5つの場合">
     
-                   @error('facility_matonumber')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>的の数を数字で入力してください</strong>
-                    </span>
-                    @enderror
+                   @if($errors->has('facility_matonumber'))
+                            @foreach($errors->get('facility_matonumber') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
                 </div>
             </div>
             
@@ -281,7 +284,7 @@
                 </div>
                 
             </div>
-            <!--定休日★oldeヘルパー上手くいかない-->
+            <!--定休日-->
             <div class="form-group row">
                 <label class="col-md-4 col-form-label text-md-left">
                     定休日（複数選択可）
@@ -299,7 +302,10 @@
                                @else
                                       {{ $dojo->holiday_mon == 'true' ? 'checked' : 'false' }}
                                @endif>
-                        <label class="form-check-label" for="holiday_mon">月曜日</label>
+                        <label class="form-check-label" 
+                               for="holiday_mon">
+                            月曜日
+                        </label>
                     </div>
                     
                     <div class="form-check form-check-inline">
@@ -314,7 +320,10 @@
                                       @else
                                         {{ $dojo->holiday_tues == 'true' ? 'checked' : '' }}
                                       @endif>
-                        <label class="form-check-label" for="holiday_tues">火曜日</label>
+                        <label class="form-check-label" 
+                               for="holiday_tues">
+                            火曜日
+                        </label>
                     </div>
                     
                     <div class="form-check form-check-inline">
@@ -329,7 +338,10 @@
                                       @else
                                         {{ $dojo->holiday_wednes == 'true' ? 'checked' : 'false' }}
                                       @endif>
-                        <label class="form-check-label" for="holiday_wednes">水曜日</label>
+                        <label class="form-check-label" 
+                               for="holiday_wednes">
+                            水曜日
+                        </label>
                     </div>
                     
                     <div class="form-check form-check-inline">
@@ -344,7 +356,10 @@
                                       @else
                                         {{ $dojo->holiday_thurs == 'true' ? 'checked' : '' }}
                                       @endif>
-                        <label class="form-check-label" for="holiday_thurs">木曜日</label>
+                        <label class="form-check-label" 
+                               for="holiday_thurs">
+                            木曜日
+                        </label>
                     </div>
                     
                     <div class="form-check form-check-inline">
@@ -359,7 +374,10 @@
                                       @else
                                         {{ $dojo->holiday_fri == 'true' ? 'checked' : '' }}
                                       @endif>
-                        <label class="form-check-label" for="holiday_fri">金曜日</label>
+                        <label class="form-check-label" 
+                               for="holiday_fri">
+                            金曜日
+                        </label>
                     </div>
                     
                     <div class="form-check form-check-inline">
@@ -374,7 +392,10 @@
                                       @else
                                         {{ $dojo->holiday_satur == 'true' ? 'checked' : '' }}
                                       @endif>
-                        <label class="form-check-label" for="holiday_satur">土曜日</label>
+                        <label class="form-check-label" 
+                               for="holiday_satur">
+                            土曜日
+                        </label>
                     </div>
                     
                     <div class="form-check form-check-inline">
@@ -389,7 +410,10 @@
                                       @else
                                         {{ $dojo->holiday_sun == 'true' ? 'checked' : '' }}
                                       @endif>
-                        <label class="form-check-label" for="holiday_sun">日曜日</label>
+                        <label class="form-check-label" 
+                               for="holiday_sun">
+                            日曜日
+                        </label>
                     </div>
                 </div>
             </div>
@@ -492,7 +516,7 @@
     
                 <div class="col-md-7 flex-grow-1">
                    <textarea id="other" 
-                             class="form-control 
+                             class="form-control
                                     @error('other') is-invalid @enderror" 
                              name="other" 
                              value="{{old('other') == '' ? $dojo->other : old('other')}}" 
@@ -501,11 +525,14 @@
                              placeholder="その他、利用する上での注意事項を記入してください">
                    </textarea>
     
-                   @error('other')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>255文字以内で入力してください</strong>
-                    </span>
-                    @enderror
+                   @if($errors->has('other'))
+                            @foreach($errors->get('other') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
                 </div>
             </div>
 

@@ -36,7 +36,7 @@
                     @error('email')
                     <span class="invalid-feedback" role="alert">
                         <strong>
-                            メールアドレスが正しくない可能性があります。
+                            メールアドレス、またはパスワードが正しくない可能性があります。
                         </strong>
                     </span>
                     @enderror

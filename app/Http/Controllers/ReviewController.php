@@ -11,6 +11,7 @@ use App\Model\Buttons\ReviewButton;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewController extends Controller
 {
@@ -60,10 +61,16 @@ class ReviewController extends Controller
      */
     public function store(Dojo $dojo, Request $request)
     {
-        $request->validate = ([
-            'title' => ['string', 'required'],
-            'body' => ['text', 'required']
-            ]);
+        $request->validate(
+            [
+            'title' => ['required', 'string'],
+            'body' => ['required', 'string'],
+            'img' => ['max:10000', 'mimes:jpeg,png,jpg,gif']
+            ],
+            [
+                'img.max' => '写真データの容量が上限を越してます。（上限10MBまで）'
+            ]
+        );
             
         $review = new Review();
         Review::createReview($review, $request);

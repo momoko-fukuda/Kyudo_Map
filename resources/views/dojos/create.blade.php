@@ -33,6 +33,15 @@
 
 
 <h4 class="formname">弓道場登録フォーム</h4>
+<!--バリデーションエラー-->
+@if($errors->any())
+    <div class="alert alert-danger">
+        エラー項目があります。
+        <br>各項目のエラー内容を確認してください。
+    </div>
+@endif
+
+
 
 <div id="dojoform">
     
@@ -106,20 +115,23 @@
                 <div class="col-md-7 flex-grow-1">
                    <input id="name" 
                           type="text" 
-                          class="form-control 
+                          class="form-control
                                  @error('name') is-invalid @enderror" 
                           name="name" 
-                          value="{{ old('name') }}" 
-                          required 
+                          value="{{ old('name') }}"
                           autocomplete="name" 
-                          autofocus 
+                          autofocus
                           placeholder="サンプル弓道場/スポーツセンター">
 
-                   @error('name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>入力必須項目であり、既に登録済の道場名の可能性があります</strong>
-                    </span>
-                    @enderror
+                   @if($errors->has('name'))
+                            @foreach($errors->get('name') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
+                   
                 </div>
             </div>
             <!--住所（都道府県）-->
@@ -134,10 +146,9 @@
 
                 <div class="col-md-7 flex-grow-1">
                     <select id="area_id" 
-                            class="form-control 
+                            class="form-control
                                    @error('area_id') is-invalid @enderror" 
                             name="area_id" 
-                            required 
                             autofocus>
                         <option disabled 
                                 selected 
@@ -145,15 +156,21 @@
                             都道府県を選択
                         </option>
                         @foreach($areas as $area)
-                            <option value="{{ $area->id }}" @if( $area->id == old('area_id')) selected @endif>{{$area->name}}</option>
+                            <option value="{{ $area->id }}" 
+                                    @if( $area->id == old('area_id')) selected @endif>
+                                {{$area->name}}
+                            </option>
                         @endforeach
                     </select>
                         
-                    @error('area_id')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>住所（都道府県）を選択してください</strong>
-                    </span>
-                    @enderror
+                    @if($errors->has('area_id'))
+                            @foreach($errors->get('area_id') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
                 </div>
             </div>
             <!--住所（市区町村）-->
@@ -169,20 +186,22 @@
                 <div class="col-md-7 flex-grow-1">
                    <input id="address1" 
                           type="text" 
-                          class="form-control 
+                          class="form-control
                                  @error('address1') is-invalid @enderror" 
                           name="address1" 
-                          value="{{ old('address1') }}" 
-                          required 
+                          value="{{ old('address1') }}"
                           autocomplete="address-level2" 
                           autofocus 
                           placeholder="市区町村名を記入">
 
-                   @error('address1')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>市区町村名を入力してください</strong>
-                    </span>
-                    @enderror
+                   @if($errors->has('address1'))
+                            @foreach($errors->get('address1') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
                 </div>
             </div>
             <!--住所（市区町村以下）-->
@@ -198,20 +217,22 @@
                 <div class="col-md-7 flex-grow-1">
                    <input id="address2" 
                           type="text" 
-                          class="form-control 
+                          class="form-control
                                  @error('address2') is-invalid @enderror" 
                           name="address2" 
-                          value="{{ old('address2') }}" 
-                          required 
+                          value="{{ old('address2') }}"
                           autocomplete="address-level3" 
                           autofocus 
                           placeholder="建物名・ビル名を記入">
 
-                   @error('address2')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>建物名・ビル名などを入力してください</strong>
-                    </span>
-                    @enderror
+                   @if($errors->has('address2'))
+                            @foreach($errors->get('address2') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
                 </div>
             </div>
             <!--電話番号-->
@@ -227,20 +248,22 @@
                 <div class="col-md-7 flex-grow-1">
                    <input id="tel" 
                           type="text" 
-                          class="form-control 
+                          class="form-control
                                  @error('tel') is-invalid @enderror" 
                           name="tel" 
-                          value="{{ old('tel') }}" 
-                          required 
+                          value="{{ old('tel') }}"
                           autocomplete="tel" 
                           autofocus 
                           placeholder="例：03-0000-0000">
 
-                   @error('tel')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>電話番号を入力してください（ハイフン込み）</strong>
-                    </span>
-                    @enderror
+                   @if($errors->has('tel'))
+                            @foreach($errors->get('tel') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
                 </div>
             </div>
             <!--利用料-->
@@ -253,7 +276,7 @@
                 <div class="col-md-7 flex-grow-1">
                    <input id="use_money" 
                           type="text" 
-                          class="form-control 
+                          class="form-control
                                  @error('use_money') is-invalid @enderror" 
                           name="use_money" 
                           value="{{ old('use_money') }}"  
@@ -261,11 +284,14 @@
                           autofocus 
                           placeholder="例：2時間500円">
 
-                   @error('use_money')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>250文字以内で記入してください</strong>
-                    </span>
-                    @enderror
+                   @if($errors->has('use_money'))
+                            @foreach($errors->get('use_money') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
                 </div>
             </div>
             <!--弓道場ホームページ-->
@@ -273,34 +299,36 @@
                 <label for="url" 
                        class="col-md-5 
                               col-form-label 
-                              text-md-left 
-                              @error('url') is-invalid @enderror">
+                              text-md-left">
                     弓道場のホームページ
                 </label>
 
                 <div class="col-md-7 flex-grow-1">
                    <input id="url" 
                           type="url" 
-                          class="form-control " 
+                          class="form-control
+                                @error('url') is-invalid @enderror" 
                           name="url" 
                           value="{{ old('url') }}"  
-                          autocomplete="off" 
+                          autocomplete="url" 
                           autofocus 
                           placeholder="公式ホームページのURLを入力">
                    
-                   @error('url')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>250文字以内で記入してください</strong>
-                    </span>
-                    @enderror
+                   @if($errors->has('url'))
+                            @foreach($errors->get('url') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
                 </div>
             </div>
             <!--画像アップロード（要確認）-->
             <div class="form-group row">
                 <label class="col-md-5 
                               col-form-label 
-                              text-md-left 
-                              @error('img') is-invalid @enderror">
+                              text-md-left">
                     弓道場画像(約5枚~10枚まで可<small>※10MB</small>)
                 </label>
                 <div class="col-md-7">
@@ -337,11 +365,14 @@
                     @endif
                 </div>
 
-                @error('img')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>選択した画像データは容量を超えています</strong>
-                    </span>
-                @enderror
+                @if($errors->has('img'))
+                    @foreach($errors->get('img') as $error)
+                        <small class="d-block 
+                                      text-danger ">
+                            {{$error}}
+                        </small>
+                    @endforeach
+                @endif
             </div>
 
         </div>

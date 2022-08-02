@@ -53,13 +53,33 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'area_id' => ['required', 'integer'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        return Validator::make(
+            $data,
+            [
+            'name' => ['required',
+                       'string',
+                       'max:255'],
+            'email' => ['required',
+                        'string',
+                        'email',
+                        'max:255',
+                        'unique:users'],
+            'area_id' => ['required',
+                          'integer'],
+            'password' => ['required',
+                           'string',
+                           'min:8',
+                           'confirmed'],
             'check_agree'=>['required'],
-        ]);
+        ],
+            [
+            'name.max' => 'ユーザー名は255文字以内で入力してください',
+            'email.max' => '登録するメールアドレスは255文字以内で入力してください',
+            'email.unique' => 'このメールアドレスは既に登録されております',
+            'password.min' => '英数字8文字以上のパスワードを設定してください',
+            'check_agree.required' => '弓道場のTEBIKIをご利用いただくには、利用規約に同意いただくことが必須です'
+            ]
+        );
     }
 
     /**

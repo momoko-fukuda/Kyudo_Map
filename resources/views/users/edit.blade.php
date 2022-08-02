@@ -46,15 +46,17 @@
                               @error('name') is-invalid @enderror" 
                        name="name" 
                        value="{{old('name') == '' ? $user->name : old('name')}}"  
-                       autocomplete="name" 
-                       required
+                       autocomplete="name"
                        autofocus>
     
-                     @error('name')
-                <span class="invalid-feedback" role="alert">
-                    <strong>20文字以内で、名前を入力してください</strong>
-                </span>
-                @enderror
+                    @if($errors->has('name'))
+                        @foreach($errors->get('name') as $error)
+                            <small class="d-block 
+                                          text-danger ">
+                                {{$error}}
+                            </small>
+                        @endforeach
+                    @endif
             </div>
         </div>
         
@@ -62,7 +64,7 @@
         <div class="form-group">
             <label for="email" 
                    class="col-form-label text-md-left">
-                ユーザー名
+                メールアドレス
                 <span class="ml-1 required">必須</span>
             </label>
     
@@ -73,15 +75,17 @@
                               @error('email') is-invalid @enderror" 
                        name="email" 
                        value="{{old('email') == '' ? $user->email : old('email')}}"  
-                       autocomplete="email" 
-                       required
+                       autocomplete="email"
                        autofocus>
     
-                     @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>メールアドレスを入力してください</strong>
-                </span>
-                @enderror
+                     @if($errors->has('email'))
+                        @foreach($errors->get('email') as $error)
+                            <small class="d-block 
+                                          text-danger ">
+                                {{$error}}
+                            </small>
+                        @endforeach
+                    @endif
             </div>
         </div>
         
@@ -97,8 +101,7 @@
                 <select id="area_id" 
                         class="form-control 
                               @error('area_id') is-invalid @enderror" 
-                        name="area_id" 
-                        required 
+                        name="area_id"
                         autofocus>
                     <option disabled 
                             selected 
@@ -113,11 +116,14 @@
                     @endforeach
                 </select>
                         
-                @error('area_id')
-                <span class="invalid-feedback" role="alert">
-                    <strong>活動エリアを選択してください</strong>
-                </span>
-                @enderror
+                    @if($errors->has('area_id'))
+                        @foreach($errors->get('area_id') as $error)
+                            <small class="d-block 
+                                          text-danger ">
+                                {{$error}}
+                            </small>
+                        @endforeach
+                    @endif
             </div>
         </div>
         
@@ -139,11 +145,14 @@
                 </div>
                 
 
-                @error('img')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>選択した画像データは容量を超えています</strong>
-                    </span>
-                @enderror
+                    @if($errors->has('img'))
+                        @foreach($errors->get('img') as $error)
+                            <small class="d-block 
+                                          text-danger ">
+                                {{$error}}
+                            </small>
+                        @endforeach
+                    @endif
         </div>
         
         <!--ボタン-->

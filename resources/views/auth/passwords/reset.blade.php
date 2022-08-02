@@ -31,17 +31,19 @@
                                               form-control 
                                               @error('email') is-invalid @enderror" 
                                        name="email" 
-                                       value="{{ $email ?? old('email') }}" 
-                                       required 
+                                       value="{{ $email ?? old('email') }}"
                                        autocomplete="email" 
                                        placeholder="登録したメールアドレス"
                                        autofocus>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                @if($errors->has('email'))
+                                    @foreach($errors->get('email') as $error)
+                                        <small class="d-block 
+                                                      text-danger ">
+                                            {{$error}}
+                                        </small>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
 
@@ -57,17 +59,19 @@
                                 <input id="password" 
                                        type="password" 
                                        class="form-control @error('password') is-invalid @enderror" 
-                                       name="password" 
-                                       required 
+                                       name="password"
                                        autocomplete="new-password"
                                        placeholder="新しく設定するパスワード"
                                        autofocus>
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                @if($errors->has('password'))
+                                    @foreach($errors->get('password') as $error)
+                                        <small class="d-block 
+                                                      text-danger ">
+                                            {{$error}}
+                                        </small>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
 
@@ -83,8 +87,7 @@
                                 <input id="password-confirm" 
                                        type="password" 
                                        class="form-control" 
-                                       name="password_confirmation" 
-                                       required 
+                                       name="password_confirmation"
                                        autocomplete="new-password"
                                        placeholder="パスワードの確認"
                                        autofocus>

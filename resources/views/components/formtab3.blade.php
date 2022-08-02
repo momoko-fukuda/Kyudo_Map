@@ -14,7 +14,7 @@
                 <div class="col-md-7 flex-grow-1">
                    <input id="facility_matonumber" 
                           type="text" 
-                          class="form-control 
+                          class="form-control
                                  @error('facility_matonumber') is-invalid @enderror" 
                           name="facility_matonumber" 
                           value="{{ old('facility_matonumber') }}" 
@@ -22,11 +22,14 @@
                           autofocus 
                           placeholder="（例：5）※的数5つの場合">
     
-                   @error('facility_matonumber')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>的の数を数字で入力してください</strong>
-                    </span>
-                    @enderror
+                   @if($errors->has('facility_matonumber'))
+                            @foreach($errors->get('facility_matonumber') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
                 </div>
             </div>
             
@@ -295,8 +298,10 @@
 
             <!--定休日-->
             <div class="form-group row">
-                <label class="col-md-4 col-form-label text-md-left">
-                    定休日（複数選択可）
+                <label class="col-md-4 
+                              col-form-label 
+                              text-md-left">
+                    定休日<small>（複数選択可）</small>
                 </label>
                 <div class="w-50 flex-grow-1">
                     <div class="form-check form-check-inline">
@@ -391,7 +396,7 @@
                        class="col-md-4 
                               col-form-label 
                               text-md-left">
-                    営業時間(複数設定可)
+                    営業時間<small>(複数設定可)</small>
                 </label>
                 <div class="w-50 
                             ml-3 
@@ -451,18 +456,21 @@
     
                 <div class="col-md-7 flex-grow-1">
                    <textarea id="other" 
-                             class="form-control 
+                             class="form-control
                                     @error('other') is-invalid @enderror" 
                              name="other"
                              autocomplete="on" 
                              autofocus 
                              placeholder="その他、利用する上での注意事項を記入してください">{{ old('other') }}</textarea>
     
-                   @error('other')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>255文字以内で入力してください</strong>
-                    </span>
-                    @enderror
+                   @if($errors->has('other'))
+                            @foreach($errors->get('other') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
                 </div>
             </div>
             

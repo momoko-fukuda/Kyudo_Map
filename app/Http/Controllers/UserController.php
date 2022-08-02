@@ -130,7 +130,11 @@ class UserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.Auth::user()->email.',email'],
             'area_id' => ['required', 'integer'],
             'img' => ['nullable']
-            ]);
+            ], [
+                'name.max' => 'ユーザー名は255文字以内で入力してください',
+                'email.max' => '登録するメールアドレスは255文字以内で入力してください',
+                'email.unique' => 'このメールアドレスは既に別のアカウントで登録されております',
+                ]);
        
         $user = Auth::user();
 
@@ -157,7 +161,9 @@ class UserController extends Controller
         $user = Auth::user();
         $request->validate([
             'password' => ['required', 'string', 'min:8', 'confirmed']
-            ]);
+            ], [
+                'password.min' => '英数字8文字以上のパスワードを設定してください',
+                ]);
 
         User::updatePassword($request, $user);
 

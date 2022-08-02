@@ -20,81 +20,165 @@
                 
                 <!--名前入力フォーム-->
                 <div class="form-group row">
-                    <label for="name" class="col-md-5 col-form-label text-md-left">アカウント名<span class="ml-1 required">必須</span></label>
+                    <label for="name" 
+                           class="col-md-5 
+                                  col-form-label 
+                                  text-md-left">
+                        アカウント名
+                        <span class="ml-1 required">必須</span>
+                    </label>
 
                     <div class="col-md-7">
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="弓太郎">
+                        <input id="name" 
+                               type="text" 
+                               class="form-control
+                                      @error('name') is-invalid @enderror" 
+                               name="name" 
+                               value="{{ old('name') }}" 
+                               autocomplete="name" 
+                               autofocus 
+                               placeholder="弓太郎">
 
-                        @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>アカウント名を入力してください</strong>
-                        </span>
-                        @enderror
+                        @if($errors->has('name'))
+                            @foreach($errors->get('name') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 
                 <!--メールアドレスフォーム-->
                 <div class="form-group row">
-                    <label for="email" class="col-md-5 col-form-label text-md-left">メールアドレス<span class="ml-1 required">必須</span></label>
+                    <label for="email" 
+                           class="col-md-5 
+                                  col-form-label 
+                                  text-md-left">
+                        メールアドレス
+                        <span class="ml-1 required">必須</span>
+                    </label>
 
                     <div class="col-md-7">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="kyudo@kyudo.com">
+                        <input id="email" 
+                               type="email" 
+                               class="form-control
+                                      @error('email') is-invalid @enderror"
+                               name="email" 
+                               value="{{ old('email') }}" 
+                               autocomplete="email" 
+                               placeholder="kyudo@kyudo.com">
 
-                        @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>メールアドレスを入力してください</strong>
-                        </span>
-                        @enderror
+                        @if($errors->has('email'))
+                            @foreach($errors->get('email') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 
                 <!--活動地域入力フォーム-->
                 <div class="form-group row">
-                    <label for="area_id" class="col-md-5 col-form-label text-md-left">活動地域<span class="ml-1 required">必須</span></label>
+                    <label for="area_id" 
+                           class="col-md-5 
+                                  col-form-label 
+                                  text-md-left">
+                        活動地域
+                        <span class="ml-1 required">必須</span>
+                    </label>
 
                     <div class="col-md-7">
                         <!--areasテーブルのデータ$areasから都道府県id,nameを取ってきている-->
-                        <select id="area_id" class="form-control @error('area_id') is-invalid @enderror" name="area_id" require autocomplete="address-level1">
-                            <option value="" disabled selected style="display:none;">都道府県を選択してください</option>
+                        <select id="area_id" 
+                                class="form-control
+                                       @error('area_id') is-invalid @enderror" 
+                                name="area_id" 
+                                autocomplete="address-level1">
+                            <option @if(old('area_id') == '') selected @endif
+                                    disabled 
+                                    selected 
+                                    style="display:none;">
+                                都道府県を選択してください
+                            </option>
                             @foreach($areas as $area)
-                                <option value="{{$area->id}}">{{$area->name}}</option>
+                                <option name="area_id" 
+                                        value="{{$area->id}}"
+                                        @if(old('area_id') == $area->id) selected @endif>
+                                    {{$area->name}}
+                                </option>
                             @endforeach
                         </select>
                         
                         
-                        @error('area_id')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>活動地域を選択してください</strong>
-                        </span>
-                        @enderror
+                        @if($errors->has('area_id'))
+                            @foreach($errors->get('area_id') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 
                 <!--パスワード入力フォーム-->
                 <div class="form-group row">
-                    <label for="password" class="col-md-5 col-form-label text-md-left">パスワード<span class="ml-1 required">必須</span></label>
+                    <label for="password" 
+                           class="col-md-5 
+                                  col-form-label 
+                                  text-md-left">
+                        パスワード
+                        <span class="ml-1 required">必須</span>
+                    </label>
 
                     <div class="col-md-7">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password"placeholder="パスワードを設定してください">
+                        <input id="password" 
+                               type="password" 
+                               class="form-control
+                                      @error('password') is-invalid @enderror" 
+                               name="password" 
+                               autocomplete="new-password"
+                               placeholder="パスワードを設定してください">
 
-                        @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+                        @if($errors->has('password'))
+                            @foreach($errors->get('password') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <label for="password-confirm" class="col-md-5 col-form-label text-md-left">パスワードの確認<span class="ml-1 required">必須</span></label>
+                    <label for="password-confirm" 
+                           class="col-md-5 
+                                  col-form-label 
+                                  text-md-left">
+                        パスワードの確認
+                        <span class="ml-1 required">必須</span>
+                    </label>
 
                     <div class="col-md-7">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"placeholder="パスワードを再入力してください">
+                        <input id="password-confirm" 
+                               type="password" 
+                               class="form-control" 
+                               name="password_confirmation" 
+                               autocomplete="new-password"
+                               placeholder="パスワードを再入力してください">
                     </div>
                 </div>
                 
                 <div class="form-group row">
-                    <label for="check_agree" class="col-md-5 col-form-label text-md-left">
+                    <label for="check_agree" 
+                           class="col-md-5 
+                                  col-form-label 
+                                  text-md-left">
                         利用規約
                         <span class="ml-1 required">必須</span>
                     </label>
@@ -102,28 +186,30 @@
                         <input type="checkbox" 
                                id="check_agree" 
                                class="form-check-input
-                                      check_agree" 
+                                      check_agree
+                                      @error('check_agree') is-invalid @enderror" 
                                name="check_agree"
-                               value="true"
-                               required>
+                               value="true">
                                同意する
-                               <p><a class="loginlink" href="{{route('home.role')}}" target="_blank">利用規約を確認する</a></p>
+                               <p>
+                                   <a class="loginlink" 
+                                      href="{{route('home.role')}}" 
+                                      target="_blank">
+                                       利用規約を確認する
+                                   </a>
+                               </p>
                                
-                                @error('check_agree')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>ご利用いただく上で、利用規約への同意は必須となります。</strong>
-                                    </span>
-                                @enderror
+                                @if($errors->has('check_agree'))
+                                    @foreach($errors->get('check_agree') as $error)
+                                        <small class="d-block 
+                                                      text-danger ">
+                                            {{$error}}
+                                        </small>
+                                    @endforeach
+                                @endif
                     </div>
                     
                 </div>
-                <!--<div class="form-group row">-->
-                <!--    <label for="check_agree" class="col-md-5 col-form-label text-md-left">利用規約</label>-->
-                <!--    <div class="col-md-7">-->
-                <!--        <input type="checkbox" id="check_agree" class="form-control" >-->
-                <!--    </div>-->
-                <!--</div>-->
-                
 
                 <div class="form-group w-25 mx-auto my-5">
                     <button type="submit" id="button_submit" class="btn btn_check">
@@ -135,24 +221,3 @@
     </div>
 </div>
 @endsection
-
-
-
-
-<!--@section('script')-->
-
-<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>-->
-<!--<script>-->
-
-<!--$("#check_agree").change(function(e){-->
-<!--  if($(this).prop("checked")){-->
-<!--    $("#button_submit").prop("disabled", false);-->
-<!--  } else {-->
-<!--    $("#button_submit").prop("disabled", true);-->
-<!--  }-->
-
-<!--});-->
-
-<!--</script>-->
-
-<!--@endsection-->

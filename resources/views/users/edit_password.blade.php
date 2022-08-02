@@ -42,11 +42,14 @@
                               required 
                               autocomplete="new-password">
 
-                @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+                    @if($errors->has('password'))
+                        @foreach($errors->get('password') as $error)
+                            <small class="d-block 
+                                          text-danger ">
+                                {{$error}}
+                            </small>
+                        @endforeach
+                    @endif
             </div>
         </div>
 

@@ -98,30 +98,43 @@ class DojoController extends Controller
     {
         $request->validate(
             [
-            'user_id'=>['nullable', 'integer'],
-            'name'=>['required', 'string', 'max:50','unique:dojos'],
-            'area_id'=>['required','integer'],
-            'address1'=>['required', 'string', 'max:250'],
-            'address2'=>['required', 'string', 'max:250'],
-            'tel'=>['required', 'string', 'max:20'],
-            'url'=>['nullable', 'string', 'max:250'],
-            'use_money'=> ['nullable', 'string', 'max:250'],
-            'use_age' => ['nullable', 'integer'],
-            'use_step' => ['nullable', 'string', 'max:5'],
-            'use_personal'=> ['nullable', 'string', 'max:5'],
-            'use_group'=> ['nullable', 'string', 'max:5'],
-            'use_affiliation'=> ['nullable', 'string', 'max:5'],
-            'use_reserve'=> ['nullable', 'string', 'max:5'],
-            'facility_inout'=> ['nullable', 'string', 'max:5'],
-            'facility_makiwara'=> ['nullable', 'string', 'max:5'],
-            'facility_aircondition'=> ['nullable', 'string', 'max:5'],
-            'facility_matonumber'=> ['nullable', 'integer'],
-            'facility_lockerroom'=>['nullable', 'string', 'max:5'],
-            'facility_numberlimit'=>['nullable', 'string', 'max:20'],
-            'facility_parking'=> ['nullable', 'string', 'max:20'],
-            'other'=> ['nullable', 'string', 'max:255'],
-            'img' => ['max:30000'],
-            ]
+                'user_id'=>['nullable', 'integer'],
+                'name'=>['required', 'string', 'max:50','unique:dojos'],
+                'area_id'=>['required','integer'],
+                'address1'=>['required', 'string', 'max:250'],
+                'address2'=>['required', 'string', 'max:250'],
+                'tel'=>['required', 'string', 'max:20'],
+                'url'=>['nullable', 'string'],
+                'use_money'=> ['nullable', 'string', 'max:250'],
+                'use_age' => ['nullable', 'integer'],
+                'use_step' => ['nullable', 'string', 'max:5'],
+                'use_personal'=> ['nullable', 'string', 'max:5'],
+                'use_group'=> ['nullable', 'string', 'max:5'],
+                'use_affiliation'=> ['nullable', 'string', 'max:5'],
+                'use_reserve'=> ['nullable', 'string', 'max:5'],
+                'facility_inout'=> ['nullable', 'string', 'max:5'],
+                'facility_makiwara'=> ['nullable', 'string', 'max:5'],
+                'facility_aircondition'=> ['nullable', 'string', 'max:5'],
+                'facility_matonumber'=> ['nullable', 'integer'],
+                'facility_lockerroom'=>['nullable', 'string', 'max:5'],
+                'facility_numberlimit'=>['nullable', 'string', 'max:20'],
+                'facility_parking'=> ['nullable', 'string', 'max:20'],
+                'other'=> ['nullable', 'string', 'max:255'],
+                'img' => ['max:10000', 'mimes:jpeg,png,jpg,gif']
+            ],
+            [
+                'name.unique' => '既に登録されている道場名です。',
+                'name.max' => '道場名は、50文字以内で入力してください',
+                'address1.max' => '250文字以内で入力してください',
+                'address2.max' => '250文字以内で入力してください',
+                'tel.max' => '20文字以内で入力してください（ハイフンあり）',
+                'use_money.max' => '250文字以内で入力してください',
+                'use_age.integer' => '年齢制限を数字で入力してください',
+                'facility_matonumber.integer' => '的数を数字で入力してください',
+                'facility_numberlimit.max' => '20文字以内で入力してください',
+                'other.max' =>  '255文字以内で入力してください',
+                'img.max' => '写真データの容量が上限を越してます。（上限10MBまで）',
+                ]
         );
 
         $dojo = new Dojo();
@@ -214,26 +227,34 @@ class DojoController extends Controller
      */
     public function update(Request $request, Dojo $dojo, BusinessHour $businesshour)
     {
-        $request->validate([
-            'user_id'=>['nullable', 'integer'],
-            'url'=>['nullable', 'string', 'max:250'],
-            'use_money'=> ['nullable', 'string', 'max:250'],
-            'use_age' => ['nullable', 'integer'],
-            'use_step' => ['nullable', 'string', 'max:5'],
-            'use_personal'=> ['nullable', 'string', 'max:5'],
-            'use_group'=> ['nullable', 'string', 'max:5'],
-            'use_affiliation'=> ['nullable', 'string', 'max:5'],
-            'use_reserve'=> ['nullable', 'string', 'max:5'],
-            'facility_inout'=> ['nullable', 'string', 'max:5'],
-            'facility_makiwara'=> ['nullable', 'string', 'max:5'],
-            'facility_aircondition'=> ['nullable', 'string', 'max:5'],
-            'facility_matonumber'=> ['nullable', 'integer'],
-            'facility_lockerroom'=>['nullable', 'string', 'max:5'],
-            'facility_numberlimit'=>['nullable', 'string', 'max:20'],
-            'facility_parking'=> ['nullable', 'string', 'max:20'],
-            'other'=> ['nullable', 'string', 'max:255'],
-            // 'img' => ['binary'],
-            ]);
+        $request->validate(
+            [
+                'user_id'=>['nullable', 'integer'],
+                'url'=>['nullable', 'string'],
+                'use_money'=> ['nullable', 'string', 'max:250'],
+                'use_age' => ['nullable', 'integer'],
+                'use_step' => ['nullable', 'string', 'max:5'],
+                'use_personal'=> ['nullable', 'string', 'max:5'],
+                'use_group'=> ['nullable', 'string', 'max:5'],
+                'use_affiliation'=> ['nullable', 'string', 'max:5'],
+                'use_reserve'=> ['nullable', 'string', 'max:5'],
+                'facility_inout'=> ['nullable', 'string', 'max:5'],
+                'facility_makiwara'=> ['nullable', 'string', 'max:5'],
+                'facility_aircondition'=> ['nullable', 'string', 'max:5'],
+                'facility_matonumber'=> ['nullable', 'integer'],
+                'facility_lockerroom'=>['nullable', 'string', 'max:5'],
+                'facility_numberlimit'=>['nullable', 'string', 'max:20'],
+                'facility_parking'=> ['nullable', 'string', 'max:20'],
+                'other'=> ['nullable', 'string', 'max:255'],
+            ],
+            [
+                'use_money.max' => '250文字以内で入力してください',
+                'use_age.integer' => '年齢制限を数字で入力してください',
+                'facility_matonumber.integer' => '的数を数字で入力してください',
+                'facility_numberlimit.max' => '20文字以内で入力してください',
+                'other.max' =>  '255文字以内で入力してください',
+                ]
+        );
         
 
 

@@ -66,17 +66,19 @@
                               class="form-control 
                                      @error('title') is-invalid @enderror" 
                               name="title" 
-                              value="{{ old('title') }}" 
-                              required 
+                              value="{{ old('title') }}"
                               autocomplete="on" 
                               autofocus 
                               placeholder="{{$dojo->name}}の口コミ">
     
-                       @error('title')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>入力必須項目です</strong>
-                        </span>
-                        @enderror
+                       @if($errors->has('title'))
+                            @foreach($errors->get('title') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                        @endif
                     </div>
             </div>
                 
@@ -97,11 +99,14 @@
                                  autofocus 
                                  placeholder="道場を利用した際の感想を記載してください">{{ old('body') }}</textarea>
         
-                       @error('body')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>255文字以内で入力してください</strong>
-                        </span>
-                        @enderror
+                       @if($errors->has('body'))
+                            @foreach($errors->get('body') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                        @endif
                     </div>
             </div>
             
@@ -149,11 +154,14 @@
                     </div>
                     
     
-                    @error('img')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>選択した画像データは容量を超えています</strong>
-                        </span>
-                    @enderror
+                    @if($errors->has('img'))
+                        @foreach($errors->get('img') as $error)
+                            <small class="d-block 
+                                          text-danger ">
+                                {{$error}}
+                            </small>
+                        @endforeach
+                    @endif
             </div>
         </div>        
                 
