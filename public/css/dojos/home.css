@@ -248,6 +248,9 @@
         text-decoration: none;
         border-bottom: dotted 2px;
     }
+    #reviews .card a span, #reviews .card a i{
+        font-size: 15px;
+    }
     
     #reviews .card-header a{
         color: #FFF;
@@ -522,6 +525,9 @@
     #reviews .card a:hover{
         text-decoration: none;
         border-bottom: dotted 2px;
+    }
+    #reviews .card a span, #reviews .card a i{
+        font-size: 15px;
     }
     
     #reviews .card-header a{

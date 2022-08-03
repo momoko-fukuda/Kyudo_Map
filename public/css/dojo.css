@@ -248,6 +248,9 @@
         text-decoration: none;
         border-bottom: dotted 2px;
     }
+    #reviews .card a span, #reviews .card a i{
+        font-size: 15px;
+    }
     
     #reviews .card-header a{
         color: #FFF;
@@ -528,7 +531,9 @@
         color: #FFF;
         font-size: 18px;
     }
-    
+    #reviews .card a span, #reviews .card a i{
+        font-size: 15px;
+    }
     
     #reviews > div > p{
         width: 50%;
@@ -1250,6 +1255,20 @@
     text-align: center;
 }
 
+.fa-regular{
+    color: #6B8E23;
+    cursor: pointer;
+}
+
+.likes{
+    text-decoration: none;
+}
+.like-counter{
+    color: #2F4F4F;
+}
+.liked{
+    color: #CD5C5C;
+}
 
 /*タブレット・スマホ用*/
 @media screen and (max-width:679px){

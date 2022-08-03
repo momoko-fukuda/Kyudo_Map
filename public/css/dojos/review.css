@@ -100,6 +100,20 @@
     text-align: center;
 }
 
+.fa-regular{
+    color: #6B8E23;
+    cursor: pointer;
+}
+
+.likes{
+    text-decoration: none;
+}
+.like-counter{
+    color: #2F4F4F;
+}
+.liked{
+    color: #CD5C5C;
+}
 
 /*タブレット・スマホ用*/
 @media screen and (max-width:679px){

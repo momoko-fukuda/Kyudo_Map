@@ -67,5 +67,34 @@ $( function()
         });
     }
     
+    /**
+     * 口コミいいねの非同期処理
+     */
+     $('.like-toggle').on('click', function(){
+        let $this = $(this);
+        let likeReviewId = $this.data('review-id');
+        
+        $.ajax({
+            headers:{
+                'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+            },
+            url:'/reviewLike',
+            method:'POST',
+            data:{
+                'review_id':likeReviewId
+            },
+        })
+        
+        // 通信が成功したら
+        .done(function(data){
+            $this.toggleClass('liked');
+            $this.next('.like-counter').html(data.review_likes_count);
+        })
+        
+        // 失敗時
+        .fail(function(){
+        console.log('fail');
+        });
+    });
 });
 

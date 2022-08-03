@@ -114,13 +114,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany('App\Model\Buttons\ReviewButton');
     }
-    // /**
-    //  * favoriteテーブルとのリレーション
-    //  */
-    // public function favorites()
-    // {
-    //     return $this->hasMany('App\Model\Buttons\Favorite');
-    // }
+
     /**
      * dojophotosテーブルとのリレーション
      */

@@ -125,23 +125,23 @@ class ButtonController extends Controller
     //     return redirect()->route('reviews.index', ['id' => $dojo->id]);
     // }
     
-    public function favorite(Dojo $dojo, Review $review)
-    {
-        $user = Auth::user();
+    // public function favorite(Dojo $dojo, Review $review)
+    // {
+    //     $user = Auth::user();
         
         
-        if ($user->hasFavorited($review)) {
-            $user->unfavorite($review);
-        } else {
-            $user->favorite($review);
-        }
+    //     if ($user->hasFavorited($review)) {
+    //         $user->unfavorite($review);
+    //     } else {
+    //         $user->favorite($review);
+    //     }
         
-        // ajaxにデータをいい送る。（trueか、count数）Qどうやって受け取って送るんだろう
-        return [
-            "isFavorite" => $user->hasFavorited($review),
-            "count" => xxx
-            ];
+    //     // ajaxにデータをいい送る。（trueか、count数）Qどうやって受け取って送るんだろう
+    //     return [
+    //         "isFavorite" => $user->hasFavorited($review),
+    //         "count" => xxx
+    //         ];
 
-        // return redirect()->route('reviews.index', ['dojo'=> $dojo->id]);
-    }
+    //     // return redirect()->route('reviews.index', ['dojo'=> $dojo->id]);
+    // }
 }

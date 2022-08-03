@@ -4,6 +4,9 @@ namespace App\Model\Buttons;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * 道場データに対して利用したボタンの実装
+ */
 class UseButton extends Model
 {
 
@@ -39,7 +42,7 @@ class UseButton extends Model
      */
     public function scopegetUseButtonUser($query, $user)
     {
-        $query->with('user')
+        $query->with(['user', 'dojo'])
               ->where('user_id', $user->id);
     }
     

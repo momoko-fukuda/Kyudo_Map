@@ -32,8 +32,8 @@ Route::get('dojos/{dojo}/unfavoritebutton', 'ButtonController@unfavoritebutton')
 Route::get('dojos/{dojo}/usebutton', 'ButtonController@usebutton');
 Route::get('dojos/{dojo}/unusebutton', 'ButtonController@unusebutton');
 
-Route::get('dojos/{dojo}/reviews/{review}/favorite', 'ButtonController@favorite')->name('favorite');
 
+Route::post('/reviewLike', 'ReviewController@like')->name('reviews.like');
 
 
 // 口コミデータ関連

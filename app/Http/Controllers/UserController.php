@@ -10,6 +10,7 @@ use App\Model\Area;
 use App\Model\Photo;
 use App\Model\Buttons\FavoriteButton;
 use App\Model\Buttons\UseButton;
+use App\Model\Buttons\ReviewButton;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,8 +44,10 @@ class UserController extends Controller
                          ->get();
         
         //参考になったボタンを押した口コミ投稿をとってくる
-        $favoriteReviews = $user->favorites(Review::class)
-                                ->get();
+        // $favoriteReviews = $user->favorites(Review::class)
+        //                         ->get();
+        $favoriteReviews = ReviewButton::getReviewButtonUser($user)
+                                         ->get();
         
         //お気に入りボタンを押した道場をとってくる
         $favoriteDojos = FavoriteButton::getFavoriteButtonUser($user)

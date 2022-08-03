@@ -9,6 +9,7 @@ use App\Model\User;
 use App\Model\Photos\DojoPhoto;
 use App\Model\Buttons\ReviewButton;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -37,8 +38,13 @@ class ReviewController extends Controller
         $dojoId = $dojo->id;
         $reviews = Review::getReview($dojoId)
                            ->paginate(10);
-       
-        return view('reviews.index', compact('dojo', 'reviews', 'reviewbutton'));
+                           
+
+        return view('reviews.index', compact(
+            'dojo',
+            'reviews',
+            'reviewbutton'
+        ));
     }
 
 
@@ -79,42 +85,26 @@ class ReviewController extends Controller
         
         return redirect()->route('reviews.index', ['id' => $dojo->id]);
     }
+    /**
+     * いいね機能の実装
+     */
+    public function like(Request $request)
+    {
+        $user_id = Auth::user()->id;
+        $review_id = $request->review_id;
 
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(Review $review)
-    // {
-    //     //
-    // }
-    
-    
-
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit(Review $review)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(Request $request, Review $review)
-    // {
-    //     //
-    // }
+         
+        ReviewButton::alreadyLiked($user_id, $review_id);
+        
+        $review_likes_count = Review::withCount('reviewbuttons')
+                                   ->findOrFail($review_id)
+                                   ->reviewbuttons_count;
+        $data = [
+             'review_likes_count' => $review_likes_count,
+             ];
+     
+        return response()->json($data);
+    }
 
     /**
      * Remove the specified resource from storage.

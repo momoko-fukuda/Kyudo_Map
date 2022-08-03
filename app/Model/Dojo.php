@@ -91,13 +91,7 @@ class Dojo extends Model
     {
         return $this->hasMany('App\Model\Buttons\UseButton');
     }
-    /**
-     * review_buttonsテーブルとのリレーション
-     */
-    public function reviewbuttons()
-    {
-        return $this->hasMany('App\Model\Buttons\ReviewButton');
-    }
+
     /**
      * favorite_buttonsテーブルとのリレーション
      */
@@ -163,7 +157,12 @@ class Dojo extends Model
      */
     public static function scopegetLatestDojo($query, $area)
     {
-        $query->with(['user','area'])
+        $query->with([
+            'user',
+            'area',
+            'reviews',
+            'favoritebuttons',
+            'usebuttons'])
                ->where('area_id', $area->id)
                ->orderBy('updated_at', 'desc');
     }

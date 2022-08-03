@@ -120,7 +120,11 @@ class DojoController extends Controller
                 'facility_numberlimit'=>['nullable', 'string', 'max:20'],
                 'facility_parking'=> ['nullable', 'string', 'max:20'],
                 'other'=> ['nullable', 'string', 'max:255'],
-                'img' => ['max:10000', 'mimes:jpeg,png,jpg,gif']
+                // 'img' => ['max:10000', 'mimes:jpeg,png,jpg,gif']
+                'img.*' => 'mimes:png'
+                // ※千葉  imgパラメータは配列としてわたってくるので、
+                //         imgパラメータを直接バリデーションするのではなく
+                //         中身をバリデーションしなければいけない
             ],
             [
                 'name.unique' => '既に登録されている道場名です。',

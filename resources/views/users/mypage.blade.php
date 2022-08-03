@@ -211,9 +211,10 @@
                                     </a>
                                 @endif
                             </div>
+                            
                             <span>
                                 <i class="fa-solid fa-thumbs-up"></i>
-                                {{$review->favorites->count()}} | 
+                                {{$review->reviewbuttons_count}} | 
                             </span>
                             <a href="{{route('reviews.index', $review->dojo->id)}}">
                                 <span>
@@ -248,36 +249,36 @@
             
                 <div class="card">
                         <div class="card-header">
-                            <a href="{{route('dojos.show',App\Model\Review::find($favoriteReview->favoriteable_id)->id)}}" 
+                            <a href="{{route('dojos.show', $favoriteReview->review->dojo_id)}}" 
                                class="card-link">
                                 <i class="fa-solid fa-vihara"></i>
                                 <strong>
-                                    {{App\Model\Review::find($favoriteReview->favoriteable_id)->dojo->name}}
+                                    {{$favoriteReview->review->dojo->name}}
                                 </strong>
                             </a>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">
-                                {{App\Model\Review::find($favoriteReview->favoriteable_id)->title}}
+                                {{$favoriteReview->review->title}}
                             </h5>
                             <hr>
                             <p class="card-text">
-                                {{App\Model\Review::find($favoriteReview->favoriteable_id)->body}}
+                                {{$favoriteReview->review->body}}
                             </p>
         
                             <div>
-                                @foreach(App\Model\Review::find($favoriteReview->favoriteable_id)->dojophotos as $value)
-                                <img src="{{ $value['img'] }}" class="hidephotos">
+                                @foreach($favoriteReview->review->dojophotos as $value)
+                                    <img src="{{ $value['img'] }}" class="hidephotos">
                                 @endforeach
-                                @if(App\Model\Review::find($favoriteReview->favoriteable_id)->dojophotos->isNotEmpty())
+                                @if($favoriteReview->review->dojophotos->isNotEmpty())
                                     <a type="button" class="photomore">写真を表示する</a>
                                 @endif
                             </div>
                             
-                            @if(App\Model\Review::find($favoriteReview->favoriteable_id)->user)
+                            @if($favoriteReview->review->user_id)
                                 <span class="card-subtitle">
                                     <i class="fa-solid fa-person-circle-check"></i>
-                                    {{App\Model\Review::find($favoriteReview->favoriteable_id)->user->name}} | 
+                                    {{$favoriteReview->review->user->name}} | 
                                 </span>
                             @else
                                 <span class="card-subtitle">
@@ -285,18 +286,15 @@
                                     退会済 | 
                                     </span>
                             @endif
-                            <span>
-                                <i class="fa-solid fa-thumbs-up"></i>
-                                {{App\Model\Review::find($favoriteReview->favoriteable_id)->favorites->count()}} | 
-                            </span>
-                            <a href="{{route('reviews.index', App\Model\Review::find($favoriteReview->favoriteable_id)->id)}}">
+                            
+                            <a href="{{route('reviews.index', $favoriteReview->review->dojo_id)}}">
                                 <span>
                                     <i class="fa-solid fa-comments"></i>
-                                    {{App\Model\Review::find($favoriteReview->favoriteable_id)->dojo->name}}の口コミ
+                                    {{$favoriteReview->review->dojo->name}}の口コミ
                                 </span>
                             </a>
                             <span>
-                                |投稿日：{{App\Model\Review::find($favoriteReview->favoriteable_id)->created_at->format('Y年m月d日')}}
+                                |投稿日：{{$favoriteReview->review->created_at->format('Y年m月d日')}}
                             </span>
                         </div>
                     </div>

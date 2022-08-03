@@ -351,23 +351,59 @@
                         <p class="card-title">{{$review->title}}</p>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">{{$review->body}}</p>
-                        
                         @if($review->user)
-                            <span class="card-subtitle">
+                            <span class="card-subtitle d-block mb-2">
                                 <i class="fa-solid fa-person-circle-check"></i>
-                                {{$review->user->name}}さん | 
+                                {{$review->user->name}}さん 
                             </span>
                         @else
-                            <span class="card-subtitle">
+                            <span class="card-subtitle d-block mb-2">
                                 <i class="fa-solid fa-person-circle-minus"></i>
-                                退会済 | 
+                                退会済 
                             </span>
                         @endif
-                        <span>
-                            <i class="fa-solid fa-thumbs-up"></i>
-                            {{$review->favorites->count()}} | 
-                        </span>
+                        <p class="card-text">{{$review->body}}</p>
+                        
+
+                        @auth
+                            <!--いいねしてない時-->
+                            @if(!$review->isLikedBy(Auth::user()))
+                                <a class="likes">
+                                    <i class="fa-regular 
+                                              fa-thumbs-up 
+                                              like-toggle" 
+                                       data-review-id="{{$review->id}}">
+                                    </i>
+                                    <span class="like-counter">
+                                        {{$review->reviewbuttons_count}}
+                                    </span>
+                                </a>|
+                            <!--いいねしている時-->
+                            @else
+                                <a class="likes">
+                                    <i class="fa-regular 
+                                              fa-thumbs-up 
+                                              like-toggle liked" 
+                                        data-review-id="{{$review->id}}">
+                                    </i>
+                                    <span class="like-counter">
+                                        {{$review->reviewbuttons_count}}
+                                    </span>
+                                </a>|
+                            @endif
+                        @endauth
+                        @guest
+                            <a class="likes" href="{{route('login')}}">
+                                <i class="fa-regular
+                                          fa-thumbs-up">
+                                    </i>
+                                    <span class="like-counter">
+                                        {{$review->reviewbuttons_count}}
+                                    </span>
+                            </a>|
+                        @endguest
+                        
+                        
                         <a href="{{route('reviews.index', $review->dojo->id)}}">
                             <span>
                                 <i class="fa-solid fa-images"></i>

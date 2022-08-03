@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Model\Buttons\ReviewButton;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelFavorite\Traits\Favoriteable;
 
@@ -42,13 +43,13 @@ class Review extends Model
     {
         return $this->hasMany('App\Model\Photos\DojoPhoto');
     }
-    // /**
-    //  * review_buttonsテーブルとのリレーション
-    //  */
-    // public function favorites()
-    // {
-    //     return $this->hasMany('App\Model\Buttons\Favorite');
-    // }
+    /**
+     * review_buttonsテーブルとのリレーション
+     */
+    public function reviewbuttons()
+    {
+        return $this->hasMany('App\Model\Buttons\ReviewButton');
+    }
     
     /**
      * HomeControllerでレビューデータを最新5件取得するモデルクラス
@@ -58,6 +59,7 @@ class Review extends Model
     {
         return self::query()
          ->with(['dojo', 'user'])
+         ->withcount('reviewbuttons')
          ->orderBy('created_at', 'desc')
          ->limit(5)
          ->get();
@@ -71,6 +73,7 @@ class Review extends Model
     public function scopegetReview($query, $dojoId)
     {
         $query->with(['dojo', 'user'])
+              ->withcount('reviewbuttons')
               ->where('dojo_id', $dojoId)
               ->orderBy('created_at', 'desc');
     }
@@ -82,6 +85,7 @@ class Review extends Model
     public static function scopegetDojoReviewLast5($query, $dojoId)
     {
         $query->with(['dojo', 'user'])
+              ->withcount('reviewbuttons')
               ->where('dojo_id', $dojoId)
               ->orderBy('created_at', 'desc')
               ->limit(3);
@@ -102,8 +106,19 @@ class Review extends Model
      */
     public static function scopegetuserReview($query, $user)
     {
-        $query->with('user')
+        $query->with(['user', 'dojophotos', 'dojo'])
+              ->withcount('reviewbuttons')
                ->where('user_id', $user->id)
                ->orderBy('created_at', 'desc');
+    }
+    
+    /**
+     * いいねされているかどうかを判定するメソッド
+     */
+    public function isLikedBy($user):bool
+    {
+        return ReviewButton::where('user_id', $user->id)
+                  ->where('review_id', $this->id)
+                  ->first() !==null;
     }
 }

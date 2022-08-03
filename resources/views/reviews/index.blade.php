@@ -81,29 +81,52 @@
                 <hr>
                 
                 
-                <!--いいねボタン/違反報告-->
+                <!--いいねボタン-->
                 @auth
-                   <a id="fav-enable-{{$review->id}}" class="review reviewbtn" data-fav="{{$review->isFavoritedBy(Auth::user())}}" data-id="{{$review->id}}">
-                       <i class="fa-solid fa-thumbs-up"></i>
-                       <span>済</span>
-                       <span>{{$review->favorites->count()}}</span>
-                   </a>
-
-                   <a id="fav-disable-{{$review->id}}" class="review reviewdeletebtn" data-fav="{{$review->isFavoritedBy(Auth::user())}}" data-id="{{$review->id}}">
-                       <i class="fa-solid fa-thumbs-up"></i>
-                       <span>{{$review->favorites->count()}}</span>
-                   </a>
-                @else
-                    <a href="{{route('login')}}" style="color:#808080;">
-                        <i class="fa-solid fa-thumbs-up"></i>
-                        <span>{{$review->favorites->count()}}</span>
-                    </a>
+                    <!--いいねしてない時-->
+                    @if(!$review->isLikedBy(Auth::user()))
+                        <a class="likes">
+                            <i class="fa-regular 
+                                      fa-thumbs-up 
+                                      like-toggle" 
+                               data-review-id="{{$review->id}}">
+                            </i>
+                            <span class="like-counter">
+                                {{$review->reviewbuttons_count}}
+                            </span>
+                        </a>
+                    <!--いいねしている時-->
+                    @else
+                        <a class="likes">
+                            <i class="fa-regular 
+                                      fa-thumbs-up 
+                                      like-toggle liked" 
+                                data-review-id="{{$review->id}}">
+                            </i>
+                            <span class="like-counter">
+                                {{$review->reviewbuttons_count}}
+                            </span>
+                        </a>
+                    @endif
                 @endauth
+                @guest
+                    <a class="likes" href="{{route('login')}}">
+                        <i class="fa-regular
+                                  fa-thumbs-up">
+                            </i>
+                            <span class="like-counter">
+                                {{$review->reviewbuttons_count}}
+                            </span>
+                    </a>
+                @endguest
+                    
+                <!--違反報告-->
                 <span>
-                <a href="{{route('home.contact')}}">
-                    <i class="fa-solid fa-ghost"></i>
-                    <span>違反報告</span>
-                </a>
+                    |
+                    <a href="{{route('home.contact')}}">
+                        <i class="fa-solid fa-ghost"></i>
+                        <span>違反報告</span>
+                    </a>
                 </span>
             </div>
         </div>
@@ -115,80 +138,5 @@
     <p>{{$dojo->name}}を利用したら、みんなに情報を共有しよう！</p>
     <a type=button class="btn btn_check" href="{{route('reviews.create', $dojo->id)}}">口コミ投稿する</a>
 </div>
-
-@endsection
-
-
-@section('script')
-<script
-  src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-  crossorigin="anonymous"></script>
-
-<script>
-    // まず、いいねされているかどうかを確認し、どっちを表示するかを設定
-    $(".review").each(function(){
-        let isFav = $(this).data("fav");
-        
-        if(isFav){
-            if($(this).hasClass("reviewbtn")){
-              console.log("fav");
-            } else {
-              $(this).css("display", "none");
-            }
-        } else {
-            if($(this).hasClass("reviewbtn")){
-              $(this).css("display", "none");
-            } else {
-              console.log("not fav");
-            }
-        }
-    });
-
-    <!--idといいねされているかを取得して、そのデータを非同期で送る-->
-    $(".review").on("click", function(){
-        let reviewId = $(this).data("id");
-        let oldIsFav = $(this).data("fav");
-        
-        let isThisEnable = $(this).hasClass("reviewbtn");
-        
-        $.ajax("{{route('favorite', ['dojo'=>$dojo->id, 'review'=> $review->id ])}}",
-            {
-              type: "get"
-            })
-            .done(function(data){
-                console.log("done");
-
-                let enableFav = $("#fav-enable-" + reviewId);
-                let disableFav = $("#fav-disable-" + reviewId);
-        
-                let isFav = data.isFavorite ? "" :"1";
-                enableFav.data("fav", isFav);
-                disableFav.data("fav", isFav);
-    
-                
-                console.log(isFav);
-                
-                if(isFav){
-                    if(isThisEnable){
-                    } else {
-                      $("#fav-enable-" + reviewId).css("display", "");
-                      $("#fav-disable-" + reviewId).css("display", "none");
-                    }
-                } else {
-                    if(isThisEnable){
-                      $("#fav-enable-" + reviewId).css("display", "none");
-                      $("#fav-disable-" + reviewId).css("display", "");
-                    } else {
-                    }
-                }
-            })
-            .fail(function(e){
-              console.log(e);
-            });
-
-    });
-
-</script>
 
 @endsection

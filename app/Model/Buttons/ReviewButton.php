@@ -4,6 +4,9 @@ namespace App\Model\Buttons;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * 口コミへのいいねボタンの実装
+ */
 class ReviewButton extends Model
 {
     /**
@@ -14,13 +17,6 @@ class ReviewButton extends Model
         return $this->belongsTo('App\Model\Review');
     }
      
-    /**
-     * dojosテーブルとのリレーション
-     */
-    public function dojo()
-    {
-        return $this->belongsTo('App\Model\Dojo');
-    }
       
     /**
      * usersテーブルとのリレーション
@@ -31,7 +27,34 @@ class ReviewButton extends Model
     }
     
     /**
-     * reviewbuttonにデータ挿入
+     * 既にいいねされているかどうかの確認
+     * （口コミ）
      */
-    protected $fillable = [ 'review_id', 'user_id'];
+    public static function scopealreadyLiked($query, $user_id, $review_id)
+    {
+        $already_liked = $query->with('review')
+                               ->where('user_id', $user_id)
+                               ->where('review_id', $review_id)
+                               ->first();
+              
+        if (!$already_liked) {
+            $reviewButton = new ReviewButton;
+            $reviewButton->review_id = $review_id;
+            $reviewButton->user_id = $user_id;
+            $reviewButton->save();
+        } else {
+            ReviewButton::where('review_id', $review_id)
+                        ->where('user_id', $user_id)
+                        ->delete();
+        }
+    }
+    /**
+     * 該当userが押したReviewbuttonのデータをもってくる
+     * (マイページ表示)
+     */
+    public function scopegetReviewButtonUser($query, $user)
+    {
+        $query->with(['user', 'review'])
+               ->where('user_id', $user->id);
+    }
 }

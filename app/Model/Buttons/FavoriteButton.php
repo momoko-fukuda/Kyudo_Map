@@ -4,6 +4,9 @@ namespace App\Model\Buttons;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * 道場データへのいいねボタン機能
+ */
 class FavoriteButton extends Model
 {
     /**
@@ -36,7 +39,7 @@ class FavoriteButton extends Model
      */
     public function scopegetFavoriteButtonUser($query, $user)
     {
-        $query->with(['user'])
+        $query->with(['user', 'dojo'])
                ->where('user_id', $user->id);
     }
      
