@@ -47,7 +47,10 @@
     <div class="dropdown">
         <button type="button" 
                 id="dropdown1"
-                class="btn btn_check dropdown-toggle btn-sm"
+                class="btn 
+                       btn_check 
+                       dropdown-toggle 
+                       btn-sm"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false">
@@ -187,7 +190,7 @@
                     投稿した口コミ
                 </p>
                 @foreach($reviews as $review)
-                    <div class="card">
+                    <div class="card" data-review-id="{{$review->id}}">
                         <div class="card-header">
                             <a href="{{route('dojos.show', $review->dojo->id)}}" 
                                class="card-link">
@@ -225,6 +228,72 @@
                             <span>
                                 |投稿日：{{$review->created_at->format('Y年m月d日')}}
                             </span>
+                            
+                            
+                            
+                            <div class="d-inline-block">
+                                <form method="POST" 
+                                      action="mypage/reviewsdelete/{{$review->id}}">
+                                    @csrf
+                                    <input type="hidden" 
+                                           name="_method" 
+                                           value="DELETE">
+                                    <span class="btn 
+                                                dashboard-delete-link" 
+                                         data-toggle="modal" 
+                                         data-target="#delete-user-confirm-modal">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                    </span>
+                 
+                                    <div class="modal fade" 
+                                         id="delete-user-confirm-modal" 
+                                         data-backdrop="static" 
+                                         data-keyboard="false" 
+                                         tabindex="-1" 
+                                         role="dialog" 
+                                         aria-labelledby="staticBackdropLabel" 
+                                         aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" 
+                                                        id="staticBackdropLabel">
+                                                        <label>本当に削除しますか？</label>
+                                                    </h5>
+                                                    <button type="button" 
+                                                            class="close" 
+                                                            data-dismiss="modal" 
+                                                            aria-label="閉じる">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="text-center">
+                                                        一度削除すると口コミデータは復旧はできません。
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" 
+                                                            class="btn 
+                                                                   btn-secondary" 
+                                                                   data-dismiss="modal">
+                                                        キャンセル
+                                                    </button>
+                                                    <button type="submit" 
+                                                            class="btn 
+                                                                   btn-danger
+                                                                  text-white">
+                                                        削除する
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            
+                            
                         </div>
                     </div>
                 @endforeach

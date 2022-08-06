@@ -5,7 +5,6 @@ namespace App\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Overtrue\LaravelFavorite\Traits\Favoriter;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Notifications\CustomVerifyEmail;
@@ -16,7 +15,7 @@ use App\Notifications\CustomResetPassword;
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, Favoriter;
+    use Notifiable;
     
     /**
      * メールの日本語化(新規登録時)

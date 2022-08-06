@@ -1,6 +1,6 @@
 /*道場詳細画面のcss*/
 
-
+/*pc用・共通*/
 /*top情報*/
 #showtop{
     padding: 20px 40px;
@@ -9,7 +9,9 @@
 #showtop div{
     flex-grow: 0.5;
 }
-
+#dojoinfo{
+    padding-right: 30px;
+}
 #showtop small{
     margin-right: 10px;
     font-size: 13px;
@@ -169,6 +171,7 @@
     #dojoinfo{
         width: 90%;
         margin: auto;
+        padding: 0;
         text-align: center;
     }
     #dojoinfo table{
@@ -176,6 +179,7 @@
     }
     #dojoinfo td{
         font-size: 15px;
+        text-align: left;
     }
     #showtop .dojoimg{
         width: 90%;

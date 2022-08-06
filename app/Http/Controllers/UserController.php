@@ -132,11 +132,12 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.Auth::user()->email.',email'],
             'area_id' => ['required', 'integer'],
-            'img' => ['nullable']
+            'img' => ['nullable','max:10000', 'mimes:jpeg,png,jpg,gif']
             ], [
                 'name.max' => 'ユーザー名は255文字以内で入力してください',
                 'email.max' => '登録するメールアドレスは255文字以内で入力してください',
                 'email.unique' => 'このメールアドレスは既に別のアカウントで登録されております',
+                'img.max' => '写真データの容量が上限を越してます。（上限10MBまで）'
                 ]);
        
         $user = Auth::user();
@@ -193,5 +194,15 @@ class UserController extends Controller
         User::find($id)->forceDelete();
 
         return redirect('/');
+    }
+    
+    public function review_destroy($id)
+    {
+        dd($id);
+        $review = Review::find($id);
+        dd($review);
+       
+        
+        return redirect()->route('mypage');
     }
 }

@@ -120,11 +120,12 @@ class DojoController extends Controller
                 'facility_numberlimit'=>['nullable', 'string', 'max:20'],
                 'facility_parking'=> ['nullable', 'string', 'max:20'],
                 'other'=> ['nullable', 'string', 'max:255'],
-                // 'img' => ['max:10000', 'mimes:jpeg,png,jpg,gif']
-                'img.*' => 'mimes:png'
+                'img.*' => ['mimes:jpeg,png,jpg,gif', 'max:2000'],
+                // 'img' => ['max:20', 'array'],
                 // ※千葉  imgパラメータは配列としてわたってくるので、
                 //         imgパラメータを直接バリデーションするのではなく
                 //         中身をバリデーションしなければいけない
+                // memo:1枚当たりの容量設定はできたが、複数の合計値のバリエーションエラーはどうするか
             ],
             [
                 'name.unique' => '既に登録されている道場名です。',
@@ -133,14 +134,15 @@ class DojoController extends Controller
                 'address2.max' => '250文字以内で入力してください',
                 'tel.max' => '20文字以内で入力してください（ハイフンあり）',
                 'use_money.max' => '250文字以内で入力してください',
-                'use_age.integer' => '年齢制限を数字で入力してください',
-                'facility_matonumber.integer' => '的数を数字で入力してください',
+                'use_age.integer' => '年齢制限を数字（半角）で入力してください',
+                'facility_matonumber.integer' => '的数を数字（半角）で入力してください',
                 'facility_numberlimit.max' => '20文字以内で入力してください',
                 'other.max' =>  '255文字以内で入力してください',
                 'img.max' => '写真データの容量が上限を越してます。（上限10MBまで）',
+                'img.*.max' => '写真データの容量が上限を越してます。（1ファイルにつき上限2MBまで）',
                 ]
         );
-
+        
         $dojo = new Dojo();
         $businesshour = new BusinessHour();
         
@@ -253,8 +255,8 @@ class DojoController extends Controller
             ],
             [
                 'use_money.max' => '250文字以内で入力してください',
-                'use_age.integer' => '年齢制限を数字で入力してください',
-                'facility_matonumber.integer' => '的数を数字で入力してください',
+                'use_age.integer' => '年齢制限を数字（半角）で入力してください',
+                'facility_matonumber.integer' => '的数を数字（半角）で入力してください',
                 'facility_numberlimit.max' => '20文字以内で入力してください',
                 'other.max' =>  '255文字以内で入力してください',
                 ]

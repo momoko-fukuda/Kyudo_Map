@@ -43,6 +43,7 @@
 
 
 
+
 <div id="dojoform">
     
     <ul class="nav nav-tabs nav-pills" role="tablist">
@@ -329,10 +330,9 @@
                 <label class="col-md-5 
                               col-form-label 
                               text-md-left">
-                    弓道場画像(約5枚~10枚まで可<small>※10MB</small>)
+                    弓道場画像<small>(約5枚~10枚まで可※容量10MB)</small>
                 </label>
                 <div class="col-md-7">
-                    @if(empty(old('img')))
                     <div class="imgbox">
                         <input type="file" 
                                multiple
@@ -346,33 +346,19 @@
                             <i class="fa-solid fa-circle-minus"></i>
                         </a>
                     </div>
-                    @else
-                        @foreach(old('img') as $value)
-                            <div class="imgbox">
-                                <input type="file" 
-                                       multiple
-                                       class="form-controle-file img" 
-                                       name="img[]"
-                                       value="{{$value}}">
-                                <a type="button" class="append_imgs">
-                                    <i class="fa-solid fa-circle-plus"></i>
-                                </a>
-                                <a type="button" class="remove_imgs">
-                                    <i class="fa-solid fa-circle-minus"></i>
-                                </a>
-                            </div>
-                        @endforeach
-                    @endif
                 </div>
 
-                @if($errors->has('img'))
-                    @foreach($errors->get('img') as $error)
-                        <small class="d-block 
-                                      text-danger ">
-                            {{$error}}
-                        </small>
+                    @foreach($errors->get('img.*') as $messages)
+                        @foreach($messages as $message)
+                            <small class="d-block 
+                                          text-danger ">
+                                {{$message}}
+                            </small>
+                        @endforeach
                     @endforeach
-                @endif
+               
+                
+                
             </div>
 
         </div>
@@ -397,6 +383,8 @@
 
         
     </form>
+
 </div>
+
 
 @endsection

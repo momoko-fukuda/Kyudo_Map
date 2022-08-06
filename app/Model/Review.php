@@ -4,15 +4,12 @@ namespace App\Model;
 
 use App\Model\Buttons\ReviewButton;
 use Illuminate\Database\Eloquent\Model;
-use Overtrue\LaravelFavorite\Traits\Favoriteable;
 
 /**
  * reviewsテーブルのモデルクラス
  */
 class Review extends Model
 {
-    use Favoriteable;
-   
     protected $fillable = [
         'user_id',
         'dojo_id',

@@ -71,10 +71,12 @@ class ReviewController extends Controller
             [
             'title' => ['required', 'string'],
             'body' => ['required', 'string'],
-            'img' => ['max:10000', 'mimes:jpeg,png,jpg,gif']
+            'img.*' => ['mimes:jpeg,png,jpg,gif', 'max:2000'],
+            // 'img' => ['max:10000', 'mimes:jpeg,png,jpg,gif']
             ],
             [
-                'img.max' => '写真データの容量が上限を越してます。（上限10MBまで）'
+                'img.max' => '写真データの容量が上限を越してます。（上限10MBまで）',
+                'img.*.max' => '写真データの容量が上限を越してます。（1ファイルにつき上限2MBまで）',
             ]
         );
             
@@ -112,8 +114,11 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Review $review)
-    {
-        //
-    }
+    // public function destroy(Review $review)
+    // {
+    //     $review_id = $review->id;
+    //     Review::find($review_id)->forceDelete();
+        
+    //     return redirect()->route('mypage');
+    // }
 }
