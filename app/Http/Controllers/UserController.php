@@ -196,13 +196,13 @@ class UserController extends Controller
         return redirect('/');
     }
     
-    public function review_destroy($id)
-    {
-        dd($id);
-        $review = Review::find($id);
-        dd($review);
+    // public function review_destroy($id)
+    // {
+    //     dd($id);
+    //     $review = Review::find($id);
+    //     dd($review);
        
         
-        return redirect()->route('mypage');
-    }
+    //     return redirect()->route('mypage');
+    // }
 }

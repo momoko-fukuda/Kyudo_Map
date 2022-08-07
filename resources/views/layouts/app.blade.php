@@ -49,7 +49,7 @@
         <script src="{{ secure_asset('js/app.js') }}"></script>
         <script src="{{ secure_asset('js/dojocreate.js') }}"></script>
         
-        @yield('script');
+        
 
     </body>
 </html>

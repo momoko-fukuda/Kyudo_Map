@@ -211,7 +211,7 @@
                     
                 </div>
 
-                <div class="form-group w-25 mx-auto my-5">
+                <div class="form-group w-30 mx-auto my-5 text-center">
                     <button type="submit" id="button_submit" class="btn btn_check">
                         アカウント作成
                     </button>

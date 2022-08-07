@@ -13,9 +13,10 @@
             </p>
 
             @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                パスワードをリセットするURLを<br>登録されたメールアドレスへ送信しました。
-            </div>
+                <div class="alert alert-success" role="alert">
+                    パスワードをリセットするURLを
+                    <br>登録されたメールアドレスへ送信しました。
+                </div>
             @endif
 
 
@@ -23,7 +24,16 @@
                 @csrf
 
                 <div class="form-group">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="メールアドレス">
+                    <input id="email" 
+                           type="email" 
+                           class="form-control 
+                                  @error('email') is-invalid @enderror" 
+                                  name="email" 
+                                  value="{{ old('email') }}" 
+                                  required 
+                                  autocomplete="email" 
+                                  autofocus 
+                                  placeholder="メールアドレス">
 
                     @error('email')
                     <span class="invalid-feedback" role="alert">

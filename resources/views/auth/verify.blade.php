@@ -8,7 +8,9 @@
                 弓道場のTEBIKIに<br>ご登録ありがとうございます！
             </h3>
             <img src="../../images/dojosearch.gif" 
-                 alt="thanks">
+                 alt="thanks"
+                 class="w-75 
+                        m-auto">
 
             <p>
                 現在、仮会員の状態です。

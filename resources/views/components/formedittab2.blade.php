@@ -518,12 +518,11 @@
                    <textarea id="other" 
                              class="form-control
                                     @error('other') is-invalid @enderror" 
-                             name="other" 
-                             value="{{old('other') == '' ? $dojo->other : old('other')}}" 
+                             name="other"
+                             value="" 
                              autocomplete="on" 
                              autofocus 
-                             placeholder="その他、利用する上での注意事項を記入してください">
-                   </textarea>
+                             placeholder="その他、利用する上での注意事項を記入してください">{{old('other') == '' ? $dojo->other : old('other')}}</textarea>
     
                    @if($errors->has('other'))
                             @foreach($errors->get('other') as $error)

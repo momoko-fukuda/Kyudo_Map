@@ -35,7 +35,7 @@
 
 
 <h4 class="mt-5 reviewformtitle">お問い合わせフォーム</h4>
-<div class="text-center">
+<div class="m-auto text-center w-75">
 <p>いつも弓道場のTEBIKIをご利用くださり、ありがとうございます。<br>何かお気づきの点などございましたら、お問合せください。</p>
 <p>お問合せ内容につきましては全て拝見させていただきますが、<br>全てに返信・対応が出来かねますこと、ご了承ください。</p>
 </div>
@@ -50,7 +50,7 @@
     <div id="reviewform" class="mb-0">
         
         <!--お問合せ種類-->
-        <div class="form-group row">
+        <div class="form-group row my-3">
             <label for="contacttype" 
                    class="col-md-5 
                           col-form-label 
@@ -58,7 +58,7 @@
                 お問合せの種類
                 <span class="ml-1 required">必須</span>
             </label>
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <select id="contacttype" 
                         class="form-control" 
                         name="contacttype" 
@@ -89,7 +89,7 @@
         </div>
 
         <!--名前-->
-        <div class="form-group row">
+        <div class="form-group row my-3">
             <label for="name" 
                    class="col-md-5 
                           col-form-label 
@@ -97,7 +97,7 @@
                 お名前
                 <span class="ml-1 required">必須</span>
             </label>
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <input id="name" 
                        type="text" 
                        class="form-control 
@@ -118,7 +118,7 @@
         </div>
         
         <!--メールアドレス-->
-        <div class="form-group row">
+        <div class="form-group row my-3">
             <label for="email" 
                    class="col-md-5 
                           col-form-label 
@@ -126,7 +126,7 @@
                 メールアドレス
                 <span class="ml-1 required">必須</span>
             </label>
-            <div class="col-md-6">
+            <div class="col-md-7">
             <input id="email" 
                    type="text" 
                    class="form-control 
@@ -148,13 +148,13 @@
         </div>
                 
         <!--コメント-->
-        <div class="form-group row">
+        <div class="form-group row my-3">
             <label for="contact" 
                    class="col-md-5 col-form-label text-md-left">
                     お問合せ内容
                     <span class="ml-1 required">必須</span>
             </label>
-            <div class="col-md-11">
+            <div class="col-md-12">
                <textarea id="contact" 
                      class="form-control 
                             @error('contact') is-invalid @enderror" 
@@ -172,9 +172,9 @@
         </div>
         
         <!--個人情報の取り扱い-->
-        <div class="form-group row">
+        <div class="form-group row my-3">
             <label for="check_agree" 
-                   class="col-md-5 
+                   class="col-md-6 
                           col-form-label 
                           text-md-left">
                 個人情報の取り扱い
@@ -211,7 +211,9 @@
                     id="btn_submit">
                 お問い合わせ送信
             </button>
-            <small>※送信完了までに20秒程かかります</small>
+            <p>
+                <small>※送信完了までに20秒程かかります</small>
+            </p>
         </div>
     </form>
 

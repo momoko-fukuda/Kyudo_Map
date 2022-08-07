@@ -8,9 +8,8 @@
     <!--トップ-->
     <div id="aboutview">
         <h1>弓道場のTEBIKI</h1>
-        <h4>弓道場のTEBIKIとは
-            <br>弓道が練習できる場をみんなで見つけ・共有し、
-            <br><span>弓道をもっと身近に楽しく続けていくための弓道場の手引書</span>です。
+        <h4>それは、弓道が練習できる場をみんなで見つけ・共有し、
+            <br><span>弓道をもっと身近に楽しく続けていくための<br>弓道場の手引書</span>です。
         </h4>
     </div>
     <!--お悩み-->
@@ -24,7 +23,7 @@
                     <br>この間、練習しに行った弓道場を忘れる。
                 </p>
             </div>
-            <div class="worries">
+            <div class="worries reverse">
                 <p>
                     練習をしに弓道場にいったものの、<br>様々な条件があり、
                     <br>結局個人練習できなかった。
@@ -69,14 +68,14 @@
                 <a type="button" class="btn btn_check" href="{{route('dojos.index')}}">弓道場を探しにいく</a>
             </div>
             <div>
-                <p class="usetop"><span>シーン２：</span>あれ、あの道場でも練習できるのに登録がない・・・</p>
+                <p class="usetop"><span>シーン２：</span>あれ、あの道場でも練習できるのに登録がない…</p>
                 <p>
                     弓道場のTEBIKIに登録のない、弓道場を登録して共有が可能です。
                 </p>
                 <a type="button" class="btn btn_check" href="{{route('dojos.create')}}">弓道場を登録する</a>
             </div>
             <div>
-                <p class="usetop"><span>シーン３：</span>あ、この弓道場利用したことあるな・・・</p>
+                <p class="usetop"><span>シーン３：</span>あ、この弓道場利用したことあるな…</p>
                 <p>弓道場の雰囲気など、口コミ・写真を投稿して、みんなに共有することが可能です。</p>
                 <p>
                     また、他の人が投稿した口コミ・写真から、その道場の様子が確認できます。
@@ -84,7 +83,7 @@
                 <a type="button" class="btn btn_check" href="{{route('dojos.index')}}">弓道場を検索して<br>口コミ・写真を見に行く</a>
             </div>
             <div>
-                <p class="usetop"><span>シーン４：</span>利用した道場や、自分の活動エリアの道場をすぐ見れるように管理しておきたいな・・・</p>
+                <p class="usetop"><span>シーン４：</span>利用した道場や、自分の活動エリアの道場をすぐ見れるように管理しておきたいな…</p>
                 <p>
                     自分にあった弓道場や、参考になった口コミなどをリアクションすることで、<br>
                     マイページで管理することが可能です。

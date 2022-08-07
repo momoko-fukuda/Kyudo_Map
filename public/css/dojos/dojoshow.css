@@ -10,6 +10,7 @@
     flex-grow: 0.5;
 }
 #dojoinfo{
+    width:450px;
     padding-right: 30px;
 }
 #showtop small{
@@ -42,7 +43,9 @@
     height: 40px;
     border-bottom: 1px #DEB887 solid;
 }
-
+#showtop td{
+    word-wrap: break-word;
+}
 .toptable{
     border-top: 1px #DEB887 solid;
 }
@@ -108,8 +111,9 @@
     display: flex;
 }
 #dojoterms div{
+    width: 440px;
+    margin: 0 auto;
     padding: 20px 0;
-    flex-grow: 0.5;
 }
 
 #dojoterms h4{
@@ -130,6 +134,8 @@
 }
 #dojoterms td{
     padding-left: 10px;
+    max-width: 155px;
+    word-wrap: break-word;
 }
 
 #toedit{
@@ -186,7 +192,12 @@
         margin: auto;
     }
     #dojoterms{
+        width: 90%;
+        margin: auto;
         flex-flow:column;
+    }
+    #dojoterms div{
+        width: 100%;
     }
     #dojoterms table{
         margin: 10px auto;

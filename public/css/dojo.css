@@ -554,101 +554,229 @@
 }
 
 /*弓道場のTEBIKIとはの画面*/
-#aboutview{
-    width: 100%;
-    height: 500px;
-    background: url(/images/aboutview.png) no-repeat;
-    background-position: 20px 10px;
-    background-size: contain;
-    border-radius:10px;
-    position: relative;
-}
-#aboutview h1{
-    position: absolute;
-    top: 130px;
-    left: 240px;
-    font-size: 60px;
-    font-weight: bold;
-}
-#aboutview h4{
-    text-align: center;
-    position: absolute;
-    top: 250px;
-    left: 130px;
-    font-weight: bold;
-}
-#aboutview span{
-    color: #CD5C5C;   
-}
 
-#aboutworry{
-    margin: 100px auto;
+/*PC版*/
 
-}
-#aboutworry h4{
-    text-align: center;
-}
-#aboutworry > div{
-    width: 80%;
-    margin: 20px auto;
-    padding: 40px;
-    background-color: #fff;
-    border-radius: 10px;
-}
-
-.worries{
-    margin: 30px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.worries p{
-    padding-left: 20px;
-    font-size: 18px;
-}
-
-#solution{
+    #aboutview{
+        max-width: 100%;
+        height: 500px;
+        background: url(/images/aboutview.png) no-repeat;
+        background-position: 20px 10px;
+        background-size: contain;
+        border-radius:10px;
+        position: relative;
+    }
+    #aboutview h1{
+        position: absolute;
+        top: 130px;
+        left: 240px;
+        font-size: 60px;
+        font-weight: bold;
+    }
+    #aboutview h4{
+        text-align: center;
+        position: absolute;
+        top: 260px;
+        left: 200px;
+        font-weight: bold;
+    }
+    #aboutview span{
+        color: #CD5C5C;   
+    }
     
-    text-align: center;
-}
-#solution > div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    #aboutworry{
+        margin: 100px auto;
+    
+    }
+    #aboutworry h4{
+        text-align: center;
+    }
+    #aboutworry > div{
+        width: 80%;
+        margin: 20px auto;
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 10px;
+    }
+    
+    .worries{
+        margin: 30px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .worries p{
+        padding-left: 20px;
+        font-size: 18px;
+    }
+    
+    #solution{
+        text-align: center;
+    }
+    #solution strong{
+        color: #CD5C5C;
+    }
+    #solution > div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #solution > div div{
+        padding: 10px;
+    }
+    
+    #howtouse{
+        width: 80%;
+        margin: 50px auto;
+    }
+    #howtouse h4{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    #howtouse > div{
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        
+    }
+    #howtouse > div div{
+        width: 90%;
+        margin: 10px auto 40px;
+        /*text-align: center;*/
+    }
+    #howtouse > div div a{
+        display: block;
+        width: 210px;
+        margin: auto;
+    }
+    #howtouse span{
+        color: #CD5C5C;
+    }
+    .usetop{
+        font-size: 19px;
+        border-bottom: dotted 2px;
+    }
+    #aboutbottom{
+        padding-bottom: 40px;
+        text-align: center;
+    }
 
-#solution > div div{
-    padding: 10px;
-}
 
-#howtouse{
-    width: 80%;
-    margin: 50px auto;
-}
-#howtouse h4{
-    text-align: center;
-    margin-bottom: 30px;
-}
-#howtouse > div{
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 10px;
+/*タブレット版*/
+@media screen and (max-width:979px){
+    #aboutview{
+        max-width: 100%;
+        height: 400px;
+        background: url(/images/aboutview.png) no-repeat;
+        background-position: 10px 10px;
+        background-size: contain;
+        border-radius:10px;
+        position: relative;
+    }
+    
+    
+    #aboutview h1{
+        position: absolute;
+        top: 100px;
+        left: 170px;
+        font-size: 45px;
+        font-weight: bold;
+    }
+    #aboutview h4{
+        text-align: center;
+        position: absolute;
+        top: 200px;
+        left: 130px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    #aboutview span{
+        color: #CD5C5C;   
+    }
+    .worries img{
+        width: 250px;
+    }
+    #solution h4, #solution > p{
+        width: 80%;
+        margin: auto;
+    }
+    #solution > div{
+        flex-flow: column;
+        text-align: center;
+    }
+    #solution > div > div{
+        width:70%;
+        margin: auto;
+    }
+    #aboutbottom h4{
+        width: 90%;
+        margin: auto;
+    }
     
 }
-#howtouse > div div{
-    margin: 10px auto 40px;
-    text-align: center;
-}
-#howtouse span{
-    color: #CD5C5C;
-}
-.usetop{
-    font-size: 19px;
-    border-bottom: dotted 2px;
-}
-#aboutbottom{
-    padding-bottom: 40px;
-    text-align: center;
+
+/*スマホ用*/
+@media screen and (max-width:659px){
+    #aboutview{
+        background: url(/images/sp_aboutview.png) no-repeat;
+        background-position: top 10px center;
+        background-size: contain;
+    }
+    #aboutview h1{
+        position: static;
+        width: 280px;
+        margin: auto;
+        padding-top: 28%;
+        font-size: 35px;
+        font-weight: bold;
+    }
+    #aboutview h4{
+        position: static;
+        width: 90%;
+        margin: auto;
+        padding-top: 7%;
+        font-size: 15px;
+        font-weight: bold;
+    }
+    #aboutworry > div{
+        width: 90%;
+    }
+    #aboutworry h4{
+        width: 80%;
+        margin: auto;
+        text-align: center;
+    }
+    .worries{
+        flex-flow: column;
+        text-align: center;
+    }
+    .reverse{
+        flex-direction: column-reverse;
+    }
+    .worries img{
+        width: 90%;
+        margin-bottom: 20px;
+    }
+    .worries p{
+        padding: 0;
+    }
+    
+    .usetop{
+        font-size: 18px;
+    }
+    #howtouse{
+        width: 90%;
+    }
+    #howtouse > div div{
+        width: 100%;
+    }
+    
+    #aboutbottom img{
+        width: 90%;
+        margin: 20px auto 10px;
+    }
+
 }/*パンくずリスト*/
 .route{
     padding: 20px 20px 0 20px;
@@ -830,6 +958,7 @@
     flex-grow: 0.5;
 }
 #dojoinfo{
+    width:450px;
     padding-right: 30px;
 }
 #showtop small{
@@ -862,7 +991,9 @@
     height: 40px;
     border-bottom: 1px #DEB887 solid;
 }
-
+#showtop td{
+    word-wrap: break-word;
+}
 .toptable{
     border-top: 1px #DEB887 solid;
 }
@@ -928,8 +1059,9 @@
     display: flex;
 }
 #dojoterms div{
+    width: 440px;
+    margin: 0 auto;
     padding: 20px 0;
-    flex-grow: 0.5;
 }
 
 #dojoterms h4{
@@ -950,6 +1082,8 @@
 }
 #dojoterms td{
     padding-left: 10px;
+    max-width: 155px;
+    word-wrap: break-word;
 }
 
 #toedit{
@@ -1006,7 +1140,12 @@
         margin: auto;
     }
     #dojoterms{
+        width: 90%;
+        margin: auto;
         flex-flow:column;
+    }
+    #dojoterms div{
+        width: 100%;
     }
     #dojoterms table{
         margin: 10px auto;
