@@ -11065,6 +11065,16 @@ $(function () {
       console.log('fail');
     });
   });
+  /**
+   * 口コミ削除(mypage)
+   * 
+   */
+
+  $('.reviewdeletebtn').on('click', function () {
+    if (confirm('削除するとデータ復旧はできません')) {} else {
+      return false;
+    }
+  });
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 

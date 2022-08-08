@@ -69,7 +69,7 @@
 
                 <div>
                     @foreach($review->dojophotos as $value)
-                        <img src="{{ $value['img'] }}" 
+                        <img src="https://s3-ap-northeast-1.amazonaws.com/kyudo-map-img/{{ $value['img'] }}" 
                              class="hidephotos">
                     @endforeach
                     @if($review->dojophotos->isNotEmpty())

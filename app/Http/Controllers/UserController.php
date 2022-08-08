@@ -7,10 +7,10 @@ use App\Model\Dojo;
 use App\Model\Review;
 use App\Model\User;
 use App\Model\Area;
-use App\Model\Photo;
 use App\Model\Buttons\FavoriteButton;
 use App\Model\Buttons\UseButton;
 use App\Model\Buttons\ReviewButton;
+use App\Model\Photos\DojoPhoto;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -171,7 +171,8 @@ class UserController extends Controller
 
         User::updatePassword($request, $user);
 
-        return redirect()->route('mypage')->with('status', 'パスワードの変更が終了しました');
+        return redirect()->route('mypage')
+                         ->with('status', 'パスワードの変更が終了しました');
     }
     
 
@@ -196,13 +197,19 @@ class UserController extends Controller
         return redirect('/');
     }
     
-    // public function review_destroy($id)
-    // {
-    //     dd($id);
-    //     $review = Review::find($id);
-    //     dd($review);
-       
+    /**
+     * マイページの投稿した口コミ一覧削除
+     * (写真も一緒に)
+     */
+    public function review_destroy($id)
+    {
+        // S3にある写真データ削除
+        DojoPhoto::deletereviewPhotos($id);
+
+        $review = Review::find($id);
+        $review->delete();
         
-    //     return redirect()->route('mypage');
-    // }
+        return redirect()->route('mypage')
+                         ->with('status', '投稿した口コミを削除しました。');
+    }
 }

@@ -53,7 +53,7 @@ class DojoPhoto extends Model
 
                 $path = Storage::disk('s3')->putFile('/test', $file, 'public');
             
-                $dojophoto->img =Storage::disk('s3')->url($path);
+                $dojophoto->img =$path;
 
                 $dojophoto->save();
             }
@@ -75,8 +75,7 @@ class DojoPhoto extends Model
                 $dojophoto->review_id = $review->id;
 
                 $path = Storage::disk('s3')->putFile('/test', $file, 'public');
-            
-                $dojophoto->img =Storage::disk('s3')->url($path);
+                $dojophoto->img =$path;
 
                 $dojophoto->save();
             }
@@ -104,5 +103,19 @@ class DojoPhoto extends Model
               ->where('dojo_id', $dojoId)
               ->orderBy('created_at', 'desc')
               ->limit(5);
+    }
+    
+    /**
+     * UserControllerで該当のreview_idと同じデータをS3から削除する
+     */
+    public static function deletereviewPhotos($id)
+    {
+        $dojophotos = self::where('review_id', $id)->get();
+        if ($dojophotos) {
+            foreach ($dojophotos as $dojophoto) {
+                $oldfile = $dojophoto->img;
+                Storage::disk('s3')->delete($oldfile);
+            }
+        }
     }
 }

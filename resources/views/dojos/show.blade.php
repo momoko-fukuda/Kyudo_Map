@@ -109,7 +109,7 @@
                 <img src="../../images/noimage1.png" alt="No Image">
             @else
                 @foreach($dojophotos as $dojophoto)
-                    <img src="{{ $dojophoto['img'] }}">
+                    <img src="https://s3-ap-northeast-1.amazonaws.com/kyudo-map-img/{{ $dojophoto['img'] }}">
                 @endforeach
             @endif
         </div>

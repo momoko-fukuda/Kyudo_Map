@@ -40,7 +40,7 @@ Route::get('dojos/{dojo}/reviews', 'ReviewController@index')->name('reviews.inde
 Route::get('dojos/{dojo}/reviews/create', 'ReviewController@create')->name('reviews.create');
 Route::post('dojos/{dojo}/reviews', 'ReviewController@store')->name('reviews.store');
 
-Route::delete('mypage/reviewsdelete/{id}', 'UserController@review_destroy')->name('reviews.destroy');
+Route::delete('mypage/reviewsdelete/{review}', 'UserController@review_destroy')->name('reviews.destroy');
 
 
 // 画像関連

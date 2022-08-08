@@ -28,7 +28,7 @@
     <div>
         @foreach($dojophotos as $dojophoto)
             <div class="dojoimg">
-                <img src="{{ $dojophoto['img'] }}">
+                <img src="https://s3-ap-northeast-1.amazonaws.com/kyudo-map-img/{{ $dojophoto['img'] }}">
                 @if($dojophoto->user)
                     <small>投稿者：{{$dojophoto->user->name}}さん</small>
                 @else

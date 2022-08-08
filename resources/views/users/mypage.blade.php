@@ -24,7 +24,8 @@
     <div class="alert 
                 alert-primary 
                 alert-dismissible 
-                fade show">
+                fade show
+                w-75 m-auto">
         {{ session('status') }}
         <button type="button" 
                 class="close" 
@@ -205,7 +206,7 @@
         
                             <div>
                                 @foreach($review->dojophotos as $value)
-                                    <img src="{{ $value['img'] }}" 
+                                    <img src="https://s3-ap-northeast-1.amazonaws.com/kyudo-map-img/{{ $value['img'] }}" 
                                          class="hidephotos">
                                 @endforeach
                                 @if($review->dojophotos->isNotEmpty())
@@ -214,86 +215,38 @@
                                     </a>
                                 @endif
                             </div>
-                            
-                            <span>
-                                <i class="fa-solid fa-thumbs-up"></i>
-                                {{$review->reviewbuttons_count}} | 
-                            </span>
-                            <a href="{{route('reviews.index', $review->dojo->id)}}">
+                            <div class="mt-3">
                                 <span>
-                                    <i class="fa-solid fa-comments"></i>
-                                    {{$review->dojo->name}}の口コミ
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                    {{$review->reviewbuttons_count}} | 
                                 </span>
-                            </a>
-                            <span>
-                                |投稿日：{{$review->created_at->format('Y年m月d日')}}
-                            </span>
-                            
-                            
-                            
-                            <div class="d-inline-block">
-                                <form method="POST" 
-                                      action="mypage/reviewsdelete/{{$review->id}}">
-                                    @csrf
-                                    <input type="hidden" 
-                                           name="_method" 
-                                           value="DELETE">
-                                    <span class="btn 
-                                                dashboard-delete-link" 
-                                         data-toggle="modal" 
-                                         data-target="#delete-user-confirm-modal">
-                                            <i class="fa-solid fa-trash-can"></i>
+                                <a href="{{route('reviews.index', $review->dojo->id)}}">
+                                    <span>
+                                        <i class="fa-solid fa-comments"></i>
+                                        {{$review->dojo->name}}の口コミ
                                     </span>
-                 
-                                    <div class="modal fade" 
-                                         id="delete-user-confirm-modal" 
-                                         data-backdrop="static" 
-                                         data-keyboard="false" 
-                                         tabindex="-1" 
-                                         role="dialog" 
-                                         aria-labelledby="staticBackdropLabel" 
-                                         aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" 
-                                                        id="staticBackdropLabel">
-                                                        <label>本当に削除しますか？</label>
-                                                    </h5>
-                                                    <button type="button" 
-                                                            class="close" 
-                                                            data-dismiss="modal" 
-                                                            aria-label="閉じる">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p class="text-center">
-                                                        一度削除すると口コミデータは復旧はできません。
-                                                    </p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" 
-                                                            class="btn 
-                                                                   btn-secondary" 
-                                                                   data-dismiss="modal">
-                                                        キャンセル
-                                                    </button>
-                                                    <button type="submit" 
-                                                            class="btn 
-                                                                   btn-danger
-                                                                  text-white">
-                                                        削除する
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                                </a>
+                                <span>
+                                    |投稿日：{{$review->created_at->format('Y年m月d日')}}
+                                </span>
+                                
+                                
+                                
+                                <div class="d-inline-block">
+                                    <form method="POST" 
+                                          action="/mypage/reviewsdelete/{{$review->id}}">
+                                        @csrf
+                                        <input type="hidden" 
+                                               name="_method" 
+                                               value="DELETE">
+                                        <button type="submit" 
+                                                class="btn 
+                                                       reviewdeletebtn">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                            
-                            
-                            
                         </div>
                     </div>
                 @endforeach
