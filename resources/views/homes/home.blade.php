@@ -327,12 +327,12 @@
                 </div>
             @endforeach
         @else
-            <p>ごめんなさい、まだ口コミは投稿されてません。</p>
-            <a href="{{route('dojos.index')}}">
-                知っている弓道場を探して、口コミを投稿する
+            <p class="w-75 mt-4 text-center">ごめんなさい、まだ口コミは投稿されてません。</p>
+            <img src="../images/sorry.gif">
+            <a class="btn btn_check" href="{{route('dojos.index')}}">
+                知っている弓道場を探しにいく
             </a>
-            <img src="../img/home/sorry.gif">
-        @endif
+         @endif
     </div>
 </div>
 

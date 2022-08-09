@@ -177,21 +177,18 @@ class DojoController extends Controller
         
         $usebutton = UseButton::getUseButton($dojoId, $userId)
                                 ->first();
-                                
         $favoritebutton = FavoriteButton::getFavoriteButton($dojoId, $userId)
                                           ->first();
                                           
         $reviews = Review::getDojoReviewLast5($dojoId)
                            ->get();
                            
-        //画像のアップ
         $dojophotos = DojoPhoto::limitGetDojoPhotos5($dojoId)
                                  ->get();
         
         $businesshour = BusinessHour::getBusinessHour($dojoId)
                                       ->first();
-        
-                           
+                                      
         return view(
             'dojos.show',
             compact(
@@ -279,16 +276,5 @@ class DojoController extends Controller
         
         //データ登録
         return redirect()->route('dojos.show', ['id'=>$dojo->id]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $dojo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Dojo $dojo)
-    {
-        //データ削除
     }
 }

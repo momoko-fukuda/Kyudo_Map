@@ -15,6 +15,9 @@ use App\Model\Buttons\UseButton;
 use App\Model\Buttons\FavoriteButton;
 use App\Model\Buttons\ReviewButton;
 
+/**
+ * 道場ページのお気に入り・利用したボタンのcontroller
+ */
 class ButtonController extends Controller
 {
     
@@ -90,58 +93,4 @@ class ButtonController extends Controller
         
         return redirect()->route('dojos.show', ['id' => $dojo->id]);
     }
-    
-    
-    // /**
-    //  * review時のボタン機能の実装
-    //  */
-    // public function reviewbutton(Request $request, Dojo $dojo, Review $review)
-    // {
-    //     $reviewbutton = new ReviewButton();
-    //     $reviewbutton->review_id = $review->id;
-    //     $reviewbutton->ip = $request->ip();
-            
-    //     if (Auth::check()) {
-    //         $reviewbutton->user_id = Auth::id();
-    //     }
-        
-    //     dd($reviewbutton);
-    //     $reviewbutton->save();
-     
-    //     return redirect()->route('reviews.index', ['id' => $dojo->id]);
-    // }
-     
-    // /**
-    //  * review時のボタン機能の実装（解除）
-    //  */
-    // public function unreviewbutton(Request $request, Dojo $dojo, Review $review)
-    // {
-    //     $user = $request->ip();
-    //     $reviewbutton = ReviewButton::where('review_id', $review->id)
-    //                                 ->where('ip', $user)
-    //                                 ->first();
-                                    
-        
-    //     return redirect()->route('reviews.index', ['id' => $dojo->id]);
-    // }
-    
-    // public function favorite(Dojo $dojo, Review $review)
-    // {
-    //     $user = Auth::user();
-        
-        
-    //     if ($user->hasFavorited($review)) {
-    //         $user->unfavorite($review);
-    //     } else {
-    //         $user->favorite($review);
-    //     }
-        
-    //     // ajaxにデータをいい送る。（trueか、count数）Qどうやって受け取って送るんだろう
-    //     return [
-    //         "isFavorite" => $user->hasFavorited($review),
-    //         "count" => xxx
-    //         ];
-
-    //     // return redirect()->route('reviews.index', ['dojo'=> $dojo->id]);
-    // }
 }

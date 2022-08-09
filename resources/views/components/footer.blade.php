@@ -1,8 +1,12 @@
-<div id="footer" class="navbar navbar-expand-lg shadow-sm">
+<div id="footer" class="navbar 
+                        navbar-expand-lg 
+                        shadow-sm">
     <div>
-    <a class="navbar-brand" href="{{url('/')}}">
-        <img class="logo" src="../../../images/logo.gif" alt="弓道場のTEBIKIのロゴ">
-    </a>
+        <a class="navbar-brand" href="{{url('/')}}">
+            <img class="logo" 
+                 src="../../../images/logo.png" 
+                 alt="弓道場のTEBIKIのロゴ">
+        </a>
     </div>
     <div id="footerlink">
         <a href="{{route('home.contact')}}">

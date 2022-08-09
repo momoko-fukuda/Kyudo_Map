@@ -45,7 +45,6 @@ Route::delete('mypage/reviewsdelete/{review}', 'UserController@review_destroy')-
 
 // 画像関連
 Route::get('dojos/{dojo}/photos', 'PhotoController@index')->name('photos.index');
-Route::delete('dojos/{dojo}/photos/{photo}', 'PhotoController@destroy');
 
 
 // マイページ関連
@@ -54,7 +53,6 @@ Route::get('mypage/{user}/edit', 'UserController@edit')->name('mypage.edit');
 Route::put('mypage/{user}', 'UserController@update')->name('mypage.update');
 Route::get('mypage/{user}/delete', 'UserController@deleteview')->name('mypage.deleteview');
 Route::delete('mypage/{user}', 'UserController@destroy')->name('mypage.delete');
-
 
 //パスワードの更新
 Route::get('mypage/{user}/password/edit', 'UserController@edit_password')->name('mypage.edit_password');

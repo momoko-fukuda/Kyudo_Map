@@ -62,8 +62,6 @@ class Review extends Model
          ->get();
     }
     
-    
-    
     /**
      * DojoControllerで該当道場のレビューデータを全取得するモデルクラス
      */

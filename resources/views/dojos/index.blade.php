@@ -28,7 +28,7 @@
                     class="form-control" 
                     name="area_id" 
                     data-toggle="select">
-                <option>
+                <option value="0">
                     全ての都道府県を検索する
                 </option>
                 @foreach($areas as $area)
@@ -142,8 +142,8 @@
             @endif
             <hr>
             <small>
-                <i class="fa-solid fa-comment-dots"></i>
-                {{$dojo->reviews->count()}}件
+                    <i class="fa-solid fa-comment-dots"></i>
+                    {{$dojo->reviews->count()}}件
             </small>
             <small>
                 <i class="fa-solid fa-heart"></i>

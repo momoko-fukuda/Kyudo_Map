@@ -38,6 +38,7 @@ class ContactForm extends Mailable
     }
     /**
      * お問合せフォームのメール送信
+     * (HomeControllerのcontact_send)
      */
     public static function contactSend($request)
     {

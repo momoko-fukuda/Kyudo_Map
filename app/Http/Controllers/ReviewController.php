@@ -14,6 +14,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * 口コミ関連ページのcontroller
+ */
 class ReviewController extends Controller
 {
     
@@ -24,7 +27,7 @@ class ReviewController extends Controller
     public function __construct()
     {
         $this->middleware('auth')
-             ->only(['create', 'store', 'delete']);
+             ->only(['create', 'store']);
     }
     
     
@@ -88,7 +91,7 @@ class ReviewController extends Controller
         return redirect()->route('reviews.index', ['id' => $dojo->id]);
     }
     /**
-     * いいね機能の実装
+     * 口コミいいね機能の実装(非同期処理)
      */
     public function like(Request $request)
     {
@@ -107,18 +110,4 @@ class ReviewController extends Controller
      
         return response()->json($data);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function destroy(Review $review)
-    // {
-    //     $review_id = $review->id;
-    //     Review::find($review_id)->forceDelete();
-        
-    //     return redirect()->route('mypage');
-    // }
 }

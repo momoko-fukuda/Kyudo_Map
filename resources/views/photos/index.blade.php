@@ -40,8 +40,14 @@
     </div>
 </div>
 <div class="toreviewcreate">
-    <p>{{$dojo->name}}の写真をもっていたら、みんなに共有しよう！</p>
-    <a type=button class="btn btn_check" href="{{route('reviews.create', $dojo->id)}}">写真を投稿する</a>
+    <p>
+        {{$dojo->name}}の写真をもっていたら、みんなに共有しよう！
+    </p>
+    <a type=button 
+       class="btn btn_check" 
+       href="{{route('reviews.create', $dojo->id)}}">
+        写真を投稿する
+    </a>
 </div>
 
 @endsection

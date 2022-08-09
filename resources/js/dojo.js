@@ -6,6 +6,9 @@ $( function()
     
 });
 
+    /**
+     * 営業時間の追加表示(dojoscreate画面)
+     */
     $(function(){
         $('.hidehours').hide();
     

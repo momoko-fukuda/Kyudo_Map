@@ -58,7 +58,7 @@
     #solution{
         text-align: center;
     }
-    #solution strong{
+    #solution strong, #aboutbottom strong{
         color: #CD5C5C;
     }
     #solution > div{

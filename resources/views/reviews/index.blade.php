@@ -136,7 +136,11 @@
 </div>
 <div class="toreviewcreate">
     <p>{{$dojo->name}}を利用したら、みんなに情報を共有しよう！</p>
-    <a type=button class="btn btn_check" href="{{route('reviews.create', $dojo->id)}}">口コミ投稿する</a>
+    <a type=button 
+       class="btn btn_check" 
+       href="{{route('reviews.create', $dojo->id)}}">
+        口コミ投稿する
+    </a>
 </div>
 
 @endsection

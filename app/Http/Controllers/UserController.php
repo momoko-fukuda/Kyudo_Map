@@ -16,6 +16,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * 主にmypageやlogin周り
+ */
 class UserController extends Controller
 {
     /**
@@ -44,8 +47,6 @@ class UserController extends Controller
                          ->get();
         
         //参考になったボタンを押した口コミ投稿をとってくる
-        // $favoriteReviews = $user->favorites(Review::class)
-        //                         ->get();
         $favoriteReviews = ReviewButton::getReviewButtonUser($user)
                                          ->get();
         
@@ -73,37 +74,6 @@ class UserController extends Controller
         ));
     }
 
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function create()
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
-
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  \App\User  $user
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show(User $user)
-    // {
-    //     //
-    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -172,10 +142,12 @@ class UserController extends Controller
         User::updatePassword($request, $user);
 
         return redirect()->route('mypage')
-                         ->with('status', 'パスワードの変更が終了しました');
+                         ->with('status', 'パスワードの変更が完了しました');
     }
     
-
+    /**
+     * ユーザー削除のページ遷移
+     */
     public function deleteview()
     {
         $user = Auth::user();
@@ -184,7 +156,7 @@ class UserController extends Controller
     
     /**
      * Remove the specified resource from storage.
-     *
+     * ユーザー削除処理
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
@@ -198,7 +170,7 @@ class UserController extends Controller
     }
     
     /**
-     * マイページの投稿した口コミ一覧削除
+     * マイページの投稿した口コミ削除処理
      * (写真も一緒に)
      */
     public function review_destroy($id)

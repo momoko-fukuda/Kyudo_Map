@@ -21,7 +21,7 @@
     <div class="alert 
                 alert-success 
                 alert-dismissible fade show
-                w-50
+                w-75
                 mx-auto">
         {{ session('success') }}
         <button type="button" 
@@ -199,7 +199,9 @@
                                
                 @error('check_agree')
                     <span class="invalid-feedback" role="alert">
-                        <strong>お問合せいただく上で、個人情報の取り扱いへの同意は必須となります。</strong>
+                        <strong>
+                            お問合せいただく上で、個人情報の取り扱いへの同意は必須となります。
+                        </strong>
                     </span>
                 @enderror
             </div>

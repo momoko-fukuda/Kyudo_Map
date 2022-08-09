@@ -204,7 +204,7 @@
                             <hr>
                             <p class="card-text">{{$review->body}}</p>
         
-                            <div>
+                            <div class="mb-2">
                                 @foreach($review->dojophotos as $value)
                                     <img src="https://s3-ap-northeast-1.amazonaws.com/kyudo-map-img/{{ $value['img'] }}" 
                                          class="hidephotos">
@@ -215,23 +215,23 @@
                                     </a>
                                 @endif
                             </div>
+                            <span>
+                                投稿日：{{$review->created_at->format('Y年m月d日')}}
+                            </span>
+                            
+                            <hr>
                             <div class="mt-3">
                                 <span>
                                     <i class="fa-solid fa-thumbs-up"></i>
                                     {{$review->reviewbuttons_count}} | 
                                 </span>
-                                <a href="{{route('reviews.index', $review->dojo->id)}}">
-                                    <span>
-                                        <i class="fa-solid fa-comments"></i>
-                                        {{$review->dojo->name}}の口コミ
-                                    </span>
-                                </a>
                                 <span>
-                                    |投稿日：{{$review->created_at->format('Y年m月d日')}}
+                                    <a href="{{route('reviews.index', $review->dojo->id)}}">
+                                            <i class="fa-solid fa-comments"></i>
+                                        {{$review->dojo->name}}の口コミ
+                                    </a>
                                 </span>
-                                
-                                
-                                
+                                <!--口コミ削除-->
                                 <div class="d-inline-block">
                                     <form method="POST" 
                                           action="/mypage/reviewsdelete/{{$review->id}}">
@@ -288,12 +288,16 @@
                                 {{$favoriteReview->review->body}}
                             </p>
         
-                            <div>
+                            <div class="mb-3">
                                 @foreach($favoriteReview->review->dojophotos as $value)
-                                    <img src="{{ $value['img'] }}" class="hidephotos">
+                                    <img src="https://s3-ap-northeast-1.amazonaws.com/kyudo-map-img/{{ $value['img'] }}" 
+                                         class="hidephotos"
+                                         alt="弓道場の写真">
                                 @endforeach
                                 @if($favoriteReview->review->dojophotos->isNotEmpty())
-                                    <a type="button" class="photomore">写真を表示する</a>
+                                    <a type="button" class="photomore">
+                                        写真を表示する
+                                    </a>
                                 @endif
                             </div>
                             
@@ -306,15 +310,14 @@
                                 <span class="card-subtitle">
                                     <i class="fa-solid fa-person-circle-minus"></i>
                                     退会済 | 
-                                    </span>
-                            @endif
-                            
-                            <a href="{{route('reviews.index', $favoriteReview->review->dojo_id)}}">
-                                <span>
-                                    <i class="fa-solid fa-comments"></i>
-                                    {{$favoriteReview->review->dojo->name}}の口コミ
                                 </span>
-                            </a>
+                            @endif
+                            <span>
+                                <a href="{{route('reviews.index', $favoriteReview->review->dojo_id)}}">
+                                        <i class="fa-solid fa-comments"></i>
+                                        {{$favoriteReview->review->dojo->name}}の口コミ
+                                </a>
+                            </span>
                             <span>
                                 |投稿日：{{$favoriteReview->review->created_at->format('Y年m月d日')}}
                             </span>
@@ -347,7 +350,7 @@
                 @foreach($favoriteDojos as $favoriteDojo)
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{route('dojos.show', $favoriteDojo)}}">
+                            <a href="{{route('dojos.show', $favoriteDojo->dojo->id)}}">
                                 <i class="fa-solid fa-vihara"></i>
                                 {{$favoriteDojo->dojo->name}}
                             </a>
@@ -414,7 +417,7 @@
                 @foreach($useDojos as $useDojo)
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{route('dojos.show', $useDojo)}}">
+                            <a href="{{route('dojos.show', $useDojo->dojo->id)}}">
                                 <i class="fa-solid fa-vihara"></i>
                                 {{$useDojo->dojo->name}}
                             </a>
@@ -482,7 +485,7 @@
                 @foreach($latestDojos as $latestDojo)
                     <div class="card">
                         <div class="card-header">
-                            <a href="{{route('dojos.show', $latestDojo)}}">
+                            <a href="{{route('dojos.show', $latestDojo->id)}}">
                                 <i class="fa-solid fa-vihara"></i>
                                 {{$latestDojo->name}}
                             </a>

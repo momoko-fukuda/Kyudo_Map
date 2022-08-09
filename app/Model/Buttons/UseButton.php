@@ -11,6 +11,12 @@ class UseButton extends Model
 {
 
     /**
+     * favoritebuttonにデータ挿入
+     */
+    protected $fillable = [ 'dojo_id', 'user_id'];
+    
+    
+    /**
      * dojosテーブルとのリレーション
      */
     public function dojo()
@@ -45,10 +51,4 @@ class UseButton extends Model
         $query->with(['user', 'dojo'])
               ->where('user_id', $user->id);
     }
-    
-    
-    /**
-     * favoritebuttonにデータ挿入
-     */
-    protected $fillable = [ 'dojo_id', 'user_id'];
 }

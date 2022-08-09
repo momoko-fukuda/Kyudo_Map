@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 /**
- * ホーム画面、アプリ説明画面、プライバシーポリシー画面、利用規約画面のクラスコントローラ
+ * ホーム画面、
+ * アプリ説明画面、
+ * プライバシーポリシー画面、
+ * 利用規約画面のクラスコントローラ
  */
 class HomeController extends Controller
 {

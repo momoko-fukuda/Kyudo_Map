@@ -1,5 +1,3 @@
-<!--★共通レイアウト--->
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale())}}">
     <head>
@@ -47,7 +45,7 @@
         
         <!-- Scripts（jsやfontawesome使用する際） -->
         <script src="{{ secure_asset('js/app.js') }}"></script>
-        <script src="{{ secure_asset('js/dojocreate.js') }}"></script>
+        <script src="{{ secure_asset('js/dojo.js') }}"></script>
         
         
 

@@ -211,7 +211,7 @@
                        class="col-md-5 
                               col-form-label 
                               text-md-left">
-                    住所③（建物・ビル名など）
+                    住所③（建物・ビル名等）
                     <span class="ml-1 required">必須</span>
                 </label>
 
@@ -267,34 +267,7 @@
                     @endif
                 </div>
             </div>
-            <!--利用料-->
-            <div class="form-group row">
-                <label for="use_money" 
-                       class="col-md-5 col-form-label text-md-left">
-                    利用料金
-                </label>
-
-                <div class="col-md-7 flex-grow-1">
-                   <input id="use_money" 
-                          type="text" 
-                          class="form-control
-                                 @error('use_money') is-invalid @enderror" 
-                          name="use_money" 
-                          value="{{ old('use_money') }}"  
-                          autocomplete="off" 
-                          autofocus 
-                          placeholder="例：2時間500円">
-
-                   @if($errors->has('use_money'))
-                            @foreach($errors->get('use_money') as $error)
-                                <small class="d-block 
-                                              text-danger ">
-                                    {{$error}}
-                                </small>
-                            @endforeach
-                    @endif
-                </div>
-            </div>
+            
             <!--弓道場ホームページ-->
             <div class="form-group row">
                 <label for="url" 
@@ -317,6 +290,34 @@
                    
                    @if($errors->has('url'))
                             @foreach($errors->get('url') as $error)
+                                <small class="d-block 
+                                              text-danger ">
+                                    {{$error}}
+                                </small>
+                            @endforeach
+                    @endif
+                </div>
+            </div>
+            <!--利用料-->
+            <div class="form-group row">
+                <label for="use_money" 
+                       class="col-md-5 col-form-label text-md-left">
+                    利用料金
+                </label>
+
+                <div class="col-md-7 flex-grow-1">
+                   <input id="use_money" 
+                          type="text" 
+                          class="form-control
+                                 @error('use_money') is-invalid @enderror" 
+                          name="use_money" 
+                          value="{{ old('use_money') }}"  
+                          autocomplete="off" 
+                          autofocus 
+                          placeholder="例：2時間500円">
+
+                   @if($errors->has('use_money'))
+                            @foreach($errors->get('use_money') as $error)
                                 <small class="d-block 
                                               text-danger ">
                                     {{$error}}
@@ -374,7 +375,11 @@
     
         
         <!--ボタン-->
+        <small class="text-danger">
+            ※「基本情報」「利用条件」「施設情報」を確認の上、新規登録ボタンを押してください。
+        </small>
         <div class="btn_submit">
+            
             <button type="submit" class="btn btn_check">
                 新規登録
                 <i class="fa-solid fa-pen-to-square"></i>

@@ -116,6 +116,8 @@ class Dojo extends Model
     ) {
         if (!empty($area_id)) {
             $query->where('area_id', 'LIKE', $area_id);
+        } elseif ($area_id == '0') {
+            $query;
         }
         if (!empty($addresskeyword)) {
             $query->where('address1', 'LIKE', "%{$addresskeyword}%")
