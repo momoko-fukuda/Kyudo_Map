@@ -55,6 +55,7 @@ class ReviewButton extends Model
     public function scopegetReviewButtonUser($query, $user)
     {
         $query->with(['user', 'review'])
-               ->where('user_id', $user->id);
+               ->where('user_id', $user->id)
+               ->orderBy('created_at', 'desc');
     }
 }

@@ -44,8 +44,12 @@
     border-bottom: 1px #DEB887 solid;
 }
 #showtop td{
-    word-wrap: break-word;
+   word-break: break-all;
 }
+#showtop td a{
+    color: #6B8E23;
+}
+
 .toptable{
     border-top: 1px #DEB887 solid;
 }

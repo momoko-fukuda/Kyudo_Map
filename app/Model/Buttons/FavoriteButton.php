@@ -46,6 +46,7 @@ class FavoriteButton extends Model
     public function scopegetFavoriteButtonUser($query, $user)
     {
         $query->with(['user', 'dojo'])
-               ->where('user_id', $user->id);
+               ->where('user_id', $user->id)
+               ->orderBy('created_at', 'desc');
     }
 }

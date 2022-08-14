@@ -49,6 +49,7 @@ class UseButton extends Model
     public function scopegetUseButtonUser($query, $user)
     {
         $query->with(['user', 'dojo'])
-              ->where('user_id', $user->id);
+              ->where('user_id', $user->id)
+              ->orderBy('created_at', 'desc');
     }
 }

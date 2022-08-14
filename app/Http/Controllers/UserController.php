@@ -58,7 +58,7 @@ class UserController extends Controller
         $useDojos = UseButton::getUseButtonUser($user)
                              ->get();
         
-        //更新日が1か月以内の道場をとってくる
+        //更新順に活動地域の道場をとってくる
         $latestDojos = Dojo::getLatestDojo($area)
                            ->get();
     
