@@ -328,27 +328,46 @@
             </div>
             <!--画像アップロード（要確認）-->
             <div class="form-group row">
-                <label class="col-md-5 
-                              col-form-label 
-                              text-md-left">
-                    弓道場画像<small>(約5枚~10枚まで可※容量10MB)</small>
-                </label>
-                <div class="col-md-7">
-                    <div class="imgbox">
-                        <input type="file" 
-                               multiple
-                               class="form-controle-file" 
-                               name="img[]"
-                               class="img">
-                        <a type="button" class="append_imgs">
-                            <i class="fa-solid fa-circle-plus"></i>
-                        </a>
-                        <a type="button" class="remove_imgs">
-                            <i class="fa-solid fa-circle-minus"></i>
-                        </a>
+                    <label class="col-md-5 
+                                  col-form-label 
+                                  text-md-left 
+                                  @error('img') is-invalid @enderror">
+                        弓道場写真<small>(約5枚~10枚まで可※上限10MB)</small>
+                    </label>
+                    <div class="d-flex">
+                        <div class="custom-file imgbox">
+                            <input type="file" 
+                                   multiple
+                                   class="custom-file-input img"
+                                   id="customFile"
+                                   name="img[]">
+                            <label class="custom-file-label"
+                                   for="customFile" 
+                                   data-browse="参照">
+                                <i class="fa-solid fa-images"></i>
+                                <i class="fa-solid fa-circle-plus"></i>
+                            </label>
+                        </div>
+                        <div class="form-group-append">
+                            <button type="button" 
+                                    class="btn 
+                                           btn-outline-secondary 
+                                           reset">
+                                取消
+                            </button>
+                        </div>
                     </div>
-                </div>
-
+                    
+                    <!--全体のファイル容量のエラー表示-->
+                    @if($errors->has('img'))
+                        @foreach($errors->get('img') as $error)
+                            <small class="d-block 
+                                          text-danger ">
+                                {{$error}}
+                            </small>
+                        @endforeach
+                    @endif
+                    <!--個々のファイルのエラー表示-->
                     @foreach($errors->get('img.*') as $messages)
                         @foreach($messages as $message)
                             <small class="d-block 
@@ -357,12 +376,8 @@
                             </small>
                         @endforeach
                     @endforeach
-               
-                
-                
             </div>
-
-        </div>
+        </div>   
         
         <!--グループ２-->
         @component('components.formtab2')

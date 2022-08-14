@@ -96,52 +96,65 @@ class DojoController extends Controller
      */
     public function store(Request $request, Dojo $dojo, Area $area)
     {
-        $request->validate(
-            [
-                'user_id'=>['nullable', 'integer'],
-                'name'=>['required', 'string', 'max:50','unique:dojos'],
-                'area_id'=>['required','integer'],
-                'address1'=>['required', 'string', 'max:250'],
-                'address2'=>['required', 'string', 'max:250'],
-                'tel'=>['required', 'string', 'max:20'],
-                'url'=>['nullable', 'string'],
-                'use_money'=> ['nullable', 'string', 'max:250'],
-                'use_age' => ['nullable', 'integer'],
-                'use_step' => ['nullable', 'string', 'max:5'],
-                'use_personal'=> ['nullable', 'string', 'max:5'],
-                'use_group'=> ['nullable', 'string', 'max:5'],
-                'use_affiliation'=> ['nullable', 'string', 'max:5'],
-                'use_reserve'=> ['nullable', 'string', 'max:5'],
-                'facility_inout'=> ['nullable', 'string', 'max:5'],
-                'facility_makiwara'=> ['nullable', 'string', 'max:5'],
-                'facility_aircondition'=> ['nullable', 'string', 'max:5'],
-                'facility_matonumber'=> ['nullable', 'integer'],
-                'facility_lockerroom'=>['nullable', 'string', 'max:5'],
-                'facility_numberlimit'=>['nullable', 'string', 'max:20'],
-                'facility_parking'=> ['nullable', 'string', 'max:20'],
-                'other'=> ['nullable', 'string', 'max:255'],
-                'img.*' => ['mimes:jpeg,png,jpg,gif', 'max:2000'],
-                // 'img' => ['max:20', 'array'],
-                // ※千葉  imgパラメータは配列としてわたってくるので、
-                //         imgパラメータを直接バリデーションするのではなく
-                //         中身をバリデーションしなければいけない
-                // memo:1枚当たりの容量設定はできたが、複数の合計値のバリエーションエラーはどうするか
-            ],
-            [
-                'name.unique' => '既に登録されている道場名です。',
-                'name.max' => '道場名は、50文字以内で入力してください',
-                'address1.max' => '250文字以内で入力してください',
-                'address2.max' => '250文字以内で入力してください',
-                'tel.max' => '20文字以内で入力してください（ハイフンあり）',
-                'use_money.max' => '250文字以内で入力してください',
-                'use_age.integer' => '年齢制限を数字（半角）で入力してください',
-                'facility_matonumber.integer' => '的数を数字（半角）で入力してください',
-                'facility_numberlimit.max' => '20文字以内で入力してください',
-                'other.max' =>  '255文字以内で入力してください',
-                'img.max' => '写真データの容量が上限を越してます。（上限10MBまで）',
-                'img.*.max' => '写真データの容量が上限を越してます。（1ファイルにつき上限2MBまで）',
-                ]
-        );
+        $rules =  [
+                        'user_id'=>['nullable', 'integer'],
+                        'name'=>['required', 'string', 'max:50','unique:dojos'],
+                        'area_id'=>['required','integer'],
+                        'address1'=>['required', 'string', 'max:250'],
+                        'address2'=>['required', 'string', 'max:250'],
+                        'tel'=>['required', 'string', 'max:20'],
+                        'url'=>['nullable', 'string'],
+                        'use_money'=> ['nullable', 'string', 'max:250'],
+                        'use_age' => ['nullable', 'integer'],
+                        'use_step' => ['nullable', 'string', 'max:5'],
+                        'use_personal'=> ['nullable', 'string', 'max:5'],
+                        'use_group'=> ['nullable', 'string', 'max:5'],
+                        'use_affiliation'=> ['nullable', 'string', 'max:5'],
+                        'use_reserve'=> ['nullable', 'string', 'max:5'],
+                        'facility_inout'=> ['nullable', 'string', 'max:5'],
+                        'facility_makiwara'=> ['nullable', 'string', 'max:5'],
+                        'facility_aircondition'=> ['nullable', 'string', 'max:5'],
+                        'facility_matonumber'=> ['nullable', 'integer'],
+                        'facility_lockerroom'=>['nullable', 'string', 'max:5'],
+                        'facility_numberlimit'=>['nullable', 'string', 'max:20'],
+                        'facility_parking'=> ['nullable', 'string', 'max:20'],
+                        'other'=> ['nullable', 'string', 'max:255'],
+                        'img.*' => ['mimes:jpeg,png,jpg,gif', 'max:2048'],
+                        'img' => ['array'],
+                    ];
+        $messages = [
+                        'name.unique' => '既に登録されている道場名です。',
+                        'name.max' => '道場名は、50文字以内で入力してください',
+                        'address1.max' => '250文字以内で入力してください',
+                        'address2.max' => '250文字以内で入力してください',
+                        'tel.max' => '20文字以内で入力してください（ハイフンあり）',
+                        'use_money.max' => '250文字以内で入力してください',
+                        'use_age.integer' => '年齢制限を数字（半角）で入力してください',
+                        'facility_matonumber.integer' => '的数を数字（半角）で入力してください',
+                        'facility_numberlimit.max' => '20文字以内で入力してください',
+                        'other.max' =>  '255文字以内で入力してください',
+                        'img.*.max' => '写真データの容量が上限を越してます。（1ファイルにつき上限2MBまで）',
+                    ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        // 追加のバリデーションエラー（img全体容量上限）
+        $validator->after(function ($validator) use ($request) {
+            $images = $request->file("img");
+            if (!$images) {
+                return;
+            }
+
+            $totalSize = 0;
+            foreach ($images as $img) {
+                $totalSize += $img->getSize();
+            }
+            if ($totalSize > env("MAX_UPLOAD_SIZE")) {
+                $validator->errors()->add('img', '全体のファイルサイズが上限を超えています。（合計10MBまで）');
+            }
+        });
+
+        $validator->validate();
+
         
         $dojo = new Dojo();
         $businesshour = new BusinessHour();

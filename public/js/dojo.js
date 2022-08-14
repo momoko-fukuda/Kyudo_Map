@@ -10999,15 +10999,21 @@ $(function () {
     $('.hidehours').toggle();
   });
   /**
-   * dojos/create.blade.phpにて、画像データの項目を増やす減らすコード
+   * dojos/create.blade.php
+   * reviews/create.blade.php
+   * ファイル選択のレイアウトコード
    */
 
-  $('.append_imgs').click(function () {
-    var clonecode = $('.imgbox:last').clone(true);
-    clonecode.insertAfter($('.imgbox:last'));
-  });
-  $('.remove_imgs').click(function () {
-    $(this).parents('.imgbox').remove();
+  $('.custom-file-input').on('change', handleFileSelect);
+
+  function handleFileSelect(evt) {
+    var files = evt.target.files;
+    $(this).next('.custom-file-label').html(+files.length + '個のファイルを選択しました');
+  }
+
+  $('.reset').click(function () {
+    $(this).parent().prev().children('.custom-file-label').html('ファイル選択...');
+    $('.custom-file-input').val('');
   });
   /**
    * 各口コミの画像を表示させるコード
@@ -11070,12 +11076,12 @@ $(function () {
     });
   });
   /**
-   * 口コミ削除(mypage)
+   * 口コミ削除の注意メッセージ(mypage)
    * 
    */
 
   $('.reviewdeletebtn').on('click', function () {
-    if (confirm('削除するとデータ復旧はできません')) {} else {
+    if (confirm('削除するとデータ復旧はできません（投稿画像も同時に削除されます）')) {} else {
       return false;
     }
   });

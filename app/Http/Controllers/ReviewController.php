@@ -70,18 +70,35 @@ class ReviewController extends Controller
      */
     public function store(Dojo $dojo, Request $request)
     {
-        $request->validate(
-            [
+        $rules =[
             'title' => ['required', 'string'],
             'body' => ['required', 'string'],
-            'img.*' => ['mimes:jpeg,png,jpg,gif', 'max:2000'],
-            // 'img' => ['max:10000', 'mimes:jpeg,png,jpg,gif']
-            ],
-            [
-                'img.max' => '写真データの容量が上限を越してます。（上限10MBまで）',
-                'img.*.max' => '写真データの容量が上限を越してます。（1ファイルにつき上限2MBまで）',
-            ]
-        );
+            'img.*' => ['mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'img' => ['array'],
+            ];
+        $messages = [
+            'img.*.max' => '写真データの容量が上限を越してます。（1ファイルにつき上限2MBまで）',
+            ];
+        $validator = Validator::make($request->all(), $rules, $messages);
+        
+        // 追加のバリデーションエラー（img全体容量上限）
+        $validator->after(function ($validator) use ($request) {
+            $images = $request->file("img");
+            if (!$images) {
+                return;
+            }
+
+            $totalSize = 0;
+            foreach ($images as $img) {
+                $totalSize += $img->getSize();
+            }
+            if ($totalSize > env("MAX_UPLOAD_SIZE")) {
+                $validator->errors()->add('img', '全体のファイルサイズが上限を超えています。（合計10MBまで）');
+            }
+        });
+
+        $validator->validate();
+        
             
         $review = new Review();
         Review::createReview($review, $request);

@@ -1343,6 +1343,11 @@
 .form-controle-file{
     width:280px;
 }
+.custom-file {
+  max-width: 20rem;
+  margin-left: 10px;
+}
+
 
 /*★スマホ用*/
 @media screen and (max-width:659px){
@@ -1355,6 +1360,10 @@
     }
     #reviewform{
         width: 85%;
+    }
+    .custom-file {
+      max-width: 11rem;
+      margin-left: 10px;
     }
 }
 
