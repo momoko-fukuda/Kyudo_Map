@@ -70,8 +70,7 @@ class DojoController extends Controller
             'dojo_name',
             'addresskeyword',
             'use_personal',
-            'use_group',
-            'latestphoto'
+            'use_group'
         ));
     }
 
