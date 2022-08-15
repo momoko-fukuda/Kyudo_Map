@@ -54,9 +54,9 @@
                                 style="display:none;">
                             段数を選択してください
                         </option>
-                        <option value="不明・無指定"
-                                      {{ '不明・無指定' == old('use_step') ? 'selected' : '' }}>
-                            不明・無指定
+                        <option value="無指定"
+                                      {{ '無指定' == old('use_step') ? 'selected' : '' }}>
+                            無指定
                         </option>
                         <option value="初段" 
                                       {{ '初段' == old('use_step') ? 'selected' : '' }}>
