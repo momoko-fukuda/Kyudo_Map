@@ -116,7 +116,7 @@ class DojoController extends Controller
                         'facility_aircondition'=> ['nullable', 'string', 'max:5'],
                         'facility_matonumber'=> ['nullable', 'integer'],
                         'facility_lockerroom'=>['nullable', 'string', 'max:5'],
-                        'facility_numberlimit'=>['nullable', 'string', 'max:20'],
+                        'facility_numberlimit'=>['nullable', 'string', 'max:250'],
                         'facility_parking'=> ['nullable', 'string', 'max:20'],
                         'other'=> ['nullable', 'string', 'max:255'],
                         'img.*' => ['mimes:jpeg,png,jpg,gif', 'max:2048'],
@@ -131,7 +131,7 @@ class DojoController extends Controller
                         'use_money.max' => '250文字以内で入力してください',
                         'use_age.integer' => '年齢制限を数字（半角）で入力してください',
                         'facility_matonumber.integer' => '的数を数字（半角）で入力してください',
-                        'facility_numberlimit.max' => '20文字以内で入力してください',
+                        'facility_numberlimit.max' => '250文字以内で入力してください',
                         'other.max' =>  '255文字以内で入力してください',
                         'img.*.max' => '写真データの容量が上限を越してます。（1ファイルにつき上限2MBまで）',
                     ];
@@ -259,7 +259,7 @@ class DojoController extends Controller
                 'facility_aircondition'=> ['nullable', 'string', 'max:5'],
                 'facility_matonumber'=> ['nullable', 'integer'],
                 'facility_lockerroom'=>['nullable', 'string', 'max:5'],
-                'facility_numberlimit'=>['nullable', 'string', 'max:20'],
+                'facility_numberlimit'=>['nullable', 'string', 'max:250'],
                 'facility_parking'=> ['nullable', 'string', 'max:20'],
                 'other'=> ['nullable', 'string', 'max:255'],
             ],
@@ -267,7 +267,7 @@ class DojoController extends Controller
                 'use_money.max' => '250文字以内で入力してください',
                 'use_age.integer' => '年齢制限を数字（半角）で入力してください',
                 'facility_matonumber.integer' => '的数を数字（半角）で入力してください',
-                'facility_numberlimit.max' => '20文字以内で入力してください',
+                'facility_numberlimit.max' => '250文字以内で入力してください',
                 'other.max' =>  '255文字以内で入力してください',
                 ]
         );
