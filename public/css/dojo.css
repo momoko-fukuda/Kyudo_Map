@@ -476,6 +476,9 @@
         border-radius: 10px;
         text-align: center;
     }
+    #news ul{
+        text-align: left;
+    }
     #news li{
         list-style: none;
     }
@@ -1294,6 +1297,7 @@
 .pagination{
     width:70%;
     margin:auto;
+    flex-wrap: wrap;
 }
 .page-item.active .page-link{
     background-color:#6B8E23;

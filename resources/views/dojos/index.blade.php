@@ -166,7 +166,7 @@
     </div>
     
     @endforelse
-    {{$dojos->links()}}
+    {{$dojos->appends(request()->query())->links()}}
 
 </div>
 @endsection

@@ -227,6 +227,10 @@
                 弓道場のTEBIKIがサービス開始
             </a>
         </li>
+        <li>
+            <i class="fa-solid fa-bullseye"></i>
+            関東・関西地域の弓道場をアップしました。
+        </li>
     </ul>
 </div>
 
@@ -234,7 +238,7 @@
 <!--レビュー表示部分-->
 <div id="reviews">
     <img src="../../images/kyudo_review.png" id="usagi">
-    <h3>弓道場に関する口コミ</h3>
+    <h3>弓道場に関する最新口コミ</h3>
     
     <div>
         @if($reviews->isNotEmpty())

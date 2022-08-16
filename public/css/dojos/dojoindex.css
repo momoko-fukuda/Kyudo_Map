@@ -131,6 +131,7 @@
 .pagination{
     width:70%;
     margin:auto;
+    flex-wrap: wrap;
 }
 .page-item.active .page-link{
     background-color:#6B8E23;
